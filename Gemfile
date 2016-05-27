@@ -26,11 +26,11 @@ gem 'sdoc', '0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Use Passenger as the app server
+gem "passenger", '>= 5.0.25', require: "phusion_passenger/rack_handler"
+
 # Use Unicorn as the app server
 # gem 'unicorn'
-
-# Use Passenger as the app server
-# gem "passenger", '>= 5.0.25', require: "phusion_passenger/rack_handler"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -45,5 +45,6 @@ group :development, :test do
 end
 
 group :staging, :production  do
+  gem 'ey_config'
   gem 'rails_12factor', '0.0.2'
 end
