@@ -60,6 +60,7 @@ GEM
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
+    envyable (1.0.0)
     erubis (2.7.0)
     execjs (2.7.0)
     ey_config (0.0.7)
@@ -172,6 +173,7 @@ DEPENDENCIES
   bootstrap-will_paginate (= 0.0.10)
   byebug (= 3.4.0)
   coffee-rails (= 4.1.0)
+  envyable
   ey_config
   faker (= 1.4.2)
   jbuilder (= 2.2.3)

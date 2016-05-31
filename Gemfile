@@ -25,5 +25,6 @@ end
 
 group :staging, :production  do
   gem 'ey_config'
+  gem 'envyable'
   gem 'rails_12factor', '0.0.2'
 end
