@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="200mm" width="190mm" version="1" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 613.67774 641.50197" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <defs>
+  <linearGradient id="a">
+   <stop stop-color="#00bcf5" offset="0"/>
+   <stop stop-color="#052b61" offset="1"/>
+  </linearGradient>
+  <radialGradient id="d" xlink:href="#a" gradientUnits="userSpaceOnUse" cy=".0095277" cx="343.62" gradientTransform="matrix(-1.1976 1.4969 -.97771 -.78217 871.51 -482.01)" r="306.84"/>
+  <radialGradient id="c" gradientUnits="userSpaceOnUse" cy="313.46" cx="164.01" gradientTransform="matrix(.90631 2.4245 -1.556 .58164 519.19 -345.58)" r="183.4">
+   <stop stop-color="#d2d2e1" offset="0"/>
+   <stop stop-color="#555568" offset="1"/>
+  </radialGradient>
+  <radialGradient id="b" xlink:href="#a" gradientUnits="userSpaceOnUse" cy="505.05" cx="232.7" gradientTransform="matrix(1.6987 .26103 -.21343 1.389 -54.803 -261.33)" r="220.67"/>
+ </defs>
+ <g shape-rendering="geometricPrecision" transform="translate(-56 -44.443)">
+  <path d="m376.96 44.443a320.96 320.96 0 0 0 -320.96 320.96 320.96 320.96 0 0 0 59.23 185.1 321.06 321.06 0 0 1 -27.824 -129.77 321.06 321.06 0 0 1 321.06 -321.06 321.06 321.06 0 0 1 261.21 135.07 320.96 320.96 0 0 0 -292.72 -190.3z" fill="url(#d)"/>
+ </g>
+ <g shape-rendering="geometricPrecision" transform="translate(-56 -44.443)">
+  <path fill="url(#c)" d="m396.63 122.99a281.97 281.97 0 0 0 -281.97 281.97 281.97 281.97 0 0 0 262.38 280.99 281.11 281.11 0 0 1 -203.97 -270.07 281.11 281.11 0 0 1 281.11 -281.12 281.11 281.11 0 0 1 27.283 1.3652 281.97 281.97 0 0 0 -84.832 -13.143z"/>
+ </g>
+ <g transform="translate(-56 -44.443)">
+  <path shape-rendering="geometricPrecision" fill="url(#b)" d="m262.92 272.96a234.09 234.09 0 0 0 -60.98 157.17 234.09 234.09 0 0 0 234.09 234.09 234.09 234.09 0 0 0 207.25 -125.61 232.98 232.98 0 0 1 -178.56 83.37 232.98 232.98 0 0 1 -232.98 -232.99 232.98 232.98 0 0 1 31.18 -116.03z"/>
+ </g>
+</svg>
