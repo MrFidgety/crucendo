@@ -1,1 +1,5 @@
-<%= @user.name %>, <%= @user.email %>
+<h1>Users#show<br><small>app/views/users/show.html.erb</small></h1>
+<div class="center">
+  <%= @user.email %>
+  <%= link_to "Log out", logout_path, method: :delete %>
+</div>
