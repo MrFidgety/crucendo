@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get     'help'    =>  'static_pages#help'
   get     'begin'   =>  'users#new'
   post    'begin'   =>  'users#create'
+  get     'resend'  =>  'users#resend'
   delete  'logout'  =>  'sessions#destroy'
   
   resources :users

@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :new_user,   only: [:new]
+  before_action :logged_in_user, only: [:show, :edit, :update]
+  before_action :correct_user,   only: [:show, :edit, :update]
   
   def show
     @user = User.find(params[:id])
+    redirect_to root_url and return unless @user.activated?
   end
   
   def new
@@ -17,11 +19,21 @@ class UsersController < ApplicationController
       if @user.activated?
         # create login digest and send email
         @user.send_login_email
-        flash[:info] = "Please check your email to login to your account."
+        flash[:info] = "Thanks for being part of The Crucial Team! 
+                        We’ve sent you an email that you can use to login. 
+                        See you soon."
         redirect_to root_url
       else
-        @user.resend_activation_email
-        flash[:info] = "Please check your email to activate your account."
+        if @user.activation_link_expired? 
+          @user.resend_activation_email
+          flash[:info] = "Awesome! It looks like you’re already part of 
+                          The Crucial Team. We’ve sent you a link that you can 
+                          use to activate your account, it’s okay, we’ll wait 
+                          here while you check your email."
+        else
+          # Prompt for activation email to be resent
+          flash[:info] = render_to_string(:partial => "shared/login_failed_message")
+        end
         redirect_to root_url
       end
     else
@@ -29,11 +41,24 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
       if @user.save
         @user.send_activation_email
-        flash[:info] = "Please check your email to activate your account."
+        flash[:info] = "You’re one step away from being part of The 
+                        Crucial Team. Check out the email we just sent you, 
+                        it’s okay, we’ll wait here."
         redirect_to root_url
       else
         render 'new'
       end
+    end
+  end
+  
+  def resend
+    @user = User.find_by(email: params[:user][:email].downcase)
+    if @user && !@user.activated?
+      @user.resend_activation_email
+      flash[:info] = "Thanks for being part of The Crucial Team! 
+                      We’ve sent you an email that you can use to login. 
+                      See you soon."
+      redirect_to root_url
     end
   end
   
@@ -49,7 +74,14 @@ class UsersController < ApplicationController
     def logged_in_user
       unless logged_in?
         flash[:danger] = "Please log in."
-        redirect_to login_url
+        redirect_to begin_path
+      end
+    end
+    
+    # Confirms user not logged in.
+    def new_user
+      unless !logged_in?
+        redirect_to current_user
       end
     end
     

@@ -42,26 +42,37 @@ class User < ActiveRecord::Base
   
    # Activates an account.
   def activate
-    update_attribute(:activated,    true)
-    update_attribute(:activated_at, Time.zone.now)
+    update_columns(activated: true, activated_at: Time.zone.now)
   end
 
   # Sends activation email.
   def send_activation_email
+    update_attribute(:activation_sent_at, Time.zone.now)
     UserMailer.account_activation(self).deliver_now
   end
   
   # Resends activation email.
   def resend_activation_email
     self.activation_token  = User.new_token
-    update_attribute(:activation_digest, User.digest(activation_token))
+    update_columns(activation_digest:  User.digest(activation_token),
+                   activation_sent_at: Time.zone.now)
     UserMailer.account_activation(self).deliver_now
+  end
+  
+  # Returns true if a Activation link has expired.
+  def activation_link_expired?
+    activation_sent_at < 15.minutes.ago
   end
   
   # Sends login email
   def send_login_email
     create_login_digest
     UserMailer.account_login(self).deliver_now
+  end
+  
+  # Returns true if a Login link has expired.
+  def login_link_expired?
+    login_sent_at < 15.minutes.ago
   end
   
   private
@@ -80,6 +91,7 @@ class User < ActiveRecord::Base
     # Creates and assigns the login token and digest.
     def create_login_digest
       self.login_token  = User.new_token
-      update_attribute(:login_digest, User.digest(login_token))
+      update_columns(login_digest:  User.digest(login_token),
+               login_sent_at: Time.zone.now)
     end
 end
