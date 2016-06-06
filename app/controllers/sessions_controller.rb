@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
-  before_action :get_user,         only: [:edit]
-  before_action :valid_user,       only: [:edit]
-  before_action :check_expiration, only: [:edit]
+  before_action :logged_in_user,    only: [:edit]
+  before_action :get_user,          only: [:edit]
+  before_action :valid_user,        only: [:edit]
+  before_action :check_expiration,  only: [:edit]
   
   def new
   end
@@ -28,7 +29,7 @@ class SessionsController < ApplicationController
     
     # Confirms a valid user.
     def valid_user
-      unless (@user && @user.activated? &&
+      unless (@user && @user.activated? && 
               @user.authenticated?(:login, params[:id]))
         set_flash :link_expired, type: :warning
         redirect_to root_url
@@ -41,5 +42,10 @@ class SessionsController < ApplicationController
         set_flash :link_expired, type: :warning
         redirect_to begin_path
       end
+    end
+    
+    # Confirms a logged-in user.
+    def logged_in_user
+      redirect_to current_user if logged_in?
     end
 end

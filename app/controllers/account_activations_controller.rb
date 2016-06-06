@@ -1,4 +1,5 @@
 class AccountActivationsController < ApplicationController
+  before_action :logged_in_user,    only: [:edit]
   before_action :get_user,         only: [:edit]
   before_action :valid_user,       only: [:edit]
   before_action :check_expiration, only: [:edit]
@@ -31,5 +32,10 @@ class AccountActivationsController < ApplicationController
         set_flash :link_expired, type: :warning
         redirect_to begin_path
       end
+    end
+    
+    # Confirms a logged-in user.
+    def logged_in_user
+      redirect_to current_user if logged_in?
     end
 end
