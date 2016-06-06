@@ -1,4 +1,3 @@
-<% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<div class='alert alert-<%= flash_alert_type %>'>
   <%= render flash_path, object: flash_object %>
-<% end %>
+</div>

@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
   #
   def account_activation(user)
     @user = user
-    mail to: user.email, subject: "Account activation"
+    mail to: user.email, subject: "Welcome to The Crucial Team!"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -17,6 +17,6 @@ class UserMailer < ApplicationMailer
   #
   def account_login(user)
     @user = user
-    mail to: user.email, subject: "Account login"
+    mail to: user.email, subject: "Welcome back to The Crucial Team!"
   end
 end

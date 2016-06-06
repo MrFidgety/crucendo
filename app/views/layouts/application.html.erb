@@ -12,7 +12,7 @@
 <body>
   <%= render 'layouts/header' %>
   <div class="container">
-    <%= render 'shared/flash' %>
+    <%= render_flash %>
     <%= image_tag("logo.svg", class: "img-responsive center-block logo") %>
     <%= yield %>
     <%= render 'layouts/footer' %>

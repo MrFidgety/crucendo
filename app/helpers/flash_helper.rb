@@ -1,17 +1,25 @@
 module FlashHelper
   def render_flash
-    render 'flash' if can_flash
+    render 'shared/flash' if can_flash?
   end
   
   def can_flash?
-    flash.keys.sort == [:from, :object_id, :object_type, :type]
+    [:controller, :from, :type, :result].all? {|s| flash.key? s}
   end
   
   def flash_object
-    flash[:object_type].classify.constantize
+    flash[:object_type].classify.constantize.where(id: flash[:object_id]).first unless !flash[:object_type]
   end
   
   def flash_path
-    File.join(controller_name, 'flash', flash[:from].to_s, flash[:type].to_s)
+    File.join(flash[:controller], 'flash', flash[:from].to_s, flash[:result].to_s)
+  end
+  
+  def flash_alert_result
+    flash[:result]
+  end
+  
+  def flash_alert_type
+    flash[:type]
   end
 end

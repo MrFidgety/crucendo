@@ -19,20 +19,16 @@ class UsersController < ApplicationController
       if @user.activated?
         # create login digest and send email
         @user.send_login_email
-        flash[:info] = "Thanks for being part of The Crucial Team! 
-                        We’ve sent you an email that you can use to login. 
-                        See you soon."
+        set_flash :send_login, type: :success, object: @user
         redirect_to root_url
       else
-        if @user.activation_link_expired? 
+        if @user.activation_link_expired?
+          # resend activation
           @user.resend_activation_email
-          flash[:info] = "Awesome! It looks like you’re already part of 
-                          The Crucial Team. We’ve sent you a link that you can 
-                          use to activate your account, it’s okay, we’ll wait 
-                          here while you check your email."
+          set_flash :resend_activation, type: :success, object: @user
         else
-          # Prompt for activation email to be resent
-          flash[:info] = render_to_string(:partial => "shared/login_failed_message")
+          # prompt for activation to be resent
+          set_flash :resend_activation_prompt, type: :success, object: @user
         end
         redirect_to root_url
       end
@@ -40,10 +36,9 @@ class UsersController < ApplicationController
       # attempt to create new user
       @user = User.new(user_params)
       if @user.save
+        # send activation email
         @user.send_activation_email
-        flash[:info] = "You’re one step away from being part of The 
-                        Crucial Team. Check out the email we just sent you, 
-                        it’s okay, we’ll wait here."
+        set_flash :send_activation, type: :success, object: @user
         redirect_to root_url
       else
         render 'new'
@@ -52,12 +47,10 @@ class UsersController < ApplicationController
   end
   
   def resend
-    @user = User.find_by(email: params[:user][:email].downcase)
+    @user = User.find_by(email: params[:email].downcase)
     if @user && !@user.activated?
       @user.resend_activation_email
-      flash[:info] = "Thanks for being part of The Crucial Team! 
-                      We’ve sent you an email that you can use to login. 
-                      See you soon."
+      set_flash :resend_activation_confirm, type: :success, object: @user
       redirect_to root_url
     end
   end
@@ -73,7 +66,7 @@ class UsersController < ApplicationController
     # Confirms a logged-in user.
     def logged_in_user
       unless logged_in?
-        flash[:danger] = "Please log in."
+        set_flash :link_error, type: :warning
         redirect_to begin_path
       end
     end

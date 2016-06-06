@@ -5,9 +5,9 @@ class AccountActivationsController < ApplicationController
   
   def edit
     @user.activate
-    @user.remember
     log_in @user
-    flash[:success] = "Account activated!"
+    remember @user
+    set_flash :welcome, type: :success
     redirect_to @user
   end
   
@@ -21,14 +21,14 @@ class AccountActivationsController < ApplicationController
     def valid_user
       unless (@user && !@user.activated? &&
               @user.authenticated?(:activation, params[:id]))
-        flash[:danger] = "Invalid activation link"
+        set_flash :link_expired, type: :warning
         redirect_to root_url
       end
     end
   
     def check_expiration
       if @user.activation_link_expired?
-        flash[:danger] = "Activation link has expired."
+        set_flash :link_expired, type: :warning
         redirect_to begin_path
       end
     end

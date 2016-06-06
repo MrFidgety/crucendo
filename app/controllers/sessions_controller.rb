@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     @user.update_attribute(:login_digest, nil)
     log_in @user
     remember @user
-    flash[:success] = "Account logged in!"
+    set_flash :welcome, type: :success
     redirect_to @user
   end
   
@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
     def valid_user
       unless (@user && @user.activated? &&
               @user.authenticated?(:login, params[:id]))
-        flash[:danger] = "Invalid login link"
+        set_flash :link_expired, type: :warning
         redirect_to root_url
       end
     end
@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
     # Checks expiration of reset token.
     def check_expiration
       if @user && @user.login_link_expired?
-        flash[:danger] = "Login link has expired."
+        set_flash :link_expired, type: :warning
         redirect_to begin_path
       end
     end
