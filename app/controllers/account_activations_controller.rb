@@ -1,8 +1,8 @@
 class AccountActivationsController < ApplicationController
   before_action :logged_in_user,    only: [:edit]
-  before_action :get_user,         only: [:edit]
-  before_action :valid_user,       only: [:edit]
-  before_action :check_expiration, only: [:edit]
+  before_action :get_user,          only: [:edit]
+  before_action :valid_user,        only: [:edit]
+  before_action :check_expiration,  only: [:edit]
   
   def edit
     @user.activate

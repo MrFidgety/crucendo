@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserMailerTest < ActionMailer::TestCase
   test "account_activation" do
-    user = users(:michael)
+    user = users(:gilfoyle)
     user.activation_token = User.new_token
     mail = UserMailer.account_activation(user)
     assert_equal "Welcome to The Crucial Team!", mail.subject
@@ -13,7 +13,7 @@ class UserMailerTest < ActionMailer::TestCase
   end
 
   test "account_login" do
-    user = users(:michael)
+    user = users(:richard)
     user.login_token = User.new_token
     mail = UserMailer.account_login(user)
     assert_equal "Welcome back to The Crucial Team!", mail.subject

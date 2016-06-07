@@ -1,25 +1,43 @@
-michael:
-  name: Michael Example
-  email: michael@example.com
+richard:
+  name: Richard Hendricks
+  email: boss@piedpiper.com
   admin: true
   activated: true
   activated_at: <%= Time.zone.now %>
 
-archer:
-  name: Sterling Archer
-  email: duchess@example.gov
+gilfoyle:
+  name: Bertram Gilfoyle
+  email: immigrant@piedpiper.com
+  activated: false
+  activation_sent_at: <%= Time.zone.now %>
+
+dinesh:
+  name: Dinesh Chugtai
+  email: pakistanidenzel@gmail.com
   activated: true
   activated_at: <%= Time.zone.now %>
 
-lana:
-  name: Lana Kane
-  email: hands@example.gov
+bighead:
+  name: Nelson Bighetti
+  email: bighead@bachmannity.com
   activated: true
   activated_at: <%= Time.zone.now %>
-
-malory:
-  name: Malory Archer
-  email: boss@example.gov
+  
+monica:
+  name: Monica
+  email: monica@ravigacapital.com
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  
+erlich:
+  name: Erlich Bachmann
+  email: incubator@aviato.com
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  
+jared:
+  name: Donald Dunn
+  email: fucks@piedpiper.com
   activated: true
   activated_at: <%= Time.zone.now %>
 
