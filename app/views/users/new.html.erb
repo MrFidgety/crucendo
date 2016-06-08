@@ -2,10 +2,11 @@
 <h1>Users#new<br><small>app/views/users/new.html.erb</small></h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
+    <%= form_for @user, :url => begin_path do |f| %>
       <%= render 'shared/error_messages' %>
       <div class="input-group">
         <%= f.email_field :email, placeholder: "type your email",
+                                  :autofocus=>true,
                                   class: "form-control" %>
         <span class="input-group-btn">
           <%= f.submit "Go!", class: "btn btn-default" %>

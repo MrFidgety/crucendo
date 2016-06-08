@@ -1,0 +1,38 @@
+<% provide(:title, "Edit") %>
+<h1>Update your profile<br><small><%= @user.email %></small></h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: 'Hey mate, what’s your name?', 
+                              class: 'form-control' %>
+      
+      <%= f.label :year_of_birth %>
+      <%= f.number_field  :year_of_birth, 
+                          class: 'form-control', 
+                          in: Time.now.year-120...Time.now.year, 
+                          placeholder: 'When did you enter the world?' %>
+      
+      <%= f.label :gender %>
+      <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+        <label class="btn btn-default">
+          <%= f.radio_button :gender, 'female' %>Female
+  			</label>
+  			<label class="btn btn-default">
+  				<%= f.radio_button :gender, 'male' %>Male
+  			</label>
+      </div>
+      
+      <%= f.label :country %>
+      <%= country_select("user", "country_code", 
+          { include_blank: 'Select a country' }, 
+          { class: 'form-control', 
+          placeholder: 'Which amazing part of the world do you live in?' }) %>
+      
+      <%= f.submit "Save changes", class: "btn btn-primary pull-right" %>
+    <% end %>
+  </div>
+</div>

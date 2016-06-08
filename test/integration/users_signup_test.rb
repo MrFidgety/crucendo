@@ -19,7 +19,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   test "valid signup information with account activation" do
     get begin_path
     assert_difference 'User.count', 1 do
-      post users_path, user: { email: "user@example.com" }
+      post begin_path, user: { email: "user@example.com" }
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
     user = assigns(:user)

@@ -25,6 +25,16 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
   
+  test "year of birth should be a 4 digit number" do
+    @user.year_of_birth = 0
+    assert_not @user.valid?
+  end
+  
+  test "gender should be male or female" do
+    @user.gender = "potato"
+    assert_not @user.valid?
+  end
+  
   test "email validation should accept valid addresses" do
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
                          first.last@foo.jp alice+bob@baz.cn]

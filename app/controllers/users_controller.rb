@@ -46,6 +46,20 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      set_flash :successful_update, type: :success, object: @user
+      redirect_to edit_user_path(current_user)
+    else
+      render 'edit'
+    end
+  end
+  
   def resend
     @user = User.find_by(email: params[:email].downcase)
     if @user && !@user.activated?
@@ -58,7 +72,11 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit( :name, 
+                                    :email, 
+                                    :year_of_birth, 
+                                    :gender, 
+                                    :country_code)
     end
     
     # Before filters

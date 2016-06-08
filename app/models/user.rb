@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  validates :year_of_birth, length: { is: 4 }, allow_nil: true
+  validates :gender, inclusion: { in: %w(female male) }, allow_nil: true
   
   class << self              
     # Returns the hash digest of the given string.
