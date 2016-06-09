@@ -66,8 +66,11 @@ p {
   line-height: 1.7em;
 }
 
-.logo {
-  max-width: 100px;
+.nav-logo {
+  padding: 5px 10px;
+  img {
+    max-height: 40px;
+  }
 }
 
 /* footer */
