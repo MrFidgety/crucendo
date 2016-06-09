@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   
-  root                  'static_pages#home'
+  root                  'users#new'
+  post    '/'       =>  'users#create'
   get     'help'    =>  'static_pages#help'
-  get     'begin'   =>  'users#new'
-  post    'begin'   =>  'users#create'
   get     'resend'  =>  'users#resend'
+  get     'settings'=>  'users#edit'
+  patch   'settings'=>  'users#edit'
   delete  'logout'  =>  'sessions#destroy'
   
   resources :users

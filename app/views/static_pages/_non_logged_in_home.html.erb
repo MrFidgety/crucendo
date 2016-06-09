@@ -1,0 +1,17 @@
+<% provide(:title, "Begin") %>
+<h1>Home</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @user, :url => root_url do |f| %>
+      <%= render 'shared/error_messages' %>
+      <div class="input-group">
+        <%= f.email_field :email, placeholder: "type your email",
+                                  :autofocus=>true,
+                                  class: "form-control" %>
+        <span class="input-group-btn">
+          <%= f.submit "Go!", class: "btn btn-default" %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="navbar-header">
       <div class="nav-logo pull-left">
-        <%= image_tag("logo.svg") %>
+        <%= link_to image_tag("logo.svg"), root_url %>
       </div>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
@@ -13,7 +13,6 @@
     </div>
     <nav id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", help_path %></li>
         <% if logged_in? %>
           <li class="dropdown">
@@ -21,16 +20,13 @@
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Dashboard", current_user %></li>
-              <li><%= link_to "Profile", edit_user_path(current_user) %></li>
+              <li><%= link_to "Settings", settings_path %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to "Log out", logout_path, method: "delete" %>
               </li>
             </ul>
           </li>
-        <% else %>
-          <li><%= link_to "Begin", begin_path %></li>
         <% end %>
       </ul>
     </nav>

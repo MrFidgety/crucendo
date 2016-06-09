@@ -17,7 +17,7 @@ class ActiveSupport::TestCase
   # Logs in a test user.
   def log_in_as(user)
     if integration_test?
-      post begin_path, user: { email: user.email }
+      post root_url, user: { email: user.email }
     else
       session[:user_id] = user.id
     end

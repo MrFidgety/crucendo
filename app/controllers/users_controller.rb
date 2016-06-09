@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
-  before_action :new_user,        only: [:new]
   before_action :logged_in_user,  only: [:show, :edit, :update]
   before_action :correct_user,    only: [:show, :edit, :update]
   
   def show
-    @user = User.find(params[:id])
-    redirect_to root_url and return unless @user.activated?
+    redirect_to root_url
   end
   
   def new
@@ -47,14 +45,14 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
   
   def update
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.update_attributes(user_params)
       set_flash :successful_update, type: :success, object: @user
-      redirect_to edit_user_path(current_user)
+      redirect_to settings_path
     else
       render 'edit'
     end
@@ -89,16 +87,9 @@ class UsersController < ApplicationController
       end
     end
     
-    # Confirms user not logged in.
-    def new_user
-      unless !logged_in?
-        redirect_to current_user
-      end
-    end
-    
     # Confirms the correct user.
     def correct_user
-      @user = User.find(params[:id])
+      @user = User.find(current_user.id)
       redirect_to(root_url) unless @user == current_user
     end
 end

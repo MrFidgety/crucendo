@@ -40,7 +40,7 @@ class SessionsController < ApplicationController
     def check_expiration
       if @user && @user.login_link_expired?
         set_flash :link_expired, type: :warning
-        redirect_to begin_path
+        redirect_to root_url
       end
     end
     
