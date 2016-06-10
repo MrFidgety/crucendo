@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   post    '/'       =>  'users#create'
   get     'help'    =>  'static_pages#help'
   get     'resend'  =>  'users#resend'
-  get     'settings'=>  'users#edit'
-  patch   'settings'=>  'users#edit'
+  get     'profile' =>  'users#edit'
+  patch   'profile'=>   'users#edit'
   delete  'logout'  =>  'sessions#destroy'
   
   resources :users

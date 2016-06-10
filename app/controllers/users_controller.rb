@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update_attributes(user_params)
       set_flash :successful_update, type: :success, object: @user
-      redirect_to settings_path
+      redirect_to profile_path
     else
       render 'edit'
     end

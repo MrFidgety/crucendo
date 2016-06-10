@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* autocomplete */
 .ui-autocomplete {
   padding: 0;
   list-style: none;
@@ -24,4 +25,12 @@
 .ui-autocomplete .ui-menu-item.ui-state-focus {
   background-color: #D5E5F4;
   color: #161A1C;
+}
+
+/* buttons */
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
 }

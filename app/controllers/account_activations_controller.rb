@@ -9,7 +9,7 @@ class AccountActivationsController < ApplicationController
     log_in @user
     remember @user
     set_flash :welcome, type: :success
-    redirect_to @user
+    redirect_to root_url
   end
   
   private
