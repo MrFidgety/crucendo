@@ -151,6 +151,14 @@ input {
   }
 }
 
+/* buttons */
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+  color: #fff;
+  background-color: $crucial-light-blue;
+  border-color: $crucial-light-blue;
+}
+
 /* navigation */
 
 .navbar-collapse.collapse {
@@ -201,8 +209,4 @@ input {
   .navbar-nav {
     margin: 0;
   }
-  // .navbar-nav > li > a {
-  //   padding-top: 15px;
-  //   padding-bottom: 15px;
-  // }
 }

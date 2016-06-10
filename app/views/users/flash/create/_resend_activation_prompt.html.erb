@@ -1,2 +1,2 @@
-<%= render 'users/flash/create/resend_activation' %>
+<%= render 'users/flash/create/resend_activation' %><br>
 <%= link_to "Click here if the link has gone walkabout", resend_path(:email => User.find(object.id).email) %>

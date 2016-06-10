@@ -15,10 +15,14 @@ class UsersController < ApplicationController
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
       if @user.activated?
-        # create login digest and send email
-        @user.send_login_email
-        set_flash :send_login, type: :success, object: @user
-        redirect_to root_url
+        if !@user.login_sent_at || @user.login_link_expired?
+          # create login digest and send email
+          @user.send_login_email
+          set_flash :send_login, type: :success, object: @user
+        else
+          # prompt for login to be resent
+          set_flash :resend_login_prompt, type: :success, object: @user
+        end
       else
         if @user.activation_link_expired?
           # resend activation
@@ -28,8 +32,8 @@ class UsersController < ApplicationController
           # prompt for activation to be resent
           set_flash :resend_activation_prompt, type: :success, object: @user
         end
-        redirect_to root_url
       end
+      redirect_to root_url
     else
       # attempt to create new user
       @user = User.new(user_params)
@@ -59,12 +63,19 @@ class UsersController < ApplicationController
   end
   
   def resend
-    @user = User.find_by(email: params[:email].downcase)
-    if @user && !@user.activated?
-      @user.resend_activation_email
-      set_flash :resend_activation_confirm, type: :success, object: @user
-      redirect_to root_url
+    if !params[:email].blank? 
+      @user = User.find_by(email: params[:email].downcase)
+      if @user
+        if @user.activated?
+          @user.send_login_email
+          set_flash :resend_login_confirm, type: :success, object: @user
+        else
+          @user.resend_activation_email
+          set_flash :resend_activation_confirm, type: :success, object: @user
+        end
+      end
     end
+    redirect_to root_url
   end
   
   private

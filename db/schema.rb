@@ -19,17 +19,17 @@ ActiveRecord::Schema.define(version: 20160607071706) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "activation_digest"
     t.datetime "activation_sent_at"
-    t.boolean  "activated",                    default: false
+    t.boolean  "activated",                   default: false
     t.datetime "activated_at"
     t.string   "remember_digest"
-    t.boolean  "admin",                        default: false
+    t.boolean  "admin",                       default: false
     t.string   "login_digest"
     t.datetime "login_sent_at"
-    t.integer  "year_of_birth",      limit: 2
+    t.integer  "year_of_birth",               limit: 2
     t.string   "gender"
     t.string   "country_code"
   end
