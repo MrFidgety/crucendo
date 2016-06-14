@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       redirect_to root_url
     else
       # attempt to create new user
-      @user = User.new(user_params)
+      @user = User.new(signup_params)
       if @user.save
         # send activation email
         @user.send_activation_email
@@ -49,7 +49,6 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user
   end
   
   def update
@@ -82,10 +81,13 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit( :name, 
-                                    :email, 
                                     :year_of_birth, 
                                     :gender, 
                                     :country_code)
+    end
+    
+    def signup_params
+      params.require(:user).permit( :email )
     end
     
     # Before filters
@@ -94,7 +96,7 @@ class UsersController < ApplicationController
     def logged_in_user
       unless logged_in?
         set_flash :link_error, type: :warning
-        redirect_to begin_path
+        redirect_to root_url
       end
     end
     

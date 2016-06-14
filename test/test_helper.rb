@@ -14,13 +14,14 @@ class ActiveSupport::TestCase
     !session[:user_id].nil?
   end
   
-  # Logs in a test user.
+  # Logs in a test user, simulate token and login link
   def log_in_as(user)
-    if integration_test?
-      post root_url, user: { email: user.email }
-    else
-      session[:user_id] = user.id
-    end
+    user.send_login_email
+    get edit_session_path(user.login_token, email: user.email)
+  end
+  
+  def post_to_begin(user)
+    post root_url, user: { email: user.email }
   end
 
   private

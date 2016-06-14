@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   get     'help'    =>  'static_pages#help'
   get     'resend'  =>  'users#resend'
   get     'profile' =>  'users#edit'
-  patch   'profile'=>   'users#edit'
+  patch   'profile' =>  'users#edit'
   delete  'logout'  =>  'sessions#destroy'
   
-  resources :users
+  resources :users,               only: [:update]
   resources :account_activations, only: [:edit]
   resources :sessions,            only: [:edit]
   
