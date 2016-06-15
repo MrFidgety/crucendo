@@ -12,7 +12,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_not @unactivated_user.activated?
     # set activation link to expired
     @unactivated_user.update_attribute(:activation_sent_at, 16.minutes.ago)
-    post root_url, user: { email: @unactivated_user.email }
+    post_to_begin @unactivated_user
     # ensure new activation is automatically sent
     assert_equal 1, ActionMailer::Base.deliveries.size
     assert_redirected_to root_url
@@ -21,7 +21,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # set activation link to valid
     ActionMailer::Base.deliveries.clear
     @unactivated_user.update_attribute(:activation_sent_at, Time.zone.now)
-    post root_url, user: { email: @unactivated_user.email }
+    post_to_begin @unactivated_user
     # ensure new activation is not automatically sent
     assert_equal 0, ActionMailer::Base.deliveries.size
     assert_redirected_to root_url
@@ -36,7 +36,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   
   test "login with active account" do
     assert @activated_user.activated?
-    post root_url, user: { email: @activated_user.email }
+    post_to_begin @activated_user
     # get instance variable so login token can be accessed
     user = assigns(:user)
     # ensure login email is sent
@@ -66,4 +66,5 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     log_in_as(@activated_user)
     assert_equal cookies['remember_token'], assigns(:user).remember_token
   end
+  
 end

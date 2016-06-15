@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
     def valid_user
       unless (@user && @user.activated? && 
               @user.authenticated?(:login, params[:id]))
-        set_flash :link_expired, type: :warning
+        set_flash :link_error, type: :danger
         redirect_to root_url
       end
     end

@@ -22,7 +22,7 @@ class AccountActivationsController < ApplicationController
     def valid_user
       unless (@user && !@user.activated? &&
               @user.authenticated?(:activation, params[:id]))
-        set_flash :link_expired, type: :warning
+        set_flash :link_error, type: :warning
         redirect_to root_url
       end
     end
@@ -30,7 +30,7 @@ class AccountActivationsController < ApplicationController
     def check_expiration
       if @user.activation_link_expired?
         set_flash :link_expired, type: :warning
-        redirect_to begin_path
+        redirect_to root_url
       end
     end
     
