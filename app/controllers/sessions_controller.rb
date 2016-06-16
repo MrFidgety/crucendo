@@ -9,7 +9,8 @@ class SessionsController < ApplicationController
   
   def edit
     # consume login digest
-    @user.update_attribute(:login_digest, nil)
+    @user.update_attributes(login_digest: nil,
+                            login_sent_at: nil)
     log_in @user
     remember @user
     set_flash :welcome, type: :success
