@@ -11,7 +11,8 @@ class QuestionsEditTest < ActionDispatch::IntegrationTest
     log_in_as @user
     get edit_admin_question_path(@question)
     assert_template 'questions/edit'
-    patch admin_question_path(@question), question: { content:  "" }
+    patch admin_question_path(@question), question: { content:  "", 
+                                                      question_category_id: "2" }
     assert_template 'questions/edit'
   end
 end

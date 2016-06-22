@@ -26,7 +26,7 @@ class Admin::QuestionsController < AdminController
     @question = Question.find(params[:id])
     if @question.update_attributes(question_params)
       set_flash :successful_update, type: :success, object: @question
-      redirect_to edit_admin_question_path
+      redirect_to admin_questions_path
     else
       render 'edit'
     end
@@ -40,16 +40,12 @@ class Admin::QuestionsController < AdminController
   private
 
     def question_params
-      if params[:question].nil?  || params[:question].empty?
-        return false
-      else
-        params.require(:question).permit(:content)
-      end
+      params.require(:question).permit(:content, :question_category_id)
     end
     
     def insert_breadcrumbs
       if action_name == 'index'
-         add_breadcrumb "admin", :admin_path
+        add_breadcrumb "admin", :admin_path
         add_breadcrumb "questions"
       else
         add_breadcrumb "admin", :admin_path

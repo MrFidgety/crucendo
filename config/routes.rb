@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+
   root                  'users#new'
   post    '/'       =>  'users#create'
   get     'help'    =>  'static_pages#help'
@@ -13,8 +14,13 @@ Rails.application.routes.draw do
   resources :sessions,            only: [:edit]
   
   namespace :admin do
+    namespace :questions do
+      resources :categories
+    end
+    
     get '', to: 'dashboard#index', as: '/'
     resources :questions
+
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

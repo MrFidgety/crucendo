@@ -1,0 +1,10 @@
+<%= form_for [:admin, @question] do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content, class: 'form-control' %>
+  <%= f.label :category %>
+  <%= f.collection_select(:question_category_id, QuestionCategory.all, :id, :name, 
+                          { include_blank: 'Select a category' } , 
+                          { class: 'form-control',
+                            placeholder: 'Select a category'}) %>
+  <%= f.submit yield(:button_text), class: "btn btn-default pull-right" %>
+<% end %>
