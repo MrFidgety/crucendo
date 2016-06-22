@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include FlashHelper
   
-  def set_flash(result, type: 'info', object: nil, controller: controller_name)
+  def set_flash(result, type: 'info', object: nil, controller: controller_path)
     if object
       flash[:from] = action_name
       flash[:result] = result

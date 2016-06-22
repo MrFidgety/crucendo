@@ -9,6 +9,7 @@ $crucial-gray: #9898a9;
 $crucial-dark-blue: #07438c;
 $crucial-light-blue: #0498d9;
 $gray-medium-light: #eaeaea;
+$friendly-red: #ff0033;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -39,6 +40,10 @@ textarea {
 
 .alert {
   text-align: center;
+}
+
+.navbar a {
+  transition: color 0.2s ease-in-out;
 }
 
 /* typography */
@@ -144,20 +149,13 @@ input {
   }
 }
 
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
-}
-
 /* buttons */
 
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
-  color: #fff;
-  background-color: $crucial-light-blue;
-  border-color: $crucial-light-blue;
-}
+// .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+//   color: #fff;
+//   background-color: $crucial-light-blue;
+//   border-color: $crucial-light-blue;
+// }
 
 /* navigation */
 
@@ -234,4 +232,32 @@ input {
   .navbar-nav {
     margin: 0;
   }
+}
+
+/* questions */
+
+.questions {
+  list-style: none;
+  margin: 0;
+  padding: 0px;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+/* input */
+
+.input-group-addon, .input-group-btn {
+  vertical-align: top; // make sure button aligns with input that has errors
+}
+
+.error {
+  color: $friendly-red;
+}
+
+/* breadcrumbs */
+.breadcrumb li:last-child {
+  color: #999999
 }

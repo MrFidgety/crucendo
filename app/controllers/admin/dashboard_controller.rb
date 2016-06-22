@@ -1,14 +1,15 @@
-class Admin::DashboardController < ApplicationController
-  before_action :admin_user
+class Admin::DashboardController < AdminController
+  before_action :insert_breadcrumbs
   
   def index
   end
   
   private
   
-    def admin_user
-      unless logged_in? && current_user.admin?
-        redirect_to root_url
+    def insert_breadcrumbs
+      if action_name == 'index'
+         add_breadcrumb "admin"
       end
     end
+  
 end

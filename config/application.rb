@@ -22,5 +22,17 @@ module Workspace
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    # config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+    #   html_tag
+    # }
   end
+end
+
+# Improve input error handling
+ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+  html = %(<div class="error">#{html_tag})
+  html += %(<small>#{instance.error_message.to_a.to_sentence}</small>).html_safe unless html_tag =~ /^<label/
+  html += %(</div>)
+  html.html_safe
 end

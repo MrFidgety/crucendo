@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
   
-  namespace :admin do
-  get 'dashboard/index'
-  end
-
   root                  'users#new'
   post    '/'       =>  'users#create'
   get     'help'    =>  'static_pages#help'
@@ -14,17 +10,15 @@ Rails.application.routes.draw do
   
   resources :users,               only: [:update]
   resources :account_activations, only: [:edit]
-  resources :sessions,            only: [:edit]
+  resources :sessions, path: '/sessions',            only: [:edit]
   
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
+    resources :questions
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

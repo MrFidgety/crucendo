@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/ifad/data-confirm-modal.git
+  revision: a2018ab8893cdeeeffaae407368ed1a20ea72b30
+  specs:
+    data-confirm-modal (1.1.0)
+      railties (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -45,6 +52,7 @@ GEM
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.10)
       will_paginate
+    breadcrumbs_on_rails (2.3.1)
     builder (3.2.2)
     byebug (3.4.0)
       columnize (~> 0.8)
@@ -232,9 +240,11 @@ DEPENDENCIES
   bcrypt (= 3.1.7)
   bootstrap-sass (= 3.2.0.0)
   bootstrap-will_paginate (= 0.0.10)
+  breadcrumbs_on_rails
   byebug (= 3.4.0)
   coffee-rails (= 4.1.0)
   country_select (= 2.5.2)
+  data-confirm-modal!
   envyable
   ey_config
   faker (= 1.4.2)
