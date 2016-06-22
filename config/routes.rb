@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   
   resources :users,               only: [:update]
   resources :account_activations, only: [:edit]
-  resources :sessions, path: '/sessions',            only: [:edit]
+  resources :sessions,            only: [:edit]
   
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
