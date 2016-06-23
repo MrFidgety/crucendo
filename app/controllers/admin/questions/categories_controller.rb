@@ -16,6 +16,7 @@ class Admin::Questions::CategoriesController < ApplicationController
   def create
     @category = QuestionCategory.new(category_params)
     if @category.save
+      set_flash :successful_create, type: :success, object: @category
       redirect_to admin_questions_categories_path
     else
       render 'new'
@@ -25,7 +26,7 @@ class Admin::Questions::CategoriesController < ApplicationController
   def update
     @category = QuestionCategory.find(params[:id])
     if @category.update_attributes(category_params)
-      # flash success
+      set_flash :generic_successful_update, type: :success
       redirect_to admin_questions_categories_path
     else
       render 'edit'
@@ -35,11 +36,11 @@ class Admin::Questions::CategoriesController < ApplicationController
   def destroy
     @category = QuestionCategory.find(params[:id])
     if !@category.questions.empty?
-      # flash error
+      set_flash :questions_assigned_error, type: :danger, object: @category
       redirect_to admin_questions_categories_path
     else
       QuestionCategory.find(params[:id]).destroy
-      # flash success
+      set_flash :successful_destroy, type: :success, object: @category
       redirect_to admin_questions_categories_path
     end
   end

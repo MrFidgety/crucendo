@@ -16,6 +16,7 @@ class Admin::QuestionsController < AdminController
   def create
     @question = Question.new(question_params)
     if @question.save
+      set_flash :successful_create, type: :success, object: @question
       redirect_to admin_questions_path
     else
       render 'new'
@@ -25,7 +26,7 @@ class Admin::QuestionsController < AdminController
   def update
     @question = Question.find(params[:id])
     if @question.update_attributes(question_params)
-      set_flash :successful_update, type: :success, object: @question
+      set_flash :generic_successful_update, type: :success
       redirect_to admin_questions_path
     else
       render 'edit'
@@ -33,7 +34,9 @@ class Admin::QuestionsController < AdminController
   end
   
   def destroy
-    Question.find(params[:id]).destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+    set_flash :successful_destroy, type: :success, object: @question
     redirect_to admin_questions_path
   end
   
