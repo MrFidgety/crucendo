@@ -1,18 +1,21 @@
 <% provide(:title, "All Categories") %>
-<%= link_to "Add Category", new_admin_questions_category_path %>
+<%= link_to "Add Category", new_admin_questions_category_path,
+                            class: "btn btn-primary" %>
 <h1>All Categories</h1>
-<ul class="questions">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
   <% @categories.each do |category| %>
-    <li>
-      <%= category.name %>
-      <span class="pull-right">
-        <%= link_to "delete", admin_questions_category_path(category), 
-                              method: :delete,
-                              title: "Are you sure?", 
-                              data: {confirm: 'You may only delete a category if
-                              it has no questions assigned.'} %>
-        | <%= link_to "edit", edit_admin_questions_category_path(category) %>
-      </span>
-    </li>
+  <tr>
+    <td><%= category.name %></td>
+    <td><span class="pull-right">
+      <%= link_to "edit", edit_admin_questions_category_path(category) %></span>
+    </td>
+  </tr>
   <% end %>
-</ul>
+</table>

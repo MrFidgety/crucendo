@@ -1,20 +1,40 @@
 <% provide(:title, "All Questions") %>
-<%= link_to "Add Question", new_admin_question_path %><br>
-<%= link_to "Manage Question Categories", admin_questions_categories_path %>
+<%= link_to "Add Question", new_admin_question_path,
+                            class: "btn btn-primary" %>
+<%= link_to "Manage Categories", admin_questions_categories_path, 
+                                          class: "btn btn-primary" %>
 <h1>All Questions</h1>
-<ul class="questions">
+<%= form_tag admin_questions_path, :method => 'get', class: "search" do %>
+  <%= hidden_field_tag :direction, params[:direction] %>
+  <%= hidden_field_tag :sort, params[:sort] %>
+  <div class="input-group">
+    <%= text_field_tag :search, params[:search],
+                              placeholder: "Enter search phrase",
+                              class: "form-control" %>
+    <span class="input-group-btn">
+      <%= submit_tag "Find Question", :name => nil, class: "btn btn-default" %>
+    </span>
+  </div>
+<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= sortable "content", "Question" %></th>
+      <th><%= sortable "question_categories.name", "Category" %></th>
+      <th><%= sortable "active", "Active" %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
   <% @questions.each do |question| %>
-    <li>
-      <%= question.question_category.name %> | <%= question.content %>
-      <span class="pull-right">
-        <%= link_to "delete", admin_question_path(question), 
-                              method: :delete,
-                              title: "Are you sure?", 
-                              data: {confirm: 'This will archive the question so
-                              it no longer appears for users. Previous 
-                              interactions will remain unchanged.'} %>
-        | <%= link_to "edit", edit_admin_question_path(question) %>
-      </span>
-    </li>
+  <tr>
+    <td><%= question.content %></td>
+    <td><%= question.question_category.name %></td>
+    <td><%= question.active? ? 'Yes' : 'No' %></td>
+    <td><span class="pull-right">
+      <%= link_to "edit", edit_admin_question_path(question) %></span>
+    </td>
+  </tr>
   <% end %>
-</ul>
+</table>
+<%= will_paginate @questions %>

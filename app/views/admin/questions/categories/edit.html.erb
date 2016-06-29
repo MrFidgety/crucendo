@@ -5,7 +5,13 @@
     <%= form_for @category, :url => admin_questions_category_path do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
-      <%= f.submit "Save", class: "btn btn-default pull-right" %>
+      <%= link_to "Delete", admin_questions_category_path(@category), 
+                              method: :delete,
+                              title: "Are you sure?", 
+                              data: {confirm: 'You may only delete a category if
+                              it has no questions assigned.'},
+                              class: "btn btn-danger" %>
+      <%= f.submit "Save", class: "btn btn-success pull-right" %>
     <% end %>
   </div>
 </div>

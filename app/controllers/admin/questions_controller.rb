@@ -1,8 +1,13 @@
 class Admin::QuestionsController < AdminController
   before_action :insert_breadcrumbs
+  helper_method :sort_column, :sort_direction
 
   def index
-    @questions = Question.paginate(page: params[:page])
+    @questions = Question.includes(:question_category)
+                    .where('archived = ?', false)
+                    .search(params[:search])
+                    .order(sort_column + ' ' + sort_direction)
+                    .paginate(:per_page => 10, :page => params[:page])
   end
   
   def new
@@ -35,7 +40,7 @@ class Admin::QuestionsController < AdminController
   
   def destroy
     @question = Question.find(params[:id])
-    @question.destroy
+    @question.update_attribute(:archived, true)
     set_flash :successful_destroy, type: :success, object: @question
     redirect_to admin_questions_path
   end
@@ -43,7 +48,7 @@ class Admin::QuestionsController < AdminController
   private
 
     def question_params
-      params.require(:question).permit(:content, :question_category_id)
+      params.require(:question).permit(:content, :question_category_id, :active)
     end
     
     def insert_breadcrumbs
@@ -55,6 +60,18 @@ class Admin::QuestionsController < AdminController
         add_breadcrumb "questions", :admin_questions_path
         add_breadcrumb action_name
       end
+    end
+    
+    def sort_column
+      if params[:sort].blank?
+        "content"
+      else
+        params[:sort]
+      end
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
     end
 
 end

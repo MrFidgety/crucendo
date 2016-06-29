@@ -1,10 +1,26 @@
 <%= form_for [:admin, @question] do |f| %>
   <%= f.label :content %>
   <%= f.text_field :content, class: 'form-control' %>
-  <%= f.label :category %>
+  <%= f.label :question_category_id, "Category" %>
   <%= f.collection_select(:question_category_id, QuestionCategory.all, :id, :name, 
                           { include_blank: 'Select a category' } , 
                           { class: 'form-control',
                             placeholder: 'Select a category'}) %>
-  <%= f.submit yield(:button_text), class: "btn btn-default pull-right" %>
+  <%= f.label :active %>
+  <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+    <label class="btn btn-default">
+      <%= f.radio_button :active, false %>No
+		</label>
+		<label class="btn btn-default">
+			<%= f.radio_button :active, true %>Yes
+		</label>
+  </div>
+  <%= link_to "Delete", admin_question_path(@question), 
+                            method: :delete,
+                            title: "Are you sure?", 
+                            data: {confirm: 'This will remove the question and 
+                            delete all user answers that link to the question. 
+                            There is no undoing this action.'},
+                            class: "btn btn-danger" unless @question.id.blank? %>
+  <%= f.submit yield(:button_text), class: "btn btn-success pull-right" %>
 <% end %>

@@ -21,6 +21,7 @@ $friendly-red: #ff0033;
 
 body {
   padding-top: 70px;
+  background: #f2f2f2;
 }
 
 section {
@@ -159,6 +160,9 @@ input {
 
 /* navigation */
 
+.navbar-fixed-top {
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+}
 .navbar-collapse.collapse {
   display: block!important;
 }
@@ -255,9 +259,35 @@ input {
 
 .error {
   color: $friendly-red;
+  small {
+    float: right !important;
+    margin-top: -15px;
+    line-height: 15px;
+  }
+}
+
+.input-group .error small {
+  margin-top: 0;
 }
 
 /* breadcrumbs */
+.breadcrumb {
+  background-color: #fff;  
+}
+
 .breadcrumb li:last-child {
   color: #999999
+}
+
+/* sortable */
+.asc:after {
+  content: "\f077";
+  font-family: FontAwesome;
+  padding-left: 5px;
+}
+
+.desc:after {
+  content: "\f078";
+  font-family: FontAwesome;
+  padding-left: 5px;
 }
