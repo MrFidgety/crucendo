@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :admin do
     namespace :questions do
       resources :categories
+      resources :topics
     end
     
     get '', to: 'dashboard#index', as: '/'
