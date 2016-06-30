@@ -1,6 +1,11 @@
 <%= form_for [:admin, @question] do |f| %>
   <%= f.label :content %>
   <%= f.text_field :content, class: 'form-control' %>
+  <%= f.label :topic_id, "Topic" %>
+  <%= f.collection_select(:topic_id, Topic.all, :id, :name, 
+                          { include_blank: 'Select a topic' } , 
+                          { class: 'form-control',
+                            placeholder: 'Select a topic'}) %>
   <%= f.label :category_id, "Category" %>
   <%= f.collection_select(:category_id, Category.all, :id, :name, 
                           { include_blank: 'Select a category' } , 

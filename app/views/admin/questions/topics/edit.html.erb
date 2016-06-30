@@ -1,1 +1,17 @@
-edit
+<% provide(:title, "Edit Topic") %>
+<h1>Edit Topic</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @topic, :url => admin_questions_topic_path do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= link_to "Delete", admin_questions_topic_path(@topic), 
+                              method: :delete,
+                              title: "Are you sure?", 
+                              data: {confirm: 'You may only delete a topic if
+                              it has no questions assigned.'},
+                              class: "btn btn-danger" %>
+      <%= f.submit "Save", class: "btn btn-success pull-right" %>
+    <% end %>
+  </div>
+</div>

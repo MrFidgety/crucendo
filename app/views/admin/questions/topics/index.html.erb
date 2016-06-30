@@ -1,1 +1,21 @@
-index
+<% provide(:title, "All Topics") %>
+<%= link_to "Add Topic", new_admin_questions_topic_path,
+                            class: "btn btn-primary" %>
+<h1>All Topics</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @topics.each do |topic| %>
+  <tr>
+    <td><%= topic.name %></td>
+    <td><span class="pull-right">
+      <%= link_to "edit", edit_admin_questions_topic_path(topic) %></span>
+    </td>
+  </tr>
+  <% end %>
+</table>

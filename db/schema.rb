@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629052901) do
+ActiveRecord::Schema.define(version: 20160630004944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,17 @@ ActiveRecord::Schema.define(version: 20160629052901) do
     t.integer  "category_id"
     t.boolean  "active",      default: false
     t.boolean  "archived",    default: false
+    t.integer  "topic_id"
   end
 
   add_index "questions", ["category_id"], name: "index_questions_on_category_id", using: :btree
+  add_index "questions", ["topic_id"], name: "index_questions_on_topic_id", using: :btree
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -54,4 +62,5 @@ ActiveRecord::Schema.define(version: 20160629052901) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "questions", "categories"
+  add_foreign_key "questions", "topics"
 end

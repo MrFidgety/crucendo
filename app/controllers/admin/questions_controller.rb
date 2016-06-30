@@ -3,11 +3,12 @@ class Admin::QuestionsController < AdminController
   helper_method :sort_column, :sort_direction
 
   def index
-    @questions = Question.includes(:category)
-                    .where('archived = ?', false)
+    @questions = Question.filter(params.slice(:topic_id))
+                    .includes(:category).includes(:topic)
+                    .where(archived: false)
                     .search(params[:search])
                     .order(sort_column + ' ' + sort_direction)
-                    .paginate(:per_page => 10, :page => params[:page])
+                    .paginate(:per_page => 5, :page => params[:page])
   end
   
   def new
@@ -48,7 +49,7 @@ class Admin::QuestionsController < AdminController
   private
 
     def question_params
-      params.require(:question).permit(:content, :question_category_id, :active)
+      params.require(:question).permit(:content, :topic_id, :category_id, :active)
     end
     
     def insert_breadcrumbs
