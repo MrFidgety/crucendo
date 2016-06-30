@@ -2,19 +2,19 @@ class Admin::Questions::CategoriesController < ApplicationController
   before_action :insert_breadcrumbs
   
   def index
-    @categories = QuestionCategory.paginate(page: params[:page])
+    @categories = Category.paginate(page: params[:page])
   end
   
   def new
-    @category = QuestionCategory.new
+    @category = Category.new
   end
   
   def edit
-    @category = QuestionCategory.find(params[:id])
+    @category = Category.find(params[:id])
   end
   
   def create
-    @category = QuestionCategory.new(category_params)
+    @category = Category.new(category_params)
     if @category.save
       set_flash :successful_create, type: :success, object: @category
       redirect_to admin_questions_categories_path
@@ -24,7 +24,7 @@ class Admin::Questions::CategoriesController < ApplicationController
   end
   
   def update
-    @category = QuestionCategory.find(params[:id])
+    @category = Category.find(params[:id])
     if @category.update_attributes(category_params)
       set_flash :generic_successful_update, type: :success
       redirect_to admin_questions_categories_path
@@ -34,12 +34,12 @@ class Admin::Questions::CategoriesController < ApplicationController
   end
   
   def destroy
-    @category = QuestionCategory.find(params[:id])
+    @category = Category.find(params[:id])
     if !@category.questions.empty?
       set_flash :questions_assigned_error, type: :danger, object: @category
       redirect_to admin_questions_categories_path
     else
-      QuestionCategory.find(params[:id]).destroy
+      Category.find(params[:id]).destroy
       set_flash :successful_destroy, type: :success, object: @category
       redirect_to admin_questions_categories_path
     end
@@ -48,7 +48,7 @@ class Admin::Questions::CategoriesController < ApplicationController
   private
   
     def category_params
-      params.require(:question_category).permit(:name)
+      params.require(:category).permit(:name)
     end
 
     def insert_breadcrumbs

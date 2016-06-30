@@ -3,7 +3,7 @@ require 'test_helper'
 class QuestionTest < ActiveSupport::TestCase
   
   def setup
-    @question = Question.new(content: "How are you?", question_category_id: 1)
+    @question = Question.new(content: "How are you?", category_id: 1)
   end
   
   test "should be valid" do

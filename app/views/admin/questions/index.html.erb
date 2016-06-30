@@ -20,7 +20,7 @@
   <thead>
     <tr>
       <th><%= sortable "content", "Question" %></th>
-      <th><%= sortable "question_categories.name", "Category" %></th>
+      <th><%= sortable "categories.name", "Category" %></th>
       <th><%= sortable "active", "Active" %></th>
       <th></th>
     </tr>
@@ -29,7 +29,7 @@
   <% @questions.each do |question| %>
   <tr>
     <td><%= question.content %></td>
-    <td><%= question.question_category.name %></td>
+    <td><%= question.category.name %></td>
     <td><%= question.active? ? 'Yes' : 'No' %></td>
     <td><span class="pull-right">
       <%= link_to "edit", edit_admin_question_path(question) %></span>

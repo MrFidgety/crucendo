@@ -3,7 +3,7 @@ class Admin::QuestionsController < AdminController
   helper_method :sort_column, :sort_direction
 
   def index
-    @questions = Question.includes(:question_category)
+    @questions = Question.includes(:category)
                     .where('archived = ?', false)
                     .search(params[:search])
                     .order(sort_column + ' ' + sort_direction)
