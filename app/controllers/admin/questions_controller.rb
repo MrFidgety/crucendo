@@ -3,12 +3,12 @@ class Admin::QuestionsController < AdminController
   helper_method :sort_column, :sort_direction
 
   def index
-    @questions = Question.filter(params.slice(:topic_id))
+    @questions = Question.filter(params.slice(:topic_id, :active))
                     .includes(:category).includes(:topic)
                     .where(archived: false)
                     .search(params[:search])
                     .order(sort_column + ' ' + sort_direction)
-                    .paginate(:per_page => 5, :page => params[:page])
+                    .paginate(:per_page => 20, :page => params[:page])
   end
   
   def new

@@ -1,0 +1,16 @@
+<div class="crucial-container">
+  <%= form_for [:admin, @skill] do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.label :global %>
+    <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+      <label class="btn btn-default">
+        <%= f.radio_button :global, false %>No
+  		</label>
+  		<label class="btn btn-default">
+  			<%= f.radio_button :global, true %>Yes
+  		</label>
+    </div>
+    <%= f.submit yield(:button_text), class: "btn btn-success pull-right btn-bottom-right" %>
+  <% end %>
+</div>

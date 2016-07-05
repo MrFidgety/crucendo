@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-
   root                  'users#new'
   post    '/'       =>  'users#create'
   get     'help'    =>  'static_pages#help'
@@ -21,6 +20,7 @@ Rails.application.routes.draw do
     
     get '', to: 'dashboard#index', as: '/'
     resources :questions
+    resources :skills
 
   end
   

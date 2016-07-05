@@ -1,14 +1,14 @@
 <% provide(:title, "Begin") %>
-<h1>Welcome</h1>
+<h1><small>welcome to</small><br><span class="doublefont">Crucendo</span></h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for @user, :url => root_url do |f| %>
       <div class="input-group">
         <%= f.email_field :email, placeholder: "type your email",
                                   :autofocus=>true,
-                                  class: "form-control" %>
+                                  class: "form-control input-lg" %>
         <span class="input-group-btn">
-          <%= f.submit "Go!", class: "btn btn-default" %>
+          <%= f.submit "Let's Go!", class: "btn btn-default btn-lg" %>
         </span>
       </div>
     <% end %>

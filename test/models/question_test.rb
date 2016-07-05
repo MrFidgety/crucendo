@@ -21,4 +21,14 @@ class QuestionTest < ActiveSupport::TestCase
     @question.content = "a" * 181
     assert_not @question.valid?
   end
+  
+  test "topic_id should be present" do
+    @question.topic_id = nil
+    assert_not @question.valid?
+  end
+  
+  test "category_id should be present" do
+    @question.category_id = nil
+    assert_not @question.valid?
+  end
 end

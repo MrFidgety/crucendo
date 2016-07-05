@@ -9,13 +9,6 @@ class Admin::Questions::TopicsController < ApplicationController
     @topic = Topic.new
   end
   
-  def show
-    @topic = Topic.find(params[:id])
-    @questions = Question.includes(:category).includes(:topic)
-                    .where(archived: false, topic_id: @topic.id)
-                    .paginate(:per_page => 10, :page => params[:page])
-  end
-  
   def edit
     @topic = Topic.find(params[:id])
   end

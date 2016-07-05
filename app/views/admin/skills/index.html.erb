@@ -1,0 +1,40 @@
+<% provide(:title, "Skills") %>
+<h1>Skills</h1>
+<div class="crucial-container">
+  <%= link_to "Add Skill", new_admin_skill_path,
+                            class: "btn btn-primary" %>
+</div>
+<div class="crucial-container">
+  <%= form_tag admin_skills_path, :method => 'get', class: "search" do %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+    <%= text_field_tag :search, params[:search],
+                                placeholder: "Enter search phrase",
+                                class: "form-control" %>
+    <%= select_tag :global, 
+          options_for_select( {'Global'=>true, 'Non-global'=>false}, 
+                              params[:global]), 
+          { :include_blank => 'All', :class => 'form-control'  } %>
+    <%= submit_tag "Find Skill", :name => nil, class: "btn btn-default" %>
+  <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= sortable "name", "Name" %></th>
+        <th><%= sortable "global", "Global" %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @skills.each do |skill| %>
+    <tr>
+      <td><%= skill.name %></td>
+      <td><%= skill.global? ? 'Yes' : 'No' %></td>
+      <td><span class="pull-right">
+        <%= link_to "edit", edit_admin_skill_path(skill) %></span>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @skills %>
+</div>
