@@ -10,7 +10,7 @@ User.create!(name:  "Brett",
              activated: true,
              activated_at: Time.zone.now)
              
-QuestionCategory.create!(name: "Encouraging")
-QuestionCategory.create!(name: "Challenging")
-QuestionCategory.create!(name: "Digesting")
-QuestionCategory.create!(name: "Bonus")
+Category.create!(name: "Encouraging")
+Category.create!(name: "Challenging")
+Category.create!(name: "Digesting")
+Category.create!(name: "Bonus")
