@@ -6,7 +6,7 @@ class Skill < ActiveRecord::Base
   before_save { self.name = name.downcase }
   validates :name,  presence: true, length: { maximum: 45 },
                     uniqueness: { case_sensitive: false }
-  validates :global,  presence: true
+  validates_inclusion_of :global, in: [true, false]
   
   def self.search(search)
     if !search.blank?

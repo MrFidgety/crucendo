@@ -2,7 +2,7 @@
   <%= form_for [:admin, :questions, @topic] do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>
-    <%= f.submit yield(:button_text), class: "btn btn-success pull-right btn-bottom-right" %>
+    <%= f.submit yield(:button_text), class: "btn btn-success btn-block" %>
   <% end %>
 </div>
 <%= link_to "delete", admin_questions_topic_path(@topic), 

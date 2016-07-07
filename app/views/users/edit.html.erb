@@ -7,20 +7,20 @@
       <%= form_for(@user) do |f| %>
         <%= f.label :name %>
         <%= f.text_field :name, placeholder: 'Hey mate, what’s your name?', 
-                                class: 'form-control input-lg' %>
+                                class: 'form-control' %>
         
         <%= f.label :year_of_birth %>
         <%= f.number_field  :year_of_birth, 
-                            class: 'form-control input-lg', 
+                            class: 'form-control', 
                             in: Time.now.year-120...Time.now.year, 
                             placeholder: 'When did you enter the world?' %>
         
         <%= f.label :gender %>
         <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
-          <label class="btn btn-default btn-lg">
+          <label class="btn btn-default">
             <%= f.radio_button :gender, 'female' %>Female
     			</label>
-    			<label class="btn btn-default btn-lg">
+    			<label class="btn btn-default">
     				<%= f.radio_button :gender, 'male' %>Male
     			</label>
         </div>
@@ -28,11 +28,36 @@
         <%= f.label :country %>
         <%= country_select("user", "country_code", 
             { include_blank: 'Select a country' }, 
-            { class: 'form-control input-lg', 
+            { class: 'form-control', 
             placeholder: 'Which amazing part of the world do you live in?' }) %>
         
-        <%= f.submit "Save changes", class: "btn btn-success btn-lg pull-right btn-bottom-right" %>
+        <%= f.submit "Save", class: "btn btn-success btn-block" %>
       <% end %>
+    </div>
+    <div class="crucial-container">
+      <button class="btn btn-default btn-block" data-toggle="modal" data-target="#new-email">I want to change my account email</button>
+    </div>
+  </div>
+</div>
+<div id="new-email" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Please enter your new email address</h4>
+      </div>
+      <div class="modal-body">
+         <%= form_tag("/changemyemail", method: "post") do |f| %>
+          <div class="input-group">
+            <%= email_field_tag :email, nil, placeholder: "type your email",
+                                      required: "required",
+                                      class: "form-control" %>
+            <span class="input-group-btn">
+              <%= submit_tag "Change", class: "btn btn-default" %>
+            </span>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

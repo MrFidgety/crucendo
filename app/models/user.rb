@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessor :remember_token, :activation_token, :login_token
+  attr_accessor :remember_token, :activation_token, :login_token, :new_email_token
   before_save   :downcase_email
   before_create :create_activation_digest
   validates :name, length: { maximum: 50 }
@@ -75,6 +75,38 @@ class User < ActiveRecord::Base
   # Returns true if a Login link has expired.
   def login_link_expired?
     login_sent_at < 15.minutes.ago
+  end
+  
+  # Send email requesting approval for change of email
+  def send_change_email_approval(email)
+    self.new_email_token  = User.new_token
+    update_columns( new_email: email,
+                    new_email_digest:  User.digest(new_email_token),
+                    new_email_sent_at: Time.zone.now)
+    UserMailer.change_email_approval(self).deliver_now
+  end
+  
+  def send_change_email_activation
+    self.new_email_token  = User.new_token
+    update_columns( new_email_approved: true,
+                    new_email_digest:  User.digest(new_email_token))
+    UserMailer.change_email_activation(self).deliver_now
+  end
+  
+  def change_email
+    update_attribute(:email, self.new_email)
+    clear_new_email
+  end
+  
+  def clear_new_email
+    update_columns( new_email_approved: false,
+                    new_email: nil,
+                    new_email_digest: nil,
+                    new_email_sent_at: nil )
+  end
+  
+  def change_email_expired?
+    new_email_sent_at < 15.minutes.ago
   end
   
   private

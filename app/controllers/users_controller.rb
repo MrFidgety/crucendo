@@ -1,13 +1,27 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user,  only: [:show, :edit, :update]
-  before_action :correct_user,    only: [:show, :edit, :update]
-  
-  def show
-    redirect_to root_url
-  end
+  before_action :logged_in_user,  only: [:edit, :update]
+  before_action :correct_user,    only: [:edit, :update]
   
   def new
     @user = User.new
+  end
+  
+  def new_email
+    # validate email via regex
+    if params[:email] =~ User::VALID_EMAIL_REGEX
+      if User.exists?(:email => params[:email])
+        # alert user if email exists
+        set_flash :email_taken, type: :danger
+      else
+        # set parameters for new email
+        @user = current_user
+        @user.send_change_email_approval(params[:email])
+        set_flash :new_email_approval, type: :success, object: @user
+      end
+    else
+      set_flash :invalid_email_format, type: :danger
+    end
+    redirect_to profile_path
   end
   
   def create
@@ -103,6 +117,6 @@ class UsersController < ApplicationController
     # Confirms the correct user.
     def correct_user
       @user = User.find(current_user.id)
-      redirect_to(root_url) unless @user == current_user
+      redirect_to(root_url) unless current_user?(@user)
     end
 end

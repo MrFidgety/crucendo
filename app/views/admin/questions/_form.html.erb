@@ -21,7 +21,7 @@
   			<%= f.radio_button :active, true %>Yes
   		</label>
     </div>
-    <%= f.submit yield(:button_text), class: "btn btn-success pull-right btn-bottom-right" %>
+    <%= f.submit yield(:button_text), class: "btn btn-success btn-block" %>
   <% end %>
 </div>
 <%= link_to "delete", admin_question_path(@question), 

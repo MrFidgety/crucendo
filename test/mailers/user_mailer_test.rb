@@ -22,4 +22,27 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match user.login_token,   mail.body.encoded
     assert_match CGI::escape(user.email), mail.body.encoded
   end
+  
+  test "change_email_approval" do
+    user = users(:bighead)
+    user.new_email_token = User.new_token
+    mail = UserMailer.change_email_approval(user)
+    assert_equal "Your New Email Address", mail.subject
+    assert_equal [user.email], mail.to
+    assert_equal ["noreply@thecrucialteam.com"], mail.from
+    assert_match user.new_email_token,   mail.body.encoded
+    #assert_match CGI::escape(user.email), mail.body.encoded
+  end
+  
+  test "change_email_activation" do
+    user = users(:bighead)
+    user.new_email_token = User.new_token
+    user.new_email = "bighead@piedpiper.com"
+    mail = UserMailer.change_email_activation(user)
+    assert_equal "Your New Email Address", mail.subject
+    assert_equal [user.new_email], mail.to
+    assert_equal ["noreply@thecrucialteam.com"], mail.from
+    assert_match user.new_email_token,   mail.body.encoded
+    #assert_match CGI::escape(user.email), mail.body.encoded
+  end
 end

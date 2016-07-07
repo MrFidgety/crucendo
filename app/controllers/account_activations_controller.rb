@@ -6,7 +6,7 @@ class AccountActivationsController < ApplicationController
   
   def edit
     @user.activate
-    log_in @user
+    log_in @user 
     remember @user
     set_flash :welcome, type: :success
     redirect_to root_url
