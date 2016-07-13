@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   
-  root                  'users#new'
-  post    '/'       =>  'users#create'
-  post    'changemyemail' =>'users#new_email'
-  get     'help'    =>  'static_pages#help'
-  get     'resend'  =>  'users#resend'
-  get     'profile' =>  'users#edit'
-  patch   'profile' =>  'users#edit'
-  delete  'logout'  =>  'sessions#destroy'
+  root                        'users#show'
+  post    '/'             =>  'users#create'
+  post    'changemyemail' =>  'users#new_email'
+  get     'help'          =>  'static_pages#help'
+  get     'resend'        =>  'users#resend'
+  get     'profile'       =>  'users#edit'
+  patch   'profile'       =>  'users#edit'
+  delete  'logout'        =>  'sessions#destroy'
   
   resources :users,               only: :update
   resources :account_activations, only: :edit
