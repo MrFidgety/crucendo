@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   patch   'profile' =>  'users#edit'
   delete  'logout'  =>  'sessions#destroy'
   
-  resources :users,               only: [:update]
-  resources :account_activations, only: [:edit]
-  resources :sessions,            only: [:edit]
-  resources :change_user_email,   only: [:edit]
+  resources :users,               only: :update
+  resources :account_activations, only: :edit
+  resources :sessions,            only: :edit
+  resources :change_user_email,   only: :edit
   
   namespace :admin do
     namespace :questions do
