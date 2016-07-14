@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token, :activation_token, :login_token, :new_email_token
   has_many :goals, dependent: :destroy
+  has_many :remembers, dependent: :destroy
   before_save   :downcase_email
   before_create :create_activation_digest
   validates :name, length: { maximum: 50 }
@@ -28,7 +29,8 @@ class User < ActiveRecord::Base
   # Remembers a user in the database for use in persistent sessions.
   def remember
     self.remember_token = User.new_token
-    update_attribute(:remember_digest, User.digest(remember_token))
+    self.remembers.create(last_used_at: Time.zone.now, 
+                          remember_digest: User.digest(remember_token))
   end
   
   # Returns true if the given token matches the digest.
@@ -38,9 +40,23 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(digest).is_password?(token)
   end
   
+  def remembered?(token)
+    remembers.each do |remember|
+      if BCrypt::Password.new(remember.remember_digest).is_password?(token)
+        remember.update_attributes(last_used_at: Time.zone.now)
+        return true;
+      end
+    end
+    return false;
+  end
+  
   # Forgets a user.
-  def forget
-    update_attribute(:remember_digest, nil)
+  def forget(token)
+    remembers.each do |remember|
+      if BCrypt::Password.new(remember.remember_digest).is_password?(token)
+        remember.delete
+      end
+    end
   end
   
    # Activates an account.

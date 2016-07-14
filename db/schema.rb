@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708015005) do
+ActiveRecord::Schema.define(version: 20160713055046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,19 @@ ActiveRecord::Schema.define(version: 20160708015005) do
 
   add_index "questions", ["category_id"], name: "index_questions_on_category_id", using: :btree
   add_index "questions", ["topic_id"], name: "index_questions_on_topic_id", using: :btree
+
+  create_table "remembers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "last_used_at"
+    t.string   "remember_digest"
+    t.string   "browser"
+    t.string   "device"
+    t.string   "platform"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "remembers", ["user_id"], name: "index_remembers_on_user_id", using: :btree
 
   create_table "skills", force: :cascade do |t|
     t.string   "name"
@@ -88,4 +101,5 @@ ActiveRecord::Schema.define(version: 20160708015005) do
   add_foreign_key "goals", "users"
   add_foreign_key "questions", "categories"
   add_foreign_key "questions", "topics"
+  add_foreign_key "remembers", "users"
 end

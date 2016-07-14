@@ -24,6 +24,11 @@ class SessionsController < ApplicationController
   
   private
   
+    # Confirms a logged-in user.
+    def logged_in_user
+      redirect_to root_url if logged_in?
+    end
+    
     def get_user
       @user = User.find_by(email: params[:email])
     end
@@ -45,8 +50,4 @@ class SessionsController < ApplicationController
       end
     end
     
-    # Confirms a logged-in user.
-    def logged_in_user
-      redirect_to current_user if logged_in?
-    end
 end

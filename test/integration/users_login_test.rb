@@ -57,8 +57,10 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_not is_logged_in?
     @activated_user.update_attribute(:login_sent_at, Time.zone.now)
     # Valid activation token
-    get edit_session_path(user.login_token, 
+    assert_difference 'Remember.count', 1 do
+      get edit_session_path(user.login_token, 
                             email: @activated_user.email)
+    end
     assert @activated_user.reload.activated?
   end
   
@@ -67,4 +69,10 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_equal cookies['remember_token'], assigns(:user).remember_token
   end
   
+  test 'logout' do
+    log_in_as(@activated_user)
+    assert_difference 'Remember.count', -1 do
+      delete logout_path
+    end
+  end
 end
