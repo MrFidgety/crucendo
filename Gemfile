@@ -20,6 +20,7 @@ gem 'sdoc',                     '0.4.0', group: :doc
 gem "passenger",                '>= 5.0.25', require: "phusion_passenger/rack_handler"
 gem 'data-confirm-modal',       github: 'ifad/data-confirm-modal'
 gem 'breadcrumbs_on_rails'
+gem 'browser'
 
 group :development, :test do
   gem 'byebug',                 '3.4.0'

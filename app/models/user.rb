@@ -29,8 +29,7 @@ class User < ActiveRecord::Base
   # Remembers a user in the database for use in persistent sessions.
   def remember
     self.remember_token = User.new_token
-    self.remembers.create(last_used_at: Time.zone.now, 
-                          remember_digest: User.digest(remember_token))
+    self.remembers.create(remember_digest: User.digest(remember_token))
   end
   
   # Returns true if the given token matches the digest.
@@ -43,7 +42,7 @@ class User < ActiveRecord::Base
   def remembered?(token)
     remembers.each do |remember|
       if BCrypt::Password.new(remember.remember_digest).is_password?(token)
-        remember.update_attributes(last_used_at: Time.zone.now)
+        remember.touch
         return true;
       end
     end

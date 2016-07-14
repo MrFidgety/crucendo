@@ -53,6 +53,7 @@ GEM
     bootstrap-will_paginate (0.0.10)
       will_paginate
     breadcrumbs_on_rails (2.3.1)
+    browser (2.2.0)
     builder (3.2.2)
     byebug (3.4.0)
       columnize (~> 0.8)
@@ -241,6 +242,7 @@ DEPENDENCIES
   bootstrap-sass (= 3.2.0.0)
   bootstrap-will_paginate (= 0.0.10)
   breadcrumbs_on_rails
+  browser
   byebug (= 3.4.0)
   coffee-rails (= 4.1.0)
   country_select (= 2.5.2)

@@ -11,8 +11,14 @@ class SessionsController < ApplicationController
     # consume login digest
     @user.update_attributes(login_digest: nil,
                             login_sent_at: nil)
+    
     log_in @user
     remember @user
+    # set most recent "remember" browser details
+    @user.remembers.order(:updated_at).last.update_attributes(
+                                          browser: browser.name,
+                                          device: browser.device.name,
+                                          platform: browser.platform.name)
     set_flash :welcome, type: :success
     redirect_to root_url
   end

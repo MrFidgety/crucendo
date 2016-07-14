@@ -2,7 +2,6 @@
 
 one:
   user_id: 
-  last_used_at: 2016-07-13 05:50:47
   remember_digest: MyString
   browser: MyString
   device: MyString
@@ -10,7 +9,6 @@ one:
 
 two:
   user_id: 
-  last_used_at: 2016-07-13 05:50:47
   remember_digest: MyString
   browser: MyString
   device: MyString

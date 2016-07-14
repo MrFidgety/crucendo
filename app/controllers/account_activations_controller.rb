@@ -8,6 +8,11 @@ class AccountActivationsController < ApplicationController
     @user.activate
     log_in @user 
     remember @user
+    # set most recent session browser details
+    @user.remembers.order(:updated_at).last.update_attributes(
+                                              browser: browser.name,
+                                              device: browser.device.name,
+                                              platform: browser.platform.name)
     set_flash :welcome, type: :success
     redirect_to root_url
   end
