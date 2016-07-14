@@ -9,12 +9,22 @@ $crucial-gray: #9898a9;
 $crucial-dark-blue: #07438c;
 $crucial-light-blue: #0498d9;
 $gray-medium-light: #eaeaea;
+$gray-metal: #dde0ee;
 $friendly-red: #ff0033;
+$box-shadow: rgba(0,2,34,0.75);
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
+}
+@mixin rotate($deg: 180){
+  $sDeg: #{$deg}deg;
+  -webkit-transform: rotate($sDeg);
+  -moz-transform: rotate($sDeg);
+  -ms-transform: rotate($sDeg);
+  -o-transform: rotate($sDeg);
+  transform: rotate($sDeg);
 }
 
 /* universal */
@@ -26,32 +36,27 @@ body {
 .doublefont {
   font-size: 2em;
 }
-
 section {
   overflow: auto;
 }
-
 textarea {
   resize: vertical;
 }
-
 .center {
   text-align: center;
   h1 {
     margin-bottom: 10px;
   }
 }
-
 .alert {
   text-align: center;
 }
-
 .crucial-container {
   padding: 20px;
-  background: #dde0ee;
-  -webkit-box-shadow: -5px 5px 20px 0px rgba(0,2,34,0.75);
-  -moz-box-shadow: -5px 5px 20px 0px rgba(0,2,34,0.75);
-  box-shadow: -5px 5px 20px 0px rgba(0,2,34,0.75);
+  background: $gray-metal;
+  -webkit-box-shadow: -5px 5px 20px 0px $box-shadow;
+  -moz-box-shadow: -5px 5px 20px 0px $box-shadow;
+  box-shadow: -5px 5px 20px 0px $box-shadow;
   margin-bottom: 20px;
 }
 
@@ -60,7 +65,6 @@ textarea {
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
-
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
@@ -71,7 +75,6 @@ h1 {
     letter-spacing: -1px;
   }
 }
-
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
@@ -80,7 +83,6 @@ h2 {
   font-weight: normal;
   color: $gray-light;
 }
-
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -121,7 +123,6 @@ footer {
   margin-top: 45px;
   @include box_sizing;
 }
-
 .ui-helper-hidden-accessible {
   border: 0;
   clip: rect(0 0 0 0);
@@ -140,15 +141,12 @@ input, textarea, select, .uneditable-input {
   margin-bottom: 15px;
   @include box_sizing;
 }
-
 .btn-group-justified {
   margin-bottom: 15px;
 }
-
 input {
   height: auto !important;
 }
-
 #error_explanation {
   color: red;
   ul {
@@ -157,41 +155,41 @@ input {
   }
 }
 
-/* buttons */
-
 /* navigation */
 
-.navbar a {
-  transition: color 0.2s ease-in-out;
+.navbar {
+  height: 60px;
+  img {
+    height: 60px;
+    padding: 5px;
+  }
+  a {
+    transition: all 0.2s ease-in-out;
+  }
 }
 .navbar-fixed-top {
   box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 }
-.navbar-collapse.collapse {
-  display: block!important;
-}
-.navbar-nav>li, .navbar-nav {
-  float: left !important;
-}
-.navbar-nav.navbar-right:last-child {
-  margin-right: -15px !important;
-}
 .navbar-right {
-  float: right!important;
+  float: right !important;
 }
 .navbar-nav > li > a {
   padding-top: 10px;
   padding-bottom: 10px;
+  line-height: 40px;
+  font-size: 20px;
+  color: $gray-metal;
 }
 .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-nav > .open > a {
   color: #fff;
   &:hover, &:focus {
     color: $crucial-light-blue;
+    background-color: transparent;
   }
 }
-.nav img {
-  margin-top: 5px;
-  max-height: 40px;
+
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0;
 }
 
 /* dropdown transition */
@@ -199,6 +197,9 @@ input {
   -webkit-transform: scale(1, 1);
   transform: scale(1, 1);  
   opacity:1;
+}
+.open > a {
+  @include rotate
 }
   
 .dropdown-menu {
@@ -212,8 +213,15 @@ input {
   display: block; 
   transition: all 0.2s linear;
   -webkit-transition: all 0.2s linear;
-  border-top: 3px solid $crucial-light-blue;
   border-radius: 0;
+  li {
+    a {
+      color: #5a5a5a;
+      &:hover {
+        color: $crucial-light-blue;
+      }
+    }
+  }
 }
 
 @media (max-width: $screen-xs-max) {
@@ -223,7 +231,6 @@ input {
     background-color: #fff;
     border: 1px solid #ccc;
     border: 1px solid rgba(0, 0, 0, 0.15);
-    border-top: 3px solid $crucial-light-blue;
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     right: 0;
@@ -236,11 +243,10 @@ input {
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a,
    .navbar-inverse .navbar-nav .dropdown-menu > li > a {
     padding: 5px 15px 5px 25px;
-    color: #333;
-    &:hover, &:focus {
-      color: #262626;
-      background-color: #f5f5f5;
-    }
+    color: #5a5a5a;
+      &:hover {
+        color: $crucial-light-blue;
+      }
   }
   /* ensure navbar styling doesn't change */
   .navbar-nav {

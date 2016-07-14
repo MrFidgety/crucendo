@@ -2,7 +2,7 @@
 <h1>Profile<br><small><%= @user.email %></small></h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-5 col-md-offset-1 col-sm-8">
     <div class="crucial-container">
       <%= form_for(@user) do |f| %>
         <%= f.label :name %>
@@ -36,6 +36,16 @@
     </div>
     <div class="crucial-container">
       <button class="btn btn-default btn-block" data-toggle="modal" data-target="#new-email">I want to change my account email</button>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="crucial-container">
+      <h3>Logins</h3>
+      <ul>
+      <% @user.remembers.each do |remember| %>
+        <li><%= remember.updated_at %> <%= remember.browser %>, <%= remember.platform %>, <%= remember.device %></li>
+      <% end %>
+      </ul>
     </div>
   </div>
 </div>
