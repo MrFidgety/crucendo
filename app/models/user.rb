@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   
-  attr_accessor :remember_token, :activation_token, :login_token, :new_email_token
+  attr_accessor :remember_token, 
+                :activation_token, 
+                :login_token, 
+                :new_email_token
   
   has_many :goals,        dependent:  :destroy
   has_many :interactions, dependent:  :destroy

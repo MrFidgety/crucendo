@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715003826) do
+ActiveRecord::Schema.define(version: 20160719061213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "interaction_id"
+    t.text     "content"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "question_id"
+  end
+
+  add_index "answers", ["interaction_id"], name: "index_answers_on_interaction_id", using: :btree
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -26,10 +37,11 @@ ActiveRecord::Schema.define(version: 20160715003826) do
     t.text     "content"
     t.integer  "user_id"
     t.datetime "due_date"
-    t.boolean  "completed"
+    t.boolean  "completed",      default: true
     t.datetime "completed_date"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "active",         default: true
   end
 
   add_index "goals", ["user_id", "due_date"], name: "index_goals_on_user_id_and_due_date", using: :btree
@@ -45,15 +57,13 @@ ActiveRecord::Schema.define(version: 20160715003826) do
 
   create_table "questions", force: :cascade do |t|
     t.text     "content"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "category_id"
-    t.boolean  "active",      default: false
-    t.boolean  "archived",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "active",     default: false
+    t.boolean  "archived",   default: false
     t.integer  "topic_id"
   end
 
-  add_index "questions", ["category_id"], name: "index_questions_on_category_id", using: :btree
   add_index "questions", ["topic_id"], name: "index_questions_on_topic_id", using: :btree
 
   create_table "remembers", force: :cascade do |t|
@@ -105,9 +115,10 @@ ActiveRecord::Schema.define(version: 20160715003826) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "answers", "interactions"
+  add_foreign_key "answers", "questions"
   add_foreign_key "goals", "users"
   add_foreign_key "interactions", "users"
-  add_foreign_key "questions", "categories"
   add_foreign_key "questions", "topics"
   add_foreign_key "remembers", "users"
 end

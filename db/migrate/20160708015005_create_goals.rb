@@ -4,7 +4,7 @@ class CreateGoals < ActiveRecord::Migration
       t.text :content
       t.references :user, index: true, foreign_key: true
       t.datetime :due_date
-      t.boolean :completed
+      t.boolean :completed, default: true
       t.datetime :completed_date
 
       t.timestamps null: false
