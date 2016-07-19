@@ -4,7 +4,7 @@ class Admin::QuestionsController < AdminController
 
   def index
     @questions = Question.filter(params.slice(:topic_id, :active))
-                    .includes(:category).includes(:topic)
+                    .includes(:topic)
                     .where(archived: false)
                     .search(params[:search])
                     .order(sort_column + ' ' + sort_direction)
@@ -49,7 +49,7 @@ class Admin::QuestionsController < AdminController
   private
 
     def question_params
-      params.require(:question).permit(:content, :topic_id, :category_id, :active)
+      params.require(:question).permit(:content, :topic_id, :active)
     end
     
     def insert_breadcrumbs

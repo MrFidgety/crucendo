@@ -3,8 +3,6 @@
 <div class="crucial-container">
   <%= link_to "Add Question", new_admin_question_path,
                               class: "btn btn-primary" %>
-  <%= link_to "Manage Categories", admin_questions_categories_path, 
-                                            class: "btn btn-primary" %>
   <%= link_to "Manage Topics", admin_questions_topics_path, 
                                             class: "btn btn-primary" %>
 </div>
@@ -31,7 +29,6 @@
       <tr>
         <th><%= sortable "content", "Question" %></th>
         <th class="hidden-xs"><%= sortable "topics.name", "Topic" %></th>
-        <th class="hidden-xs"><%= sortable "categories.name", "Category" %></th>
         <th class="hidden-xs"><%= sortable "active", "Active" %></th>
         <th></th>
       </tr>
@@ -41,7 +38,6 @@
     <tr>
       <td><%= question.content %></td>
       <td class="hidden-xs"><%= question.topic.name if question.topic %></td>
-      <td class="hidden-xs"><%= question.category.name %></td>
       <td class="hidden-xs"><%= question.active? ? 'Yes' : 'No' %></td>
       <td><span class="pull-right">
         <%= link_to "edit", edit_admin_question_path(question) %></span>

@@ -8,10 +8,6 @@
                             { class: 'form-control',
                               placeholder: 'Select a topic'}) %>
     <%= f.label :category_id, "Category" %>
-    <%= f.collection_select(:category_id, Category.all, :id, :name, 
-                            { include_blank: 'Select a category' } , 
-                            { class: 'form-control',
-                              placeholder: 'Select a category'}) %>
     <%= f.label :active %>
     <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
       <label class="btn btn-default">

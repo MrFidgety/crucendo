@@ -27,8 +27,4 @@ class QuestionTest < ActiveSupport::TestCase
     assert_not @question.valid?
   end
   
-  test "category_id should be present" do
-    @question.category_id = nil
-    assert_not @question.valid?
-  end
 end
