@@ -4,5 +4,5 @@ class Interaction < ActiveRecord::Base
   has_many    :answers
   
   validates :user_id, presence: true
-  
+
 end

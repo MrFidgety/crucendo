@@ -5,7 +5,6 @@ class Answer < ActiveRecord::Base
   
   validates :interaction_id,  presence: true
   validates :question_id,     presence: true
-  validates :content,         presence: true,
-                              length: { maximum: 3500 }
+  validates :content,         length: { maximum: 3500 }
   
 end

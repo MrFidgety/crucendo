@@ -1,15 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  goal_id: 
-  content: MyText
+s1:
+  content: step one
   completed: false
-  completed_date: 2016-07-19 07:14:08
-  order: 1
+  order: 5
 
-two:
-  goal_id: 
-  content: MyText
+last:
+  content: step two
   completed: false
-  completed_date: 2016-07-19 07:14:08
+  order: 9
+
+s3:
+  content: step three
+  completed: false
+  order: 3
+  
+first:
+  content: step two
+  completed: false
   order: 1

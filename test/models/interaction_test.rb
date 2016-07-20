@@ -4,7 +4,7 @@ class InteractionTest < ActiveSupport::TestCase
   
   def setup
     @user = users(:dinesh)
-    @interaction = Interaction.new(user_id: @user.id)
+    @interaction = @user.interactions.build
   end
   
   test "should be valid" do

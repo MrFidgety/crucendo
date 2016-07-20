@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  interaction_id: 
-  content: MyText
+a1:
+  interaction: i1 
+  content: some answer
 
-two:
-  interaction_id: 
-  content: MyText
+a2:
+  interaction: i1 
+  content: some answer
+  
+a3:
+  interaction: i1 
+  content: some answer

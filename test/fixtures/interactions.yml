@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 
+i1:
+  user: dinesh 
 
-two:
-  user_id: 
+i2:
+  user: dinesh 
