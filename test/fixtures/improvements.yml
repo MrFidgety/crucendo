@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+i1:
+  value: 1
+  unexpected: false
+  created_at: <%= 3.hours.ago %>
+
+most_recent:
+  value: 1
+  unexpected: false
+  created_at: <%= Time.zone.now %>

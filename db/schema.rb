@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719071408) do
+ActiveRecord::Schema.define(version: 20160720024153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,18 @@ ActiveRecord::Schema.define(version: 20160719071408) do
 
   add_index "goals", ["user_id", "due_date"], name: "index_goals_on_user_id_and_due_date", using: :btree
   add_index "goals", ["user_id"], name: "index_goals_on_user_id", using: :btree
+
+  create_table "improvements", force: :cascade do |t|
+    t.integer  "goal_id"
+    t.integer  "step_id"
+    t.integer  "value",      default: 1
+    t.boolean  "unexpected"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "improvements", ["goal_id"], name: "index_improvements_on_goal_id", using: :btree
+  add_index "improvements", ["step_id"], name: "index_improvements_on_step_id", using: :btree
 
   create_table "interactions", force: :cascade do |t|
     t.integer  "user_id"
@@ -130,6 +142,8 @@ ActiveRecord::Schema.define(version: 20160719071408) do
   add_foreign_key "answers", "interactions"
   add_foreign_key "answers", "questions"
   add_foreign_key "goals", "users"
+  add_foreign_key "improvements", "goals"
+  add_foreign_key "improvements", "steps"
   add_foreign_key "interactions", "users"
   add_foreign_key "questions", "topics"
   add_foreign_key "remembers", "users"

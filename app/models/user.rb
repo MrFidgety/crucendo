@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :interactions, dependent:  :destroy
   has_many :remembers,    dependent:  :destroy
   has_many :answers,      through:    :interactions
+  has_many :improvements, through:    :goals
   
   before_save   :downcase_email
   before_create :create_activation_digest

@@ -2,6 +2,7 @@ class Goal < ActiveRecord::Base
   
   belongs_to  :user
   has_many    :steps
+  has_many    :improvements
   has_one     :skill
   
   default_scope -> { order(due_date: :asc) }
