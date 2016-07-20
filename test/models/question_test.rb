@@ -4,7 +4,6 @@ class QuestionTest < ActiveSupport::TestCase
   
   def setup
     @question = Question.new(content: "How are you?", 
-                              category_id: 1, 
                               topic_id: 1)
   end
   

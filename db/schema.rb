@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719061213) do
+ActiveRecord::Schema.define(version: 20160719071408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,18 @@ ActiveRecord::Schema.define(version: 20160719061213) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "steps", force: :cascade do |t|
+    t.integer  "goal_id"
+    t.text     "content"
+    t.boolean  "completed",      default: false
+    t.datetime "completed_date"
+    t.integer  "order"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "steps", ["goal_id"], name: "index_steps_on_goal_id", using: :btree
+
   create_table "topics", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -121,4 +133,5 @@ ActiveRecord::Schema.define(version: 20160719061213) do
   add_foreign_key "interactions", "users"
   add_foreign_key "questions", "topics"
   add_foreign_key "remembers", "users"
+  add_foreign_key "steps", "goals"
 end

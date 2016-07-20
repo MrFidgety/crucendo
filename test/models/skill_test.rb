@@ -21,9 +21,4 @@ class SkillTest < ActiveSupport::TestCase
     assert_not @skill.valid?
   end
   
-  test "global should be present" do
-    @skill.global = nil
-    assert_not @skill.valid?
-  end
-  
 end
