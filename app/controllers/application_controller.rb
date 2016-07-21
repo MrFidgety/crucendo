@@ -20,4 +20,10 @@ class ApplicationController < ActionController::Base
       flash[:controller] = :shared
     end
   end
+  
+  private
+  
+    def logged_in_user
+    end
+  
 end
