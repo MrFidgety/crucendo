@@ -17,4 +17,13 @@ class Question < ActiveRecord::Base
       all
     end
   end
+  
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      if !row["topic"].blank? && !row["content"].blank?
+        topic = Topic.find_or_create_by(name: row["topic"].downcase)
+        Question.create!({ :content => row["content"], :topic_id => topic.id })
+      end
+    end
+  end
 end

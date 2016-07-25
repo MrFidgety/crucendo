@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     end
     
     get '', to: 'dashboard#index', as: '/'
-    resources :questions
+    resources :questions do
+      collection { post :import}
+    end
     resources :skills
 
   end

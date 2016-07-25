@@ -1,10 +1,30 @@
 <% provide(:title, "Questions") %>
 <h1>Questions</h1>
 <div class="crucial-container">
-  <%= link_to "Add Question", new_admin_question_path,
+  <div class="row">
+    <div class="col-sm-6">
+      <%= link_to "Add Question", new_admin_question_path,
                               class: "btn btn-primary" %>
-  <%= link_to "Manage Topics", admin_questions_topics_path, 
-                                            class: "btn btn-primary" %>
+      <%= link_to "Manage Topics", admin_questions_topics_path, 
+                              class: "btn btn-primary" %>
+    </div>
+    <div class="col-sm-6">
+      <%= form_tag import_admin_questions_path, multipart: true, 
+                    class: "form-inline pull-right" do %>
+        <div class="input-group">
+          <label class="input-group-btn">
+            <span class="btn btn-info">
+              Browse… <%= file_field_tag :file, 
+                            class: "hidden_file", 
+                            id: "import-file" %>
+            </span>
+          </label>
+          <input id="import-display" type="text" class="form-control" readonly>
+        </div>
+        <%= submit_tag "Import", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
 <div class="crucial-container">
   <%= form_tag admin_questions_path, :method => 'get', class: "search" do %>

@@ -46,6 +46,11 @@ class Admin::QuestionsController < AdminController
     redirect_to admin_questions_path
   end
   
+  def import
+    Question.import(params[:file])
+    redirect_to admin_questions_path
+  end
+    
   private
 
     def question_params
