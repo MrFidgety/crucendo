@@ -9,8 +9,3 @@ User.create!(name:  "Brett",
              admin:     true,
              activated: true,
              activated_at: Time.zone.now)
-             
-Category.create!(name: "Encouraging")
-Category.create!(name: "Challenging")
-Category.create!(name: "Digesting")
-Category.create!(name: "Bonus")

@@ -182,6 +182,7 @@ input {
 }
 .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-nav > .open > a {
   color: #fff;
+  background-color: transparent;
   &:hover, &:focus {
     color: $crucial-light-blue;
     background-color: transparent;

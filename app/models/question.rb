@@ -5,6 +5,8 @@ class Question < ActiveRecord::Base
   scope :active,    -> (active) { where active: active }
   
   belongs_to :topic
+  has_many :answers
+  
   validates :topic_id, presence: true
   validates :content, presence: true, length: { maximum: 180 }
   

@@ -5,26 +5,26 @@ class User < ActiveRecord::Base
                 :login_token, 
                 :new_email_token
   
-  has_many :goals,        dependent:  :destroy
-  has_many :interactions, dependent:  :destroy
-  has_many :remembers,    dependent:  :destroy
-  has_many :answers,      through:    :interactions
-  has_many :improvements, through:    :goals
+  has_many      :goals,         dependent:  :destroy
+  has_many      :interactions,  dependent:  :destroy
+  has_many      :remembers,     dependent:  :destroy
+  has_many      :answers,       through:    :interactions
+  has_many      :improvements,  through:    :goals
   
   before_save   :downcase_email
   before_create :create_activation_digest
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   
-  validates :name,          length: { maximum: 50 }
-  validates :email,         presence: true, 
-                            length: { maximum: 255 },
-                            format: { with: VALID_EMAIL_REGEX },
-                            uniqueness: { case_sensitive: false }
-  validates :year_of_birth, length: { is: 4 }, 
-                            allow_nil: true
-  validates :gender,        inclusion: { in: %w(female male) }, 
-                            allow_nil: true
+  validates     :name,          length: { maximum: 50 }
+  validates     :email,         presence: true, 
+                                length: { maximum: 255 },
+                                format: { with: VALID_EMAIL_REGEX },
+                                uniqueness: { case_sensitive: false }
+  validates     :year_of_birth, length: { is: 4 }, 
+                                allow_nil: true
+  validates     :gender,        inclusion: { in: %w(female male) }, 
+                                allow_nil: true
   
   class << self              
     # Returns the hash digest of the given string.

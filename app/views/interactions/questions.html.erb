@@ -1,0 +1,12 @@
+<div class="crucial-container">
+  Interaction <%= @interaction.id %>
+</div>
+<div class="crucial-container">
+  Questions <%= link_to 'skip', next_wizard_path %><br>
+  <br><%= @answer.question.content %>
+  <%= form_for @answer, url: wizard_path, method: :put do |f| %>
+    <%= f.label :content %><br />
+    <%= f.text_field :content, class: 'form-control' %>
+    <%= f.submit "Continue", class: 'form-control' %>
+  <% end %>
+</div>

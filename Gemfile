@@ -21,6 +21,7 @@ gem "passenger",                '>= 5.0.25', require: "phusion_passenger/rack_ha
 gem 'data-confirm-modal',       github: 'ifad/data-confirm-modal'
 gem 'breadcrumbs_on_rails'
 gem 'browser'
+gem 'wicked'
 
 group :development, :test do
   gem 'byebug',                 '3.4.0'

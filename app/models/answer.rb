@@ -1,7 +1,7 @@
 class Answer < ActiveRecord::Base
   
   belongs_to  :interaction
-  has_one     :question
+  belongs_to  :question
   
   validates :interaction_id,  presence: true
   validates :question_id,     presence: true
