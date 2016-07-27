@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: :edit
   resources :sessions,            only: :edit
   resources :change_user_email,   only: :edit
-  resources :interactions
+  resources :interactions,        only: [:index, :show, :update]
   
   namespace :admin do
     namespace :questions do

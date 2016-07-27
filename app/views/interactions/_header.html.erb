@@ -1,0 +1,7 @@
+<div class="crucial-container">
+  Interaction <%= @interaction.id %><br><br>
+  <% wizard_steps.each do |s| %>
+    <%= '>' if step.equal? s %>
+    <%= s %><br>
+  <% end %>
+</div>

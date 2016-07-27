@@ -1,11 +1,10 @@
+<%= render 'interactions/header' %>
 <div class="crucial-container">
-  Interaction <%= @interaction.id %>
-</div>
-<div class="crucial-container">
-  Questions <%= link_to 'skip', next_wizard_path %><br>
+  Questions <br>
   <br><%= @answer.question.content %>
   <%= form_for @answer, url: wizard_path, method: :put do |f| %>
-    <%= f.text_field :content, class: 'form-control' %>
+    <%= f.text_field :content, class: 'form-control', :autofocus=>true %>
+    <%= hidden_field(:answer, :id) %>
     <%= f.submit "Continue", class: 'form-control' %>
   <% end %>
 </div>

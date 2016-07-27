@@ -5,6 +5,8 @@ class Answer < ActiveRecord::Base
   
   validates :interaction_id,  presence: true
   validates :question_id,     presence: true
-  validates :content,         length: { maximum: 3500 }
-  
+  validates :content,         length: { in: 23..3500, 
+                              too_short: "that answer is a little short" }, 
+                              :allow_nil => true
+
 end

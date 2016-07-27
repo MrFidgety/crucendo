@@ -12,12 +12,16 @@ class Interaction < ActiveRecord::Base
     answers.where(:content => nil).first
   end
   
+  def complete
+    update_attribute(:completed, true)
+  end
+  
   private
   
     def assign_question_answers
-      @questions = Question.take(3)
-      @questions.each do |q|
-        answers.build(question_id: q.id)
+      @questions = Question.order("RANDOM()").limit(3)
+      @questions.each do |question|
+        answers.build(question_id: question.id)
       end
     end
 
