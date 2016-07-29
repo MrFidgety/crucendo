@@ -3,7 +3,7 @@
   Questions <br>
   <br><%= @answer.question.content %>
   <%= form_for @answer, url: wizard_path, method: :put do |f| %>
-    <%= f.text_field :content, class: 'form-control', :autofocus=>true %>
+    <%= f.text_area :content, rows: 2, class: 'form-control', :autofocus=>true %>
     <%= hidden_field(:answer, :id) %>
     <%= f.submit "Continue", class: 'form-control' %>
   <% end %>

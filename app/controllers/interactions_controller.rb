@@ -8,13 +8,16 @@ class InteractionsController < ApplicationController
   
   def show
     
-    if step.equal? :questions
-      # set answer if on questions step  
-      @answer = @interaction.find_next_answer 
-      # move to next step if no "next answer"
-      skip_step if @answer.blank?
+    case step
+      when :questions
+        # set answer if on questions step  
+        @answer = @interaction.find_next_answer 
+        # move to next step if no "next answer"
+        skip_step if @answer.blank?
+      when :want_to_improve
+        @goal = Goal.new
     end
-      
+    
     render_wizard
   end
   
@@ -55,7 +58,6 @@ class InteractionsController < ApplicationController
         
         if @answer.blank?
           # set flash notice advising issue answering question
-          
           redirect_to root_url
         end
         

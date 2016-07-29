@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :sessions,            only: :edit
   resources :change_user_email,   only: :edit
   resources :interactions,        only: [:index, :show, :update]
+  resources :goals
   
   namespace :admin do
     namespace :questions do

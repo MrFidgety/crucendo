@@ -12,12 +12,14 @@ class Interaction < ActiveRecord::Base
     answers.where(:content => nil).first
   end
   
+  # set interaction as completed
   def complete
     update_attribute(:completed, true)
   end
   
   private
   
+    # assign questions to interaction
     def assign_question_answers
       @questions = Question.order("RANDOM()").limit(3)
       @questions.each do |question|
