@@ -4,6 +4,7 @@ class Goal < ActiveRecord::Base
   has_many    :steps
   has_many    :improvements
   has_one     :skill
+  has_one     :interaction
   
   default_scope -> { order(due_date: :asc) }
   
