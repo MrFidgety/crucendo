@@ -4,12 +4,6 @@ class UsersController < ApplicationController
   before_action :correct_user,    only: [:edit, :update]
   before_action :admin_user,      only: :destroy
   
-  def show
-  end
-  
-  def new
-  end
-  
   def new_email
     # validate email via regex
     if params[:email] =~ User::VALID_EMAIL_REGEX
