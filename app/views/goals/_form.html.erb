@@ -2,7 +2,7 @@
 <% remote = modal ? true : false %>
 <%= form_for(@goal, remote: remote, html: {role: :form, 'data-model' => 'goal'}) do |f| %>
   <%= f.text_field :content, class: 'form-control' %>
-  <div class="actions">
-    <%= f.submit 'Add', class: 'btn btn-default' %>
-  </div>
+  <input type="date" name="date">
+  <%= hidden_field(:goal, :interaction_id, :value => @interaction.id) %>
+  <%= f.submit 'Add', class: 'btn btn-default' %>
 <% end %>

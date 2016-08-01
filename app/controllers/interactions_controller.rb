@@ -1,5 +1,6 @@
 class InteractionsController < ApplicationController
   include Wicked::Wizard
+  include InteractionsHelper
   
   before_action :find_interaction
   before_action :answer_current,  only: :update
@@ -16,6 +17,9 @@ class InteractionsController < ApplicationController
         skip_step if @answer.blank?
       when :want_to_improve
         @goal = Goal.new
+        @goals = @interaction.goals
+      when :crucendo
+        @interaction.complete
     end
     
     render_wizard
@@ -25,8 +29,10 @@ class InteractionsController < ApplicationController
     
     if step.equal? :questions
       # if answer saves, move to next unanswered question
-      @answer = @interaction.find_next_answer if @answer.update_attributes(
-                                                                  answer_params)
+      if @answer.update_attributes(answer_params)
+        @answer = @interaction.find_next_answer
+      end
+      
       # move to next step if no "next answer"
       skip_step if @answer.blank?
     end
@@ -37,18 +43,15 @@ class InteractionsController < ApplicationController
   private
 
     def redirect_to_finish_wizard(id)
-      @interaction.complete
       redirect_to root_url
     end
     
     def find_interaction
       # find first incomplete interaction, or create one
-      @interaction = current_user.interactions.find_by(completed: false) ||
-                        current_user.interactions.build
+      @interaction = get_interaction(current_user) || current_user.interactions.build
       
       # redirect to root if interaction does not save
       redirect_to root_url if !@interaction.save 
-      
     end
     
     def answer_current
