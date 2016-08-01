@@ -22,6 +22,7 @@ gem 'data-confirm-modal',       github: 'ifad/data-confirm-modal'
 gem 'breadcrumbs_on_rails'
 gem 'browser'
 gem 'wicked'
+gem 'google-analytics-rails',   '~> 1.1'
 
 group :development, :test do
   gem 'byebug',                 '3.4.0'
