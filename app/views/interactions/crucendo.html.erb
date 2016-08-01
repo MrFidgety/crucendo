@@ -1,3 +1,4 @@
+<% provide(:title, "Complete") %>
 <%= render 'interactions/header' %>
 <div class="crucial-container">
   Congratulations on reaching your <%= current_user.interactions.where(:completed => true).count.ordinalize %> Crucendo!

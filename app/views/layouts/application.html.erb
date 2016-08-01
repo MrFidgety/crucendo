@@ -9,7 +9,7 @@
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
     <%= favicon_link_tag 'logo_icon.png', sizes: 'any', type: 'image/png' %>
-    <%= analytics_init if GoogleAnalytics.valid_tracker? %>
+    <%= render 'layouts/google_analytics' %>
   </head>
 <body>
   <%= render 'layouts/header' %>
