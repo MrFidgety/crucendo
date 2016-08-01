@@ -6,6 +6,7 @@
     <%= stylesheet_link_tag     'application', media: 'all', 
                                 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= render 'layouts/google_analytics' %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
     <%= favicon_link_tag 'logo_icon.png', sizes: 'any', type: 'image/png' %>
@@ -21,7 +22,6 @@
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
-    <%= render 'layouts/google_analytics' %>
     <%= debug(params) if Rails.env.development? %>
   </div>
 </body>
