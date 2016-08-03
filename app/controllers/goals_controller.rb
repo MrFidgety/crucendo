@@ -26,6 +26,9 @@ class GoalsController < ApplicationController
   private
   
     def goal_params
+      if !params[:goal][:due_date_utc].blank?
+        params[:goal][:due_date] = params[:goal][:due_date_utc]
+      end
       params.require(:goal).permit( :content, 
                                     :due_date, 
                                     :completed_date, 

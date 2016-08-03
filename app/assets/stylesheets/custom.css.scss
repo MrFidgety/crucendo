@@ -87,6 +87,9 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
+ul {
+  list-style: none;
+}
 
 /* footer */
 
@@ -153,6 +156,13 @@ input {
     color: red;
     margin: 0 0 30px 0;
   }
+}
+// fix date-time input height
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+  line-height: 1.428571429;
 }
 
 /* navigation */
@@ -300,7 +310,7 @@ input {
   color: #999999
 }
 
-/* sortable */
+/* admin sorting */
 .asc:after {
   content: "\f077";
   font-family: FontAwesome;
@@ -311,4 +321,13 @@ input {
   content: "\f078";
   font-family: FontAwesome;
   padding-left: 5px;
+}
+
+/* sortable */
+.sort-handle {
+  cursor: pointer;
+  margin-right: 10px;
+}
+.sort-chosen {
+  background-color: $gray-medium-light;
 }

@@ -1,7 +1,35 @@
 <% modal ||= false %>
 <% remote = modal ? true : false %>
 <%= form_for(@goal, remote: remote, html: {role: :form, 'data-model' => 'goal'}) do |f| %>
+  <%= f.label :goal %>
   <%= f.text_field :content, class: 'form-control' %>
-  <%= hidden_field(:goal, :interaction_id, :value => @interaction.id) %>
-  <%= f.submit 'Add', class: 'btn btn-default' %>
+  <%= content_tag :div, id: 'due_date_container', class: 'collapse' do %>
+    <%= f.label :due_date %>
+    <%= f.date_field :due_date, class: 'form-control' %>
+    <%= hidden_field_tag 'goal[due_date_utc]' %>
+  <% end %>
+  <%= content_tag :div, id: 'steps_container', class: 'collapse' do %>
+    <%= f.label :steps %>
+    <div class="input-group">
+      <input id="new_step_text" type="text" class="form-control" placeholder="Add step here...">
+      <span class="input-group-btn">
+        <button id="add_step" class="btn btn-default" type="button">Add</button>
+      </span>
+    </div><br>
+    <ul id="sort-me" class="list-group">
+    </ul>
+  <% end %>
+  <%= hidden_field(:goal, :interaction_id) %>
+  <%= button_tag icon('calendar'),  {   :type => 'button', 
+                                        :class => "btn btn-default", 
+                                        'data-target' => "#due_date_container", 
+                                        'data-toggle' => "collapse"} %>
+  <%#= button_tag icon('list-ol'),  {    :type => 'button', 
+                                        :class => "btn btn-default", 
+                                        'data-target' => "#steps_container", 
+                                        'data-toggle' => "collapse"} %>
+  <%= f.submit 'Create', class: 'btn btn-success pull-right' %>
 <% end %>
+<div style="display: none;" id="new_step">
+  <li class="list-group-item" data-id="1"><span class="sort-handle"><%= icon('bars') %></span> list item text one <span class='js-remove pull-right'><%= icon('times') %></span>
+</div>

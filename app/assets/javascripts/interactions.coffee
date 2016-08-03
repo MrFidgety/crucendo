@@ -20,10 +20,30 @@ $(document).on "page:change", ->
   
   $('#new_goal_modal').on 'hidden.bs.modal', ->
     $('#new_goal_text').focus()
+    $('#goal_content').val('')
+    $('#goal_due_date').val('')
+    $('#due_date_container').collapse('hide')
+    $("#new_goal form").clear_form_errors()
     
   $(document).on "ajax:error", "form", (evt, xhr, status, error) ->
     $("#new_goal form").render_form_errors('goal', $.parseJSON(xhr.responseText))
     
+  $("#new_goal").submit ->
+    time = new Date($('#goal_due_date').val())
+    time.setHours(0,0,0,0)
+    $('#goal_due_date_utc').val(time.toUTCString())
+  
+  sortable = Sortable.create($('#sort-me').get(0), {
+    handle: '.sort-handle',
+    animation: 150,
+    chosenClass: 'sort-chosen',
+    onEnd: (evt) ->
+      console.log(sortable.toArray())
+  })
+  
+  $('#add_step').click ->
+    $("#sort-me").append($("#new_step").html())
+
 # display form errors for each input
 $.fn.render_form_errors = (model_name, errors) ->
   form = this
