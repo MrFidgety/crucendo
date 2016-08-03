@@ -5,7 +5,7 @@ class InteractionsController < ApplicationController
   before_action :find_interaction
   before_action :answer_current,  only: :update
   
-  steps :questions, :have_improved, :want_to_improve, :crucendo
+  steps :questions, :have, :want, :crucendo
   
   def show
     
@@ -15,7 +15,7 @@ class InteractionsController < ApplicationController
         @answer = @interaction.find_next_answer 
         # move to next step if no "next answer"
         skip_step if @answer.blank?
-      when :want_to_improve
+      when :want
         @goal = Goal.new
         @goals = @interaction.goals
       when :crucendo

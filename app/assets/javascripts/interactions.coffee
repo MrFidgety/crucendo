@@ -20,8 +20,7 @@ $(document).on "page:change", ->
   
   $('#new_goal_modal').on 'hidden.bs.modal', ->
     $('#new_goal_text').focus()
-    $('#goal_content').val('')
-    $('#goal_due_date').val('')
+    $('#goal_content, #goal_due_date').val('')
     $('#due_date_container').collapse('hide')
     $("#new_goal form").clear_form_errors()
     
