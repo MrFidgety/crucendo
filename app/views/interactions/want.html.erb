@@ -2,22 +2,19 @@
 <%= render 'interactions/header' %>
 <div class="crucial-container">
   What do you want to improve?
-  <%= link_to 'next', next_wizard_path %>
 </div>
 <div class="crucial-container">
   <div class="input-group">
-    <%= text_field_tag 'new_goal_text', nil, :autofocus=>true, class: "form-control input-lg" %>
+    <%= text_field_tag 'new_goal_text', nil, :autofocus=>true, class: "form-control" %>
     <span class="input-group-btn">
-      <button id="new_goal_start" class="btn btn-default btn-lg" type="submit">
+      <button id="new_goal_start" class="btn btn-default" type="submit">
          <%= icon('chevron-right') %>
       </button>
     </span>
   </div>
 </div>
 <section id="goals-section" class="crucial-container">
-  <ul id="goals">
-    <%= render @goals %>
-  </ul>
+  <%= render partial: "goals/want_goal", collection: @goals, as: :goal %>
 </section>
 <div class="modal fade" id="new_goal_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -31,4 +28,7 @@
       </div>
     </div>
   </div>
+</div>
+<div class="crucial-container">
+  <%= link_to 'continue', next_wizard_path %>
 </div>

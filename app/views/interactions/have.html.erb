@@ -2,5 +2,11 @@
 <%= render 'interactions/header' %>
 <div class="crucial-container">
   What have you improved recently?
-  <%= link_to 'skip', next_wizard_path %>
+</div>
+<section id="goals-section" class="crucial-container">
+  <%= render partial: "goals/have_goal", collection: @goals, 
+      as: :goal, locals: {interaction: @interaction} %>
+</section>
+<div class="crucial-container">
+  <%= link_to 'continue', next_wizard_path %>
 </div>

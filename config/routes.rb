@@ -16,13 +16,19 @@ Rails.application.routes.draw do
   resources :interactions,        only: [:index, :show, :update]
   resources :goals
   
+  resources :goals do
+    post 'improve', on: :member
+  end
+  
   namespace :admin do
+    
+    get '', to: 'dashboard#index', as: '/'
+    
     namespace :questions do
       resources :categories
       resources :topics
     end
     
-    get '', to: 'dashboard#index', as: '/'
     resources :questions do
       collection { post :import}
     end

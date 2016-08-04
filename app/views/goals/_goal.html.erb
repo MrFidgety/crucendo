@@ -1,9 +1,1 @@
-<li>
-  <p>
-    <%= goal.content %>, 
-    created <%= local_time_ago(goal.created_at) %>
-    <% if !goal.due_date.blank? %>
-      , due <%= local_relative_time(goal.due_date, type: 'date') %>
-    <% end %>
-  </p>
-</li>
+<%= goal.content %>

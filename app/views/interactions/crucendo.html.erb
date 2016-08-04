@@ -2,5 +2,5 @@
 <%= render 'interactions/header' %>
 <div class="crucial-container">
   Congratulations on reaching your <%= current_user.interactions.where(:completed => true).count.ordinalize %> Crucendo!
-  <%= link_to 'Finish', next_wizard_path %>
+  <%= link_to 'Finish', root_url %>
 </div>

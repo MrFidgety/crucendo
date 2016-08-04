@@ -3,6 +3,7 @@ class InteractionsController < ApplicationController
   include InteractionsHelper
   
   before_action :find_interaction
+  before_action :needs_answers,   only: :show
   before_action :answer_current,  only: :update
   
   steps :questions, :have, :want, :crucendo
@@ -11,10 +12,10 @@ class InteractionsController < ApplicationController
     
     case step
       when :questions
-        # set answer if on questions step  
-        @answer = @interaction.find_next_answer 
-        # move to next step if no "next answer"
+        @answer = @interaction.find_next_answer
         skip_step if @answer.blank?
+      when :have
+        @goals = current_user.goals
       when :want
         @goal = Goal.new
         @goals = @interaction.goals
@@ -52,6 +53,11 @@ class InteractionsController < ApplicationController
       
       # redirect to root if interaction does not save
       redirect_to root_url if !@interaction.save 
+    end
+    
+    def needs_answers
+      # find first unanswered question
+       redirect_to interactions_path if @answer = @interaction.find_next_answer unless step.equal? :questions
     end
     
     def answer_current

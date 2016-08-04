@@ -3,6 +3,7 @@ class Interaction < ActiveRecord::Base
   belongs_to  :user
   has_many    :answers, dependent:  :destroy
   has_many    :goals
+  has_many    :improvements
   
   before_create :assign_question_answers
   

@@ -1,7 +1,8 @@
 class Improvement < ActiveRecord::Base
   
-  belongs_to :goal
-  belongs_to :step
+  belongs_to  :goal, counter_cache: true
+  belongs_to  :step
+  has_one     :interaction
   
   default_scope -> { order(created_at: :desc) }
   

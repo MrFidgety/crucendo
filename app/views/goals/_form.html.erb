@@ -8,17 +8,6 @@
     <%= f.date_field :due_date, class: 'form-control' %>
     <%= hidden_field_tag 'goal[due_date_utc]' %>
   <% end %>
-  <%= content_tag :div, id: 'steps_container', class: 'collapse' do %>
-    <%= f.label :steps %>
-    <div class="input-group">
-      <input id="new_step_text" type="text" class="form-control" placeholder="Add step here...">
-      <span class="input-group-btn">
-        <button id="add_step" class="btn btn-default" type="button">Add</button>
-      </span>
-    </div><br>
-    <ul id="sort-me" class="list-group">
-    </ul>
-  <% end %>
   <%= hidden_field(:goal, :interaction_id) %>
   <%= button_tag icon('calendar'),  {   :type => 'button', 
                                         :class => "btn btn-default", 
@@ -30,6 +19,3 @@
                                         'data-toggle' => "collapse"} %>
   <%= f.submit 'Create', class: 'btn btn-success pull-right' %>
 <% end %>
-<div style="display: none;" id="new_step">
-  <li class="list-group-item" data-id="1"><span class="sort-handle"><%= icon('bars') %></span> list item text one <span class='js-remove pull-right'><%= icon('times') %></span>
-</div>

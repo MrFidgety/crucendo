@@ -1,0 +1,14 @@
+<div id="goal_<%= goal.id %>" 
+  class="panel-group">
+  <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <%= goal.content %> (<%= goal.improvements.count %> improvements), 
+          created <%= local_time_ago(goal.created_at) %>
+          <% if !goal.due_date.blank? %>
+            , due <%= local_relative_time(goal.due_date, type: 'date') %>
+          <% end %>
+        </h4>
+      </div>
+  </div>
+</div>

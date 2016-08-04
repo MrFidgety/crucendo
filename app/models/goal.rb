@@ -11,5 +11,8 @@ class Goal < ActiveRecord::Base
   validates :user_id, presence: true
   validates :content, presence: true, 
                       length: { maximum: 140 }
-  
+                      
+  def has_improvement?(interaction)
+    improvements.find_by(interaction_id: interaction.id)
+  end
 end

@@ -13,6 +13,8 @@ $gray-metal: #dde0ee;
 $friendly-red: #ff0033;
 $box-shadow: rgba(0,2,34,0.75);
 
+$a-tags: 'a, a:active, a:hover, a:visited';
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -330,4 +332,23 @@ input[type="month"] {
 }
 .sort-chosen {
   background-color: $gray-medium-light;
+}
+
+/* panels */
+.panel-group {
+  margin-bottom: 10px;
+}
+
+.panel{
+  #{$a-tags} {
+    color: inherit;
+    text-decoration: inherit;
+  }
+}
+
+.improved {
+  .panel {
+    background-color: $crucial-light-blue;
+    color: white;
+  }
 }

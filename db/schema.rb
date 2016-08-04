@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729072723) do
+ActiveRecord::Schema.define(version: 20160804001317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,12 +37,13 @@ ActiveRecord::Schema.define(version: 20160729072723) do
     t.text     "content"
     t.integer  "user_id"
     t.datetime "due_date"
-    t.boolean  "completed",      default: false
+    t.boolean  "completed",          default: false
     t.datetime "completed_date"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.boolean  "active",         default: true
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.boolean  "active",             default: true
     t.integer  "interaction_id"
+    t.integer  "improvements_count", default: 0
   end
 
   add_index "goals", ["interaction_id"], name: "index_goals_on_interaction_id", using: :btree
@@ -52,13 +53,15 @@ ActiveRecord::Schema.define(version: 20160729072723) do
   create_table "improvements", force: :cascade do |t|
     t.integer  "goal_id"
     t.integer  "step_id"
-    t.integer  "value",      default: 1
+    t.integer  "value",          default: 1
     t.boolean  "unexpected"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "interaction_id"
   end
 
   add_index "improvements", ["goal_id"], name: "index_improvements_on_goal_id", using: :btree
+  add_index "improvements", ["interaction_id"], name: "index_improvements_on_interaction_id", using: :btree
   add_index "improvements", ["step_id"], name: "index_improvements_on_step_id", using: :btree
 
   create_table "interactions", force: :cascade do |t|
@@ -147,6 +150,7 @@ ActiveRecord::Schema.define(version: 20160729072723) do
   add_foreign_key "goals", "interactions"
   add_foreign_key "goals", "users"
   add_foreign_key "improvements", "goals"
+  add_foreign_key "improvements", "interactions"
   add_foreign_key "improvements", "steps"
   add_foreign_key "interactions", "users"
   add_foreign_key "questions", "topics"
