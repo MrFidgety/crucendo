@@ -23,7 +23,7 @@ class Interaction < ActiveRecord::Base
   
     # assign questions to interaction
     def assign_question_answers
-      @questions = Question.order("RANDOM()").limit(3)
+      @questions = Question.where(active: true).order("RANDOM()").limit(3)
       @questions.each do |question|
         answers.build(question_id: question.id)
       end
