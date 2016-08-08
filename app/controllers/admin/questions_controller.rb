@@ -1,5 +1,6 @@
 class Admin::QuestionsController < AdminController
   before_action :insert_breadcrumbs
+  before_action :check_import_file, only: :import
   helper_method :sort_column, :sort_direction
 
   def index
@@ -78,6 +79,13 @@ class Admin::QuestionsController < AdminController
     
     def sort_direction
       %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    end
+    
+    def check_import_file
+      accepted_formats = [".csv"]
+      if params[:file].blank? || !accepted_formats.include?(File.extname(params[:file].original_filename))
+        redirect_to admin_questions_path
+      end
     end
 
 end

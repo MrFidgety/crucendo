@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804001317) do
+ActiveRecord::Schema.define(version: 20160804100914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(version: 20160804001317) do
     t.integer  "goal_id"
     t.integer  "step_id"
     t.integer  "value",          default: 1
-    t.boolean  "unexpected"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "unexpected",     default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "interaction_id"
   end
 

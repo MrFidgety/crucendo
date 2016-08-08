@@ -1,8 +1,19 @@
+<% 
+  # warning text when deleting goal with/without improvements
+  warning_improvements = 'This will delete the goal and any improvements'
+  warning = 'This will delete the goal'
+%>
 <div id="goal_<%= goal.id %>" 
   class="panel-group">
   <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
+          <%= link_to icon('times'), goal_path(goal), 
+                          method: :delete,
+                          remote: true,
+                          title: "Are you sure?", 
+                          data: {confirm: goal.improvements.count > 0 ? warning_improvements : warning },
+                          class: "pull-right text-danger" %>
           <%= goal.content %> (<%= goal.improvements.count %> improvements), 
           created <%= local_time_ago(goal.created_at) %>
           <% if !goal.due_date.blank? %>

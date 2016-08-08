@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root                        'users#show'
   post    '/'             =>  'users#create'
   post    'changemyemail' =>  'users#new_email'
+  post    'unexpected'    =>  'goals#unexpected'
   get     'help'          =>  'static_pages#help'
   get     'resend'        =>  'users#resend'
   get     'profile'       =>  'users#edit'
@@ -30,7 +31,7 @@ Rails.application.routes.draw do
     end
     
     resources :questions do
-      collection { post :import}
+      post :import, on: :collection
     end
     resources :skills
 

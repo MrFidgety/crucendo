@@ -1,6 +1,6 @@
 <% modal ||= false %>
 <% remote = modal ? true : false %>
-<%= form_for(@goal, remote: remote, html: {role: :form, 'data-model' => 'goal'}) do |f| %>
+<%= form_for @goal, remote: remote do |f| %>
   <%= f.label :goal %>
   <%= f.text_field :content, class: 'form-control' %>
   <%= content_tag :div, id: 'due_date_container', class: 'collapse' do %>
@@ -13,9 +13,7 @@
                                         :class => "btn btn-default", 
                                         'data-target' => "#due_date_container", 
                                         'data-toggle' => "collapse"} %>
-  <%#= button_tag icon('list-ol'),  {    :type => 'button', 
-                                        :class => "btn btn-default", 
-                                        'data-target' => "#steps_container", 
-                                        'data-toggle' => "collapse"} %>
-  <%= f.submit 'Create', class: 'btn btn-success pull-right' %>
+  <%= f.submit 'Create', 
+        :data => {:disable_with => "Saving..."}, 
+        class: 'btn btn-success pull-right' %>
 <% end %>

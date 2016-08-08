@@ -3,10 +3,38 @@
 <div class="crucial-container">
   What have you improved recently?
 </div>
-<section id="goals-section" class="crucial-container">
-  <%= render partial: "goals/have_goal", collection: @goals, 
-      as: :goal, locals: {interaction: @interaction} %>
-</section>
+<div class="crucial-container">
+  <div class="input-group">
+    <%= text_field_tag 'new_improvement_text', nil, :autofocus=>true, class: 'form-control', placeholder: 'Start typing here' %>
+    <span class="input-group-btn">
+      <button id="new_improvement_start" class="btn btn-default" type="submit">
+         <%= icon('chevron-right') %>
+      </button>
+    </span>
+  </div><br>
+  <section id="goals-section">
+    <div id="improved_goals">
+    </div><hr>
+    <div id="all_goals">
+      <span id="improvement_help_text"></span>
+      <%= render partial: "goals/have_goal", collection: @goals, 
+          as: :goal, locals: {interaction: @interaction} %>
+    </div>
+  </section>
+</div>
 <div class="crucial-container">
   <%= link_to 'continue', next_wizard_path %>
+</div>
+<div class="modal fade" id="new_improvement_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Set new improvement</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'goals/form_improve', modal: true %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -2,7 +2,7 @@ class Goal < ActiveRecord::Base
   
   belongs_to  :user
   has_many    :steps
-  has_many    :improvements
+  has_many    :improvements, dependent: :destroy
   has_one     :skill
   has_one     :interaction
   

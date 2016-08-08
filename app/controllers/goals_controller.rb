@@ -29,13 +29,15 @@ class GoalsController < ApplicationController
     # set interaction id, only if params includes interaction
     if params.has_key?(:interaction_id)
       # check if improvement already exists
-      @interaction = Interaction.find(params[:interaction_id])
+      @interaction = get_interaction(current_user)
       
-      if @improvement = @goal.improvements.find_by(interaction_id: params[:interaction_id])
+      if @improvement = @goal.improvements.find_by(interaction_id: @interaction.id)
+        # delete improvement
         @improvement.destroy
+        # reload goal to update counter cache
+        @goal.reload
       else
-        @improvement = @goal.improvements.build
-        @improvement.interaction_id = get_interaction(current_user).id 
+        @improvement = @goal.improvements.build(interaction_id: @interaction.id)
       end
     else
       @improvement = @goal.improvements.build
@@ -53,6 +55,40 @@ class GoalsController < ApplicationController
     end
   end
   
+  def unexpected
+    
+    @interaction = get_interaction(current_user)
+    @goal = current_user.goals.build(goal_params)
+    @goal.attributes = { interaction_id: @interaction.id }
+    @goal.attributes = { completed_date: Time.zone.now } if @goal.completed?
+    
+    respond_to do |format|
+      if @goal.save
+        @improvement = @goal.improvements.build(
+            interaction_id: @interaction.id,
+            unexpected: true)
+        @improvement.save
+        
+        format.html { redirect_to @improvement.goal }
+        format.js
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @goal.errors, status: :unprocessable_entity }
+        format.js   { render json: @goal.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def destroy
+    @goal = Goal.find(params[:id])
+    @goal.destroy
+    
+    respond_to do |format|
+      format.html { redirect_to goals_path }
+      format.js 
+    end
+  end
+  
   private
   
     def goal_params
@@ -61,7 +97,8 @@ class GoalsController < ApplicationController
       end
       params.require(:goal).permit( :content, 
                                     :due_date, 
-                                    :completed_date, 
+                                    :completed, 
                                     :active)
     end
+    
 end

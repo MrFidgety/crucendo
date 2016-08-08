@@ -352,3 +352,11 @@ input[type="month"] {
     color: white;
   }
 }
+
+.text-danger .fa {
+  color: $friendly-red;
+}
+
+.start-hidden {
+  display: none;
+}

@@ -5,30 +5,30 @@
 </div>
 <div class="crucial-container">
   <div class="input-group">
-    <%= text_field_tag 'new_goal_text', nil, :autofocus=>true, class: "form-control" %>
+    <%= text_field_tag 'new_goal_text', nil, :autofocus=>true, class: 'form-control', placeholder: 'Start typing here' %>
     <span class="input-group-btn">
       <button id="new_goal_start" class="btn btn-default" type="submit">
          <%= icon('chevron-right') %>
       </button>
     </span>
-  </div>
+  </div><br>
+  <section id="goals-section">
+    <%= render partial: "goals/want_goal", collection: @goals, as: :goal %>
+  </section>
 </div>
-<section id="goals-section" class="crucial-container">
-  <%= render partial: "goals/want_goal", collection: @goals, as: :goal %>
-</section>
-<div class="modal fade" id="new_goal_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="crucial-container">
+  <%= link_to 'continue', next_wizard_path %>
+</div>
+<div class="modal fade" id="new_goal_modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Create new goal</h4>
+        <h4 class="modal-title">Create new goal</h4>
       </div>
       <div class="modal-body">
         <%= render 'goals/form', modal: true %>
       </div>
     </div>
   </div>
-</div>
-<div class="crucial-container">
-  <%= link_to 'continue', next_wizard_path %>
 </div>

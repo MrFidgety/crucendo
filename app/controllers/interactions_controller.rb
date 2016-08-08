@@ -15,10 +15,11 @@ class InteractionsController < ApplicationController
         @answer = @interaction.find_next_answer
         skip_step if @answer.blank?
       when :have
-        @goals = current_user.goals
+        @goal = Goal.new
+        @goals = current_user.goals.where(completed: false)
       when :want
         @goal = Goal.new
-        @goals = @interaction.goals
+        @goals = @interaction.goals.where(completed: false)
       when :crucendo
         @interaction.complete
     end

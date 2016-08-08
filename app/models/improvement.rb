@@ -1,6 +1,6 @@
 class Improvement < ActiveRecord::Base
   
-  belongs_to  :goal, counter_cache: true
+  belongs_to  :goal, :counter_cache => true
   belongs_to  :step
   has_one     :interaction
   
