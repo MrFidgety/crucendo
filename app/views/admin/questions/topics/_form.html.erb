@@ -2,6 +2,15 @@
   <%= form_for [:admin, :questions, @topic] do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>
+    <%= f.label :active %>
+    <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+      <label class="btn btn-default">
+        <%= f.radio_button :active, false %>No
+  		</label>
+  		<label class="btn btn-default">
+  			<%= f.radio_button :active, true %>Yes
+  		</label>
+    </div>
     <%= f.submit yield(:button_text), class: "btn btn-success btn-block" %>
   <% end %>
 </div>

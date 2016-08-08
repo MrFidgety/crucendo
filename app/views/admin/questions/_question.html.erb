@@ -1,0 +1,5 @@
+<%= link_to admin_questions_path(question), class: "list-group-item" do %>
+  <span class="badge"></span>
+  <%= question.active ? fa_icon("circle", class: "crucial-active") : fa_icon("circle", class: "crucial-inactive") %>
+  <span class="title"><%= question.content.camelize %></span>
+<% end %>

@@ -1,6 +1,5 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "font-awesome-sprockets";
 @import "font-awesome";
 
 /* mixins, variables, etc. */
@@ -11,6 +10,7 @@ $crucial-light-blue: #0498d9;
 $gray-medium-light: #eaeaea;
 $gray-metal: #dde0ee;
 $friendly-red: #ff0033;
+$friendly-green: #0bd00b;
 $box-shadow: rgba(0,2,34,0.75);
 
 $a-tags: 'a, a:active, a:hover, a:visited';
@@ -360,3 +360,17 @@ input[type="month"] {
 .start-hidden {
   display: none;
 }
+
+/* admin */
+.title {
+  margin: 0 10px;
+}
+
+
+.crucial-active {
+  color: $friendly-green;
+}
+.crucial-inactive {
+  color: $friendly-red;
+}
+

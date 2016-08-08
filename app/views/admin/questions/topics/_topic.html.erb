@@ -1,0 +1,5 @@
+<%= link_to admin_questions_topic_path(topic), class: "list-group-item" do %>
+  <span class="badge"><%= topic.questions.active.count %>/<%= pluralize(topic.questions.size, "question") %></span>
+  <%= topic.active ? fa_icon("circle", class: "crucial-active") : fa_icon("circle", class: "crucial-inactive") %>
+  <span class="title"><%= topic.name.camelize %></span>
+<% end %>

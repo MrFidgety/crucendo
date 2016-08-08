@@ -1,14 +1,15 @@
 class Question < ActiveRecord::Base
   include Filterable
   
-  scope :topic_id,  -> (topic_id) { where topic_id: topic_id }
-  scope :active,    -> (active) { where active: active }
-  
-  belongs_to :topic
+  belongs_to :topic, :counter_cache => true
   has_many :answers
   
   validates :topic_id, presence: true
   validates :content, presence: true, length: { maximum: 180 }
+  
+  default_scope     -> { order(active: :desc, content: :asc) }
+  scope :topic_id,  -> (topic_id) { where topic_id: topic_id }
+  scope :active,    -> { where active: true }
   
   def self.search(search)
     if !search.blank?

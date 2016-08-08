@@ -41,6 +41,7 @@
           options_for_select({ 'Active'=>true, 'Inactive'=>false }, params[:active]), 
           { :include_blank => 'All', :class => 'form-control'  } %>
     <%= submit_tag "Find Question", :name => nil, class: "btn btn-default" %>
+    <%= link_to "Clear", admin_questions_path, class: "btn btn-default" %>
   <% end %>
 </div>
 <div class="crucial-container">

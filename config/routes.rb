@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     
     namespace :questions do
       resources :categories
-      resources :topics
+      resources :topics do
+        post 'improve', on: :member
+      end
     end
     
     resources :questions do

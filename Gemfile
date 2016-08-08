@@ -15,7 +15,7 @@ gem 'turbolinks',                 '2.3.0'
 gem 'jbuilder',                   '2.2.3'
 gem 'pg',                         '0.18.2'
 gem 'country_select',             '2.5.2'
-gem 'font-awesome-sass',          '~> 4.6.2'
+gem 'font-awesome-rails',         '~> 4.6.3.1'
 gem 'sdoc',                       '0.4.0', group: :doc
 gem 'passenger',                  '>= 5.0.25', require: "phusion_passenger/rack_handler"
 gem 'data-confirm-modal',         '1.2.0'

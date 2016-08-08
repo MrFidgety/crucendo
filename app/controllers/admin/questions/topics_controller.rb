@@ -1,8 +1,13 @@
-class Admin::Questions::TopicsController < ApplicationController
+class Admin::Questions::TopicsController < AdminController
   before_action :insert_breadcrumbs
   
   def index
     @topics = Topic.paginate(page: params[:page])
+  end
+  
+  def show
+    @topic = Topic.includes(:questions).find(params[:id])
+    @questions = @topic.questions
   end
 
   def new
@@ -48,7 +53,7 @@ class Admin::Questions::TopicsController < ApplicationController
   private
   
     def topic_params
-      params.require(:topic).permit(:name)
+      params.require(:topic).permit(:name, :active)
     end
   
     def insert_breadcrumbs
