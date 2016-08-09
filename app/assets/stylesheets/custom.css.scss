@@ -339,12 +339,12 @@ input[type="month"] {
   margin-bottom: 10px;
 }
 
-.panel{
-  #{$a-tags} {
-    color: inherit;
-    text-decoration: inherit;
-  }
-}
+// .panel{
+//   #{$a-tags} {
+//     color: inherit;
+//     text-decoration: inherit;
+//   }
+// }
 
 .improved {
   .panel {
@@ -373,4 +373,3 @@ input[type="month"] {
 .crucial-inactive {
   color: $friendly-red;
 }
-

@@ -1,70 +1,82 @@
-<% provide(:title, "Admin Questions") %>
+<% provide(:title, "Admin - Questions") %>
 <h1>Questions</h1>
-<div class="crucial-container">
-  <div class="row">
-    <div class="col-sm-6">
-      <%= link_to "Add Question", new_admin_question_path,
-                              class: "btn btn-primary" %>
-      <%= link_to "Manage Topics", admin_questions_topics_path, 
-                              class: "btn btn-primary" %>
-    </div>
-    <div class="col-sm-6">
-      <%= form_tag import_admin_questions_path, multipart: true, 
-                    class: "form-inline pull-right" do %>
-        <div class="input-group">
-          <label class="input-group-btn">
-            <span class="btn btn-info">
-              Browse… <%= file_field_tag :file, 
-                            class: "hidden_file", 
-                            id: "import-file" %>
-            </span>
-          </label>
-          <input id="import-display" type="text" class="form-control" readonly>
-        </div>
-        <%= submit_tag "Import", class: "btn btn-primary" %>
-      <% end %>
-    </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Information</h3>
+  </div>
+  <div class="panel-body">
   </div>
 </div>
-<div class="crucial-container">
-  <%= form_tag admin_questions_path, :method => 'get', class: "search" do %>
-    <%= hidden_field_tag :direction, params[:direction] %>
-    <%= hidden_field_tag :sort, params[:sort] %>
-    <%= text_field_tag :search, params[:search],
-                                placeholder: "Enter search phrase",
-                                class: "form-control" %>
-    <%= select_tag :topic_id, 
-          options_for_select(Topic.all.collect { |t| 
-                                [ t.name, t.id ]}, params[:topic_id]), 
-          { :include_blank => 'All Topics', :class => 'form-control'  } %>
-    <%= select_tag :active, 
-          options_for_select({ 'Active'=>true, 'Inactive'=>false }, params[:active]), 
-          { :include_blank => 'All', :class => 'form-control'  } %>
-    <%= submit_tag "Find Question", :name => nil, class: "btn btn-default" %>
-    <%= link_to "Clear", admin_questions_path, class: "btn btn-default" %>
-  <% end %>
-</div>
-<div class="crucial-container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th><%= sortable "content", "Question" %></th>
-        <th class="hidden-xs"><%= sortable "topics.name", "Topic" %></th>
-        <th class="hidden-xs"><%= sortable "active", "Active" %></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @questions.each do |question| %>
-    <tr>
-      <td><%= question.content %></td>
-      <td class="hidden-xs"><%= question.topic.name if question.topic %></td>
-      <td class="hidden-xs"><%= question.active? ? 'Yes' : 'No' %></td>
-      <td><span class="pull-right">
-        <%= link_to "edit", edit_admin_question_path(question) %></span>
-      </td>
-    </tr>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Actions</h3>
+  </div>
+  <div class="panel-body">
+    <%= link_to fa_icon("plus", text: "New Question"), new_admin_question_path,
+                              class: "btn btn-default" %>
+
+    <%= form_tag import_admin_questions_path, multipart: true, 
+                  class: "form-inline pull-right" do %>
+      <div class="input-group">
+        <label class="input-group-btn">
+          <span class="btn btn-info">
+            Browse… <%= file_field_tag :file, 
+                          class: "hidden_file", 
+                          id: "import-file" %>
+          </span>
+        </label>
+        <input id="import-display" type="text" class="form-control" readonly>
+      </div>
+      <%= submit_tag "Import", class: "btn btn-primary" %>
     <% end %>
-  </table>
-  <%= will_paginate @questions %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Search</h3>
+  </div>
+  <div class="panel-body">
+    <%= form_tag admin_questions_path, :method => 'get', class: "search" do %>
+      <%= hidden_field_tag :direction, params[:direction] %>
+      <%= hidden_field_tag :sort, params[:sort] %>
+      <%= text_field_tag :search, params[:search],
+                                  placeholder: "Enter search phrase",
+                                  class: "form-control" %>
+      <%= select_tag :topic_id, 
+            options_for_select(Topic.all.collect { |t| 
+                                  [ t.name, t.id ]}, params[:topic_id]), 
+            { :include_blank => 'All Topics', :class => 'form-control'  } %>
+      <%= select_tag :active, 
+            options_for_select({ 'Active'=>true, 'Inactive'=>false }, params[:active]), 
+            { :include_blank => 'All', :class => 'form-control'  } %>
+      <%= submit_tag "Find Question", :name => nil, class: "btn btn-default" %>
+      <%= link_to "Clear", admin_questions_path, class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= sortable "content", "Question" %></th>
+          <th class="hidden-xs"><%= sortable "topics.name", "Topic" %></th>
+          <th class="hidden-xs"><%= sortable "active", "Active" %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @questions.each do |question| %>
+      <tr class="clickable-row" data-href="<%= admin_question_path(question) %>">
+        <td><%= question.content %></td>
+        <td class="hidden-xs"><%= question.topic.name if question.topic %></td>
+        <td class="hidden-xs"><%= question.active? ? 'Yes' : 'No' %></td>
+        <td><span class="pull-right">
+          <%= link_to "edit", edit_admin_question_path(question) %></span>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+    <%= will_paginate @questions %>
+  </div>
 </div>

@@ -22,21 +22,15 @@ Rails.application.routes.draw do
   end
   
   namespace :admin do
-    
     get '', to: 'dashboard#index', as: '/'
-    
-    namespace :questions do
-      resources :categories
-      resources :topics do
-        post 'improve', on: :member
-      end
-    end
-    
     resources :questions do
       post :import, on: :collection
     end
+    resources :topics do
+      post :activate_questions, on: :member
+    end
     resources :skills
-
+    
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

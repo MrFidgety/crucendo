@@ -1,11 +1,11 @@
-<% provide(:title, "Topics") %>
-<h1><%= @topic.name.camelize %></h1>
+<% provide(:title, "Admin - Topics") %>
+<h1>Topics</h1>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Information</h3>
   </div>
   <div class="panel-body">
-    Status: <%= @topic.active ? "Active" : "Inactive" %>
+    <%= @topics.size %> Topics (<%= @topics.active.size %> Active)
   </div>
 </div>
 <div class="panel panel-default">
@@ -13,10 +13,8 @@
     <h3 class="panel-title">Actions</h3>
   </div>
   <div class="panel-body">
-    <%= link_to fa_icon("pencil-square-o", text: "Edit Topic"), 
-      edit_admin_questions_topic_path(@topic), class: "btn btn-default" %>
-    <%#= link_to activate_topic_path(@topic), 
-          method: :post, remote: true, class: "btn btn-default" do %>
+    <%= link_to fa_icon("plus", text: "New Topic"), new_admin_topic_path,
+                            class: "btn btn-default" %>
   </div>
 </div>
 <div class="panel panel-default">
@@ -25,8 +23,7 @@
   </div>
   <div class="panel-body">
     <div class="list-group">
-      <%= render(partial: "admin/questions/question", 
-        collection: @topic.questions) || "There are no questions to be found." %>
+      <%= render @topics %>
     </div>
   </div>
 </div>

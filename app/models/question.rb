@@ -7,7 +7,7 @@ class Question < ActiveRecord::Base
   validates :topic_id, presence: true
   validates :content, presence: true, length: { maximum: 180 }
   
-  default_scope     -> { order(active: :desc, content: :asc) }
+  default_scope     -> { where(archived: false).order(active: :desc, content: :asc) }
   scope :topic_id,  -> (topic_id) { where topic_id: topic_id }
   scope :active,    -> { where active: true }
   

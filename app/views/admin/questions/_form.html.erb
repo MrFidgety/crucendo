@@ -1,28 +1,32 @@
-<div class="crucial-container">
-  <%= form_for [:admin, @question] do |f| %>
-    <%= f.label :content %>
-    <%= f.text_field :content, class: 'form-control' %>
-    <%= f.label :topic_id, "Topic" %>
-    <%= f.collection_select(:topic_id, Topic.all, :id, :name, 
-                            { include_blank: 'Select a topic' } , 
+<%= form_for [:admin, @question] do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content, class: 'form-control' %>
+  <%= f.label :topic_id, "Topic" %>
+  <%= f.collection_select(:topic_id, Topic.all, :id, :name, 
+                            { include_blank: 'select a topic' } , 
                             { class: 'form-control',
-                              placeholder: 'Select a topic'}) %>
-    <%= f.label :active %>
-    <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
-      <label class="btn btn-default">
-        <%= f.radio_button :active, false %>No
-  		</label>
-  		<label class="btn btn-default">
-  			<%= f.radio_button :active, true %>Yes
-  		</label>
+                              placeholder: 'select a topic'}) %>
+  <%= f.label :active %>
+  <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+    <label class="btn btn-default">
+      <%= f.radio_button :active, false %>No
+		</label>
+		<label class="btn btn-default">
+			<%= f.radio_button :active, true %>Yes
+		</label>
+  </div>
+  <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group" role="group">
+      <%= link_to "Delete", admin_question_path(@question), 
+            method: :delete,
+            title: "Are you sure?", 
+            data: {confirm: 'This will remove the question and 
+            delete all user answers that link to the question. 
+            There is no undoing this action.'},
+            class: "btn btn-danger" unless @question.id.blank? %>
     </div>
-    <%= f.submit yield(:button_text), class: "btn btn-success btn-block" %>
-  <% end %>
-</div>
-<%= link_to "delete", admin_question_path(@question), 
-                          method: :delete,
-                          title: "Are you sure?", 
-                          data: {confirm: 'This will remove the question and 
-                          delete all user answers that link to the question. 
-                          There is no undoing this action.'},
-                          class: "text-danger" unless @question.id.blank? %>
+    <div class="btn-group" role="group">
+      <%= f.submit yield(:button_text), class: "btn btn-success" %>
+    </div>
+  </div>
+<% end %>

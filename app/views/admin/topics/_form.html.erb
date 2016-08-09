@@ -1,0 +1,26 @@
+<%= form_for [:admin, @topic] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+  <%= f.label :active %>
+  <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+    <label class="btn btn-default">
+      <%= f.radio_button :active, false %>No
+		</label>
+		<label class="btn btn-default">
+			<%= f.radio_button :active, true %>Yes
+		</label>
+  </div>
+  <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group" role="group">
+      <%= link_to "Delete", admin_topic_path(@topic), 
+            method: :delete,
+            title: "Are you sure?", 
+            data: {confirm: 'You may only delete a topic if
+            it has no questions assigned.'},
+            class: "btn btn-danger" unless @topic.id.blank? %>
+    </div>
+    <div class="btn-group" role="group">
+      <%= f.submit yield(:button_text), class: "btn btn-success" %>
+    </div>
+  </div>
+<% end %>
