@@ -1,6 +1,8 @@
 <%= form_for [:admin, @topic] do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name, class: 'form-control' %>
+  <%= f.label :author %>
+  <%= f.text_field :author, class: 'form-control' %>
   <%= f.label :active %>
   <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
     <label class="btn btn-default">
@@ -8,6 +10,15 @@
 		</label>
 		<label class="btn btn-default">
 			<%= f.radio_button :active, true %>Yes
+		</label>
+  </div>
+  <%= f.label :default_subscription %>
+  <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+    <label class="btn btn-default">
+      <%= f.radio_button :default_subscription, false %>No
+		</label>
+		<label class="btn btn-default">
+			<%= f.radio_button :default_subscription, true %>Yes
 		</label>
   </div>
   <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">

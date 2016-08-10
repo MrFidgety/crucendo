@@ -8,11 +8,14 @@ class User < ActiveRecord::Base
   has_many      :goals,         dependent:  :destroy
   has_many      :interactions,  dependent:  :destroy
   has_many      :remembers,     dependent:  :destroy
-  has_many      :answers,       through:    :interactions
-  has_many      :improvements,  through:    :goals
+  has_many      :answers,       dependent:  :destroy
+  has_many      :improvements,  through:    :goals,         dependent:  :destroy
+  has_many      :subscriptions, dependent:  :destroy
+  has_many      :topics,        through:    :subscriptions
   
   before_save   :downcase_email
   before_create :create_activation_digest
+  after_create  :default_subscriptions
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   
@@ -144,6 +147,27 @@ class User < ActiveRecord::Base
     new_email_sent_at < 15.minutes.ago
   end
   
+  # Subscribe to a topic
+  def subscribe(topic)
+    subscriptions.create(topic_id: topic.id)
+  end
+  
+  # Unsubscribe from a topic
+  def unsubscribe(topic)
+    subscriptions.find_by(topic_id: topic.id).destroy
+  end
+  
+  # Returns true if user is sunscribed to a topic
+  def subscribed?(topic)
+    topics.include?(topic)
+  end
+  
+  def default_subscriptions
+    Topic.active.where(default_subscription: true).each do |topic|
+      subscribe(topic)
+    end
+  end
+  
   private
   
     # Converts email to all lower-case.
@@ -163,4 +187,5 @@ class User < ActiveRecord::Base
       update_columns(login_digest:  User.digest(login_token),
                login_sent_at: Time.zone.now)
     end
+
 end

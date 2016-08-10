@@ -3,7 +3,7 @@ class Admin::TopicsController < AdminController
   before_action :insert_breadcrumbs
   
   def index
-    @topics = Topic.paginate(page: params[:page])
+    @topics = Topic.admin.paginate(page: params[:page])
   end
   
   def show
@@ -59,7 +59,8 @@ class Admin::TopicsController < AdminController
     end
   
     def topic_params
-      params.require(:topic).permit(:name, :active)
+      params.require(:topic).permit(:name, :active, :author, 
+        :default_subscription)
     end
   
     def insert_breadcrumbs

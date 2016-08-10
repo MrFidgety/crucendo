@@ -2,4 +2,7 @@
   <span class="badge"><%= pluralize(topic.questions.active.size, "active question") %></span>
   <%= topic.active ? fa_icon("circle", class: "crucial-active") : fa_icon("circle", class: "crucial-inactive") %>
   <span class="title"><%= topic.name.camelize %></span>
+  <% if topic.default_subscription? %>
+    <span class="text-muted">(default subscription)</span>
+  <% end %>
 <% end %>

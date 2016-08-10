@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :sessions,            only: :edit
   resources :change_user_email,   only: :edit
   resources :interactions,        only: [:index, :show, :update]
-  resources :goals
+  resources :subscriptions
   
   resources :goals do
     post 'improve', on: :member
@@ -30,7 +30,6 @@ Rails.application.routes.draw do
       post :activate_questions, on: :member
     end
     resources :skills
-    
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

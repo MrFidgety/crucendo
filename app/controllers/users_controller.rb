@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :authenticated,   only: :show
-  before_action :logged_in_user,  only: [:edit, :update]
-  before_action :correct_user,    only: [:edit, :update]
-  before_action :admin_user,      only: :destroy
+  before_action :allow_signup,      only: :show
+  before_action :logged_in_user,    except: [:new, :create, :resend]
+  before_action :set_correct_user,  except: [:new, :create, :resend]
+  before_action :admin_user,        only: :destroy
   
   def new_email
     # validate email via regex
@@ -12,7 +12,6 @@ class UsersController < ApplicationController
         set_flash :email_taken, type: :danger
       else
         # set parameters for new email
-        @user = current_user
         @user.send_change_email_approval(params[:email])
         set_flash :new_email_approval, type: :success, object: @user
       end
@@ -60,11 +59,7 @@ class UsersController < ApplicationController
     end
   end
   
-  def edit
-  end
-  
   def update
-    @user = current_user
     if @user.update_attributes(user_params)
       set_flash :successful_update, type: :success, object: @user
       redirect_to profile_path
@@ -96,6 +91,7 @@ class UsersController < ApplicationController
   
   private
 
+    # Allowed user parameters
     def user_params
       params.require(:user).permit( :name, 
                                     :year_of_birth, 
@@ -103,20 +99,13 @@ class UsersController < ApplicationController
                                     :country_code)
     end
     
+    # Allowed signup parameters
     def signup_params
       params.require(:user).permit( :email )
     end
     
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        set_flash :link_error, type: :warning
-        redirect_to root_url
-      end
-    end
-    
-    # Confirms the correct user.
-    def correct_user
+    # Ensures the correct user.
+    def set_correct_user
       @user = current_user
     end
     
@@ -125,10 +114,12 @@ class UsersController < ApplicationController
       redirect_to root_url unless current_user.admin?
     end
     
-    def authenticated
+    # Take user to signup if not logged in
+    def allow_signup
       unless logged_in?
         @user = User.new
         render 'new'
       end
     end
+    
 end

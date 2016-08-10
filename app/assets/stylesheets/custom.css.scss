@@ -366,10 +366,32 @@ input[type="month"] {
   margin: 0 10px;
 }
 
-
 .crucial-active {
   color: $friendly-green;
 }
 .crucial-inactive {
   color: $friendly-red;
+}
+
+/* Subscriptions */
+
+/* fix bootstrap grid heights */
+@media (min-width:$screen-sm-min) and (max-width: $screen-sm-max) {
+  .subscriptions > .row > div:nth-child(2n+3) {
+    clear: left;
+  }
+}
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+  .subscriptions .row > div:nth-child(3n+4) {
+    clear: left;
+  }  
+}
+@media (min-width: $screen-lg-min) {
+  .subscriptions .row > div:nth-child(4n+5) {
+    clear: left;
+  }  
+}
+
+.subscribed h3 {
+  font-weight: 600;
 }

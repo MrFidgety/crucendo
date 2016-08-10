@@ -2,7 +2,7 @@
 <%= render 'interactions/header' %>
 <div class="crucial-container">
   Questions <br>
-  <br><%= @answer.question.content %> [<%= @answer.question.topic.name %>]
+  <br>Q<%= @answer.question.id %> <%= @answer.question.content %> [<%= @answer.question.topic.name %>]
   <%= form_for @answer, url: wizard_path, method: :put do |f| %>
     <%= f.text_field :content, rows: 2, class: 'form-control', :autofocus=>true, placeholder: "Start typing here" %>
     <%= hidden_field(:answer, :id) %>

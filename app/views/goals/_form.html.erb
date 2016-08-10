@@ -9,7 +9,7 @@
     <%= hidden_field_tag 'goal[due_date_utc]' %>
   <% end %>
   <%= hidden_field(:goal, :interaction_id) %>
-  <%= button_tag icon('calendar'),  {   :type => 'button', 
+  <%= button_tag fa_icon('calendar'),  {   :type => 'button', 
                                         :class => "btn btn-default", 
                                         'data-target' => "#due_date_container", 
                                         'data-toggle' => "collapse"} %>

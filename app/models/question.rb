@@ -2,12 +2,13 @@ class Question < ActiveRecord::Base
   include Filterable
   
   belongs_to :topic, :counter_cache => true
-  has_many :answers
+  has_many :answers, dependent:  :destroy
   
   validates :topic_id, presence: true
   validates :content, presence: true, length: { maximum: 180 }
   
-  default_scope     -> { where(archived: false).order(active: :desc, content: :asc) }
+  default_scope     -> { where(archived: false) }
+  scope :admin,     -> { order(active: :desc, content: :asc) }
   scope :topic_id,  -> (topic_id) { where topic_id: topic_id }
   scope :active,    -> { where active: true }
   

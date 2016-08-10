@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808074412) do
+ActiveRecord::Schema.define(version: 20160810070214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,12 @@ ActiveRecord::Schema.define(version: 20160808074412) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "question_id"
+    t.integer  "user_id"
   end
 
   add_index "answers", ["interaction_id"], name: "index_answers_on_interaction_id", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "goals", force: :cascade do |t|
     t.text     "content"
@@ -109,12 +111,25 @@ ActiveRecord::Schema.define(version: 20160808074412) do
 
   add_index "steps", ["goal_id"], name: "index_steps_on_goal_id", using: :btree
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "subscriptions", ["topic_id"], name: "index_subscriptions_on_topic_id", using: :btree
+  add_index "subscriptions", ["user_id", "topic_id"], name: "index_subscriptions_on_user_id_and_topic_id", unique: true, using: :btree
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+
   create_table "topics", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "active",          default: false
-    t.integer  "questions_count", default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "active",               default: false
+    t.integer  "questions_count",      default: 0
+    t.text     "author"
+    t.boolean  "default_subscription", default: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -143,6 +158,7 @@ ActiveRecord::Schema.define(version: 20160808074412) do
 
   add_foreign_key "answers", "interactions"
   add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
   add_foreign_key "goals", "interactions"
   add_foreign_key "goals", "users"
   add_foreign_key "improvements", "goals"
@@ -152,4 +168,6 @@ ActiveRecord::Schema.define(version: 20160808074412) do
   add_foreign_key "questions", "topics"
   add_foreign_key "remembers", "users"
   add_foreign_key "steps", "goals"
+  add_foreign_key "subscriptions", "topics"
+  add_foreign_key "subscriptions", "users"
 end
