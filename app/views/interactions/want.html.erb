@@ -1,11 +1,14 @@
 <% provide(:title, "Want") %>
 <%= render 'interactions/header' %>
 <div class="crucial-container">
-  What do you want to improve?
+  <p class="interaction-title">
+    What do you want to improve?
+  </p>
 </div>
 <div class="crucial-container">
-  <div class="input-group">
-    <%= text_field_tag 'new_goal_text', nil, :autofocus=>true, class: 'form-control', placeholder: 'Start typing here' %>
+  <div class="input-group input-group-lg">
+    <%= text_field_tag 'new_goal_text', nil, :autofocus=>true, 
+        class: 'form-control', placeholder: 'start typing here...' %>
     <span class="input-group-btn">
       <button id="new_goal_start" class="btn btn-default" type="submit">
          <%= fa_icon('chevron-right') %>
@@ -17,7 +20,7 @@
   </section>
 </div>
 <div class="crucial-container">
-  <%= link_to 'continue', next_wizard_path %>
+  <%= link_to 'continue', next_wizard_path, class: 'btn btn-default btn-block btn-lg' %>
 </div>
 <div class="modal fade" id="new_goal_modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">

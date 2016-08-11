@@ -5,15 +5,16 @@
       remote: remote, 
       method: 'post' do |f| %>
   <%= f.label :content, 'Improvement' %>
-  <%= f.text_field :content, class: 'form-control' %>
+  <%= f.text_field :content, rows: 2, class: 'form-control input-lg' %>
   <%= f.label :content, 'Set goal?' %>
   <div class="btn-group btn-block" data-toggle="buttons">
-    <label class="btn btn-primary btn-block">
+    <label class="btn btn-default btn-block improve-btn btn-lg">
       <%= f.check_box :completed, {}, 0, 1 %> I want to keep improving this
     </label>
-  </div>
+  </div><br><br>
   <%= hidden_field(:goal, :interaction_id) %>
   <%= submit_tag 'Create', 
         :data => {:disable_with => "Saving..."}, 
         class: 'btn btn-success pull-right' %>
+  <div class="clearfix"></div>
 <% end %>

@@ -4,22 +4,26 @@
   warning = 'This will delete the goal'
 %>
 <div id="goal_<%= goal.id %>" 
-  class="panel-group">
+  class="panel-group goal_panel">
   <div class="panel panel-default">
       <div class="panel-heading">
-        <h4 class="panel-title">
+        <h3 class="panel-title">
           <%= link_to fa_icon('times'), goal_path(goal), 
                           method: :delete,
                           remote: true,
                           title: "Are you sure?", 
                           data: {confirm: goal.improvements.count > 0 ? warning_improvements : warning },
                           class: "pull-right text-danger" %>
-          <%= goal.content %> (<%= goal.improvements.count %> improvements), 
-          created <%= local_time_ago(goal.created_at) %>
-          <% if !goal.due_date.blank? %>
-            , due <%= local_relative_time(goal.due_date, type: 'date') %>
-          <% end %>
-        </h4>
+          <span class="goal_content"><%= goal.content %></span><br>
+          <span class="goal_info">
+            this was set <%= local_time_ago(goal.created_at) %> 
+            and you have improved <%= pluralize(goal.improvements.size, 'time') %><br> 
+            created <%= local_time_ago(goal.created_at) %>
+            <% if !goal.due_date.blank? %>
+              , due <%= local_relative_time(goal.due_date, type: 'date') %>
+            <% end %>
+          </span>
+        </h3>
       </div>
   </div>
 </div>

@@ -1,7 +1,9 @@
 <% provide(:title, "Have") %>
 <%= render 'interactions/header' %>
 <div class="crucial-container">
-  How are you feeling?
+  <p class="interaction-title">
+    How are you feeling?
+  </p>
 </div>
 <div class="crucial-container">
   <!-- Slider main container -->
@@ -22,6 +24,6 @@
 <div class="crucial-container">
   <%= form_for @interaction, url: wizard_path, method: :put do |f| %>
     <%= hidden_field(:interaction, :feeling) %>
-    <%= f.submit "Continue", class: 'form-control' %>
+    <%= f.submit "Continue", class: 'form-control btn-block btn-lg' %>
   <% end %>
 </div>

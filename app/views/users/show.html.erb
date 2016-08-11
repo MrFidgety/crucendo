@@ -2,12 +2,18 @@
 <small><%= get_name(current_user) %></small></h1>
 <div class="row">
   <div class="col-sm-4">
-    <%= link_to 'Impress Myself', interactions_path, class: "btn btn-default btn-block btn-lg" %>
+    <%= link_to fa_icon('plus', text: 'Crucendo'), 
+          interactions_path, 
+          class: "btn btn-default btn-block btn-lg" %><br>
   </div>
   <div class="col-sm-4">
-    <%= link_to 'Subscriptions', subscriptions_path, class: "btn btn-default btn-block btn-lg" %>
+    <%= link_to fa_icon('list-ul', text: 'Subscriptions'),
+          subscriptions_path, 
+          class: "btn btn-default btn-block btn-lg" %><br>
   </div>
   <div class="col-sm-4">
-    <%= link_to 'Reports', subscriptions_path, class: "btn btn-default btn-block btn-lg" %>
+    <%= link_to fa_icon('line-chart', text: 'Reports'),
+          subscriptions_path, 
+          class: "btn btn-default btn-block btn-lg disabled" %><br>
   </div>
 </div>

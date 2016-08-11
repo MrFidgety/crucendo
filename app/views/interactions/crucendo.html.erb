@@ -1,6 +1,25 @@
 <% provide(:title, "Complete") %>
 <%= render 'interactions/header' %>
 <div class="crucial-container">
-  Congratulations on reaching your <%= current_user.interactions.where(:completed => true).count.ordinalize %> Crucendo!
-  <%= link_to 'Finish', root_url %>
+  <div class="interaction-summary">
+    Today you took time to be <span>introspective</span>, which 
+    is contributing to your <span>development</span> and <span>success</span>. 
+    You answered <span>3 Crucial Questions</span> from the 
+    <% @interaction.answers.each_with_index do |answer, index| %>
+      <% if index == @interaction.answers.size - 1 %>
+        and <span><%= answer.question.topic.name %></span> 
+      <% else %>
+        <span><%= answer.question.topic.name %></span>, 
+      <% end %>
+    <% end %>
+    topics.
+    <% if @interaction.improvements.size > 0 %>
+      You <span>have improved <%= pluralize(@interaction.improvements.size, 'aspect') %></span> of your life recently.
+    <% end %>
+    <% if @interaction.goals.where(completed: false).size > 0 %>
+      You <span>want to improve <%= pluralize(@interaction.goals.where(completed: false).size, 'aspect') %></span> of your life in the future. 
+    <% end %>
+    Nice job, and <span>keep impressing yourself!</span>
+  </div>
+  <%= link_to 'Finish', root_url, class: 'btn btn-default btn-block btn-lg' %>
 </div>
