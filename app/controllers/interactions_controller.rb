@@ -16,7 +16,8 @@ class InteractionsController < ApplicationController
         skip_step if @answer.blank?
       when :have
         @goal = Goal.new
-        @goals = current_user.goals.where(completed: false)
+        @goals = current_user.goals
+          .where('completed = ? OR interaction_id = ?', 'true', @interaction_id)
       when :want
         @goal = Goal.new
         @goals = @interaction.goals.where(completed: false)
