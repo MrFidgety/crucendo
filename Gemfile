@@ -23,6 +23,7 @@ gem 'breadcrumbs_on_rails',       '2.3.1'
 gem 'browser',                    '2.2.0'
 gem 'wicked',                     '1.3.0'
 gem 'local_time',                 '~> 1.0', '>= 1.0.3'
+gem 'swiper-rails',               '1.0.4'
 
 group :development, :test do
   gem 'byebug',                   '3.4.0'

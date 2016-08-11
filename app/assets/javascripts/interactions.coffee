@@ -124,6 +124,37 @@ $(document).on "page:change", ->
   #     console.log(sortable.toArray())
   # }) if $('#sort-me').length
   
+  #------------------ FEELING ------------------#
+  # initialize swiper when document ready  
+  feeling = $('.swiper-container').swiper({
+    pagination: '.swiper-pagination',
+    initialSlide: 2,
+    centeredSlides: true,
+    paginationClickable: true,
+    mousewheelControl: true,
+    slideToClickedSlide: true,
+    slidesPerView: 5,
+    spaceBetween: 10,
+    breakpoints: {
+      1024: {
+        slidesPerView: 4,
+      },
+      768: {
+        slidesPerView: 3,
+      },
+      640: {
+        slidesPerView: 2,
+      },
+      320: {
+        slidesPerView: 1,
+      }
+    },
+    onInit: (feeling) ->
+      $('#interaction_feeling').val(feeling.activeIndex+1)
+    onSlideChangeEnd: (feeling) ->
+      $('#interaction_feeling').val(feeling.activeIndex+1)
+  })
+  
 # display form errors for each input
 $.fn.render_form_errors = (model_name, errors) ->
   form = this

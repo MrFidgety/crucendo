@@ -1,0 +1,27 @@
+<% provide(:title, "Have") %>
+<%= render 'interactions/header' %>
+<div class="crucial-container">
+  How are you feeling?
+</div>
+<div class="crucial-container">
+  <!-- Slider main container -->
+  <div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">1</div>
+        <div class="swiper-slide">2</div>
+        <div class="swiper-slide">3</div>
+        <div class="swiper-slide">4</div>
+        <div class="swiper-slide">5</div>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+<div class="crucial-container">
+  <%= form_for @interaction, url: wizard_path, method: :put do |f| %>
+    <%= hidden_field(:interaction, :feeling) %>
+    <%= f.submit "Continue", class: 'form-control' %>
+  <% end %>
+</div>

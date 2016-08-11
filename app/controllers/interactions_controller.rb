@@ -6,7 +6,7 @@ class InteractionsController < ApplicationController
   before_action :needs_answers,   only: :show
   before_action :answer_current,  only: :update
   
-  steps :questions, :have, :want, :crucendo
+  steps :questions, :have, :want, :feeling, :crucendo
   
   def show
     
@@ -39,7 +39,12 @@ class InteractionsController < ApplicationController
       # move to next step if no "next answer"
       skip_step if @answer.blank?
     end
-
+    
+    if step.equal? :feeling
+      @interaction.update_attributes(interaction_params)
+      skip_step
+    end
+    
     render_wizard
   end
   
@@ -75,7 +80,7 @@ class InteractionsController < ApplicationController
         if !@answer.content.blank?
           # set flash notice advising question already answered
           
-          redirect_to root_url
+          redirect_to interactions_path
         end
 
       end
@@ -83,5 +88,9 @@ class InteractionsController < ApplicationController
     
     def answer_params
       params.require(:answer).permit(:content)
+    end
+    
+    def interaction_params
+      params.require(:interaction).permit(:feeling, :journal)
     end
 end
