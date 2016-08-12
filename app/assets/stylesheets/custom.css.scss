@@ -73,6 +73,7 @@ textarea {
   text-align: center;
 }
 .crucial-container {
+  margin: 0px -15px;
   padding: 20px;
   background: $gray-metal;
   -webkit-box-shadow: -5px 5px 20px 0px $box-shadow;
@@ -192,7 +193,7 @@ input[type="month"] {
   height: 60px;
   img {
     height: 60px;
-    padding: 5px;
+    padding: 10px 0px 17px 10px;
   }
   a {
     transition: all 0.2s ease-in-out;
@@ -411,10 +412,6 @@ input[type="month"] {
   }  
 }
 
-.subscribed h3 {
-  font-weight: 600;
-}
-
 /* swipe slider */
 .swiper-container {
   height: 200px;
@@ -463,9 +460,9 @@ input[type="month"] {
 }
 .interaction-question {
   text-align: center;
-  font-size: 2em;
+  font-size: 2.5em;
   line-height: 1.2em;
-  color: #6d649c;
+  color: #011563;
 }
 .question-topic {
   font-size: 0.5em;
@@ -514,5 +511,34 @@ h3.panel-title {
   span {
     font-size: 1.5em;
     color: $crucial-dark-blue;
+  }
+}
+
+.crucendo-logo {
+  font-size: 30px;
+  margin-top: 2px;
+  color: $crucial-light-blue;
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+  span {
+    content: "";
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: -11px;
+  }
+}
+
+.nav-button-left {
+  padding: 6px 10px 6px 0px;
+  button.btn-link {
+    transition: all 0.2s ease-in-out;
+    color: $gray-metal;
+    font-size: 25px;
+    &:hover {
+      color: $crucial-gray;
+    }
   }
 }

@@ -2,11 +2,6 @@ $(document).on "page:change", ->
   
   #---------------- QUESTIONS ---------------#
   
-  # prevent 'enter' submitting question answer
-  $('#answer_content').keypress (e) ->
-    if(e.keyCode == 13)
-      return false
-      
   #------------------ HAVE ------------------#
   
   # move initial 'improved' goals

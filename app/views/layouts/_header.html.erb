@@ -1,7 +1,15 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
-    <div class="nav navbar-nav pull-left">
-      <%= link_to image_tag("logo.svg"), root_url %>
+    <div class="nav-button-left pull-left">
+      <%= button_tag fa_icon('bars'), class: "btn btn-link" %>
+    </div>
+    <div class="navbar-header pull-left">
+      <div class="crucendo-logo">
+        <%= link_to root_url do %>
+          <%= image_tag("logo.svg") %>
+          <span>rucendo</span>
+        <% end %>
+      </div>
     </div>
     <nav id="navbar">
       <ul class="nav navbar-nav navbar-right">

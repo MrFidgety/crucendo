@@ -4,13 +4,11 @@
   <p class="interaction-title">
     What do you want to improve?
   </p>
-</div>
-<div class="crucial-container">
-  <div class="input-group input-group-lg">
-    <%= text_field_tag 'new_goal_text', nil, :autofocus=>true, 
-        class: 'form-control', placeholder: 'start typing here...' %>
+  <div class="input-group">
+    <%= text_field_tag 'new_goal_text', nil,
+          class: 'form-control input-lg', placeholder: 'start typing here...' %>
     <span class="input-group-btn">
-      <button id="new_goal_start" class="btn btn-default" type="submit">
+      <button id="new_goal_start" class="btn btn-default btn-lg" type="submit">
          <%= fa_icon('chevron-right') %>
       </button>
     </span>

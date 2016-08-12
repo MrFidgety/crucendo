@@ -2,6 +2,7 @@
 <h1>Subscriptions</h1>
 <div class="subscriptions">
   <div class="row">
-    <%= render @topics %>
+    <%= render partial: "subscriptions/panel", 
+          collection: @subscriptions, as: 'topic' %>
   </div>
 </div>

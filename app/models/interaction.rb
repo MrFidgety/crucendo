@@ -19,10 +19,6 @@ class Interaction < ActiveRecord::Base
     update_attribute(:completed, true)
   end
   
-  def get_question_topics
-    goals.topics
-  end
-  
   private
   
     # assign questions to interaction

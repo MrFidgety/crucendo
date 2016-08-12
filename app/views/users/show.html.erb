@@ -1,17 +1,24 @@
+<%
+  if get_interaction(current_user)
+    crucendo_text =  fa_icon('play', text: 'Continue recent Crucendo')
+  else
+    crucendo_text = fa_icon('plus', text: 'Begin a new Crucendo')
+  end
+%>
 <h1>Dashboard<br>
 <small><%= get_name(current_user) %></small></h1>
 <div class="row">
-  <div class="col-sm-4">
-    <%= link_to fa_icon('plus', text: 'Crucendo'), 
+  <div class="col-sm-12">
+    <%= link_to crucendo_text, 
           interactions_path, 
           class: "btn btn-default btn-block btn-lg" %><br>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <%= link_to fa_icon('list-ul', text: 'Subscriptions'),
           subscriptions_path, 
           class: "btn btn-default btn-block btn-lg" %><br>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <%= link_to fa_icon('line-chart', text: 'Reports'),
           subscriptions_path, 
           class: "btn btn-default btn-block btn-lg disabled" %><br>

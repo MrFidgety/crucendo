@@ -9,11 +9,10 @@
         <h3 class="panel-title">
           <span class="goal_content"><%= goal.content %></span><br>
           <span class="goal_info">
-            this was set <%= local_time_ago(goal.created_at) %> 
-            and you have improved <%= pluralize(goal.improvements.size, 'time') %><br> 
-            created <%= local_time_ago(goal.created_at) %>
+            this was set <%= local_time_ago(goal.created_at) %><br>
+            and you have improved <%= pluralize(goal.improvements.size, 'time') %><br>
             <% if !goal.due_date.blank? %>
-              , due <%= local_relative_time(goal.due_date, type: 'date') %>
+              you want to complete it by <%= local_relative_time(goal.due_date, type: 'weekday-or-date') %>
             <% end %>
             <% if improvement && improvement.unexpected? %>
               , unexpected
@@ -22,7 +21,7 @@
         </h3>
       </div>
       <div class="panel-body">
-        <span class="helper">(<%= improvement ? 'click to remove improvement' : 'click to improve' %>)</span>
+        <span class="helper">(<%= improvement ? 'select to remove improvement' : 'select to improve' %>)</span>
       </div>
     <% end %>
   </div>

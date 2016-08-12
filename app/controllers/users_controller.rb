@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include InteractionsHelper
+  
   before_action :allow_signup,      only: :show
   before_action :logged_in_user,    except: [:new, :create, :resend]
   before_action :set_correct_user,  except: [:new, :create, :resend]
