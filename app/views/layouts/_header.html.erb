@@ -1,9 +1,12 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
     <div class="nav-button-left pull-left">
-      <%= button_tag fa_icon('bars'), class: "btn btn-link" %>
+      <%= button_tag '', 
+          class: "c-hamburger c-hamburger--htx toggle-panel" do %>
+        <span></span>
+      <% end if logged_in? %>
     </div>
-    <div class="navbar-header pull-left">
+    <div class="pull-left">
       <div class="crucendo-logo">
         <%= link_to root_url do %>
           <%= image_tag("logo.svg") %>
@@ -11,29 +14,5 @@
         <% end %>
       </div>
     </div>
-    <nav id="navbar">
-      <ul class="nav navbar-nav navbar-right">
-        <% if logged_in? %>
-          <li class="dropdown no-collapse">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <%= fa_icon('chevron-down') %></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Dashboard", root_url %></li>
-              <li><%= link_to "Profile", profile_path %></li>
-              <li class="divider"></li>
-              <li><%= link_to "Help", help_path %></li>
-              <li>
-                <%= link_to "Log out", logout_path, method: "delete" %>
-              </li>
-              <% if current_user.admin? %>
-                <li class="divider"></li>
-                <li><%= link_to "Admin", admin_path %></li>
-              <% end %>
-            </ul>
-          </li>
-        <% end %>
-      </ul>
-    </nav>
   </div>
 </header>
