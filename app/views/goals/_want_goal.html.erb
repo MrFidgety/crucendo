@@ -4,8 +4,8 @@
   warning = 'This will delete the goal'
 %>
 <div id="goal_<%= goal.id %>" 
-  class="panel-group goal_panel">
-  <div class="panel panel-default">
+  class="panel-group goal_panel new-goal">
+  <div class="panel">
       <div class="panel-heading">
         <h3 class="panel-title">
           <%= link_to fa_icon('times'), goal_path(goal), 
@@ -16,11 +16,12 @@
                           class: "pull-right text-danger" %>
           <span class="goal_content"><%= goal.content %></span><br>
           <span class="goal_info">
-            this was set <%= local_time_ago(goal.created_at) %> 
-            and you have improved <%= pluralize(goal.improvements.size, 'time') %><br> 
-            created <%= local_time_ago(goal.created_at) %>
+            this was set <%= local_time_ago(goal.created_at) %><br>
+            and you have improved <%= pluralize(goal.improvements.size, 'time') %><br>
             <% if !goal.due_date.blank? %>
-              , due <%= local_relative_time(goal.due_date, type: 'date') %>
+              you want to complete it by 
+              <%= local_relative_time(goal.due_date, type: 'weekday-or-date') %>
+              <br>
             <% end %>
           </span>
         </h3>

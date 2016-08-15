@@ -1,8 +1,7 @@
-<% initial ||= 'start-hidden' %>
 <% improvement = goal.has_improvement?(interaction) %>
 <div id="goal_<%= goal.id %>" 
-  class="panel-group goal_panel <%= improvement ? 'improved' : initial %>">
-  <div class="panel panel-default">
+  class="panel-group goal_panel <%= 'improved' if improvement %>">
+  <div class="panel">
     <%= link_to improve_goal_path(goal, interaction_id: interaction.id), 
           method: :post, remote: true, class: "have_goal" do %>
       <div class="panel-heading">
@@ -12,10 +11,12 @@
             this was set <%= local_time_ago(goal.created_at) %><br>
             and you have improved <%= pluralize(goal.improvements.size, 'time') %><br>
             <% if !goal.due_date.blank? %>
-              you want to complete it by <%= local_relative_time(goal.due_date, type: 'weekday-or-date') %>
+              you want to complete it by 
+              <%= local_relative_time(goal.due_date, type: 'weekday-or-date') %>
+              <br>
             <% end %>
             <% if improvement && improvement.unexpected? %>
-              , unexpected
+              this was an unexpected win!
             <% end %>
           </span>
         </h3>

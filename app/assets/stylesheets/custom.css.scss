@@ -12,6 +12,9 @@ $gray-metal: #dde0ee;
 $friendly-red: #ff0033;
 $friendly-green: #0bd00b;
 $box-shadow: rgba(0,2,34,0.75);
+$hornets-purple: #1D1160;
+$hornets-teal: #008CA8;
+$knicks-orange: #F58426;
 
 $a-tags: 'a, a:active, a:hover, a:visited';
 
@@ -362,23 +365,22 @@ input[type="month"] {
 .panel-group {
   margin-bottom: 10px;
 }
-
-// .panel{
-//   #{$a-tags} {
-//     color: inherit;
-//     text-decoration: inherit;
-//   }
-// }
-
 .improved {
   .panel {
-    background-color: $crucial-light-blue;
+    background-color: $hornets-purple;
+    color: white;
+  }
+}
+
+.new-goal {
+  .panel {
+    background-color: $hornets-teal;
     color: white;
   }
 }
 
 .text-danger .fa {
-  color: $friendly-red;
+  //color: $friendly-red;
 }
 
 .start-hidden {
@@ -612,7 +614,7 @@ h3.panel-title {
     font-size: 16px;
 }
 #fixed-nav ul li a:hover {
-    background: #555;
+    background: $knicks-orange;
     text-decoration: none;
 }
 

@@ -42,6 +42,7 @@ $(document).on "page:change", ->
 
     if !goal.hasClass('improved')
       goal.detach().appendTo('#improved_goals')
+      $('#select-goals-modal').modal('hide')
     else
       goal.detach().appendTo('#all_goals')
     goal.toggleClass('improved')
@@ -50,28 +51,38 @@ $(document).on "page:change", ->
   
   # search/filter functionality for improvements
   $('#new_improvement_text').keyup ->
-    search_array = $(this).val().toLowerCase().split(/[\s,]+/)
-    count = 0
-    $('.goal_content').each ->
-      # do not hide improved goals
-      if $(this).parents('.panel-group').hasClass('improved')
-        return true
-      match = false
-      text = $(this).text().toLowerCase()
-      # search goals for each 3+ letter word in the query
-      for search_text in search_array
-        if search_text.length > 2 && text.indexOf(search_text) != -1
-          match = true 
-          count++
-      # show or hide the goals    
-      if match
-        $(this).parents('.panel-group').slideDown()
-      else
-        $(this).parents('.panel-group').slideUp()
-    if count == 0
-      $('#improvement_help_text').html('awesome, something new!')
+    if !$(this).val().trim()
+      $('.goal_content').each ->
+        $(this).parents('.panel-group').show()
+      count = $('.goal_content').length
     else
-      $('#improvement_help_text').html('is it one of these?')
+      search_array = $(this).val().toLowerCase().split(/[\s,]+/)
+      count = 0
+      $('.goal_content').each ->
+        # do not hide improved goals
+        if $(this).parents('.panel-group').hasClass('improved')
+          return true
+        match = false
+        text = $(this).text().toLowerCase()
+        # search goals for each 3+ letter word in the query
+        for search_text in search_array
+          if search_text.length > 2 && text.indexOf(search_text) != -1
+            match = true 
+            count++
+        # show or hide the goals    
+        if match
+          $(this).parents('.panel-group').show()
+        else
+          $(this).parents('.panel-group').hide()
+    if count == 0
+      $('#select-goals-button>span:first-child').html('awesome, something new!')
+      $('#select-goals-button>span:last-child').html('')
+      $('#select-goals-button').prop("disabled", true);
+    else
+      $('#select-goals-button>span:first-child').html('<span>select from existing <strong>wants</strong>')
+      $('#select-goals-button>span:last-child').html('('+count+' found)')
+      $('#select-goals-button').prop("disabled", false);
+    
   
   #------------------ WANT ------------------#
   
