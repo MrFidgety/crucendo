@@ -1,5 +1,6 @@
 $(document).on "page:change", ->
   
+  # set off-canvas navigation menu
   panel = $('#slide-panel').scotchPanel({
     containerSelector: '#site-wrapper',
     direction: 'left',
@@ -10,6 +11,11 @@ $(document).on "page:change", ->
     enableEscapeKey: true
   })
   
+  # click to close menu
   $(document).on('click', '.scotch-is-showing' , ->
     panel.close()
   )
+  
+  # move all modals to end of body (prevent nested z-index issues)
+  $('.modal').each ->
+    $(this).detach().appendTo('body')
