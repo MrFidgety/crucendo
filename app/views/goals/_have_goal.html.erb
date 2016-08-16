@@ -1,28 +1,39 @@
 <% improvement = goal.has_improvement?(interaction) %>
 <div id="goal_<%= goal.id %>" 
-  class="panel-group goal_panel <%= 'improved' if improvement %>">
-  <div class="panel">
+  class="panel-group goal-panel <%= 'improved' if improvement %>">
+  <div class="panel panel-default ">
     <%= link_to improve_goal_path(goal, interaction_id: interaction.id), 
-          method: :post, remote: true, class: "have_goal" do %>
+          method: :post, remote: true, class: "goal-have" do %>
       <div class="panel-heading">
         <h3 class="panel-title">
-          <span class="goal_content"><%= goal.content %></span><br>
-          <span class="goal_info">
-            this was set <%= local_time_ago(goal.created_at) %><br>
-            and you have improved <%= pluralize(goal.improvements.size, 'time') %><br>
-            <% if !goal.due_date.blank? %>
-              you want to complete it by 
-              <%= local_relative_time(goal.due_date, type: 'weekday-or-date') %>
-              <br>
-            <% end %>
-            <% if improvement && improvement.unexpected? %>
-              this was an unexpected win!
-            <% end %>
-          </span>
+          <span class="pull-right"><%= fa_icon 'check' if improvement %></span>
+          <span class="goal_content"><%= goal.content %></span>
         </h3>
       </div>
       <div class="panel-body">
-        <span class="helper">(<%= improvement ? 'select to remove improvement' : 'select to improve' %>)</span>
+        <%= fa_icon 'clock-o' %>  
+        this was set <%= local_time_ago(goal.created_at) %><br>
+        <%= fa_icon 'plus' %> 
+        <% if goal.improvements.size > 0 %>
+          you have improved <%= pluralize(goal.improvements.size, 'time') %><br>
+        <% else %>
+          you are working toward your first improvement<br>
+        <% end %>
+        <% if !goal.due_date.blank? %>
+          <%= fa_icon 'calendar' %> 
+          you want to complete it by 
+          <%= local_relative_time(goal.due_date, type: 'weekday-or-date') %>
+          <br>
+        <% end %>
+        <% if improvement && improvement.unexpected? %>
+          <%= fa_icon 'star' %> 
+          this was an unexpected win!
+        <% end %>
+      </div>
+      <div class="panel-footer">
+        <span class="helper">
+          <%= improvement ? 'select to remove improvement' : 'select to improve' %>
+        </span>
       </div>
     <% end %>
   </div>

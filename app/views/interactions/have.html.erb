@@ -25,11 +25,8 @@
   </button>
   <br>
   <section id="goals-section">
-    <div id="improved_goals">
-    </div>
-  </section>
-</div>
-<div class="crucial-container">
+    <div id="improved-goals"></div>
+  </section><br>
   <%= link_to 'continue', next_wizard_path, class: 'btn btn-default btn-block btn-lg' %>
 </div>
 <div class="modal fade" id="new_improvement_modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -53,7 +50,7 @@
         <h4 class="modal-title">What have you improved?</h4>
       </div>
       <div class="modal-body">
-        <div id="all_goals">
+        <div id="all-goals">
           <%= render partial: "goals/have_goal", collection: @goals, 
               as: :goal, locals: {interaction: @interaction} %>
         </div>

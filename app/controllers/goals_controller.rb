@@ -37,9 +37,11 @@ class GoalsController < ApplicationController
         # reload goal to update counter cache
         @goal.reload
       else
+        # create new improvement linked to interaction
         @improvement = @goal.improvements.build(interaction_id: @interaction.id)
       end
     else
+      # create new basic improvement
       @improvement = @goal.improvements.build
     end
     

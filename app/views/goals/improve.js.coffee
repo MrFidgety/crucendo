@@ -7,6 +7,6 @@ old_goal.replaceWith(
 new_goal = $('#goal_<%= @goal.id %>')
 # fix the goal position if ajax call unsuccessful
 if new_goal.hasClass('improved')
-    new_goal.detach().appendTo('#improved_goals') if new_goal.parent('#improved_goals').length == 0
+    new_goal.detach().appendTo('#improved-goals') if new_goal.parent('#improved-goals').length == 0
 else
-    new_goal.detach().appendTo('#all_goals') if new_goal.parent('#all_goals').length == 0
+    new_goal.detach().appendTo('#all-goals') if new_goal.parent('#all-goals').length == 0

@@ -365,17 +365,35 @@ input[type="month"] {
 .panel-group {
   margin-bottom: 10px;
 }
+.goal-panel {
+  .panel {
+    .panel-body {
+      padding: 0 0 10px 15px;
+      .fa {
+        margin-right: 5px;
+      }
+    }
+    .panel-footer {
+      color: #cccccc;
+    }
+  }
+}
 .improved {
   .panel {
     background-color: $hornets-purple;
     color: white;
+    .panel-header, .panel-body, .panel-footer {
+      background-color: inherit;
+    }
   }
 }
-
 .new-goal {
   .panel {
     background-color: $hornets-teal;
     color: white;
+    .panel-header, .panel-body, .panel-footer {
+      background-color: inherit;
+    }
   }
 }
 
@@ -494,7 +512,7 @@ textarea.form-control {
   border-color: #6292ff;
 }
 
-.goal_panel a {
+.goal-panel a {
   color: inherit;
   text-decoration: inherit;
 }
@@ -747,4 +765,14 @@ button.text-button {
 .button-helper {
   font-size: 0.6em;
   color: $crucial-gray;
+}
+
+/* dashboard */
+.dash-button {
+  .fa {
+    position: absolute;
+    left: 0;
+    line-height: inherit;
+    padding-left: 30px;
+  }
 }

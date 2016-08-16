@@ -5,8 +5,8 @@ $(document).on "page:change", ->
   #------------------ HAVE ------------------#
   
   # move initial 'improved' goals
-  $('.goal_panel.improved').each ->
-    $(this).detach().appendTo('#improved_goals')
+  $('.goal-panel.improved').each ->
+    $(this).detach().appendTo('#improved-goals')
   
   # open new improvement modal
   $('#new_improvement_start').click ->
@@ -33,16 +33,16 @@ $(document).on "page:change", ->
   $('.collapse').collapse({'toggle': false})
   
   # pre-emptivley toggle to improved on link click (before ajax)
-  $(document).on('click', 'a.have_goal' , ->
+  $(document).on('click', 'a.goal-have' , ->
     goal = $( this ).parents('.panel-group')
 
     if !goal.hasClass('improved')
-      goal.detach().appendTo('#improved_goals').hide().slideDown('slow')
+      goal.detach().appendTo('#improved-goals').hide().slideDown('slow')
       $('#select-goals-modal').modal('hide')
       goal.addClass('improved')
     else
-      goal.detach().appendTo('#all_goals')
-      $(this).removeClass('improved')
+      goal.detach().appendTo('#all-goals')
+      goal.removeClass('improved')
       $('#new_improvement_text').keyup()
   )
   
@@ -54,9 +54,9 @@ $(document).on "page:change", ->
     
     # show all goals if there is no search term
     if !$(this).val().trim()
-      $('#all_goals > .goal_panel').each ->
+      $('#all-goals > .goal-panel').each ->
         $(this).show()
-      count = $('#all_goals > .goal_panel').length
+      count = $('#all-goals > .goal-panel').length
     else
       # split the search term on spaces
       search_array = $(this).val().toLowerCase().split(/[\s,]+/)
@@ -67,7 +67,7 @@ $(document).on "page:change", ->
         if search_text.length > 2 
           search_terms.push(search_text)
           
-      $('#all_goals .goal_content').each ->
+      $('#all-goals .goal_content').each ->
         match = false
         text = $(this).text().toLowerCase()
         # search goals for each term
@@ -110,10 +110,6 @@ $(document).on "page:change", ->
       $('#new_goal_start').click()
       return false
       
-  # focus on input when modal opens   
-  $('#new_goal_modal').on 'shown.bs.modal', ->
-    $('#goal_content').focus()
-    
   # clear input when modal closes
   $('#new_goal_modal').on 'hide.bs.modal', ->
     $('#new_goal_text').val('')

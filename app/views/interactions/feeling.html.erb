@@ -4,8 +4,6 @@
   <p class="interaction-title">
     How are you feeling?
   </p>
-</div>
-<div class="crucial-container">
   <!-- Slider main container -->
   <div class="swiper-container">
     <!-- Additional required wrapper -->
@@ -19,9 +17,7 @@
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>
-  </div>
-</div>
-<div class="crucial-container">
+  </div><br><br>
   <%= form_for @interaction, url: wizard_path, method: :put do |f| %>
     <%= hidden_field(:interaction, :feeling) %>
     <%= f.submit "Continue", class: 'form-control btn-block btn-lg' %>

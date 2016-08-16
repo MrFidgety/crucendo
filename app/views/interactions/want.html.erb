@@ -15,9 +15,7 @@
   </div><br>
   <section id="goals-section">
     <%= render partial: "goals/want_goal", collection: @goals, as: :goal %>
-  </section>
-</div>
-<div class="crucial-container">
+  </section><br>
   <%= link_to 'continue', next_wizard_path, class: 'btn btn-default btn-block btn-lg' %>
 </div>
 <div class="modal fade" id="new_goal_modal" tabindex="-1" role="dialog" aria-hidden="true">
