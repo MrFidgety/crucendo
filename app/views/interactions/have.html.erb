@@ -13,13 +13,17 @@
          <%= fa_icon('plus') %>
       </button>
     </span>
-  </div><br>
-  <button id="select-goals-button" class="btn btn-block btn-default btn-lg" 
+  </div>
+  <p class="section-split-text">or</p>
+  <button id="select-goals-button" class="btn btn-block btn-default btn-lg text-button" 
     data-toggle="modal" data-target="#select-goals-modal">
-     <span>select from existing <strong>wants</strong></span> 
-     <span>(<%= @goals.size %> found)</span>
-  </button><br>
-
+     <span class="button-title">Select from existing <strong>wants</strong></span><br> 
+     <div class="button-helper">
+       <span class="button-result"><%= @goals.size %> found in total</span>
+       <span class="button-search-terms"></span>
+     </div>
+  </button>
+  <br>
   <section id="goals-section">
     <div id="improved_goals">
     </div>

@@ -520,6 +520,11 @@ h3.panel-title {
   }
 }
 
+#select-goals-button {
+  text-align: left;
+  white-space: normal;
+}
+
 .crucendo-logo {
   font-size: 30px;
   margin-top: 2px;
@@ -605,17 +610,29 @@ h3.panel-title {
     text-align: center;
 }
 #fixed-nav ul li a {
-    display: block;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    background: transparent;
-    color: #fff;
-    font-size: 16px;
+  display: block;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  
+  -webkit-transition: background-color 400ms ease;
+  -moz-transition: background-color 400ms ease;
+  -o-transition: background-color 400ms ease;
+  -ms-transition: background-color 400ms ease;
+  transition: background-color 400ms ease;
+  .fa {
+    position: absolute;
+    left: 0;
+    line-height: inherit;
+    padding-left: 30px;
+  }
 }
 #fixed-nav ul li a:hover {
-    background: $knicks-orange;
-    text-decoration: none;
+  background: $knicks-orange;
+  text-decoration: none;
 }
 
 /* hamburger button */
@@ -717,4 +734,17 @@ h3.panel-title {
 .c-hamburger--htx.is-active span::before,
 .c-hamburger--htx.is-active span::after {
   transition-delay: 0s, 0.3s;
+}
+
+/* interactions have */
+.section-split-text {
+  margin: 5px;
+  text-align: center;
+}
+button.text-button {
+  font-size: 1.8em;
+}
+.button-helper {
+  font-size: 0.6em;
+  color: $crucial-gray;
 }

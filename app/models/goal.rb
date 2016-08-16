@@ -6,7 +6,7 @@ class Goal < ActiveRecord::Base
   has_one     :skill
   has_one     :interaction
   
-  default_scope -> { order(due_date: :asc) }
+  default_scope -> { order(due_date: :asc, content: :asc) }
   
   validates :user_id, presence: true
   validates :content, presence: true, 

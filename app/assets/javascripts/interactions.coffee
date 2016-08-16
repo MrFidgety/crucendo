@@ -19,19 +19,15 @@ $(document).on "page:change", ->
       $('#new_improvement_start').click()
       return false
       
-  # focus on input when modal opens   
-  $('#new_improvement_modal').on 'shown.bs.modal', ->
-    $('#goal_content').focus()
-    
   # clear input when modal closes
-  $('#new_improvement_modal').on 'hide.bs.modal', ->
+  $('#new_improvement_modal, #select-goals-modal').on 'hide.bs.modal', ->
     $('#new_improvement_text').val('')
+    $('#new_improvement_text').keyup()
   
   # reset improvement form and focus on input
   $('#new_improvement_modal').on 'hidden.bs.modal', ->
     $('#goal_content').val('')
     $("#new_goal form").clear_form_errors()
-    $('#new_improvement_text').focus()
       
   # ensure all collapsibles are set to toggle false
   $('.collapse').collapse({'toggle': false})
@@ -41,32 +37,42 @@ $(document).on "page:change", ->
     goal = $( this ).parents('.panel-group')
 
     if !goal.hasClass('improved')
-      goal.detach().appendTo('#improved_goals')
+      goal.detach().appendTo('#improved_goals').hide().slideDown('slow')
       $('#select-goals-modal').modal('hide')
+      goal.addClass('improved')
     else
       goal.detach().appendTo('#all_goals')
-    goal.toggleClass('improved')
-    $('#new_improvement_text').focus()
+      $(this).removeClass('improved')
+      $('#new_improvement_text').keyup()
   )
   
   # search/filter functionality for improvements
   $('#new_improvement_text').keyup ->
+    
+    # array to hold each search term
+    search_terms = []
+    
+    # show all goals if there is no search term
     if !$(this).val().trim()
-      $('.goal_content').each ->
-        $(this).parents('.panel-group').show()
-      count = $('.goal_content').length
+      $('#all_goals > .goal_panel').each ->
+        $(this).show()
+      count = $('#all_goals > .goal_panel').length
     else
+      # split the search term on spaces
       search_array = $(this).val().toLowerCase().split(/[\s,]+/)
       count = 0
-      $('.goal_content').each ->
-        # do not hide improved goals
-        if $(this).parents('.panel-group').hasClass('improved')
-          return true
+      
+      # select all strings greater than 2 characters
+      for search_text in search_array
+        if search_text.length > 2 
+          search_terms.push(search_text)
+          
+      $('#all_goals .goal_content').each ->
         match = false
         text = $(this).text().toLowerCase()
-        # search goals for each 3+ letter word in the query
-        for search_text in search_array
-          if search_text.length > 2 && text.indexOf(search_text) != -1
+        # search goals for each term
+        for search_text in search_terms
+          if text.indexOf(search_text) != -1
             match = true 
             count++
         # show or hide the goals    
@@ -75,14 +81,21 @@ $(document).on "page:change", ->
         else
           $(this).parents('.panel-group').hide()
     if count == 0
-      $('#select-goals-button>span:first-child').html('awesome, something new!')
-      $('#select-goals-button>span:last-child').html('')
-      $('#select-goals-button').prop("disabled", true);
+      $('#select-goals-button>.button-title').html('Awesome, something new!')
+      $('#select-goals-button>.button-helper>.button-result').html('Hit the + button to add your improvement')
+      $('#select-goals-button>.button-helper>.button-search-terms').html('')
+      $('#select-goals-button').prop("disabled", true)
     else
-      $('#select-goals-button>span:first-child').html('<span>select from existing <strong>wants</strong>')
-      $('#select-goals-button>span:last-child').html('('+count+' found)')
-      $('#select-goals-button').prop("disabled", false);
-    
+      $('#select-goals-button>.button-title').html('Select from existing <strong>wants</strong>')
+      $('#select-goals-button>.button-helper>.button-result').html(count + ' found')
+      if search_terms.length
+        $('#select-goals-button>.button-helper>.button-search-terms').html(' from searching ' + '"' + search_terms.join('", "') + '"')
+      else
+        $('#select-goals-button>.button-helper>.button-search-terms').html(' in total')
+      $('#select-goals-button').prop("disabled", false)
+  
+  # emulate keyup on page load
+  $('#new_improvement_text').keyup()
   
   #------------------ WANT ------------------#
   
