@@ -22,13 +22,15 @@
       <% end %>
       <% if !goal.due_date.blank? %>
         <%= fa_icon 'calendar' %> 
-        you want to complete it by 
+        you want to achieve this by 
         <%= local_relative_time(goal.due_date, type: 'weekday-or-date') %>
         <br>
       <% end %>
     </div>
     <div class="panel-footer">
-      <%= link_to 'select here to remove this want', goal_path(goal), 
+      this is now part of your active wants<br>
+      it can be viewed and edited from your dashboard
+      <%#= link_to 'select here to remove this want', goal_path(goal), 
             method: :delete,
             remote: true,
             title: "Are you sure?", 

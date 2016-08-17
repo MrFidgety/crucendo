@@ -2,24 +2,34 @@
 <%= render 'interactions/header' %>
 <div class="crucial-container">
   <div class="interaction-summary">
-    Today you took time to be <span>introspective</span>, which 
-    is contributing to your <span>development</span> and <span>success</span>. 
-    You answered <span>3 Crucial Questions</span> from the 
-    <% @interaction.answers.each_with_index do |answer, index| %>
-      <% if index == @interaction.answers.size - 1 %>
-        and <span><%= answer.question.topic.name %></span> 
-      <% else %>
-        <span><%= answer.question.topic.name %></span>, 
+    <h1>That's it!</h1>
+    <p class="small">Today you took time to be introspective, which is contributing to your 
+    development and success.</p> 
+    <p>You <strong>answered three crucial questions</strong> from the topics</p>
+    <ul>
+      <% @interaction.answers.each_with_index do |answer, index| %>
+        <li><span><%= answer.question.topic.name %></span></li>
       <% end %>
-    <% end %>
-    topics.
+    </ul>
     <% if @interaction.improvements.size > 0 %>
-      You <span>have improved <%= pluralize(@interaction.improvements.size, 'aspect') %></span> of your life recently.
+      <p>You have <strong>acknowledged improvements</strong> in 
+      <% if @interaction.improvements.size > 1 %>
+        <%= pluralize(@interaction.improvements.size, 'aspect') %>
+      <% else %>
+        an aspect
+      <% end %>
+      of your life recently.</p>
     <% end %>
     <% if @interaction.goals.where(completed: false).size > 0 %>
-      You <span>want to improve <%= pluralize(@interaction.goals.where(completed: false).size, 'aspect') %></span> of your life in the future. 
+      <p>You also <strong>embraced that you want to improve</strong> 
+      <% if @interaction.goals.where(completed: false).size > 1 %>
+        another <%= pluralize(@interaction.goals.where(completed: false).size, 'aspect') %>
+      <% else %>
+        another aspect
+      <% end %>
+      of your life.</p>
     <% end %>
-    Nice job, and <span>keep impressing yourself!</span>
+    <br><p>Nice job, and <span>keep impressing yourself!</span></p>
   </div>
-  <%= link_to 'Finish', root_url, class: 'btn btn-default btn-block btn-lg' %>
+  <%= link_to 'See you tomorrow', root_url, class: 'btn btn-default btn-block btn-lg' %>
 </div>

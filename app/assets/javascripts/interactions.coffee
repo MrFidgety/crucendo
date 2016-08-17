@@ -24,7 +24,7 @@ $(document).on "page:change", ->
     $('#new_improvement_text').val('')
     $('#new_improvement_text').keyup()
   
-  # reset improvement form and focus on input
+  # reset improvement form
   $('#new_improvement_modal').on 'hidden.bs.modal', ->
     $('#goal_content').val('')
     $("#new_goal form").clear_form_errors()
@@ -86,7 +86,7 @@ $(document).on "page:change", ->
       $('#select-goals-button>.button-helper>.button-search-terms').html('')
       $('#select-goals-button').prop("disabled", true)
     else
-      $('#select-goals-button>.button-title').html('Select from existing <strong>wants</strong>')
+      $('#select-goals-button>.button-title').html('Select from your active <strong>wants</strong>')
       $('#select-goals-button>.button-helper>.button-result').html(count + ' found')
       if search_terms.length
         $('#select-goals-button>.button-helper>.button-search-terms').html(' from searching ' + '"' + search_terms.join('", "') + '"')
@@ -114,12 +114,11 @@ $(document).on "page:change", ->
   $('#new_goal_modal').on 'hide.bs.modal', ->
     $('#new_goal_text').val('')
   
-  # reset goal form and focus on input
+  # reset goal form
   $('#new_goal_modal').on 'hidden.bs.modal', ->
     $('#goal_content, #goal_due_date').val('')
     $('#due_date_container').collapse('hide')
     $("#new_goal form").clear_form_errors()
-    $('#new_goal_text').focus()
 
   # render new goal form errors
   $(document).on "ajax:error", "form", (evt, xhr, status, error) ->

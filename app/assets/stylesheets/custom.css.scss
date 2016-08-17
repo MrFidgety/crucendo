@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Raleway:400,600';
 
 /* mixins, variables, etc. */
 
@@ -8,7 +9,7 @@ $crucial-gray: #9898a9;
 $crucial-dark-blue: #07438c;
 $crucial-light-blue: #0498d9;
 $gray-medium-light: #eaeaea;
-$gray-metal: #dde0ee;
+$gray-metal: #e2e5f1;
 $friendly-red: #ff0033;
 $friendly-green: #0bd00b;
 $box-shadow: rgba(0,2,34,0.75);
@@ -58,6 +59,7 @@ html,body {
     margin:0;
     height:100%;
     min-height:100%;
+    font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -84,7 +86,7 @@ textarea {
 }
 .crucial-container {
   margin: 0px -15px;
-  padding: 20px;
+  padding: 20px 10px;
   background: $gray-metal;
   margin-bottom: 20px;
 }
@@ -506,10 +508,26 @@ textarea.form-control {
   box-shadow: none !important;
 }
 
-.improve-btn.active {
-  color: white;
-  background-color: #0498d9;
-  border-color: #6292ff;
+.improve-btn {
+  text-align: left;
+  &.active {
+    color: white;
+    background-color: $hornets-teal;
+    border-color: inherit;
+    box-shadow: none;
+  }
+  &:focus {
+    background-color: #fff;
+    box-shadow: none;
+  }
+  &:active {
+    box-shadow: none;
+  }
+}
+.improve-btn.active:after {
+  content: "\f00c";
+  font-family: FontAwesome;
+  float: right;
 }
 
 .goal-panel a {
@@ -532,9 +550,15 @@ h3.panel-title {
 .interaction-summary {
   font-size: 1.5em;
   text-align: center;
+  .small {
+    font-size: 0.85em;
+  }
   span {
     font-size: 1.5em;
     color: $crucial-dark-blue;
+  }
+  ul {
+    padding: 0;
   }
 }
 
@@ -544,6 +568,7 @@ h3.panel-title {
 }
 
 .crucendo-logo {
+  font-family: 'Raleway', sans-serif;
   font-size: 30px;
   margin-top: 2px;
   color: $crucial-light-blue;
@@ -775,4 +800,7 @@ button.text-button {
     line-height: inherit;
     padding-left: 30px;
   }
+}
+hr {
+  border-color: #fff;
 }

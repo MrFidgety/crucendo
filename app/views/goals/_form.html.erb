@@ -1,8 +1,9 @@
 <% modal ||= false %>
 <% remote = modal ? true : false %>
 <%= form_for @goal, remote: remote do |f| %>
-  <%= f.label :goal %>
-  <%= f.text_field :content, class: 'form-control input-lg' %>
+  <%= f.label :goal, 'What do you want to improve?' %>
+  <%= f.text_field :content, placeholder: 'type what you want to improve...', 
+        class: 'form-control input-lg' %>
   <%= content_tag :div, id: 'due_date_container', class: 'collapse' do %>
     <%= f.label :due_date %>
     <%= f.date_field :due_date, class: 'form-control' %>

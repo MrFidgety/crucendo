@@ -3,11 +3,11 @@
 <div class="crucial-container">
   <p class="interaction-title">
     What have you improved recently?
-  </p>
+  </p><hr>
   <div class="input-group">
     <%= text_field_tag 'new_improvement_text', nil,
           class: 'form-control input-lg', 
-          placeholder: 'type your improvement here...' %>
+          placeholder: 'type what you have improved...' %>
     <span class="input-group-btn">
       <button id="new_improvement_start" class="btn btn-default btn-lg">
          <%= fa_icon('plus') %>
@@ -17,7 +17,7 @@
   <p class="section-split-text">or</p>
   <button id="select-goals-button" class="btn btn-block btn-default btn-lg text-button" 
     data-toggle="modal" data-target="#select-goals-modal">
-     <span class="button-title">Select from existing <strong>wants</strong></span><br> 
+     <span class="button-title">Select from your active <strong>wants</strong></span><br> 
      <div class="button-helper">
        <span class="button-result"><%= @goals.size %> found in total</span>
        <span class="button-search-terms"></span>
@@ -34,7 +34,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Set new improvement</h4>
+        <h4 class="modal-title">Have</h4>
       </div>
       <div class="modal-body">
         <%= render 'goals/form_improve', modal: true %>
@@ -47,7 +47,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">What have you improved?</h4>
+        <h4 class="modal-title">Here are some wants you prepared earlier</h4>
       </div>
       <div class="modal-body">
         <div id="all-goals">

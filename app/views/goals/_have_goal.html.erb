@@ -12,7 +12,7 @@
       </div>
       <div class="panel-body">
         <%= fa_icon 'clock-o' %>  
-        this was set <%= local_time_ago(goal.created_at) %><br>
+        this was created <%= local_time_ago(goal.created_at) %><br>
         <%= fa_icon 'plus' %> 
         <% if goal.improvements.size > 0 %>
           you have improved <%= pluralize(goal.improvements.size, 'time') %><br>
@@ -21,7 +21,7 @@
         <% end %>
         <% if !goal.due_date.blank? %>
           <%= fa_icon 'calendar' %> 
-          you want to complete it by 
+          you want to achieve this by 
           <%= local_relative_time(goal.due_date, type: 'weekday-or-date') %>
           <br>
         <% end %>
