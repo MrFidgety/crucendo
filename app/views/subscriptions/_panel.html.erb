@@ -4,6 +4,7 @@
       <h4 class="panel-title"><%= topic.name.camelize %></h4>
     </div>
     <div class="panel-body">
+      <%= image_tag topic.picture.url, class: "img-responsive" if topic.picture? %>
     </div>
   </div>
 </div>

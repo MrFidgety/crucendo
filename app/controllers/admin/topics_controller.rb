@@ -60,7 +60,7 @@ class Admin::TopicsController < AdminController
   
     def topic_params
       params.require(:topic).permit(:name, :active, :author, 
-        :default_subscription)
+        :default_subscription, :picture)
     end
   
     def insert_breadcrumbs

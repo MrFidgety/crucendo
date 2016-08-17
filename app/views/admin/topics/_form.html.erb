@@ -1,4 +1,4 @@
-<%= form_for [:admin, @topic] do |f| %>
+<%= form_for [:admin, @topic], html: { multipart: true } do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name, class: 'form-control' %>
   <%= f.label :author %>
@@ -21,6 +21,9 @@
 			<%= f.radio_button :default_subscription, true %>Yes
 		</label>
   </div>
+  <span class="picture">
+    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+  </span>
   <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group" role="group">
       <%= link_to "Delete", admin_topic_path(@topic), 
@@ -35,3 +38,12 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $('#topic_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>

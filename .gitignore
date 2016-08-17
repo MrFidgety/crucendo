@@ -21,3 +21,6 @@
 
 # Ignore envyable
 /config/env.yml
+
+# Ignore uploaded test images.
+/public/uploads
