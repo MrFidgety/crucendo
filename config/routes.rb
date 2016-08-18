@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get     'help'          =>  'static_pages#help'
   get     'resend'        =>  'users#resend'
   get     'profile'       =>  'users#edit'
+  get     'wants'         =>  'goals#index'
   patch   'profile'       =>  'users#edit'
   delete  'logout'        =>  'sessions#destroy'
   
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
   resources :sessions,            only: :edit
   resources :change_user_email,   only: :edit
   resources :interactions,        only: [:index, :show, :update]
-  resources :subscriptions
+  resources :subscriptions,       only: [:index, :update]   
   
   resources :goals do
     post 'improve', on: :member

@@ -1,0 +1,4 @@
+<div class="list-group-item">
+  <%= improvement.unexpected ? fa_icon("star") : fa_icon("plus") %>
+  Improved <%= local_time_ago(improvement.created_at) %>
+</div>

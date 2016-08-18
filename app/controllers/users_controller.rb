@@ -6,6 +6,10 @@ class UsersController < ApplicationController
   before_action :set_correct_user,  except: [:new, :create, :resend]
   before_action :admin_user,        only: :destroy
   
+  def show
+    @wants = current_user.goals.recently_created.limit(5)
+  end
+  
   def new_email
     # validate email via regex
     if params[:email] =~ User::VALID_EMAIL_REGEX

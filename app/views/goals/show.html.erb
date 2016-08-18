@@ -1,0 +1,41 @@
+<% provide(:title, "Want") %>
+<h1><%= @goal.content %></h1>
+<div class="goal-details">
+  <% if @goal.improvements.size > 0 %>
+    <p class="improvements-large">+<%= @goal.improvements.size %></p>
+  <% else %>
+    <p class="goal-begin">you are working toward your first improvement</p>
+  <% end %>
+  <ul class="goal">
+    <li>
+      <%= fa_icon 'clock-o' %> 
+      this was created 
+      <%= local_time_ago(@goal.created_at) %>
+    </li>
+    <li>
+      <% if @goal.completed? %>
+      <%= fa_icon 'check-square-o' %> 
+      you marked this as complete 
+      <%= local_time_ago(@goal.completed_date) %>
+      <% else %>
+      <%= fa_icon 'circle-o' %> 
+      you are actively improving this want
+      <% end %>
+    </li>
+    <% unless @goal.due_date.blank? %>
+    <li>
+      <%= fa_icon 'calendar' %> 
+      you want to achieve this by 
+      <%= local_relative_time(@goal.due_date, type: 'weekday-or-date') %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<div class="goal-improvements">
+  <div class="list-group">
+    <%= render @improvements %>
+  </div>
+</div>
+<div class="goal-actions">
+    
+</div>

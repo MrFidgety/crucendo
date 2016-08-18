@@ -1,6 +1,15 @@
 class GoalsController < ApplicationController
   include InteractionsHelper
   
+  def index
+    @goals = current_user.goals.recently_created
+  end
+  
+  def show
+    @goal = Goal.find(params[:id])
+    @improvements = @goal.improvements
+  end
+  
   def create
     # create new goal from params
     @goal = current_user.goals.build(goal_params)

@@ -25,8 +25,4 @@ class GoalTest < ActiveSupport::TestCase
     @goal.content = "a" * 141
     assert_not @goal.valid?
   end
-  
-  test "order should be soonest due first" do
-    assert_equal goals(:due_soonest), Goal.first
-  end
 end
