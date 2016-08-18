@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :topics do
       post :activate_questions, on: :member
     end
+    resources :authors
     resources :skills
   end
   

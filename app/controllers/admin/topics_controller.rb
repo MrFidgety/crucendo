@@ -1,19 +1,15 @@
 class Admin::TopicsController < AdminController
   before_action :find_topic, only: [:show, :edit, :update, :destroy]
+  before_action :find_author, only: :new
   before_action :insert_breadcrumbs
   
   def index
     @topics = Topic.admin.paginate(page: params[:page])
   end
   
-  def show
-  end
-
   def new
     @topic = Topic.new
-  end
-  
-  def edit
+    @topic.author_id = @author.id unless @author.blank?
   end
   
   def create
@@ -57,10 +53,14 @@ class Admin::TopicsController < AdminController
     def find_topic
       @topic = Topic.find(params[:id])
     end
+    
+    def find_author
+      @author = Author.find(params[:author_id]) if params.has_key?(:author_id)
+    end
   
     def topic_params
-      params.require(:topic).permit(:name, :active, :author, 
-        :default_subscription, :picture, :link)
+      params.require(:topic).permit(:name, :active, 
+        :default_subscription, :author_id)
     end
   
     def insert_breadcrumbs
@@ -76,8 +76,14 @@ class Admin::TopicsController < AdminController
           add_breadcrumb @topic.name, admin_topic_path(@topic)
           add_breadcrumb "edit"
         when 'new'
-          add_breadcrumb "topics", :admin_topics_path
-          add_breadcrumb "new"
+          if @author.blank?
+            add_breadcrumb "topics", :admin_topics_path
+            add_breadcrumb "new"
+          else
+            add_breadcrumb "authors", :admin_authors_path
+            add_breadcrumb @author.name, admin_author_path(@author)
+            add_breadcrumb "new"
+          end
       end
     end
 end

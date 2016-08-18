@@ -813,3 +813,29 @@ hr {
 .input-group-btn .btn {
   margin: inherit;
 }
+.author-logo {
+  display: inline-block;
+  max-height: 30px;
+}
+.subscription-panel {
+  .panel-heading {
+    :before {
+      content: "\f096";
+      font-family: FontAwesome;
+      float: right;
+    }
+  }
+  &.subscribed {
+    border: 2px solid $knicks-orange;
+    .panel-heading {
+      background: $knicks-orange;
+      color: white;
+      text-align: left;
+      :before {
+        content: "\f046";
+        font-family: FontAwesome;
+        float: right;
+      }
+    }
+  }
+}

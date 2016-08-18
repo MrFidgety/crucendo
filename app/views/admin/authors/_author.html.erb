@@ -1,0 +1,5 @@
+<%= link_to admin_author_path(author), class: "list-group-item" do %>
+  <span class="badge"><%= pluralize(author.topics.size, "topic") %></span>
+  <%= image_tag author.logo.url, class: "author-logo" if author.logo? %>
+  <span class="title"><%= author.name %></span>
+<% end %>

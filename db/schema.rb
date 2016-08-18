@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817233954) do
+ActiveRecord::Schema.define(version: 20160818031917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 20160817233954) do
   add_index "answers", ["interaction_id"], name: "index_answers_on_interaction_id", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
+
+  create_table "authors", force: :cascade do |t|
+    t.string   "name"
+    t.string   "logo"
+    t.string   "link"
+    t.text     "about"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "goals", force: :cascade do |t|
     t.text     "content"
@@ -130,11 +139,11 @@ ActiveRecord::Schema.define(version: 20160817233954) do
     t.datetime "updated_at",                           null: false
     t.boolean  "active",               default: false
     t.integer  "questions_count",      default: 0
-    t.text     "author"
     t.boolean  "default_subscription", default: false
-    t.string   "picture"
-    t.string   "link"
+    t.integer  "author_id"
   end
+
+  add_index "topics", ["author_id"], name: "index_topics_on_author_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -174,4 +183,5 @@ ActiveRecord::Schema.define(version: 20160817233954) do
   add_foreign_key "steps", "goals"
   add_foreign_key "subscriptions", "topics"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "topics", "authors"
 end

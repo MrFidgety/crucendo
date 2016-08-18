@@ -61,7 +61,7 @@ class Admin::QuestionsController < AdminController
     end
     
     def find_topic
-      @topic = Topic.find(params[:topic_id]) unless !params.has_key?(:topic_id)
+      @topic = Topic.find(params[:topic_id]) if params.has_key?(:topic_id)
     end
     
     def question_params

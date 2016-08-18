@@ -1,0 +1,39 @@
+<% provide(:title, "Admin - Authors - #{@author.name}") %>
+<h1><%= @author.name %></h1>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Information</h3>
+  </div>
+  <div class="panel-body">
+    <%= image_tag @author.logo.url, class: "img-responsive" if @author.logo %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Actions</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-4 col-md-3">
+        <%= link_to fa_icon("pencil-square-o", text: "Edit Author"), 
+              edit_admin_author_path(@author), 
+              class: "btn btn-default btn-block" %>
+      </div>
+      <div class="col-sm-4 col-md-3">
+        <%= link_to fa_icon("plus", text: "Add Topic"), 
+              new_admin_topic_path(:author_id => @author.id), 
+              class: "btn btn-default btn-block" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Author Topics</h3>
+  </div>
+  <div class="panel-body">
+    <div class="list-group">
+      <%= render @author.topics %>
+    </div>
+  </div>
+</div>
