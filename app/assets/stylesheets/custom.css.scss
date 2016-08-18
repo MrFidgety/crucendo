@@ -818,12 +818,19 @@ hr {
   max-height: 30px;
 }
 .subscription-panel {
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+  a.update-subscription {
+    color: inherit;
+    text-decoration: inherit;
+  }
   .panel-heading {
     :before {
       content: "\f096";
       font-family: FontAwesome;
       float: right;
     }
+    
   }
   &.subscribed {
     border: 2px solid $knicks-orange;
@@ -837,5 +844,8 @@ hr {
         float: right;
       }
     }
+  }
+  &:hover {
+    border: 2px solid $knicks-orange;
   }
 }

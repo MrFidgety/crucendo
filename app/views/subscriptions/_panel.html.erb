@@ -1,8 +1,12 @@
-<div class="col-lg-3 col-md-4 col-sm-6">
-  <div class="panel panel-default subscription-panel <%="subscribed" if current_user.subscribed?(topic) %>">
-    <div class="panel-heading">
-      <h4 class="panel-title"><%= topic.name.camelize %></h4>
-    </div>
+<div id="topic_<%= topic.id %>" class="col-lg-3 col-md-4 col-sm-6">
+  <div class="panel panel-default subscription-panel 
+    <%="subscribed" if current_user.subscribed?(topic) %>">
+    <%= link_to subscription_path(topic), 
+          method: :patch, remote: true, class: "update-subscription" do %>
+      <div class="panel-heading">
+        <h4 class="panel-title"><%= topic.name.camelize %></h4>
+      </div>
+    <% end %>
     <div class="panel-body">
       <% unless topic.author.blank? %>
         <%= image_tag topic.author.logo.url, class: "img-responsive" if topic.author.logo? %>

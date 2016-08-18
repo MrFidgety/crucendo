@@ -5,4 +5,13 @@ class SubscriptionsController < ApplicationController
     @subscriptions = Topic.active
   end
   
+  def update
+    @topic = Topic.find(params[:id])
+    if current_user.subscribed?(@topic) 
+      current_user.unsubscribe(@topic) unless current_user.subscriptions.size < 8
+    else 
+      current_user.subscribe(@topic)
+    end
+  end
+  
 end
