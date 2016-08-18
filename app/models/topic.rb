@@ -7,6 +7,7 @@ class Topic < ActiveRecord::Base
   validates :name,  presence: true, length: { maximum: 45 },
                     uniqueness: { case_sensitive: false }
   validate  :picture_size
+  validates :link, :url => {:allow_blank => true}
                     
   scope :admin,   -> { order(active: :desc, name: :asc) }
   scope :active,  -> { where active: true }

@@ -3,6 +3,19 @@
   <%= f.text_field :name, class: 'form-control' %>
   <%= f.label :author %>
   <%= f.text_field :author, class: 'form-control' %>
+  <%= f.label :link %>
+  <%= f.text_field :link, class: 'form-control' %>
+  <%= f.label :image %>
+  <div class="input-group">
+    <label class="input-group-btn">
+      <span class="btn btn-default">
+        <%= fa_icon 'file-image-o' %> Browse ...<%= f.file_field :picture, 
+                      accept: 'image/jpeg,image/gif,image/png',
+                      class: "hidden_file" %>
+      </span>
+    </label>
+    <input id="topic-picture-display" type="text" class="form-control" readonly>
+  </div><br>
   <%= f.label :active %>
   <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
     <label class="btn btn-default">
@@ -21,9 +34,6 @@
 			<%= f.radio_button :default_subscription, true %>Yes
 		</label>
   </div>
-  <span class="picture">
-    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-  </span>
   <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group" role="group">
       <%= link_to "Delete", admin_topic_path(@topic), 

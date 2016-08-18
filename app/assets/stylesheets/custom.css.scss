@@ -804,3 +804,12 @@ button.text-button {
 hr {
   border-color: #fff;
 }
+.no-padding {
+  padding: 0;
+}
+.btn {
+  margin: 5px 0px;
+}
+.input-group-btn .btn {
+  margin: inherit;
+}
