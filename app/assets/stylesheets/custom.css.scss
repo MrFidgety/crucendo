@@ -496,7 +496,7 @@ input[type="month"] {
 .question-topic {
   font-size: 0.5em;
   font-weight: 600;
-  color: #737373;
+  color: $gray-medium-light;
 }
 textarea.form-control {
   border: none;
@@ -504,11 +504,24 @@ textarea.form-control {
   outline: none;
   background: none;
   font-size: 1.5em;
-  color: #72747b;
+  color: $gray-medium-light;
   
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
+  
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $gray-medium-light;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $gray-medium-light;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $gray-medium-light;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $gray-medium-light;
+  }
 }
 
 .improve-btn {
