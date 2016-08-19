@@ -1,14 +1,12 @@
 <% provide(:title, "Question") %>
 <%= render 'interactions/header' %>
-<div class="crucial-container">
-  <p class="interaction-question">
-    <%= @answer.question.content %><br>
-    <span class="question-topic">- <%= @answer.question.topic.name %> -</span>
-  </p><hr>
-  <%= form_for @answer, url: wizard_path, method: :put do |f| %>
-    <%= f.text_area :content, rows: 4, class: 'form-control',
-          placeholder: "type your answer here ..." %>
-    <%= hidden_field(:answer, :id) %>
-    <%= f.submit "Continue", class: 'form-control btn-lg' %>
-  <% end %>
-</div>
+<p class="interaction-question">
+  <%= @answer.question.content %><br>
+  <span class="question-topic">- <%= @answer.question.topic.name %> -</span>
+</p><hr>
+<%= form_for @answer, url: wizard_path, method: :put do |f| %>
+  <%= f.text_area :content, rows: 4, class: 'form-control',
+        placeholder: "type your answer here ..." %>
+  <%= hidden_field(:answer, :id) %>
+  <%= f.submit "Continue", class: 'form-control btn-lg btn-orange' %>
+<% end %>

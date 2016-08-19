@@ -1,40 +1,38 @@
 <% provide(:title, "Have") %>
 <%= render 'interactions/header' %>
-<div class="crucial-container">
-  <p class="interaction-title">
-    What have you improved recently?
-  </p><hr>
-  <div class="input-group">
-    <%= text_field_tag 'new_improvement_text', nil,
-          class: 'form-control input-lg', 
-          placeholder: 'type what you have improved...' %>
-    <span class="input-group-btn">
-      <button id="new_improvement_start" class="btn btn-default btn-lg">
-         <%= fa_icon('plus') %>
-      </button>
-    </span>
-  </div>
-  <p class="section-split-text">or</p>
-  <button id="select-goals-button" class="btn btn-block btn-default btn-lg text-button" 
-    data-toggle="modal" data-target="#select-goals-modal">
-     <span class="button-title">Select from your active <strong>wants</strong></span><br> 
-     <div class="button-helper">
-       <span class="button-result"><%= @goals.size %> found in total</span>
-       <span class="button-search-terms"></span>
-     </div>
-  </button>
-  <br>
-  <section id="goals-section">
-    <div id="improved-goals"></div>
-  </section><br>
-  <%= link_to 'continue', next_wizard_path, class: 'btn btn-default btn-block btn-lg' %>
+<p class="interaction-title">
+  What have you improved recently?
+</p><hr>
+<div class="input-group">
+  <%= text_field_tag 'new_improvement_text', nil,
+        class: 'form-control input-lg', 
+        placeholder: 'type what you have improved...' %>
+  <span class="input-group-btn">
+    <button id="new_improvement_start" class="btn btn-default btn-lg">
+       <%= fa_icon('plus') %>
+    </button>
+  </span>
 </div>
+<p class="section-split-text">or</p>
+<button id="select-goals-button" class="btn btn-block btn-default btn-lg text-button" 
+  data-toggle="modal" data-target="#select-goals-modal">
+   <span class="button-title">Select from your active <strong>wants</strong></span><br> 
+   <div class="button-helper">
+     <span class="button-result"><%= @goals.size %> found in total</span>
+     <span class="button-search-terms"></span>
+   </div>
+</button>
+<br>
+<section id="goals-section">
+  <div id="improved-goals"></div>
+</section><br>
+<%= link_to 'Continue', next_wizard_path, class: 'btn btn-orange btn-block btn-lg' %>
 <div class="modal fade" id="new_improvement_modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Have</h4>
+        <h4 class="modal-title"><%= fa_icon 'trophy', text: 'Have' %></h4>
       </div>
       <div class="modal-body">
         <%= render 'goals/form_improve', modal: true %>
@@ -42,21 +40,15 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="select-goals-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal modal-transparent fade" id="select-goals-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <button type="button" class="btn btn-orange btn-lg btn-modal-fixed" data-dismiss="modal"><%= fa_icon 'times', text:'Close' %></button>
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Here are some wants you prepared earlier</h4>
-      </div>
       <div class="modal-body">
         <div id="all-goals">
           <%= render partial: "goals/have_goal", collection: @goals, 
               as: :goal, locals: {interaction: @interaction} %>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

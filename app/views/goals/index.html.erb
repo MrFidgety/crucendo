@@ -1,3 +1,27 @@
 <% provide(:title, "Wants") %>
-<h1>Active Wants</h1>
-<%= render @goals %>
+<h1 class="page-title">
+  <i class="fa fa-bullseye"></i><br>
+  <small>Wants</small>
+</h1>
+<ul class="nav nav-tabs">
+  <li class="col-xs-4 active">
+    <a data-toggle="tab" href="#active-goals">Active</a>
+  </li>
+  <li class="col-xs-4">
+    <a data-toggle="tab" href="#inactive-goals">Inactive</a>
+  </li>
+  <li class="col-xs-4">
+    <a data-toggle="tab" href="#complete-goals">Complete</a>
+  </li>
+</ul>
+<div class="tab-content">
+  <div id="active-goals" class="tab-pane fade in active">
+    <%= render(@active_goals) || "There doesn't appear to be anything here..." %>
+  </div>
+  <div id="inactive-goals" class="tab-pane fade">
+    <%= render(@inactive_goals) || "There doesn't appear to be anything here..." %>
+  </div>
+  <div id="complete-goals" class="tab-pane fade">
+    <%= render(@completed_goals) || "There doesn't appear to be anything here..." %>
+  </div>
+</div>

@@ -1,20 +1,18 @@
-<% 
-  # warning text when deleting goal with/without improvements
-  warning_improvements = 'This will delete the want and any improvements'
-  warning = 'This will delete the want'
-%>
 <div id="goal_<%= goal.id %>" 
   class="panel-group goal-panel new-goal">
   <div class="panel">
     <div class="panel-heading">
       <h3 class="panel-title">
+        <span class="pull-right">
+          <%= fa_icon('bullseye') %>
+        </span>
         <span class="goal_content"><%= goal.content %></span>
       </h3>
     </div>
     <div class="panel-body">
       <%= fa_icon 'clock-o' %>  
-      this was set <%= local_time_ago(goal.created_at) %><br>
-      <%= fa_icon 'plus' %> 
+      this was created <%= local_time_ago(goal.created_at) %><br>
+      <%= fa_icon 'trophy' %> 
       <% if goal.improvements.size > 0 %>
         you have improved <%= pluralize(goal.improvements.size, 'time') %><br>
       <% else %>
@@ -30,11 +28,6 @@
     <div class="panel-footer">
       this is now part of your active wants<br>
       it can be viewed and edited from your dashboard
-      <%#= link_to 'select here to remove this want', goal_path(goal), 
-            method: :delete,
-            remote: true,
-            title: "Are you sure?", 
-            data: {confirm: goal.improvements.count > 0 ? warning_improvements : warning } %>
     </div>
   </div>
 </div>

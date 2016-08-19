@@ -17,7 +17,7 @@ class InteractionsController < ApplicationController
       when :have
         @goal = Goal.new
         @goals = current_user.goals.includes(:improvements)
-          .where('completed = ? OR interaction_id = ?', 'false', @interaction.id)
+          .where('(active = ? AND completed = ?) OR interaction_id = ?', 'true', 'false', @interaction.id)
       when :want
         @goal = Goal.new
         @goals = @interaction.goals.where(completed: false)

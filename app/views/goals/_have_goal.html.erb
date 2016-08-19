@@ -1,19 +1,21 @@
-<% improvement = goal.has_improvement?(interaction) %>
+<% improvement = goal.has_improvement?(interaction) unless interaction.blank? %>
 <div id="goal_<%= goal.id %>" 
   class="panel-group goal-panel <%= 'improved' if improvement %>">
-  <div class="panel panel-default ">
+  <div class="panel">
     <%= link_to improve_goal_path(goal, interaction_id: interaction.id), 
           method: :post, remote: true, class: "goal-have" do %>
       <div class="panel-heading">
         <h3 class="panel-title">
-          <span class="pull-right"><%= fa_icon 'check' if improvement %></span>
+          <span class="pull-right">
+            <%= improvement.blank? ? fa_icon('bullseye') : fa_icon('trophy') %>
+          </span>
           <span class="goal_content"><%= goal.content %></span>
         </h3>
       </div>
       <div class="panel-body">
         <%= fa_icon 'clock-o' %>  
         this was created <%= local_time_ago(goal.created_at) %><br>
-        <%= fa_icon 'plus' %> 
+        <%= fa_icon 'trophy' %> 
         <% if goal.improvements.size > 0 %>
           you have improved <%= pluralize(goal.improvements.size, 'time') %><br>
         <% else %>

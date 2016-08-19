@@ -20,7 +20,10 @@ $(document).on "page:change", ->
       return false
       
   # clear input when modal closes
-  $('#new_improvement_modal, #select-goals-modal').on 'hide.bs.modal', ->
+  $('#select-goals-modal').on 'hide.bs.modal', ->
+    $('#new_improvement_text').keyup()
+    
+  $('#new_improvement_modal').on 'hide.bs.modal', ->
     $('#new_improvement_text').val('')
     $('#new_improvement_text').keyup()
   
@@ -37,9 +40,11 @@ $(document).on "page:change", ->
     goal = $( this ).parents('.panel-group')
 
     if !goal.hasClass('improved')
-      goal.detach().appendTo('#improved-goals').hide().slideDown('slow')
+      goal.detach().prependTo('#improved-goals').hide().slideDown('slow')
       $('#select-goals-modal').modal('hide')
       goal.addClass('improved')
+      $('#new_improvement_text').val('')
+      $('#new_improvement_text').keyup()
     else
       goal.detach().appendTo('#all-goals')
       goal.removeClass('improved')
@@ -129,6 +134,9 @@ $(document).on "page:change", ->
     time = new Date($('#goal_due_date').val())
     time.setHours(0,0,0,0)
     $('#goal_due_date_utc').val(time.toUTCString())
+    
+  $('#due_date_container').on 'shown.bs.collapse', ->
+    $('#goal_due_date').focus()
     
   # sortable = Sortable.create($('#sort-me').get(0), {
   #   handle: '.sort-handle',

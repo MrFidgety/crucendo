@@ -1,52 +1,50 @@
 <% provide(:title, "Profile") %>
-<h1>Profile<br><small><%= @user.email %></small></h1>
-
+<h1 class="page-title">
+  <i class="fa fa-smile-o"></i><br>
+  <small>Profile</small>
+</h1>
 <div class="row">
   <div class="col-md-5 col-md-offset-1 col-sm-8">
-    <div class="crucial-container">
-      <%= form_for @user do |f| %>
-        <%= f.label :name %>
-        <%= f.text_field :name, placeholder: 'Hey mate, what’s your name?', 
-                                class: 'form-control' %>
-        
-        <%= f.label :year_of_birth %>
-        <%= f.number_field  :year_of_birth, 
-                            class: 'form-control', 
-                            in: Time.now.year-120...Time.now.year, 
-                            placeholder: 'When did you enter the world?' %>
-        
-        <%= f.label :gender %>
-        <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
-          <label class="btn btn-default">
-            <%= f.radio_button :gender, 'female' %>Female
-    			</label>
-    			<label class="btn btn-default">
-    				<%= f.radio_button :gender, 'male' %>Male
-    			</label>
-        </div>
-        
-        <%= f.label :country %>
-        <%= country_select("user", "country_code", 
-            { include_blank: 'Select a country' }, 
-            { class: 'form-control', 
-            placeholder: 'Which amazing part of the world do you live in?' }) %>
-        
-        <%= f.submit "Save", class: "btn btn-success btn-block" %>
-      <% end %>
-    </div>
+    <%= form_for @user do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: 'Hey mate, what’s your name?', 
+                              class: 'form-control' %>
+      
+      <%= f.label :year_of_birth %>
+      <%= f.number_field  :year_of_birth, 
+                          class: 'form-control', 
+                          in: Time.now.year-120...Time.now.year, 
+                          placeholder: 'When did you enter the world?' %>
+      
+      <%= f.label :gender %>
+      <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+        <label class="btn btn-default">
+          <%= f.radio_button :gender, 'female' %>Female
+  			</label>
+  			<label class="btn btn-default">
+  				<%= f.radio_button :gender, 'male' %>Male
+  			</label>
+      </div>
+      
+      <%= f.label :country %>
+      <%= country_select("user", "country_code", 
+          { include_blank: 'Select a country' }, 
+          { class: 'form-control', 
+          placeholder: 'Which amazing part of the world do you live in?' }) %>
+      
+      <%= f.submit "Save", class: "btn btn-success btn-block" %>
+    <% end %>
     <div class="crucial-container">
       <button class="btn btn-default btn-block" data-toggle="modal" data-target="#new-email">I want to change my account email</button>
     </div>
   </div>
   <div class="col-sm-4">
-    <div class="crucial-container">
-      <h3>Logins</h3>
-      <ul>
-      <% @user.remembers.each do |remember| %>
-        <li><%= time_ago_in_words(remember.updated_at) %> ago, <%= remember.browser %>, <%= remember.platform %></li>
-      <% end %>
-      </ul>
-    </div>
+    <h3>Logins</h3>
+    <ul>
+    <% @user.remembers.each do |remember| %>
+      <li><%= time_ago_in_words(remember.updated_at) %> ago, <%= remember.browser %>, <%= remember.platform %></li>
+    <% end %>
+    </ul>
   </div>
 </div>
 <div id="new-email" class="modal fade" role="dialog">

@@ -2,7 +2,9 @@ class GoalsController < ApplicationController
   include InteractionsHelper
   
   def index
-    @goals = current_user.goals.recently_created
+    @active_goals = current_user.goals.active_most_recent
+    @inactive_goals = current_user.goals.inactive
+    @completed_goals = current_user.goals.completed
   end
   
   def show
@@ -88,6 +90,10 @@ class GoalsController < ApplicationController
         format.js   { render json: @goal.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def complete
+    # set/unset goals as complete (ajax call from 'have' page)
   end
   
   def destroy

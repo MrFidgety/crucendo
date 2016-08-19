@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_action :admin_user,        only: :destroy
   
   def show
-    @wants = current_user.goals.recently_created.limit(5)
+    @wants = current_user.goals.active_most_recent.limit(5)
   end
   
   def new_email

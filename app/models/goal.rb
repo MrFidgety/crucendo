@@ -6,9 +6,12 @@ class Goal < ActiveRecord::Base
   has_one     :skill
   has_one     :interaction
   
-  scope :due_soonest,   -> { order(due_date: :asc, content: :asc) }
-  scope :recently_created, -> { order(created_at: :desc) }
-  scope :alphabetical, -> { order(content: :asc) }
+  scope :due_soonest,         -> { order(due_date: :asc, content: :asc) }
+  scope :active,              -> { where(completed: false, active: true) }
+  scope :active_most_recent,  -> { active.order(created_at: :desc) }
+  scope :inactive,            -> { where(active: false).order(created_at: :desc) }
+  scope :alphabetical,        -> { order(content: :asc) }
+  scope :completed,           -> { where(completed: true).order(completed_date: :desc) }
   
   validates :user_id, presence: true
   validates :content, presence: true, 

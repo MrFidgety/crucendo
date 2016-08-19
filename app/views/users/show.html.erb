@@ -5,35 +5,29 @@
     crucendo_text = fa_icon('plus', text: 'Begin a new Crucendo')
   end
 %>
-<h1>Dashboard<br>
-<small><%= get_name(current_user) %></small></h1>
+<h1 class="page-title">
+  <i class="fa fa-tachometer"></i><br>
+  <small>Dashboard</small>
+</h1>
 <div class="row">
   <div class="col-sm-12">
     <%= link_to crucendo_text, 
           interactions_path, 
           class: "btn btn-default btn-block btn-lg dash-button" %>
   </div>
-  <div class="col-sm-6">
-    <%= link_to fa_icon('list-ul', text: 'Manage Subscriptions'),
+  <div class="col-sm-12">
+    <%= link_to fa_icon('list-alt', text: 'Manage Subscriptions'),
           subscriptions_path, 
           class: "btn btn-default btn-block btn-lg dash-button" %>
   </div>
-  <div class="col-sm-6">
-    <%= link_to fa_icon('line-chart', text: 'View my Accomplishments'),
-          subscriptions_path, 
-          class: "btn btn-default btn-block btn-lg dash-button disabled" %>
+  <div class="col-sm-12">
+    <%= link_to fa_icon('bullseye', text: 'Wants'),
+          wants_path, 
+          class: "btn btn-default btn-block btn-lg dash-button" %>
   </div>
-</div>
-<div class="row">
-  <div class="col-sm-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <%= link_to 'view all active', wants_path, class: "pull-right" %>
-        <h3 class="panel-title">Recent Wants</h3>
-      </div>
-      <div class="panel-body">
-        <%= render @wants %>
-      </div>
-    </div>
+  <div class="col-sm-12">
+    <%= link_to fa_icon('trophy', text: 'Haves'),
+          wants_path, 
+          class: "btn btn-default btn-block btn-lg dash-button disabled" %>
   </div>
 </div>

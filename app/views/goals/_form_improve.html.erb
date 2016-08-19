@@ -9,13 +9,13 @@
         class: 'form-control input-lg' %>
   <%= f.label :completed, 'Select to add to your list of active wants' %>
   <div class="btn-group btn-block" data-toggle="buttons">
-    <label class="btn btn-default btn-block improve-btn btn-lg">
+    <label class="btn btn-default btn-block improve-btn btn-lg scaled-btn">
       <%= f.check_box :completed, {}, 0, 1 %> I want to actively improve this
     </label>
   </div><br><br>
   <%= hidden_field(:goal, :interaction_id) %>
   <%= submit_tag 'Create', 
         :data => {:disable_with => "Saving..."}, 
-        class: 'btn btn-success pull-right' %>
+        class: 'btn btn-have pull-right' %>
   <div class="clearfix"></div>
 <% end %>
