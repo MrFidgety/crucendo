@@ -1,4 +1,4 @@
-$(document).on "page:change", ->
+$(document).on "page:change page:restore", ->
   
   # set off-canvas navigation menu
   panel = $('#slide-panel').scotchPanel({
@@ -10,6 +10,10 @@ $(document).on "page:change", ->
     distanceX: '300px',
     enableEscapeKey: true
   })
+  
+  # ensure starts closed 
+  # (fix issue when back button is pressed after using navigation)
+  panel.close()
   
   # click to close menu
   $(document).on('click', '.scotch-is-showing' , ->
