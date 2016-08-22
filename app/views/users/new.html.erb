@@ -1,20 +1,30 @@
-<% provide(:title, "Home") %>
-<h1><small>welcome to</small><br><span class="doublefont">Crucendo</span></h1>
+<% provide(:title, "Welcome") %>
+<h1 class="welcome-title">
+  Crucendo
+  <small>
+    Everyone deserves the opportunity to impress themselves. 
+    <span>
+      Start impressing yourself today.
+    </span>
+  </small>
+</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for @user, :url => root_url do |f| %>
-      <div class="input-group">
-        <%= f.email_field :email, placeholder: "type your email",
-                                  :autofocus=>true,
+    <%= form_for @user, :url => root_url, class: 'signup-form' do |f| %>
+      <div class="input-group break-group-xs">
+        <%= f.email_field :email, placeholder: "Your email here...",
                                   class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= f.submit "Let's Go!", class: "btn btn-default btn-lg" %>
+        <span class="input-group-btn hidden-xs">
+        <%= f.submit "Let's Go!", class: "btn btn-orange btn-lg btn-fill" %>
         </span>
       </div>
+      <span class="visible-xs">
+        <%= f.submit "Let's Go!", class: "btn btn-orange btn-lg btn-block" %>
+      </span>
     <% end %>
     <div class="policies">
-      <a href="#" download>Privacy</a> | 
-      <a href="#" download>Terms & Conditions</a>
+      <%= link_to 'Privacy', privacy_url %> | 
+      <%= link_to 'Terms & Conditions', terms_url %>
     </div>
   </div>
 </div>

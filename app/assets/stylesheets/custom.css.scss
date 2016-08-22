@@ -75,8 +75,34 @@ body {
   padding-top: 60px;
   background: $crucial-light-blue;
 }
-.doublefont {
+h1.welcome-title {
+  font-size: 5em;
+  font-family: 'Raleway', sans-serif;
+  margin: 50px 0px;
+  small {
+    display: block;
+    font-size: 0.3em;
+    margin-top: 20px;
+    span {
+      display: block;
+      font-size: 1.3em;
+      margin-top: 5px;
+    }
+  }
+}
+h3 {
   font-size: 2em;
+}
+.signup-form {
+  margin: 50px 0px;
+}
+.input-group.break-group-xs {
+  @media (max-width: $screen-xs-max) {
+    width: 100%;
+    .input-lg {
+      border-radius: 6px;
+    }
+  }
 }
 section {
   overflow: auto;
@@ -493,7 +519,7 @@ input[type="month"] {
   text-align: center;
   font-size: 2.5em;
   line-height: 1.2em;
-  color: #333333;
+  color: $gray-medium-light;
   padding: 25px 0px;
 }
 .question-topic {
@@ -569,15 +595,17 @@ h3.panel-title {
 .interaction-summary {
   font-size: 1.5em;
   text-align: center;
+  color: $gray-medium-light;
   .small {
     font-size: 0.85em;
   }
   span {
     font-size: 1.5em;
-    color: $crucial-dark-blue;
+    font-weight: 600;
   }
   ul {
     padding: 0;
+    color: $crucial-dark-blue;
   }
 }
 
@@ -687,7 +715,8 @@ h3.panel-title {
     position: absolute;
     left: 0;
     line-height: inherit;
-    padding-left: 30px;
+    padding-left: 25px;
+    font-size: 1.5em;
   }
 }
 #fixed-nav ul li a:hover {
@@ -905,7 +934,7 @@ input[type=text] {
 
 .btn-orange {
   background-color: $knicks-orange;
-  border: 1px solid $knicks-orange-light;
+  border: 1px solid $knicks-orange;
   color: white;
   &:hover, &:active, &:focus {
     color: white;
@@ -986,4 +1015,9 @@ input[type=text] {
   .improvement-details {
     padding-left: 40px;
   }
+}
+.crucendo-begin {
+  font-size: 1.2em;
+  text-align: center;
+  color: $gray-medium-light;
 }

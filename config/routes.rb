@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   patch   'profile'       =>  'users#edit'
   delete  'logout'        =>  'sessions#destroy'
   
+  get     'static_pages/privacy', as: 'privacy'
+  get     'static_pages/terms', as: 'terms'
+  
   resources :users,               only: :update
   resources :account_activations, only: :edit
   resources :sessions,            only: :edit

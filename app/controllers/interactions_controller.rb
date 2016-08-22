@@ -3,10 +3,11 @@ class InteractionsController < ApplicationController
   include InteractionsHelper
   
   before_action :find_interaction
-  before_action :needs_answers,   only: :show
+  before_action :correct_step,    only: :show
+  #before_action :needs_answers,   only: :show
   before_action :answer_current,  only: :update
   
-  steps :questions, :have, :want, :feeling, :crucendo
+  steps :begin, :questions, :have, :want, :feeling, :crucendo
   
   def show
     
@@ -62,9 +63,28 @@ class InteractionsController < ApplicationController
       redirect_to root_url if !@interaction.save 
     end
     
+    def correct_step
+      count = @interaction.answers.unanswered.size
+      case step
+        when :begin
+          # ok if no questions answered
+          if count > 0
+            if count == 3
+              redirect_to wizard_path(:have)
+            else
+              redirect_to wizard_path(:questions)
+            end
+          end
+        when :questions
+          redirect_to wizard_path(:have) if count == 3
+        else
+          redirect_to wizard_path(:questions) if count < 3
+      end
+    end
+    
     def needs_answers
       # find first unanswered question
-       redirect_to interactions_path if @answer = @interaction.find_next_answer unless step.equal? :questions
+      redirect_to wizard_path(:questions) if @answer = @interaction.find_next_answer unless [:questions,:begin].include? step 
     end
     
     def answer_current
@@ -79,8 +99,8 @@ class InteractionsController < ApplicationController
         
         if !@answer.content.blank?
           # set flash notice advising question already answered
-          
-          redirect_to interactions_path
+          set_flash :question_already_answered, type: :info
+          redirect_to wizard_path(:questions)
         end
 
       end

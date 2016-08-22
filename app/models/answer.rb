@@ -9,5 +9,7 @@ class Answer < ActiveRecord::Base
   validates :content,         length: { in: 23..3500, 
                               too_short: "that answer is a little short" }, 
                               :allow_nil => true
+                              
+  scope :unanswered,     -> { where("content <> ''") }
 
 end
