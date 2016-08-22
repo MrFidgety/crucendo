@@ -8,12 +8,13 @@
   <% else %>
     <p class="goal-begin">you are working toward your first improvement</p>
   <% end %>
-  <ul class="goal">
-    <li><%= fa_icon 'clock-o' %> 
+  <ul class="list-group goal">
+    <li class="list-group-item">
+      <%= fa_icon 'clock-o' %>
       this was created 
       <%= local_time_ago(@goal.created_at) %>
     </li>
-    <li>
+    <li class="list-group-item">
       <% if @goal.completed? %>
       <%= fa_icon 'check-square-o' %> 
       you marked this as complete 
@@ -27,7 +28,7 @@
       <% end %>
     </li>
     <% unless @goal.due_date.blank? %>
-    <li>
+    <li class="list-group-item">
       <%= fa_icon 'calendar' %> 
       you want to achieve this by 
       <%= local_relative_time(@goal.due_date, type: 'weekday-or-date') %>
