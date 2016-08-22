@@ -641,7 +641,9 @@ h3.panel-title {
 #site-content {
   background: $crucial-light-blue;
   min-height: 100%;
-  padding-top: 10px;
+  &.want-show {
+    background: $hornets-teal;
+  }
 }
 #scotch-panel {
   display: none;
@@ -888,6 +890,8 @@ ul.goal {
   margin-bottom: 30px;
   .fa {
     padding: 10px;
+    float: left;
+    
   }
 }
 h1.page-title {

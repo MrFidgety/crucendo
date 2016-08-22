@@ -10,6 +10,7 @@ class GoalsController < ApplicationController
   def show
     @goal = Goal.find(params[:id])
     @improvements = @goal.improvements
+    @page_class = 'want-show'
   end
   
   def create

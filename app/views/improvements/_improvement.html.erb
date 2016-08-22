@@ -3,6 +3,7 @@
     <%= fa_icon('trophy') %>
     <%= fa_icon('star') if improvement.unexpected %>
   </span>
-  
-  <span class="improvement-details"></span>Improved <%= local_time_ago(improvement.created_at) %>
+  <span class="improvement-details">
+    Improved <%= local_time_ago(improvement.created_at) %>
+  </span>
 </div>

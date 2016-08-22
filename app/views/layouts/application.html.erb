@@ -15,7 +15,7 @@
   <%= render 'layouts/header' %>
   <div id="site-wrapper">
     <div id="slide-panel"></div>
-    <div id="site-content">
+    <div id="site-content" class="<%= @page_class %>">
       <div class="container">
         <%= render_flash %>
         <% if !@breadcrumbs.blank? %>
