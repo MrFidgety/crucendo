@@ -2,12 +2,11 @@ class UsersController < ApplicationController
   include InteractionsHelper
   
   before_action :allow_signup,      only: :show
-  before_action :logged_in_user,    except: [:new, :create, :resend]
   before_action :set_correct_user,  except: [:new, :create, :resend]
   before_action :admin_user,        only: :destroy
   
   def show
-    @wants = current_user.goals.active_most_recent.limit(5)
+    @wants = @user.goals.active_most_recent.limit(5)
   end
   
   def new_email
@@ -112,7 +111,7 @@ class UsersController < ApplicationController
     
     # Ensures the correct user.
     def set_correct_user
-      @user = current_user
+      redirect_to root_url unless @user = current_user
     end
     
     # Confirms an admin user.

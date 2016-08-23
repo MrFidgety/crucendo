@@ -1,9 +1,14 @@
 <% provide(:title, "Want") %>
-<h1><%= @goal.content %></h1>
+<h1 class="page-title"><%= fa_icon 'bullseye', text: @goal.content %></h1>
 <div class="goal-details">
   <% if @goal.improvements.size > 0 %>
     <p class="improvements-large">
-      <%= @goal.improvements.size %><%= fa_icon('trophy') %>
+      <span class="fa-stack">
+        <%= fa_icon('trophy', class: "fa-stack-1x") %>
+        <span class="fa-stack-1x improvements-count">
+          <%= @goal.improvements.size %>
+        </span>
+      </span>
     </p>
   <% else %>
     <p class="goal-begin">you are working toward your first improvement</p>
@@ -43,5 +48,5 @@
 </div>
 <div class="goal-actions">
   <%= link_to fa_icon('pencil-square-o', text: 'Edit'), edit_goal_path(@goal), 
-        class: 'btn btn-orange btn-block btn-lg disabled' %>
+        class: 'btn btn-orange btn-block btn-lg' %>
 </div>

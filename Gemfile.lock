@@ -43,6 +43,8 @@ GEM
     bcrypt (3.1.7)
     binding_of_caller (0.7.3.pre1)
       debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.6.1.1)
+      railties (>= 3.0)
     bootstrap-sass (3.2.0.0)
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.10)
@@ -254,6 +256,8 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    momentjs-rails (2.11.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     nenv (0.3.0)
     nokogiri (1.6.8)
@@ -365,6 +369,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (= 3.1.7)
+  bootstrap-datepicker-rails
   bootstrap-sass (= 3.2.0.0)
   bootstrap-will_paginate (= 0.0.10)
   breadcrumbs_on_rails (= 2.3.1)
@@ -387,6 +392,7 @@ DEPENDENCIES
   mini_backtrace (= 0.1.3)
   mini_magick (= 3.8.0)
   minitest-reporters (= 1.0.5)
+  momentjs-rails
   passenger (>= 5.0.25)
   pg (= 0.18.2)
   rails (= 4.2.5)

@@ -1,6 +1,9 @@
 class GoalsController < ApplicationController
   include InteractionsHelper
   
+  before_action :logged_in_user, only: [:show, :edit, :update]
+  before_action :correct_user,  only: [:show, :edit, :update, :improve, :destroy]
+  
   def index
     @active_goals = current_user.goals.active_most_recent
     @inactive_goals = current_user.goals.inactive
@@ -8,9 +11,21 @@ class GoalsController < ApplicationController
   end
   
   def show
-    @goal = Goal.find(params[:id])
-    @improvements = @goal.improvements
     @page_class = 'want-show'
+    @improvements = @goal.improvements
+  end
+  
+  def edit
+    @page_class = 'want-show'
+  end
+  
+  def update
+    if @goal.update_attributes(goal_params)
+      #set_flash :successful_update, type: :success, object: @goal
+      redirect_to goal_path(@goal)
+    else
+      render 'edit'
+    end
   end
   
   def create
@@ -36,8 +51,6 @@ class GoalsController < ApplicationController
   end
   
   def improve
-    @goal = Goal.find(params[:id])
-    
     # set interaction id, only if params includes interaction
     if params.has_key?(:interaction_id)
       # check if improvement already exists
@@ -98,7 +111,6 @@ class GoalsController < ApplicationController
   end
   
   def destroy
-    @goal = Goal.find(params[:id])
     @goal.destroy
     
     respond_to do |format|
@@ -113,10 +125,41 @@ class GoalsController < ApplicationController
       if !params[:goal][:due_date_utc].blank?
         params[:goal][:due_date] = params[:goal][:due_date_utc]
       end
+      case params[:status]
+      when 'complete'
+        unless @goal.completed?
+          params[:goal][:completed] = true
+          params[:goal][:completed_date] = Time.zone.now
+        end
+      when 'active'
+        params[:goal][:active] = true
+        if @goal.completed?
+          params[:goal][:completed] = false
+          params[:goal][:completed_date] = nil
+        end
+      when 'inactive'
+        params[:goal][:active] = false
+        if @goal.completed?
+          params[:goal][:completed] = false
+          params[:goal][:completed_date] = nil
+        end
+      end
       params.require(:goal).permit( :content, 
                                     :due_date, 
                                     :completed, 
+                                    :completed_date,
                                     :active)
     end
     
+    def correct_user
+      @goal = current_user.goals.find_by(id: params[:id])
+      redirect_to root_url if @goal.nil?
+    end
+    
+    # confirms a logged-in user.
+    def logged_in_user
+      unless logged_in?
+        redirect_to root_url
+      end
+    end
 end

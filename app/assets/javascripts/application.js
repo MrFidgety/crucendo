@@ -19,3 +19,5 @@
 //= require data-confirm-modal
 //= require local_time
 //= require swiper
+//= require moment
+//= require bootstrap-datepicker

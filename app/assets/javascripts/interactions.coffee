@@ -130,7 +130,7 @@ $(document).on "page:change", ->
     $("#new_goal form").render_form_errors('goal', $.parseJSON(xhr.responseText))
     
   # convert date-time on submit
-  $("#new_goal").submit ->
+  $("#goal_due_date").on 'change', ->
     time = new Date($('#goal_due_date').val())
     time.setHours(0,0,0,0)
     $('#goal_due_date_utc').val(time.toUTCString())
@@ -147,35 +147,36 @@ $(document).on "page:change", ->
   # }) if $('#sort-me').length
   
   #------------------ FEELING ------------------#
-  # initialize swiper when document ready  
-  feeling = $('.swiper-container').swiper({
-    pagination: '.swiper-pagination',
-    initialSlide: 2,
-    centeredSlides: true,
-    paginationClickable: true,
-    mousewheelControl: true,
-    slideToClickedSlide: true,
-    slidesPerView: 5,
-    spaceBetween: 10,
-    breakpoints: {
-      1024: {
-        slidesPerView: 4,
+  # initialize swiper when document ready
+  if $('.swiper-container').length
+    feeling = $('.swiper-container').swiper({
+      pagination: '.swiper-pagination',
+      initialSlide: 2,
+      centeredSlides: true,
+      paginationClickable: true,
+      mousewheelControl: true,
+      slideToClickedSlide: true,
+      slidesPerView: 5,
+      spaceBetween: 10,
+      breakpoints: {
+        1024: {
+          slidesPerView: 4,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        640: {
+          slidesPerView: 2,
+        },
+        320: {
+          slidesPerView: 1,
+        }
       },
-      768: {
-        slidesPerView: 3,
-      },
-      640: {
-        slidesPerView: 2,
-      },
-      320: {
-        slidesPerView: 1,
-      }
-    },
-    onInit: (feeling) ->
-      $('#interaction_feeling').val(feeling.activeIndex+1)
-    onSlideChangeEnd: (feeling) ->
-      $('#interaction_feeling').val(feeling.activeIndex+1)
-  })
+      onInit: (feeling) ->
+        $('#interaction_feeling').val(feeling.activeIndex+1)
+      onSlideChangeEnd: (feeling) ->
+        $('#interaction_feeling').val(feeling.activeIndex+1)
+    })
   
 # display form errors for each input
 $.fn.render_form_errors = (model_name, errors) ->

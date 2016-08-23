@@ -5,9 +5,11 @@
 
 /* mixins, variables, etc. */
 
-$crucial-gray: #9898a9;
+$crucial-gray: #717171;
 $crucial-dark-blue: #07438c;
 $crucial-light-blue: #0498d9;
+$crucial-dark-blue-gray: #545471;
+$crucial-aqua: #a5edff;
 $gray-medium-light: #eaeaea;
 $gray-metal: #e2e5f1;
 $friendly-red: #ff0033;
@@ -76,16 +78,18 @@ body {
   background: $crucial-light-blue;
 }
 h1.welcome-title {
+  color: white;
   font-size: 5em;
   font-family: 'Raleway', sans-serif;
-  margin: 50px 0px;
+  margin: 70px 0px;
   small {
+    color: $crucial-aqua;
     display: block;
     font-size: 0.3em;
     margin-top: 20px;
     span {
       display: block;
-      font-size: 1.3em;
+      font-size: 1.4em;
       margin-top: 5px;
     }
   }
@@ -213,7 +217,7 @@ input, textarea, select, .uneditable-input {
   margin-bottom: 15px;
 }
 input {
-  height: auto !important;
+  height: auto;
 }
 #error_explanation {
   color: red;
@@ -351,6 +355,9 @@ input[type="month"] {
 
 .input-group-addon, .input-group-btn {
   vertical-align: top; // make sure button aligns with input that has errors
+  .btn-lg {
+    height: 46px;
+  }
 }
 
 .error {
@@ -407,9 +414,15 @@ input[type="month"] {
 }
 .goal-panel {
   .panel {
-    border: 1px solid white;
+    transition: border-color 0.3s;
+    border: 2px solid white;
     background-color: white;
+    &:hover {
+      border-color: $hornets-teal;
+    }
     .panel-heading {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
       background-color: $hornets-teal;
       color: white;
     }
@@ -611,6 +624,7 @@ h3.panel-title {
 
 #select-goals-button {
   text-align: left;
+  height: auto;
 }
 
 .crucendo-logo {
@@ -646,21 +660,28 @@ h3.panel-title {
   }
 }
 
+.btn-link.btn-danger {
+  color: $crucial-gray;
+}
+
 /* scotch panel navigation */
 .scotch-is-showing>#site-content {
   position: relative;
 }
-.scotch-is-showing>#site-content:after {
+#site-content:after {
+  pointer-events: none; // allow clicks through overlay
   content: " ";
   z-index: 10;
-  display: block;
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  transition: background 0.3s;
+  width: 100%;
+  transition: background 0.6s;
+}
+.scotch-is-showing>#site-content:after {
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.4);
   cursor: pointer;
 }
 #site-wrapper {
@@ -687,6 +708,7 @@ h3.panel-title {
   top: 60px;
   left: 0;
   width: 300px;
+  display: none;
   .active {
      -webkit-transform: translateX(300px) scale(1);
     -moz-transform: translateX(300px) scale(1);
@@ -707,7 +729,7 @@ h3.panel-title {
   height: 50px;
   line-height: 50px;
   background: transparent;
-  color: #fff;
+  color: white;
   text-align: left;
   font-size: 16px;
   padding-left: 90px;
@@ -878,6 +900,8 @@ hr {
     text-decoration: inherit;
   }
   .panel-heading {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
     :before {
       content: "\f096";
       font-family: FontAwesome;
@@ -905,8 +929,21 @@ hr {
 
 .improvements-large {
   text-align: center;
-  font-size: 6em;
-  color: $gray-medium-light;
+  .fa-stack {
+    font-size: 10em;
+    height: 1.5em;
+    line-height: 1.5em;
+    .fa {
+      color: $hornets-purple;
+    }
+    .improvements-count {
+      color: white;
+      font-size: 0.2em;
+      margin-top: -20px;
+      margin-left: -1px;
+    }
+  }
+  
 }
 .goal-begin {
   font-size: 1.8em;
@@ -915,6 +952,10 @@ hr {
 }
 h1.page-title {
   margin-bottom: 10px;
+  color: white;
+  small {
+    color: $crucial-aqua;
+  }
 }
 // scale placeholder text so it fits on smaller mobile devices
 input[type=text] {
@@ -941,8 +982,9 @@ input[type=text] {
     background-color: $knicks-orange-dark;
   }
 }
-.scaled-btn {
+.scaled-btn.improve-btn {
   font-size: 1.5em;
+  height: auto;
 }
 .container {
   padding-left: 10px;
@@ -996,7 +1038,7 @@ input[type=text] {
       text-align: center;
       margin: 0;
       font-size: 1.5em;
-      color: inherit;
+      color: $crucial-dark-blue-gray;
       &:hover {
         background-color: inherit;
         border: none;
@@ -1020,4 +1062,41 @@ input[type=text] {
   font-size: 1.2em;
   text-align: center;
   color: $gray-medium-light;
+}
+
+// fix safari input-group-btn height issue
+.input-group-btn {
+  .btn-lg {
+    height: 46px;
+  }
+}
+
+// ensure submit buttons scale normally
+input[type='submit'] {
+  height: auto;
+}
+
+.datepicker.dropdown-menu {
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+  z-index: 9999 !important;
+  // -webkit-transform-origin: 50% 50% 0;
+  // transform-origin: 50% 50% 0;
+  -moz-transition: none;
+  -webkit-transition: none;
+  -o-transition: color 0 ease-in;
+  transition: none;
+}
+
+input[type="date"]
+{
+  display: block;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  min-height: 1.2em;
+  padding: 0 16px;
+}
+.modal-footer .btn {
+  margin: 0;
 }
