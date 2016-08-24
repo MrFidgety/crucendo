@@ -12,7 +12,12 @@
   <%= f.text_field :content, placeholder: 'What do you want to improve?', 
                           class: 'form-control input-lg' %>
   <%= f.label :due_date, 'Set a due date.' %>
-  <%= f.date_field :due_date, :value => nil, class: 'form-control input-lg' %>
+  <div class="input-group date">
+    <span class="input-group-btn">
+      <%= button_tag fa_icon('calendar'), type: 'button', class: "btn btn-default btn-lg", id: 'calendar-button' %>
+    </span>
+    <%= f.date_field :due_date, class: 'form-control input-lg' %>
+  </div>
   <%= hidden_field_tag 'goal[due_date_utc]', @goal.due_date %>
   <%= label_tag :status %>
   <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
@@ -69,5 +74,10 @@
         todayHighlight: true
       });
     }
+    
+    // trigger calendar input when button pressed
+    $('#calendar-button').click(function() {
+      $('#goal_due_date').click().focus();
+    });
   });
 </script>

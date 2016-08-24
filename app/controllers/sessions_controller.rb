@@ -23,6 +23,11 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
   
+  def remove
+    @remember = Remember.find(params[:id])
+    @remember.destroy if @remember.user == current_user
+  end
+  
   def destroy
     log_out if logged_in?
     redirect_to root_url

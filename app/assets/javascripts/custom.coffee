@@ -12,10 +12,10 @@ $(document).on "page:change page:restore", ->
     beforePanelOpen: -> 
       $('#fixed-nav').show()
       # esure overlay remains full screen
-      $('#site-content').css('position', 'relative')
+      #$('#site-content').css('position', 'relative')
     afterPanelClose: ->
       $('#fixed-nav').hide()
-      $('#site-content').css('position', 'static')
+      #$('#site-content').css('position', 'static')
   })
   
   # ensure starts closed 

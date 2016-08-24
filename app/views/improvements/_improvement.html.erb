@@ -1,9 +1,12 @@
-<div class="improvement-small list-group-item">
-  <span class="icons">
-    <%= fa_icon('trophy') %>
-    <%= fa_icon('star') if improvement.unexpected %>
-  </span>
-  <span class="improvement-details">
-    Improved <%= local_time_ago(improvement.created_at) %>
-  </span>
+<div class="panel panel-default improvement-small">
+  <div class="panel-body">
+    <span class="icons">
+      <%= fa_icon('trophy') %>
+      <%= fa_icon('star') if improvement.unexpected %>
+    </span>
+    <p class="improvement-details">
+      <span><%= improvement.goal.content %></span>
+      Improved <%= local_time_ago(improvement.created_at) %>
+    </p>
+  </div>
 </div>

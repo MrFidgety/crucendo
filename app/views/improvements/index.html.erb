@@ -1,0 +1,16 @@
+<% provide(:title, "Haves") %>
+<h1 class="page-title">
+  <i class="fa fa-trophy"></i><br>
+  <small>Haves</small>
+</h1>
+<ul class="nav nav-tabs">
+  <li class="col-xs-6 col-xs-offset-3 active">
+    <a data-toggle="tab" href="#haves">All</a>
+  </li>
+</ul>
+<div class="tab-content">
+  <div id="haves" class="tab-pane fade in active">
+    <%= render @improvements %>
+    <%= will_paginate @improvements %>
+  </div>
+</div>

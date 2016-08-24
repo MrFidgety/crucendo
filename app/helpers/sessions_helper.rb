@@ -17,6 +17,11 @@ module SessionsHelper
     user == current_user
   end
   
+  # Find if remember is part of current session
+  def current_session?(remember)
+    BCrypt::Password.new(remember.remember_digest).is_password?(cookies[:remember_token])
+  end
+  
   # Returns the user corresponding to the remember token cookie.
   def current_user
     if (user_id = session[:user_id])

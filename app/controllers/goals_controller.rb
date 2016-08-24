@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
   include InteractionsHelper
   
-  before_action :logged_in_user, only: [:show, :edit, :update]
+  before_action :logged_in_user
   before_action :correct_user,  only: [:show, :edit, :update, :improve, :destroy]
   
   def index
@@ -154,12 +154,5 @@ class GoalsController < ApplicationController
     def correct_user
       @goal = current_user.goals.find_by(id: params[:id])
       redirect_to root_url if @goal.nil?
-    end
-    
-    # confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        redirect_to root_url
-      end
     end
 end

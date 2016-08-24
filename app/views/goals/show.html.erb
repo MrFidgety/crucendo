@@ -1,5 +1,6 @@
 <% provide(:title, "Want") %>
-<h1 class="page-title"><%= fa_icon 'bullseye', text: @goal.content %></h1>
+<h1 class="page-title"><%= fa_icon 'bullseye' %><br>
+  <%= @goal.content %></h1>
 <div class="goal-details">
   <% if @goal.improvements.size > 0 %>
     <p class="improvements-large">
@@ -13,40 +14,48 @@
   <% else %>
     <p class="goal-begin">you are working toward your first improvement</p>
   <% end %>
-  <ul class="list-group goal">
-    <li class="list-group-item">
+  <ul>
+    <li>
       <%= fa_icon 'clock-o' %>
-      this was created 
-      <%= local_time_ago(@goal.created_at) %>
+      <p>created <%= local_time_ago(@goal.created_at) %></p>
     </li>
-    <li class="list-group-item">
+    <li>
       <% if @goal.completed? %>
-      <%= fa_icon 'check-square-o' %> 
-      you marked this as complete 
-      <%= local_time_ago(@goal.completed_date) %>
+        <%= fa_icon 'check' %> 
+        <p>completed <%= local_time_ago(@goal.completed_date) %></p>
       <% elsif @goal.active? %>
-      <%= fa_icon 'play-circle-o' %> 
-      you are actively improving this want
+        <%= fa_icon 'play' %> 
+        <p>you are actively improving this want</p>
       <% else %>
-      <%= fa_icon 'pause-circle-o' %> 
-      you have put this want on hold
+        <%= fa_icon 'pause' %> 
+        <p>you have put this want on hold</p>
       <% end %>
     </li>
-    <% unless @goal.due_date.blank? %>
-    <li class="list-group-item">
-      <%= fa_icon 'calendar' %> 
-      you want to achieve this by 
-      <%= local_relative_time(@goal.due_date, type: 'weekday-or-date') %>
+    <li>
+      <%= fa_icon 'trophy' %> 
+      <% if @goal.improvements.size > 0 %>
+        <p>
+          you have improved <%= pluralize(@goal.improvements.size, 'time') %>
+        </p>
+      <% else %>
+        <p>you are working toward your first improvement<p>
+      <% end %>
     </li>
+    <% if !@goal.due_date.blank? %>
+    <li>
+      <%= fa_icon 'calendar' %> 
+      <p>
+        you want to achieve this by 
+        <%= local_relative_time(@goal.due_date, type: 'weekday-or-date') %>
+      </p>
     <% end %>
+    </li>
   </ul>
 </div>
 <div class="goal-improvements">
-  <div class="list-group">
-    <%= render @improvements %>
-  </div>
+  <%= render @improvements %>
 </div>
 <div class="goal-actions">
   <%= link_to fa_icon('pencil-square-o', text: 'Edit'), edit_goal_path(@goal), 
-        class: 'btn btn-orange btn-block btn-lg' %>
+        class: 'btn btn-orange pull-right btn-lg' %>
 </div>

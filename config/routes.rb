@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   
+  get 'improvements/index'
+
   root                        'users#show'
   post    '/'             =>  'users#create'
   post    'changemyemail' =>  'users#new_email'
   post    'unexpected'    =>  'goals#unexpected'
+  post    'remove_session'=>  'sessions#remove'
   get     'help'          =>  'static_pages#help'
   get     'resend'        =>  'users#resend'
   get     'profile'       =>  'users#edit'
   get     'wants'         =>  'goals#index'
+  get     'haves'         =>  'improvements#index'
   patch   'profile'       =>  'users#edit'
   delete  'logout'        =>  'sessions#destroy'
   

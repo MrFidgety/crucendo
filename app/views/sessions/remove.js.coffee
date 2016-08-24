@@ -1,0 +1,1 @@
+$('#remember_<%= @remember.id %>').slideUp('slow')

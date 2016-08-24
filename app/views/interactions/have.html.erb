@@ -47,7 +47,7 @@
       <div class="modal-body">
         <div id="all-goals">
           <%= render partial: "goals/have_goal", collection: @goals, 
-              as: :goal, locals: {interaction: @interaction} %>
+              as: :goal, locals: {interaction: @interaction, type: :have} %>
         </div>
       </div>
     </div>

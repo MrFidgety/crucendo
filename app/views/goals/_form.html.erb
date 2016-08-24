@@ -4,17 +4,36 @@
   <%= f.label :goal, 'What do you want to improve?' %>
   <%= f.text_field :content, placeholder: 'type what you want to improve...', 
         class: 'form-control input-lg' %>
-  <%= content_tag :div, id: 'due_date_container', class: 'collapse' do %>
-    <%= f.label :due_date %>
-    <%= f.date_field :due_date, class: 'form-control' %>
-    <%= hidden_field_tag 'goal[due_date_utc]' %>
-  <% end %>
+  <%= f.label :due_date, 'Set a due date. (optional)' %>
+  <div class="input-group date">
+    <span class="input-group-btn">
+      <%= button_tag fa_icon('calendar'), type: 'button', class: "btn btn-default btn-lg", id: 'calendar-button' %>
+    </span>
+    <%= f.date_field :due_date, class: 'form-control input-lg' %>
+  </div>
+  <%= hidden_field_tag 'goal[due_date_utc]' %>
   <%= hidden_field(:goal, :interaction_id) %>
-  <%= button_tag fa_icon('calendar', text: 'Set due date'),  {   :type => 'button', 
-                                        :class => "btn btn-default", 
-                                        'data-target' => "#due_date_container", 
-                                        'data-toggle' => "collapse"} %>
+  <br>
   <%= f.submit 'Create', 
         :data => {:disable_with => "Saving..."}, 
-        class: 'btn btn-want pull-right' %>
+        class: 'btn btn-want btn-lg pull-right' %>
+  <div class="clearfix"></div>
 <% end %>
+<script>
+  $( document ).ready(function() {
+    // enable bootstrap datepicker if native method unavailable
+    if ( $('[type="date"]').prop('type') != 'date' ) {
+      $('#goal_due_date').datepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        clearBtn: true,
+        todayHighlight: true
+      });
+    }
+    
+    // trigger calendar input when button pressed
+    $('#calendar-button').click(function() {
+      $('#goal_due_date').click().focus();
+    });
+  });
+</script>

@@ -414,7 +414,7 @@ input[type="month"] {
 }
 .goal-panel {
   .panel {
-    transition: border-color 0.3s;
+    transition: border-color 0.3s ease-out;
     border: 2px solid white;
     background-color: white;
     &:hover {
@@ -428,13 +428,29 @@ input[type="month"] {
     }
     .panel-body {
       padding: 10px;
-      .fa {
-        margin-right: 10px;
+      ul {
+        padding: 0;
+        margin: 0;
+        li {
+          .fa {
+            position: absolute;
+            line-height: inherit;
+            padding-left: 0.5em;
+          }
+          .fa-play {
+            margin-left: 1px;
+          }
+          span {
+            padding-left: 3em;
+          }
+        }
       }
+      
     }
     .panel-footer {
-      color: $crucial-gray;
+      color: $hornets-teal;
       background-color: inherit;
+      text-align: center;
     }
   }
   &.improved {
@@ -442,6 +458,12 @@ input[type="month"] {
       .panel-heading {
         background-color: $hornets-purple;
         color: white;
+      }
+      &:hover {
+        border-color: $hornets-purple;
+      }
+      .panel-footer {
+        color: $hornets-purple;
       }
     }
   }
@@ -677,7 +699,7 @@ h3.panel-title {
   left: 0;
   height: 100%;
   width: 100%;
-  transition: background 0.6s;
+  //transition: background 0.6s; // starts lagging
 }
 .scotch-is-showing>#site-content:after {
   pointer-events: auto;
@@ -939,6 +961,7 @@ hr {
     .improvements-count {
       color: white;
       font-size: 0.2em;
+      font-weight: 600;
       margin-top: -20px;
       margin-left: -1px;
     }
@@ -985,6 +1008,7 @@ input[type=text] {
 .scaled-btn.improve-btn {
   font-size: 1.5em;
   height: auto;
+  margin: 0;
 }
 .container {
   padding-left: 10px;
@@ -992,7 +1016,7 @@ input[type=text] {
 }
 .btn-have {
   background-color: $hornets-purple;
-  border: 1px solid $hornets-purple-light;
+  border: 1px solid $hornets-purple;
   color: white;
   &:hover, &:active, &:focus {
     color: white;
@@ -1001,7 +1025,7 @@ input[type=text] {
 }
 .btn-want {
   background-color: $hornets-teal;
-  border: 1px solid $hornets-teal-light;
+  border: 1px solid $hornets-teal;
   color: white;
   &:hover, &:active, &:focus {
     color: white;
@@ -1018,6 +1042,8 @@ input[type=text] {
 .modal-transparent {
   .modal-content {
     background-color: transparent;
+    box-shadow: none;
+    border: none;
   }
   .modal-body {
     padding: inherit;
@@ -1037,8 +1063,9 @@ input[type=text] {
     a {
       text-align: center;
       margin: 0;
-      font-size: 1.5em;
+      font-size: 1.3em;
       color: $crucial-dark-blue-gray;
+      padding: 10px 0px;
       &:hover {
         background-color: inherit;
         border: none;
@@ -1047,15 +1074,27 @@ input[type=text] {
     }
   }
 }
-.improvement-small {
+.improvement-small.panel {
+  margin-bottom: 5px;
   background-color: $hornets-purple;
+  border-color: $hornets-purple;
   color: white;
+  .panel-body {
+    padding: 10px;
+  }
   .icons {
     position: absolute;
     line-height: inherit;
+    font-size: 1.5em;
   }
   .improvement-details {
+    span {
+      font-size: 1.2em;
+      display: block;
+    }
     padding-left: 40px;
+    margin-bottom: 0;
+    font-size: 1em;
   }
 }
 .crucendo-begin {
@@ -1081,8 +1120,6 @@ input[type='submit'] {
   -webkit-transform: scale(1, 1);
   transform: scale(1, 1);
   z-index: 9999 !important;
-  // -webkit-transform-origin: 50% 50% 0;
-  // transform-origin: 50% 50% 0;
   -moz-transition: none;
   -webkit-transition: none;
   -o-transition: color 0 ease-in;
@@ -1099,4 +1136,46 @@ input[type="date"]
 }
 .modal-footer .btn {
   margin: 0;
+}
+.input-group.date {
+  margin-bottom: 15px;
+}
+
+.goal-details {
+  ul {
+    padding: 10px;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    background: white;
+    border-radius: 4px;
+    li {
+      .fa {
+        position: absolute;
+        line-height: inherit;
+        padding-left: 0.5em;
+      }
+      .fa-play {
+        margin-left: 1px;
+      }
+      p {
+        margin: 5px 0px;
+        font-size: 1em;
+        padding-left: 3em;
+        line-height: inherit;
+      }
+    }
+  }
+}
+
+.panel.remember {
+  margin-bottom: 10px;
+  span {
+    display: block;
+    &:first-of-type {
+      font-size: 1.2em;
+    }
+  }
+  .panel-body {
+    padding:10px;
+  }
 }
