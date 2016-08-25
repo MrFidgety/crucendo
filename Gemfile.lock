@@ -40,6 +40,7 @@ GEM
     addressable (2.4.0)
     ansi (1.5.0)
     arel (6.0.3)
+    awesome_print (1.7.0)
     bcrypt (3.1.7)
     binding_of_caller (0.7.3.pre1)
       debug_inspector (>= 0.0.1)
@@ -368,6 +369,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   bcrypt (= 3.1.7)
   bootstrap-datepicker-rails
   bootstrap-sass (= 3.2.0.0)

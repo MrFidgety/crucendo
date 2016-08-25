@@ -122,7 +122,9 @@ class GoalsController < ApplicationController
   private
   
     def goal_params
-      if !params[:goal][:due_date_utc].blank?
+      
+      # only use javascript utc date if user hasn't set timezone
+      if !params[:goal][:due_date_utc].blank? && current_user.time_zone.blank?
         params[:goal][:due_date] = params[:goal][:due_date_utc]
       end
       case params[:status]

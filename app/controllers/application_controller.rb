@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include FlashHelper
   
+  before_filter :set_user_time_zone
+  
   def set_flash(result, type: 'info', object: nil, controller: controller_path)
     if object
       flash[:from] = action_name
@@ -18,6 +20,14 @@ class ApplicationController < ActionController::Base
       flash[:result] = result
       flash[:type] = type
       flash[:controller] = :shared
+    end
+  end
+  
+  def set_user_time_zone
+    if current_user.blank? || current_user.time_zone.blank?
+      Time.zone = 'UTC'
+    else
+      Time.zone =  current_user.time_zone
     end
   end
   

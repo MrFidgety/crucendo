@@ -104,7 +104,8 @@ class UsersController < ApplicationController
       params.require(:user).permit( :name, 
                                     :year_of_birth, 
                                     :gender, 
-                                    :country_code)
+                                    :country_code,
+                                    :time_zone)
     end
     
     # Allowed signup parameters

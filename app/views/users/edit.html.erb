@@ -39,6 +39,9 @@
           { include_blank: 'Select a country' }, 
           { class: 'form-control input-lg', 
           placeholder: 'Which amazing part of the world do you live in?' }) %>
+      <%= f.label :time_zone %>
+      <%= f.time_zone_select :time_zone, nil, { include_blank: true }, 
+            { class: 'form-control input-lg' } %>
       <%= button_tag(type: 'submit', class: "btn btn-orange pull-right btn-lg",
             :data => {:disable_with => "Saving..."}) do %>
         <%= fa_icon('floppy-o', text: 'Save') %>
