@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def interaction_streak_days
+    Interaction.user_streak_days(self)
+  end
+  
   # Remembers a user in the database for use in persistent sessions.
   def remember
     self.remember_token = User.new_token

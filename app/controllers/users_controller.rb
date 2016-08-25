@@ -7,6 +7,9 @@ class UsersController < ApplicationController
   
   def show
     @wants = @user.goals.active_most_recent.limit(5)
+    @goals_completed_count = @user.goals.completed.size
+    @consecutive_days = @user.interaction_streak_days
+    @improvements_count = @user.improvements.size
   end
   
   def new_email

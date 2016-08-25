@@ -10,6 +10,6 @@ class Answer < ActiveRecord::Base
                               too_short: "that answer is a little short" }, 
                               :allow_nil => true
                               
-  scope :unanswered,     -> { where("content <> ''") }
+  scope :answered,     -> { where.not(content: nil) }
 
 end

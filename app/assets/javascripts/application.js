@@ -15,9 +15,9 @@
 //= require jquery-ui/autocomplete
 //= require bootstrap
 //= require turbolinks
-//= require_tree .
 //= require data-confirm-modal
 //= require local_time
 //= require swiper
 //= require moment
 //= require bootstrap-datepicker
+//= require_tree .

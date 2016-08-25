@@ -20,14 +20,13 @@
           subscriptions_path, 
           class: "btn btn-default btn-block btn-lg dash-button" %>
   </div>
-  <div class="col-sm-12">
-    <%= link_to fa_icon('bullseye', text: 'Wants'),
-          wants_path, 
-          class: "btn btn-default btn-block btn-lg dash-button" %>
+  <div class="col-sm-4">
+    <p><%= @goals_completed_count %> completed wants</p>
   </div>
-  <div class="col-sm-12">
-    <%= link_to fa_icon('trophy', text: 'Haves'),
-          haves_path, 
-          class: "btn btn-default btn-block btn-lg dash-button" %>
+  <div class="col-sm-4">
+    <p><%= @consecutive_days %> consecutive days</p>
+  </div>
+  <div class="col-sm-4">
+    <p><span><%= @improvements_count %></span> total improvements</p>
   </div>
 </div>
