@@ -21,12 +21,12 @@
           class: "btn btn-default btn-block btn-lg dash-button" %>
   </div>
   <div class="col-sm-4">
-    <p><%= @goals_completed_count %> completed wants</p>
+    <p class="dash-achievement"><%= pluralize(@goals_completed_count, 'completed want') %> </p>
   </div>
   <div class="col-sm-4">
-    <p><%= @consecutive_days %> consecutive days</p>
+    <p class="dash-achievement"><%= pluralize(@consecutive_days, 'consecutive day') %> </p>
   </div>
   <div class="col-sm-4">
-    <p><span><%= @improvements_count %></span> total improvements</p>
+    <p class="dash-achievement"><%= pluralize(@improvements_count, 'total improvement') %></p>
   </div>
 </div>
