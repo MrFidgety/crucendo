@@ -74,7 +74,7 @@ class UsersController < ApplicationController
   
   def update
     if @user.update_attributes(user_params)
-      set_flash :successful_update, type: :success, object: @user
+      set_flash :good_button, type: :success
       redirect_to profile_path
     else
       render 'edit'

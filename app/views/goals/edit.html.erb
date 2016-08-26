@@ -36,7 +36,8 @@
         title: "Are you sure?", 
         data: {confirm: confirm_text },
         class: "btn btn-danger btn-link" %>
-  <%= button_tag(type: 'submit', class: "btn btn-orange pull-right btn-lg") do %>
+  <%= button_tag(type: 'submit', class: "btn btn-orange pull-right btn-lg", 
+        :data => {:disable_with => "Saving..."}) do %>
     <%= fa_icon('floppy-o', text: 'Save') %>
   <% end %>
 <% end %>

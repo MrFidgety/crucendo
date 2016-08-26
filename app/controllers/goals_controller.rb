@@ -21,7 +21,7 @@ class GoalsController < ApplicationController
   
   def update
     if @goal.update_attributes(goal_params)
-      #set_flash :successful_update, type: :success, object: @goal
+      set_flash :good_button, type: :success
       redirect_to goal_path(@goal)
     else
       render 'edit'

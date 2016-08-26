@@ -14,6 +14,7 @@ $gray-medium-light: #eaeaea;
 $gray-metal: #e2e5f1;
 $friendly-red: #ff0033;
 $friendly-green: #0bd00b;
+$bright-green: #56d646;
 $box-shadow: rgba(0,2,34,0.75);
 
 $hornets-purple: #2f008a;
@@ -899,7 +900,7 @@ button.text-button {
 .panel-crucendo {
   margin: 2em 0;
   color: white;
-  background-color: #56d646;
+  background-color: $bright-green;
   a {
     text-decoration: inherit;
     color: inherit;
@@ -1215,4 +1216,22 @@ input[type="date"]
   text-align: center;
   color: white;
   padding: 1em;
+}
+.alert {
+  font-size: 1.5em;
+  &.alert-success {
+    color: white;
+    background-color: $bright-green;
+  }
+  &.alert-danger {
+    color: white;
+    background-color: $friendly-red;
+    a {
+      font-weight: 600;
+      color: inherit;
+    }
+  }
+  .close {
+    padding-left: 5px;
+  }
 }

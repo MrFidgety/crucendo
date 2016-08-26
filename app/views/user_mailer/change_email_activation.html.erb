@@ -1,49 +1,40 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Change email - Step 2</title>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <div style="font-family: Verdana, Geneva, sans-serif; text-align: center;">
-      <div style="margin: 30px">
-        <%= email_image_tag("logo_icon.png") %>
-      </div>
-      <p>We’re excited that you’re part of Crucendo.</p>
-      <p>As we say around the office, everyone deserves the opportunity to 
-      impress themselves. It’s great to see you keeping your details up to date.
-      </p>
-      <p>The process to change your email address is a two step process, to 
-      protect your privacy. By clicking the <strong>step 2</strong> button 
-      below, you are confirming that you would like to change your email 
-      address. Please note the link will expire in 15 minutes.</p>
-      <%= link_to "Step 2", 
-        edit_change_user_email_url(@user.new_email_token, 
-        email: @user.email), 
-        style: 'font-size: 1.5em; 
-                color: #fff;
-                background-color: #56d646;
-                padding: 10px 20px; 
-                -webkit-border-radius: 6px;
-                -moz-border-radius: 6px;
-                border-radius: 6px;
-                border: none;
-                margin: 20px;
-                text-decoration: none;
-                display: inline-block' %>
-      <p>We wish you the greatest success,</p>
-      <p>Brett Stone & Tristan Hart<br>Founders of The Crucial Team</p>
-      <div style="font-size: 0.8em; color: #808080;">
-        <p>P.S. You received this email because someone put your email address in 
-        our thing.<br>If you aren’t the one that put your email address in our thing,
-        let us know because we’ve got your back.<br>
-        <a href="http://crucendo.thecrucialteam.com/privacy">
-          crucendo.thecrucialteam.com/privacy</a><br>
-        <a href="mailto:privacy@thecrucialteam.com">privacy@thecrucialteam.com</a>
-        </p>
-        <p>The Crucial Team Australia Pty Ltd, PO Box 4081, Frankston Heights, 
-        VIC, Australia, 3199.</p>
-      </div>
-    </div>
-  </body>
-</html>
+<div style="font-family: Verdana, Geneva, sans-serif; text-align: center;">
+  <div style="margin: 30px">
+    <%= email_image_tag("logo_icon.png") %>
+  </div>
+  <p>We’re excited that you’re part of Crucendo.</p>
+  <p>As we say around the office, everyone deserves the opportunity to 
+  impress themselves. It’s great to see you keeping your details up to date.
+  </p>
+  <p>The process to change your email address is a two step process, to 
+  protect your privacy. By clicking the <strong>step 2</strong> button 
+  below, you are confirming that you would like to change your email 
+  address. Please note the link will expire in 15 minutes.</p>
+  <%= link_to "Step 2", 
+    edit_change_user_email_url(@user.new_email_token, 
+    email: @user.email), 
+    style: 'font-size: 1.5em; 
+            color: #fff;
+            background-color: #56d646;
+            padding: 10px 20px; 
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+            border: none;
+            margin: 20px;
+            text-decoration: none;
+            display: inline-block' %>
+  <p>We wish you the greatest success,</p>
+  <p>Brett Stone & Tristan Hart<br>Founders of The Crucial Team</p>
+  <div style="font-size: 0.8em; color: #808080;">
+    <p>P.S. You received this email because someone put your email address in 
+    our thing.<br>If you aren’t the one that put your email address in our thing,
+    let us know because we’ve got your back.<br>
+    <a href="http://crucendo.thecrucialteam.com/privacy">
+      crucendo.thecrucialteam.com/privacy</a><br>
+    <a href="mailto:privacy@thecrucialteam.com">privacy@thecrucialteam.com</a>
+    </p>
+    <p>The Crucial Team Australia Pty Ltd, PO Box 4081, Frankston Heights, 
+    VIC, Australia, 3199.</p>
+  </div>
+</div>

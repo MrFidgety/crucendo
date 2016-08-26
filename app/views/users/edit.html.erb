@@ -65,15 +65,19 @@
         <h4 class="modal-title">Please enter your new email address</h4>
       </div>
       <div class="modal-body">
-        <p>Alert: ensure you have access to both your current, 
-        and new email addresses.</p>
+        <div class="alert alert-danger">
+          <strong>Alert!</strong> Ensure you have access to both your current, 
+        and new email addresses. If you don't, please contact 
+        <a href="mailto:support@thecrucialteam.com?subject=Change Email Support">support</a>.
+        </div>
         <%= form_tag("/changemyemail", method: "post") do |f| %>
           <div class="input-group">
-            <%= email_field_tag :email, nil, placeholder: "type your email",
+            <%= email_field_tag :email, nil, placeholder: "new email here",
                                       required: "required",
-                                      class: "form-control" %>
+                                      class: "input-lg form-control" %>
             <span class="input-group-btn">
-              <%= submit_tag "Change", class: "btn btn-default" %>
+              <%= submit_tag "Change", :data => {:disable_with => "Trying..."},
+                    class: "btn btn-orange btn-lg" %>
             </span>
           </div>
         <% end %>
