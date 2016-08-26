@@ -7,21 +7,21 @@ class UserMailer < ApplicationMailer
   #
   def account_activation(user)
     @user = user
-    mail to: user.email, subject: "Welcome to The Crucial Team!"
+    mail to: user.email, subject: "Welcome to Crucendo!"
   end
 
   def account_login(user)
     @user = user
-    mail to: user.email, subject: "Welcome back to The Crucial Team!"
+    mail to: user.email, subject: "Welcome back to Crucendo!"
   end
   
   def change_email_approval(user)
     @user = user
-    mail to: user.email, subject: "Your New Email Address"
+    mail to: user.email, subject: "Change email - Step 1"
   end
   
   def change_email_activation(user)
     @user = user
-    mail to: user.new_email, subject: "Your New Email Address"
+    mail to: user.new_email, subject: "Change email - Step 2"
   end
 end

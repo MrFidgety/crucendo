@@ -11,17 +11,17 @@
     <a data-toggle="tab" href="#inactive-goals">Inactive</a>
   </li>
   <li class="col-xs-4">
-    <a data-toggle="tab" href="#complete-goals">Complete</a>
+    <a data-toggle="tab" href="#completed-goals">Complete</a>
   </li>
 </ul>
 <div class="tab-content">
   <div id="active-goals" class="tab-pane fade in active">
-    <%= render(@active_goals) || "There doesn't appear to be anything here..." %>
+    <%= render(@active_goals) || render('goals/helpers/active') %>
   </div>
   <div id="inactive-goals" class="tab-pane fade">
-    <%= render(@inactive_goals) || "There doesn't appear to be anything here..." %>
+    <%= render(@inactive_goals) || render('goals/helpers/inactive') %>
   </div>
-  <div id="complete-goals" class="tab-pane fade">
-    <%= render(@completed_goals) || "There doesn't appear to be anything here..." %>
+  <div id="completed-goals" class="tab-pane fade">
+    <%= render(@completed_goals) || render('goals/helpers/completed') %>
   </div>
 </div>

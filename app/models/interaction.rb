@@ -9,29 +9,34 @@ class Interaction < ActiveRecord::Base
   
   validates :user_id, presence: true
   
-  USER_STREAK_DAYS_SQL = <<-SQL
-    SELECT (CURRENT_DATE - series_date::date) AS days
+  scope :completed,   -> { where(completed: true).order(completed_date: :desc) }
+  
+  CRUCENDO_STREAK_DAYS_SQL = <<-SQL
+    SELECT (:yesterday - series_date::date) AS days
     FROM generate_series(
-          ( SELECT updated_at::date::TIMESTAMPTZ AT TIME ZONE :zone_offset FROM interactions
-            WHERE interactions.user_id = :user_id
-            ORDER BY created_at ASC
-            LIMIT 1
-          ),
-          CURRENT_DATE,
-          '1 day'
-        ) AS series_date
-    LEFT OUTER JOIN interactions ON interactions.user_id = :user_id AND
-      interactions.completed = true AND
-      interactions.updated_at::date::TIMESTAMPTZ AT TIME ZONE :zone_offset = series_date
+      ( SELECT (updated_at AT TIME ZONE :zone_offset)::date FROM interactions
+        WHERE interactions.user_id = :user_id
+        AND interactions.completed = true
+        ORDER BY updated_at ASC
+        LIMIT 1
+      ),
+      :yesterday,
+      '1 day'
+    ) AS series_date
+    LEFT OUTER JOIN interactions 
+    ON interactions.user_id = :user_id 
+    AND (interactions.updated_at AT TIME ZONE :zone_offset)::date = series_date
     GROUP BY series_date
     HAVING COUNT(interactions.id) = 0
     ORDER BY series_date DESC
     LIMIT 1
   SQL
   
-  def self.user_streak_days(user_id)
-    sql = sanitize_sql [ USER_STREAK_DAYS_SQL, 
-      { user_id: user_id, zone_offset: Time.zone.now.formatted_offset } ]
+  def self.interaction_streak_days(user_id)
+    sql = sanitize_sql [ CRUCENDO_STREAK_DAYS_SQL, 
+      { user_id: user_id, 
+        zone_offset: Time.zone.now.formatted_offset,
+        yesterday: Date.yesterday} ]
     result_value = connection.select_value(sql)
     Integer(result_value) rescue nil
   end

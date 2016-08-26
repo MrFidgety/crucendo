@@ -18,6 +18,7 @@ class UserMailerPreview < ActionMailer::Preview
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/change_email_approval
   def change_email_approval
     user = User.first
+    user.new_email = 'new@email.com'
     user.new_email_token = User.new_token
     UserMailer.change_email_approval(user)
   end
@@ -25,6 +26,7 @@ class UserMailerPreview < ActionMailer::Preview
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/change_email_activation
   def change_email_activation
     user = User.first
+    user.new_email = 'new@email.com'
     user.new_email_token = User.new_token
     UserMailer.change_email_activation(user)
   end

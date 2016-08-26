@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   end
   
   def interaction_streak_days
-    Interaction.user_streak_days(self)
+    Interaction.interaction_streak_days(self)
   end
   
   # Remembers a user in the database for use in persistent sessions.

@@ -16,4 +16,11 @@ module ApplicationHelper
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
     link_to title, params.merge(:sort => column, :direction => direction, :page => nil), {:class => css_class}
   end
+  
+  # extend pluralize method to allow parent classes
+  def pluralize(count, singular, plural = nil)
+    count, counted = super.split(' ', 2)
+    [content_tag(:span, count, class: 'pluralize-number'), 
+      content_tag(:span, counted, class: 'pluralize-word')].join(' ').html_safe
+  end
 end

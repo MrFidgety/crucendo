@@ -15,11 +15,13 @@
         <%= f.email_field :email, placeholder: "Your email here...",
                                   class: "form-control input-lg" %>
         <span class="input-group-btn hidden-xs">
-        <%= f.submit "Let's Go!", class: "btn btn-orange btn-lg btn-fill" %>
+        <%= f.submit "Let's Go!", :data => {:disable_with => "It's happening.."}, 
+              class: "btn btn-orange btn-lg btn-fill" %>
         </span>
       </div>
       <span class="visible-xs">
-        <%= f.submit "Let's Go!", class: "btn btn-orange btn-lg btn-block" %>
+        <%= f.submit "Let's Go!", :data => {:disable_with => "It's happening.."}, 
+              class: "btn btn-orange btn-lg btn-block" %>
       </span>
     <% end %>
     <div class="policies">

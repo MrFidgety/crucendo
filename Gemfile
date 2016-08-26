@@ -27,9 +27,10 @@ gem 'swiper-rails',               '1.0.4'
 gem 'carrierwave',                '0.10.0'
 gem 'mini_magick',                '3.8.0'
 gem 'fog',                        '1.36.0'
-gem 'validate_url'
-gem 'momentjs-rails'
-gem 'bootstrap-datepicker-rails'
+gem 'validate_url',               '1.0.2'
+gem 'momentjs-rails',             '2.11.1'
+gem 'bootstrap-datepicker-rails', '1.6.4.1'
+gem 'roadie',                     '~> 3.1.1'
 
 group :development, :test do
   gem 'byebug',                   '3.4.0'

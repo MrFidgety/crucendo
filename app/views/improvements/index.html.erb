@@ -10,7 +10,7 @@
 </ul>
 <div class="tab-content">
   <div id="haves" class="tab-pane fade in active">
-    <%= render @improvements %>
+    <%= render(@improvements) || render('improvements/helpers/all') %>
     <%= will_paginate @improvements %>
   </div>
 </div>

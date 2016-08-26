@@ -14,34 +14,36 @@
         <ul>
           <li>
             <%= fa_icon 'clock-o' %>
-            <span>created <%= local_time_ago(goal.created_at) %></span>
+            <span class="offset">
+              created <%= local_time_ago(goal.created_at) %>
+            </span>
           </li>
           <li>
             <% if goal.completed? %>
               <%= fa_icon 'check' %> 
-              <span>completed <%= local_time_ago(goal.completed_date) %></span>
+              <span class="offset">completed <%= local_time_ago(goal.completed_date) %></span>
             <% elsif goal.active? %>
               <%= fa_icon 'play' %> 
-              <span>you are actively improving this want</span>
+              <span class="offset">you are actively improving this want</span>
             <% else %>
               <%= fa_icon 'pause' %> 
-              <span>you have put this want on hold</span>
+              <span class="offset">you have put this want on hold</span>
             <% end %>
           </li>
           <li>
             <%= fa_icon 'trophy' %> 
             <% if goal.improvements.size > 0 %>
-              <span>
+              <span class="offset">
                 you have improved <%= pluralize(goal.improvements.size, 'time') %>
               </span>
             <% else %>
-              <span>you are working toward your first improvement<span>
+              <span class="offset">you are working toward your first improvement<span>
             <% end %>
           </li>
           <% if !goal.due_date.blank? %>
           <li>
             <%= fa_icon 'calendar' %> 
-            <span>
+            <span class="offset">
               you want to achieve this by 
               <%= local_relative_time(goal.due_date, type: 'weekday-or-date') %>
             </span>
