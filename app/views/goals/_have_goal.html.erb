@@ -39,7 +39,7 @@
                 you have improved <%= pluralize(goal.improvements.size, 'time') %>
               </span>
             <% else %>
-              <span>you are working toward your first improvement<span>
+              <span class="offset">you are working toward your first improvement<span>
             <% end %>
           </li>
           <% if !goal.due_date.blank? %>
