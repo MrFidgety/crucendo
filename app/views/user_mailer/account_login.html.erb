@@ -15,9 +15,9 @@
       development.</p>
       <p>Let’s log in to your account by clicking the <strong>log in</strong> 
       button below. Please note the link will expire after 15 minutes.</p>
-      <%= button_to "Log in", 
+      <%= link_to "Log in", 
         edit_session_url(@user.login_token, 
-        email: @user.email), method: :get, 
+        email: @user.email),
         style: 'font-size: 1.5em; 
                 color: #fff;
                 background-color: #56d646;
@@ -25,7 +25,10 @@
                 -webkit-border-radius: 6px;
                 -moz-border-radius: 6px;
                 border-radius: 6px;
-                border: none;' %>
+                border: none;
+                margin: 20px;
+                text-decoration: none;
+                display: inline-block' %>
       <p>We wish you the greatest success,</p>
       <p>Brett Stone & Tristan Hart<br>Founders of The Crucial Team</p>
       <div style="font-size: 0.8em; color: #808080;">

@@ -17,9 +17,9 @@
       protect your privacy. By clicking the <strong>step 1</strong> button 
       below, you are confirming that you would like to change your email 
       address. Please note the link will expire in 15 minutes.</p>
-      <%= button_to "Step 1", 
+      <%= link_to "Step 1", 
         edit_change_user_email_url(@user.new_email_token, 
-        email: @user.email), method: :get, 
+        email: @user.email), 
         style: 'font-size: 1.5em; 
                 color: #fff;
                 background-color: #56d646;
@@ -28,7 +28,9 @@
                 -moz-border-radius: 6px;
                 border-radius: 6px;
                 border: none;
-                white-space: normal;' %>
+                margin: 20px;
+                text-decoration: none;
+                display: inline-block' %>
       <p>We wish you the greatest success,</p>
       <p>Brett Stone & Tristan Hart<br>Founders of The Crucial Team</p>
       <div style="font-size: 0.8em; color: #808080;">
