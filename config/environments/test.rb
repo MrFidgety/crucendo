@@ -31,6 +31,7 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
   host = 'crucial-development-fidgety.c9users.io'
+  config.action_mailer.asset_host = 'crucial-development-fidgety.c9users.io'
   config.action_mailer.default_url_options = { host: host, protocol: 'https' }
 
   # Randomize the order test cases are executed.
