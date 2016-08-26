@@ -8,7 +8,7 @@
       <div style="margin: 30px">
         <%= image_tag 'logo_icon.png' %>
       </div>
-      <p>We’re excited that you’re part of The Crucial Team.</p>
+      <p>We’re excited that you’re part of Crucendo.</p>
       <p>As we say around the office, everyone deserves the opportunity to 
       impress themselves. It’s great to see you keeping your details up to date.
       </p>
@@ -16,10 +16,10 @@
       protect your privacy. By clicking the <strong>step 1</strong> button 
       below, you are confirming that you would like to change your email 
       address. Please note the link will expire in 15 minutes.</p>
-      <%= button_to "Step 1 of changing contact email from #{@user.email} to #{@user.new_email}", 
+      <%= button_to "Step 1", 
         edit_change_user_email_url(@user.new_email_token, 
         email: @user.email), method: :get, 
-        style: 'font-size: 1em; 
+        style: 'font-size: 1.5em; 
                 color: #fff;
                 background-color: #56d646;
                 padding: 10px 20px; 
