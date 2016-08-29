@@ -87,7 +87,7 @@ $(document).on "page:change", ->
           $(this).parents('.panel-group').hide()
     if count == 0
       $('#select-goals-button>.button-title').html('Awesome, something new!')
-      $('#select-goals-button>.button-helper>.button-result').html('Hit the + button to add your improvement')
+      $('#select-goals-button>.button-helper>.button-result').html('Hit the Add+ button to add your improvement')
       $('#select-goals-button>.button-helper>.button-search-terms').html('')
       $('#select-goals-button').prop("disabled", true)
     else

@@ -415,7 +415,7 @@ input[type="month"] {
 }
 .goal-panel {
   .panel {
-    transition: border-color 0.3s ease-out;
+    //transition: border-color 0.3s ease-out;
     border: 2px solid white;
     background-color: white;
     &:hover {
@@ -539,7 +539,10 @@ input[type="month"] {
   align-items: center;
 }
 .swiper-slide-active {
-  border: 5px solid white;
+  border: 5px solid $knicks-orange;
+  span {
+    font-weight: 600;
+  }
 }
 
 /* privacy and terms */
@@ -560,6 +563,9 @@ input[type="month"] {
   line-height: 1.2em;
   color: $gray-medium-light;
   padding: 25px 0px;
+  p {
+    font-size: 0.6em;
+  }
 }
 .question-topic {
   font-size: 0.5em;
@@ -651,6 +657,12 @@ h3.panel-title {
 #select-goals-button {
   text-align: left;
   height: auto;
+  background: $hornets-teal;
+  color: white;
+  border: 2px solid white;
+  &:hover {
+    border-color: $hornets-teal;
+  }
 }
 
 .crucendo-logo {
@@ -658,6 +670,7 @@ h3.panel-title {
   font-size: 30px;
   margin-top: 2px;
   color: $crucial-light-blue;
+  position: relative;
   a {
     color: inherit;
     text-decoration: inherit;
@@ -669,6 +682,14 @@ h3.panel-title {
     vertical-align: middle;
     margin-left: -11px;
   }
+}
+.beta-logo {
+  color: #cccccc;
+  position: absolute;
+  bottom: 4px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .nav-button-left {
@@ -885,7 +906,6 @@ button.text-button {
 }
 .button-helper {
   font-size: 0.6em;
-  color: $crucial-gray;
 }
 
 /* dashboard */
@@ -1222,6 +1242,7 @@ input[type="date"]
 }
 .alert {
   font-size: 1.5em;
+  border: none;
   &.alert-success {
     color: white;
     background-color: $bright-green;
@@ -1237,4 +1258,14 @@ input[type="date"]
   .close {
     padding-left: 5px;
   }
+}
+p.split {
+  margin: 2em 0;
+}
+.btn .fa {
+  margin-left: 0.3em;
+}
+.feeling-helper {
+  text-align: center;
+  color: white;
 }

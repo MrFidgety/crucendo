@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  get 'improvements/index'
+  get     'accomplishments' => 'accomplishments#index'
 
   root                        'users#show'
   post    '/'             =>  'users#create'

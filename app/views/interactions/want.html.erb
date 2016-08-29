@@ -8,14 +8,15 @@
         class: 'form-control input-lg', placeholder: 'type what you want to improve...' %>
   <span class="input-group-btn">
     <button id="new_goal_start" class="btn btn-default btn-lg" type="submit">
-       <%= fa_icon('plus') %>
+       <%= fa_icon('plus') %> Add
     </button>
   </span>
 </div><br>
 <section id="goals-section">
   <%= render partial: "goals/want_goal", collection: @goals, as: :goal %>
 </section><br>
-<%= link_to 'Continue', next_wizard_path, class: 'btn btn-orange btn-block btn-lg' %>
+<%= link_to fa_icon('chevron-right', text: 'Continue', right: true),
+      next_wizard_path, class: 'btn btn-orange pull-right btn-lg' %>
 <div class="modal fade" id="new_goal_modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

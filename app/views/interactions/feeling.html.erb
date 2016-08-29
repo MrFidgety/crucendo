@@ -1,23 +1,71 @@
 <% provide(:title, "Feeling") %>
 <%= render 'interactions/header' %>
-<p class="interaction-title">
-  How are you feeling?
-</p><hr>
+<div class="interaction-title">
+  <p>If 1 is how you would least like to feel, and 5 is how you would most like to 
+  feel..</p>
+  How are you feeling today?
+</div>
+<hr>
 <!-- Slider main container -->
 <div class="swiper-container">
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
       <!-- Slides -->
-      <div class="swiper-slide">1</div>
-      <div class="swiper-slide">2</div>
-      <div class="swiper-slide">3</div>
-      <div class="swiper-slide">4</div>
-      <div class="swiper-slide">5</div>
+      <div class="swiper-slide">
+        <div class="c100 p0">
+          <span>1</span>
+          <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="c100 p25">
+          <span>2</span>
+          <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="c100 p50">
+          <span>3</span>
+          <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="c100 p75">
+          <span>4</span>
+          <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="c100 p100">
+          <span>5</span>
+          <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+          </div>
+        </div>
+      </div>
   </div>
   <!-- If we need pagination -->
   <div class="swiper-pagination"></div>
-</div><br><br>
+</div>
+<div class="feeling-helper">- drag to select -</div>
+<br><br>
 <%= form_for @interaction, url: wizard_path, method: :put do |f| %>
   <%= hidden_field(:interaction, :feeling) %>
-  <%= f.submit "Continue", class: 'form-control btn-lg btn-orange' %>
+    <%= button_tag(type: 'submit', class: "btn btn-orange pull-right btn-lg",
+        :data => {:disable_with => "Trying..."}) do %>
+    <%= fa_icon 'chevron-right', text: 'Continue', right: true %>
+  <% end %>
 <% end %>

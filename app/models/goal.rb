@@ -9,7 +9,7 @@ class Goal < ActiveRecord::Base
   scope :due_soonest,         -> { order(due_date: :asc, content: :asc) }
   scope :active,              -> { where(completed: false, active: true) }
   scope :active_most_recent,  -> { active.order(created_at: :desc) }
-  scope :inactive,            -> { where(active: false).order(created_at: :desc) }
+  scope :inactive,            -> { where(active: false, completed: false).order(created_at: :desc) }
   scope :alphabetical,        -> { order(content: :asc) }
   scope :completed,           -> { where(completed: true).order(completed_date: :desc) }
   

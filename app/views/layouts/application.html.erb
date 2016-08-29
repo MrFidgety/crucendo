@@ -3,6 +3,12 @@
   <head>
     <title><%= full_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Crucendo" />
+		<meta name="description" content="Everyone deserves the opportunity to impress themselves. Start impressing yourself today.">
+		<meta property="og:description" content="Everyone deserves the opportunity to impress themselves. Start impressing yourself today." />
+		<meta property="og:type" content="website"/>
+		<meta property="og:url" content="http://crucendo.com" />
+		<meta property="og:image" content="<%= image_url("crucendo-social.png") %>" />
     <%= stylesheet_link_tag     'application', media: 'all', 
                                 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
