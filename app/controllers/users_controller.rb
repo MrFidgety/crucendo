@@ -8,11 +8,15 @@ class UsersController < ApplicationController
   def show
     @wants = @user.goals.active_most_recent.limit(5)
     @goals_completed_count = @user.goals.completed.size
-    @consecutive_days = @user.interaction_streak_days 
+    @consecutive_days = @user.interaction_streak_days
     # add todays interaction if complete
     if @user.interactions.completed.where("updated_at >= ?", 
         Time.zone.now.beginning_of_day).size > 0
-      @consecutive_days += 1
+      if @consecutive_days.blank?
+        @consecutive_days = 1
+      else
+        @consecutive_days += 1
+      end
     end
     @improvements_count = @user.improvements.size
   end

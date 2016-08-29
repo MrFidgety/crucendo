@@ -16,12 +16,14 @@
                                   class: "form-control input-lg" %>
         <span class="input-group-btn hidden-xs">
         <%= f.submit "Let's Go!", :data => {:disable_with => "Going..."}, 
-              class: "btn btn-orange btn-lg btn-fill" %>
+              class: "btn btn-orange btn-lg btn-fill",
+              :disabled => Rails.env.production? ? true : false %>
         </span>
       </div>
       <span class="visible-xs">
         <%= f.submit "Let's Go!", :data => {:disable_with => "Going..."}, 
-              class: "btn btn-orange btn-lg btn-block" %>
+              class: "btn btn-orange btn-lg btn-block",
+              :disabled => Rails.env.production? ? true : false %>
       </span>
     <% end %>
     <div class="policies">
