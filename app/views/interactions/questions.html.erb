@@ -8,5 +8,9 @@
   <%= f.text_area :content, rows: 4, class: 'form-control',
         placeholder: "type your answer here ..." %>
   <%= hidden_field(:answer, :id) %>
-  <%= f.submit "Continue", class: 'form-control btn-lg btn-orange' %>
+  <%= button_tag(type: 'submit', class: "btn btn-orange pull-right btn-lg",
+        :data => {:disable_with => "Trying..."}) do %>
+    Continue <%= fa_icon 'chevron-right' %>
+  <% end %>
+  <%#= f.submit fa_icon('chevron-right', text: 'Continue'), class: 'btn-lg btn-orange pull-right' %>
 <% end %>
