@@ -547,12 +547,11 @@ input[type="month"] {
 
 /* privacy and terms */
 .policies {
-  padding: 50px;
+  padding: 1em 0;
   text-align: center;
   color: #000;
   a {
     color: inherit;
-    text-decoration: inherit;
   }
 }
 
@@ -1268,4 +1267,53 @@ p.split {
 .feeling-helper {
   text-align: center;
   color: white;
+}
+#how-does-it-work-trigger {
+  cursor: pointer;
+  text-align: center;
+  font-size: 2em;
+  color: white;
+  padding: 2em 0 1em 0;
+}
+#how-does-it-work.modal {
+  .modal-header {
+  	border-bottom: none;
+  }
+  .modal-title {
+    text-align:center;
+  	font-size:2em;
+  	font-weight:600;
+  	color: $crucial-light-blue;
+  }
+  .modal-content {
+    background-color: #333333;
+    color: white;
+  }
+  .modal-body {
+  	font-size: 1.5em;
+  }
+  .modal-footer {
+    border-top: none;
+  }
+}
+/* modal fade */
+.modal.fade .modal-dialog {
+  -webkit-transform: scale(0.1);
+  -moz-transform: scale(0.1);
+  -ms-transform: scale(0.1);
+  transform: scale(0.1);
+  top: 6em;
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.modal.fade.in .modal-dialog {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
 }

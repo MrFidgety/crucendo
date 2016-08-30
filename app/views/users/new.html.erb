@@ -24,9 +24,41 @@
               class: "btn btn-orange btn-lg btn-block" %>
       </span>
     <% end %>
+    <p id="how-does-it-work-trigger" class="modal-trigger" data-toggle="modal" data-target="#how-does-it-work">
+      How does it work? 
+    </p>
     <div class="policies">
       <%= link_to 'Privacy', privacy_url %> | 
-      <%= link_to 'Terms & Conditions', terms_url %>
+      <%= link_to 'Terms & Conditions', terms_url %> | 
+      <%= link_to 'Contact', 'mailto:support@thecrucialteam.com' %>
     </div>
   </div>
+</div>
+<div id="how-does-it-work" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+				  <i class="fa fa-times fa-3" aria-hidden="true"></i>
+				</button>
+				<h4 class="modal-title">How does it work?</h4>
+			</div>
+			<div class="modal-body">
+				<p>Challenge yourself with questions from aspects of your life you wish 
+				to improve.</p>
+				<p>Acknowledge your own successes and improvements, then note 
+				what you want to accomplish moving forward.</p>
+				<p>By spending five minutes at the end of the day being introspective, 
+				you will be impressing yourself sooner than you expect.</p>
+			</div>
+			<div class="modal-footer">
+			  <%= link_to fa_icon('question-circle-o', text: "Help", right: true), 
+          help_path, class: 'btn btn-default btn-lg' %>
+			  <button type="button" class="btn btn-lg btn-orange" 
+			    data-dismiss="modal">
+			    <%= fa_icon 'check', text: 'Got it', right: true %>
+			  </button>
+			</div>
+		</div>
+	</div>
 </div>
