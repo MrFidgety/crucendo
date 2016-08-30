@@ -19,7 +19,7 @@ class Interaction < ActiveRecord::Base
         AND interactions.completed = true
         ORDER BY updated_at ASC
         LIMIT 1
-      ),
+      ) - INTERVAL '1 day',
       :yesterday,
       '1 day'
     ) AS series_date
