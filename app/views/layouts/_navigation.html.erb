@@ -1,4 +1,7 @@
 <div id="fixed-nav">
+  <div class="nav-user">
+    <%= truncate(get_name(current_user), :length => 25) %>
+  </div>
   <ul>
     <li><%= link_to  fa_icon('tachometer', text: "Dashboard"), 
           root_url %></li>

@@ -236,7 +236,13 @@ input[type="month"] {
 }
 
 /* navigation */
-
+.nav-user {
+  padding: 10px 0px;
+  margin: 0 20px;
+  font-size: 18px;
+  color: $crucial-light-blue;
+  border-bottom: 1px solid $gray-medium-light;
+}
 .navbar {
   height: 60px;
   img {
@@ -561,7 +567,7 @@ input[type="month"] {
   font-size: 2.5em;
   line-height: 1.2em;
   color: $gray-medium-light;
-  padding: 25px 0px;
+  padding: 1em 0.5em 0;
   p {
     font-size: 0.6em;
   }
@@ -649,7 +655,7 @@ h3.panel-title {
   }
   ul {
     padding: 0;
-    color: $crucial-dark-blue;
+    color: $crucial-aqua;
   }
 }
 

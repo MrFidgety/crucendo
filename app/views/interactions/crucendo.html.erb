@@ -2,32 +2,32 @@
 <%= render 'interactions/header' %>
 <div class="interaction-summary">
   <h1>That's it!</h1>
-  <p class="small">Today you took time to be introspective, which is contributing to your 
-  development and success.</p> 
   <p>You <strong>answered three crucial questions</strong> from the topics</p>
   <ul>
     <% @interaction.answers.each_with_index do |answer, index| %>
       <li><span><%= answer.question.topic.name %></span></li>
     <% end %>
   </ul>
-  <% if @interaction.improvements.size > 0 %>
-    <p>You have <strong>acknowledged improvements</strong> in 
-    <% if @interaction.improvements.size > 1 %>
-      <%= pluralize(@interaction.improvements.size, 'aspect') %>
-    <% else %>
-      an aspect
+  <p>
+    <% if @interaction.improvements.size > 0 %>
+      You have <strong>acknowledged improvements</strong> in 
+      <% if @interaction.improvements.size > 1 %>
+        <%= pluralize(@interaction.improvements.size, 'aspect') %>
+      <% else %>
+        an aspect
+      <% end %>
+      of your life recently.
     <% end %>
-    of your life recently.</p>
-  <% end %>
-  <% if @interaction.goals.where(completed: false).size > 0 %>
-    <p>You also <strong>embraced that you want to improve</strong> 
-    <% if @interaction.goals.where(completed: false).size > 1 %>
-      another <%= pluralize(@interaction.goals.where(completed: false).size, 'aspect') %>
-    <% else %>
-      another aspect
+    <% if @interaction.goals.where(completed: false).size > 0 %>
+      You also <strong>embraced that you want to improve</strong> 
+      <% if @interaction.goals.where(completed: false).size > 1 %>
+        another <%= pluralize(@interaction.goals.where(completed: false).size, 'aspect') %>
+      <% else %>
+        another aspect
+      <% end %>
+      of your life.
     <% end %>
-    of your life.</p>
-  <% end %>
+  </p>
   <p>Nice job, and<br><span>keep impressing yourself!</span></p><br>
 </div>
 <%= link_to fa_icon('hand-peace-o', text: ' See you tomorrow', right: true), 

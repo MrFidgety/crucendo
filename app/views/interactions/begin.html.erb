@@ -1,11 +1,14 @@
 <% provide(:title, "Begin") %>
 <%= render 'interactions/header' %>
 <div class="crucendo-begin">
-  <h3>You’ve made a great decision to start improving, so Crucendo is here to help you every day.</h3>
-  <p class="split">Our advice is to take 15 minutes at the end of each day, to complete a Crucendo.
-  You should answer the questions honestly and in as much detail as possible,
-  because that’s how you will get the most out of Crucendo and yourself.
-  Crucendo is designed to help you to improve all aspects of your life.</p>
-  <h3>Close your eyes, take three slow deep breaths, and begin.</h3>
-  <%= link_to 'Begin', next_wizard_path, class: 'btn btn-orange btn-lg' %>
+  <h3>You’ve made a great decision to start improving, so Crucendo is here to 
+  help you every day.</h3>
+  <p class="split">Our advice is to take some time at the end of each day to 
+  complete a Crucendo. You should answer the questions honestly and in as much 
+  detail as possible, because that’s how you will get the most out of Crucendo 
+  and yourself. Crucendo is designed to help you to improve all aspects of your 
+  life.</p>
+  <h3>Close your eyes, take three slow, deep breaths, and begin.</h3><br>
+  <%= link_to fa_icon('play', text: 'Begin', right: true), next_wizard_path, 
+        class: 'btn btn-orange btn-lg' %>
 </div>
