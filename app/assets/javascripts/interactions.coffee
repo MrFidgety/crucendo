@@ -30,6 +30,8 @@ $(document).on "page:change", ->
   # reset improvement form
   $('#new_improvement_modal').on 'hidden.bs.modal', ->
     $('#goal_content').val('')
+    if $('.improve-btn').hasClass('active')
+      $('.improve-btn').button('toggle')
     $("#new_goal form").clear_form_errors()
       
   # ensure all collapsibles are set to toggle false
