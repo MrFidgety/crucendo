@@ -1,4 +1,7 @@
-<%  
+<%
+  provide(:title, "Edit Want")
+  provide(:page_class, "want-show")
+  
   confirm_text = 'This will permanently delete this want.'
   if @goal.improvements.size > 0
     confirm_text += '<br>Along with the ' 

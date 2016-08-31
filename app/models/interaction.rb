@@ -9,7 +9,7 @@ class Interaction < ActiveRecord::Base
   
   validates :user_id, presence: true
   
-  scope :completed,   -> { where(completed: true).order(completed_date: :desc) }
+  scope :completed,   -> { where(completed: true).order(updated_at: :desc) }
   
   CRUCENDO_STREAK_DAYS_SQL = <<-SQL
     SELECT (:yesterday - series_date::date) AS days

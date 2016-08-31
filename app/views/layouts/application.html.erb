@@ -2,13 +2,19 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Crucendo">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta property="og:title" content="Crucendo" />
 		<meta name="description" content="Everyone deserves the opportunity to impress themselves. Start impressing yourself today.">
 		<meta property="og:description" content="Everyone deserves the opportunity to impress themselves. Start impressing yourself today." />
 		<meta property="og:type" content="website"/>
 		<meta property="og:url" content="http://crucendo.com" />
 		<meta property="og:image" content="<%= image_url("crucendo-social.png") %>" />
+		<link rel="apple-touch-icon" href="<%= image_path("logo_icon.png") %>">
+		<link rel="apple-touch-startup-image" href="<%= image_path("logo_icon.png") %>">
     <%= stylesheet_link_tag     'application', media: 'all', 
                                 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -21,7 +27,7 @@
   <%= render 'layouts/header' %>
   <div id="site-wrapper">
     <div id="slide-panel"></div>
-    <div id="site-content" class="<%= @page_class %>">
+    <div id="site-content" class="<%= yield(:page_class) %>">
       <div class="container">
         <%= render_flash %>
         <% if !@breadcrumbs.blank? %>

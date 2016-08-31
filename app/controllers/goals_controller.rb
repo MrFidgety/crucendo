@@ -1,22 +1,19 @@
 class GoalsController < ApplicationController
   include InteractionsHelper
   
-  before_action :logged_in_user
-  before_action :correct_user,  only: [:show, :edit, :update, :improve, :destroy]
+  before_action :set_current_user
+  before_action :correct_user,  except: [:index, :create, :unexpected]
   
   def index
-    @active_goals = current_user.goals.active_most_recent
-    @inactive_goals = current_user.goals.inactive
-    @completed_goals = current_user.goals.completed
+    # Get lists of each goal status
+    @active_goals = @user.goals.active_most_recent
+    @inactive_goals = @user.goals.inactive
+    @completed_goals = @user.goals.completed
   end
   
   def show
-    @page_class = 'want-show'
+    # Get a list of this goals improvements
     @improvements = @goal.improvements
-  end
-  
-  def edit
-    @page_class = 'want-show'
   end
   
   def update
@@ -29,15 +26,14 @@ class GoalsController < ApplicationController
   end
   
   def create
-    # create new goal from params
-    @goal = current_user.goals.build(goal_params)
-    
-    # set interaction id, only if params includes interaction
+    # Create new goal from params
+    @goal = @user.goals.build(goal_params)
+    # Set interaction id, only if params includes interaction
     if params[:goal].try(:has_key?, :interaction_id)
-      @goal.interaction_id = get_interaction(current_user).id 
+      # Interaction id is found from currently incomplete interaction
+      @goal.interaction_id = get_interaction(@user).id 
     end
-    
-    # response allows for ajax calls
+    # Response allows for ajax calls
     respond_to do |format|
       if @goal.save
         format.html { redirect_to @goal }
@@ -51,25 +47,25 @@ class GoalsController < ApplicationController
   end
   
   def improve
-    # set interaction id, only if params includes interaction
+    # Set interaction id, only if params includes interaction
     if params.has_key?(:interaction_id)
-      # check if improvement already exists
-      @interaction = get_interaction(current_user)
-      
+      # Find users current interaction
+      @interaction = get_interaction(@user)
+      # Check if improvement already exists
       if @improvement = @goal.improvements.find_by(interaction_id: @interaction.id)
-        # delete improvement
+        # Delete improvement
         @improvement.destroy
-        # reload goal to update counter cache
+        # Reload goal to update improvement counter cache
         @goal.reload
       else
-        # create new improvement linked to interaction
+        # Create new improvement linked to interaction
         @improvement = @goal.improvements.build(interaction_id: @interaction.id)
       end
     else
-      # create new basic improvement
+      # Create new basic improvement (with no linked interaction)
       @improvement = @goal.improvements.build
     end
-    
+    # Response allows for ajax calls
     respond_to do |format|
       if @improvement.save
         format.html { redirect_to @improvement.goal }
@@ -83,19 +79,19 @@ class GoalsController < ApplicationController
   end
   
   def unexpected
-    
-    @interaction = get_interaction(current_user)
-    @goal = current_user.goals.build(goal_params)
+    # Find users current interaction
+    @interaction = get_interaction(@user)
+    # Create new goal
+    @goal = @user.goals.build(goal_params)
     @goal.attributes = { interaction_id: @interaction.id }
     @goal.attributes = { completed_date: Time.zone.now } if @goal.completed?
-    
+    # Response allows for ajax calls
     respond_to do |format|
       if @goal.save
-        @improvement = @goal.improvements.build(
-            interaction_id: @interaction.id,
-            unexpected: true)
-        @improvement.save
-        
+        # Create improvement if goal saves
+        @improvement = @goal.improvements.create(
+                          interaction_id: @interaction.id,
+                          unexpected: true)
         format.html { redirect_to @improvement.goal }
         format.js
       else
@@ -112,7 +108,6 @@ class GoalsController < ApplicationController
   
   def destroy
     @goal.destroy
-    
     respond_to do |format|
       format.html { redirect_to goals_path }
       format.js 
@@ -122,14 +117,14 @@ class GoalsController < ApplicationController
   private
   
     def goal_params
-      
-      # only use javascript utc date if user hasn't set timezone
+      # Only use javascript UTC date if user hasn't set timezone
       if !params[:goal][:due_date_utc].blank? && current_user.time_zone.blank?
         params[:goal][:due_date] = params[:goal][:due_date_utc]
       end
       case params[:status]
       when 'complete'
         unless @goal.completed?
+          params[:goal][:active] = false
           params[:goal][:completed] = true
           params[:goal][:completed_date] = Time.zone.now
         end
@@ -146,15 +141,12 @@ class GoalsController < ApplicationController
           params[:goal][:completed_date] = nil
         end
       end
-      params.require(:goal).permit( :content, 
-                                    :due_date, 
-                                    :completed, 
-                                    :completed_date,
-                                    :active)
+      params.require(:goal).permit(:content, :due_date, :completed, 
+                                    :completed_date, :active)
     end
     
     def correct_user
-      @goal = current_user.goals.find_by(id: params[:id])
-      redirect_to root_url if @goal.nil?
+      # Ensure goal belongs to current user
+      redirect_to root_url unless @goal = @user.goals.find_by(id: params[:id])
     end
 end

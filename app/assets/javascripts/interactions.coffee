@@ -30,6 +30,7 @@ $(document).on "page:change", ->
   # reset improvement form
   $('#new_improvement_modal').on 'hidden.bs.modal', ->
     $('#goal_content').val('')
+    # reset 'want to actively improve this' button
     if $('.improve-btn').hasClass('active')
       $('.improve-btn').button('toggle')
     $("#new_goal form").clear_form_errors()
@@ -39,7 +40,7 @@ $(document).on "page:change", ->
   
   # pre-emptivley toggle to improved on link click (before ajax)
   $(document).on('click', 'a.goal-have' , ->
-    goal = $( this ).parents('.panel-group')
+    goal = $( this ).parents('.goal-panel')
 
     if !goal.hasClass('improved')
       goal.detach().prependTo('#improved-goals').hide().slideDown('slow')
@@ -84,9 +85,9 @@ $(document).on "page:change", ->
             count++
         # show or hide the goals    
         if match
-          $(this).parents('.panel-group').show()
+          $(this).parents('.goal-panel').show()
         else
-          $(this).parents('.panel-group').hide()
+          $(this).parents('.goal-panel').hide()
     if count == 0
       $('#select-goals-button>.button-title').html('Awesome, something new!')
       $('#select-goals-button>.button-helper>.button-result').html('Hit the Add+ button to add your improvement')

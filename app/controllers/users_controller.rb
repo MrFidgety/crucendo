@@ -2,33 +2,29 @@ class UsersController < ApplicationController
   include InteractionsHelper
   
   before_action :allow_signup,      only: :show
-  before_action :set_correct_user,  except: [:new, :create, :resend]
+  before_action :set_current_user,  except: [:new, :create, :resend]
   before_action :admin_user,        only: :destroy
   
   def show
-    @wants = @user.goals.active_most_recent.limit(5)
+    # Get basic dashboard stats
     @goals_completed_count = @user.goals.completed.size
+    @improvements_count = @user.improvements.size
     @consecutive_days = @user.interaction_streak_days
-    # add todays interaction if complete
+    # Add todays interaction if complete
     if @user.interactions.completed.where("updated_at >= ?", 
         Time.zone.now.beginning_of_day).size > 0
-      if @consecutive_days.blank?
-        @consecutive_days = 1
-      else
-        @consecutive_days += 1
-      end
+      @consecutive_days.blank? ? @consecutive_days = 1 : @consecutive_days += 1
     end
-    @improvements_count = @user.improvements.size
   end
   
   def new_email
-    # validate email via regex
+    # Validate email via regex
     if params[:email] =~ User::VALID_EMAIL_REGEX
       if User.exists?(:email => params[:email])
-        # alert user if email exists
+        # Alert user if email exists
         set_flash :email_taken, type: :danger
       else
-        # set parameters for new email
+        # Set parameters for new email
         @user.send_change_email_approval(params[:email])
         set_flash :new_email_approval, type: :success, object: @user
       end
@@ -39,34 +35,34 @@ class UsersController < ApplicationController
   end
   
   def create
-    # check if user exists
+    # Check if user exists
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
       if @user.activated?
         if !@user.login_sent_at || @user.login_link_expired?
-          # create login digest and send email
+          # Create login digest and send email
           @user.send_login_email
           set_flash :send_login, type: :success, object: @user
         else
-          # prompt for login to be resent
+          # Prompt for login to be resent
           set_flash :resend_login_prompt, type: :success, object: @user
         end
       else
         if @user.activation_link_expired?
-          # resend activation
+          # Resend activation automatically
           @user.resend_activation_email
           set_flash :resend_activation, type: :success, object: @user
         else
-          # prompt for activation to be resent
+          # Prompt for activation to be resent
           set_flash :resend_activation_prompt, type: :success, object: @user
         end
       end
       redirect_to root_url
     else
-      # attempt to create new user
+      # Attempt to create new user
       @user = User.new(signup_params)
       if @user.save
-        # send activation email
+        # Send activation email
         @user.send_activation_email
         set_flash :send_activation, type: :success, object: @user
         redirect_to root_url
@@ -86,13 +82,16 @@ class UsersController < ApplicationController
   end
   
   def resend
+    # Ensure email parameter is set
     if !params[:email].blank? 
       @user = User.find_by(email: params[:email].downcase)
       if @user
         if @user.activated?
+          # Send regular log in email
           @user.send_login_email
           set_flash :resend_login_confirm, type: :success, object: @user
         else
+          # Send regular activation email
           @user.resend_activation_email
           set_flash :resend_activation_confirm, type: :success, object: @user
         end
@@ -110,26 +109,13 @@ class UsersController < ApplicationController
 
     # Allowed user parameters
     def user_params
-      params.require(:user).permit( :name, 
-                                    :year_of_birth, 
-                                    :gender, 
-                                    :country_code,
-                                    :time_zone)
+      params.require(:user).permit(:name, :year_of_birth, :gender, 
+                                    :country_code, :time_zone)
     end
     
     # Allowed signup parameters
     def signup_params
       params.require(:user).permit( :email )
-    end
-    
-    # Ensures the correct user.
-    def set_correct_user
-      redirect_to root_url unless @user = current_user
-    end
-    
-    # Confirms an admin user.
-    def admin_user
-      redirect_to root_url unless current_user.admin?
     end
     
     # Take user to signup if not logged in
@@ -139,5 +125,4 @@ class UsersController < ApplicationController
         render 'new'
       end
     end
-    
 end

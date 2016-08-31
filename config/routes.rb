@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-  get     'accomplishments' => 'accomplishments#index'
-
   root                        'users#show'
   post    '/'             =>  'users#create'
   post    'changemyemail' =>  'users#new_email'
@@ -10,13 +8,10 @@ Rails.application.routes.draw do
   get     'help'          =>  'static_pages#help'
   get     'resend'        =>  'users#resend'
   get     'profile'       =>  'users#edit'
-  get     'wants'         =>  'goals#index'
-  get     'haves'         =>  'improvements#index'
-  patch   'profile'       =>  'users#edit'
-  delete  'logout'        =>  'sessions#destroy'
-  
   get     'privacy'       =>  'static_pages#privacy'
   get     'terms'         =>  'static_pages#terms'
+  patch   'profile'       =>  'users#edit'
+  delete  'logout'        =>  'sessions#destroy'
   
   resources :users,               only: :update
   resources :account_activations, only: :edit
@@ -25,7 +20,11 @@ Rails.application.routes.draw do
   resources :interactions,        only: [:index, :show, :update]
   resources :subscriptions,       only: [:index, :update]   
   
-  resources :goals do
+  resources :improvements, :path => 'haves',  only: :index
+  
+  resources :accomplishments
+  
+  resources :goals, :path => 'wants' do
     post 'improve', on: :member
   end
   

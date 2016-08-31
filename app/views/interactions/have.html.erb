@@ -24,7 +24,7 @@
 </button>
 <br>
 <section id="goals-section">
-  <div id="improved-goals"></div>
+  <div id="improved-goals" class="panel-group"></div>
 </section><br>
 <%= link_to fa_icon('chevron-right', text: 'Continue', right: true),
       next_wizard_path, class: 'btn btn-orange pull-right btn-lg' %>
@@ -46,7 +46,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        <div id="all-goals">
+        <div id="all-goals" class="panel-group">
           <%= render partial: "goals/have_goal", collection: @goals, 
               as: :goal, locals: {interaction: @interaction, type: :have} %>
         </div>

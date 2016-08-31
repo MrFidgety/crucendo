@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
+  
   # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  
   include SessionsHelper
   include FlashHelper
   
@@ -33,11 +34,21 @@ class ApplicationController < ActionController::Base
   
   private
   
-    # Confirms a logged-in user.
+    # Confirms an admin user
+    def admin_user
+      redirect_to root_url unless current_user.admin?
+    end
+  
+    # Confirms a logged-in user
     def logged_in_user
       unless logged_in?
         set_flash :link_error, type: :warning
         redirect_to root_url
       end
+    end
+    
+    # Set current user
+    def set_current_user
+      redirect_to root_url unless @user = current_user
     end
 end

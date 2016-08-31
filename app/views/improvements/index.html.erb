@@ -9,7 +9,7 @@
   </li>
 </ul>
 <div class="tab-content">
-  <div id="haves" class="tab-pane fade in active">
+  <div id="haves" class="tab-pane fade in active panel-group">
     <%= render(@improvements) || render('improvements/helpers/all') %>
     <%= will_paginate @improvements %>
   </div>

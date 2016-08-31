@@ -1,5 +1,8 @@
 $(document).on "page:change page:restore", ->
   
+  # fade main content in
+  #$('#site-content').hide().fadeIn('slow');
+  
   # set off-canvas navigation menu
   panel = $('#slide-panel').scotchPanel({
     containerSelector: '#site-wrapper',
