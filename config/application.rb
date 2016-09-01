@@ -33,7 +33,7 @@ end
 # Improve input error handling
 ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
   html = %(<div class="error">#{html_tag})
-  html += %(<small>#{instance.error_message.to_a.to_sentence}</small>).html_safe unless html_tag =~ /^<label/
+  html += %(<small>#{instance.error_message.to_a.first}</small>).html_safe unless html_tag =~ /^<label/
   html += %(</div>)
   html.html_safe
 end

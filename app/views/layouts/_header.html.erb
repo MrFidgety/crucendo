@@ -1,18 +1,15 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top">
   <div class="container-fluid">
-    <% if logged_in? %>
     <div class="nav-button-left pull-left">
       <%= button_tag '', 
           class: "c-hamburger c-hamburger--htx toggle-panel" do %>
         <span></span>
-      <% end %>
     </div>
     <% end %>
     <div class="pull-left">
       <div class="crucendo-logo">
         <%= link_to root_url do %>
-          <%= image_tag("logo.svg") %>
-          <span>rucendo</span>
+          <%= image_tag("crucendo_logo_web.svg") %>
         <% end %>
         <div class="beta-logo">beta</div>
       </div>

@@ -24,10 +24,12 @@
     <%= favicon_link_tag 'logo_icon.png', sizes: 'any', type: 'image/png' %>
   </head>
 <body>
-  <%= render 'layouts/header' %>
+  <% if logged_in? %>
+    <%= render 'layouts/header' %>
+  <% end %>
   <div id="site-wrapper">
     <div id="slide-panel"></div>
-    <div id="site-content" class="<%= yield(:page_class) %>">
+    <div id="site-content" class="<%= yield(:page_class) %> <%= 'padded-top' if logged_in? %>">
       <div class="container">
         <%= render_flash %>
         <% if !@breadcrumbs.blank? %>

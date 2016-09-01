@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many      :interactions,  dependent:  :destroy
   has_many      :remembers,     dependent:  :destroy
   has_many      :answers,       dependent:  :destroy
-  has_many      :improvements,  through:    :goals,         dependent:  :destroy
+  has_many      :improvements,  through:    :goals,       dependent:  :destroy
   has_many      :subscriptions, dependent:  :destroy
   has_many      :topics,        through:    :subscriptions
   
@@ -20,9 +20,13 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   
   validates     :name,          length: { maximum: 50 }
-  validates     :email,         presence: true, 
+  validates     :email,         presence: { message: "the first step to 
+                                  impressing yourself is providing your email 
+                                  address" }, 
                                 length: { maximum: 255 },
-                                format: { with: VALID_EMAIL_REGEX },
+                                format: { with: VALID_EMAIL_REGEX, 
+                                message: "our robot, Baxter, has told us that 
+                                  this email address isn't valid" },
                                 uniqueness: { case_sensitive: false }
   validates     :year_of_birth, length: { is: 4 }, 
                                 allow_nil: true

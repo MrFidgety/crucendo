@@ -3,6 +3,12 @@ $(document).on "page:change page:restore", ->
   # fade main content in
   #$('#site-content').hide().fadeIn('slow');
   
+  # focus on signup form when help modal closes
+  $('#help-modal').on 'hidden.bs.modal', ->
+    $('#user_email').focus()
+    
+  # smooth scroll to current-page anchors
+
   # set off-canvas navigation menu
   panel = $('#slide-panel').scotchPanel({
     containerSelector: '#site-wrapper',

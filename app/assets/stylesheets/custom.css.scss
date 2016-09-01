@@ -17,6 +17,8 @@ $friendly-green: #0bd00b;
 $bright-green: #56d646;
 $box-shadow: rgba(0,2,34,0.75);
 
+$friendly-green-dark: darken($friendly-green, 2%);
+
 $hornets-purple: #2f008a;
 $hornets-purple-light: lighten($hornets-purple, 20%);
 $hornets-purple-dark: darken($hornets-purple, 5%);
@@ -75,32 +77,47 @@ html,body {
 }
 
 body {
-  padding-top: 60px;
   background: $crucial-light-blue;
   -webkit-overflow-scrolling: touch;
 }
-h1.welcome-title {
-  color: white;
-  font-size: 5em;
-  font-family: 'Raleway', sans-serif;
-  margin: 70px 0px;
-  small {
-    color: $crucial-aqua;
-    display: block;
-    font-size: 0.3em;
-    margin-top: 20px;
-    span {
-      display: block;
-      font-size: 1.4em;
-      margin-top: 5px;
-    }
+.navbar.navbar-fixed-top {
+  box-shadow: none;
+  background: $crucial-light-blue;
+}
+.title-logo {
+  text-align: center;
+  margin-top: 3em;
+  img {
+    width: 25em;
   }
+}
+.tagline {
+  text-align: center;
+  font-size: 2.1em;
+  padding: 0.5em 0;
+  p {
+    margin: 0;
+  }
+  small {
+    display: block;
+    font-size: 0.5em;
+  }
+  .modal-trigger {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+.aqua {
+  color: $crucial-aqua;
 }
 h3 {
   font-size: 2em;
 }
 .signup-form {
-  margin: 50px 0px;
+  margin: 2em 0;
+  .error {
+    color: white;
+  }
 }
 .input-group.break-group-xs {
   @media (max-width: $screen-xs-max) {
@@ -241,14 +258,14 @@ input[type="month"] {
   padding: 10px 0px;
   margin: 0 20px;
   font-size: 18px;
-  color: $crucial-light-blue;
-  border-bottom: 1px solid $gray-medium-light;
+  color: $crucial-aqua;
+  border-bottom: 1px solid $crucial-aqua;
 }
 .navbar {
   height: 60px;
   img {
     height: 60px;
-    padding: 10px 0px 17px 10px;
+    padding: 8px 0 14px 0;
   }
   a {
     transition: all 0.2s ease-in-out;
@@ -555,10 +572,12 @@ input[type="month"] {
 .policies {
   padding: 1em 0;
   text-align: center;
-  color: #000;
   a {
     color: inherit;
   }
+}
+.extra-padding {
+  padding-top: 25vh;
 }
 
 /* interaction questions and titles */
@@ -689,7 +708,7 @@ h3.panel-title {
   }
 }
 .beta-logo {
-  color: #cccccc;
+  color: $crucial-aqua;
   position: absolute;
   bottom: 4px;
   right: 10px;
@@ -720,20 +739,19 @@ h3.panel-title {
 .scotch-is-showing>#site-content {
   position: relative;
 }
-#site-content:after {
-  pointer-events: none; // allow clicks through overlay
-  content: " ";
-  z-index: 10;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  //transition: background 0.6s; // starts lagging
-}
+// #site-content:after {
+//   pointer-events: none; // allow clicks through overlay
+//   content: " ";
+//   z-index: 10;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   height: 100%;
+//   width: 100%;
+// }
 .scotch-is-showing>#site-content:after {
   pointer-events: auto;
-  background: rgba(0, 0, 0, 0.4);
+  //background: rgba(0, 0, 0, 0.4);
   cursor: pointer;
 }
 #site-wrapper {
@@ -746,6 +764,9 @@ h3.panel-title {
   &.want-show {
     background: $hornets-teal;
   }
+  &.padded-top {
+    padding-top: 70px;
+  }
 }
 #scotch-panel {
   display: none;
@@ -753,11 +774,8 @@ h3.panel-title {
 #site-wrapper .scotch-panel-canvas {
   z-index: 9;
 }
-.scotch-panel-wrapper {
-  
-}
 #fixed-nav {
-  background: #444;
+  background: $crucial-light-blue;
   position: fixed;
   height: 100%; 
   top: 60px;
@@ -788,6 +806,7 @@ h3.panel-title {
   text-align: left;
   font-size: 16px;
   padding-left: 90px;
+  transition: 0.3s ease;
   .fa {
     position: absolute;
     left: 0;
@@ -797,8 +816,9 @@ h3.panel-title {
   }
 }
 #fixed-nav ul li a:hover {
-  background: $knicks-orange;
   text-decoration: none;
+  transform: translateX(20px);
+  
 }
 
 /* hamburger button */
@@ -830,8 +850,8 @@ h3.panel-title {
   top: 22px;
   left: 9px;
   right: 9px;
-  height: 4px;
-  background: $gray-medium-light;
+  height: 2px;
+  background: white;
   border-radius: 2px;
 }
 
@@ -841,8 +861,8 @@ h3.panel-title {
   display: block;
   left: 0;
   width: 100%;
-  height: 4px;
-  background-color: $gray-medium-light;
+  height: 2px;
+  background-color: white;
   content: "";
   border-radius: 2px;
 }
@@ -1051,6 +1071,15 @@ input[type=text] {
   &:hover, &:active, &:focus {
     color: white;
     background-color: $knicks-orange-dark;
+  }
+}
+.btn-green {
+  background-color: $friendly-green;
+  border: 1px solid $friendly-green;
+  color: white;
+  &:hover, &:active, &:focus {
+    color: white;
+    background-color: $friendly-green-dark;
   }
 }
 .scaled-btn.improve-btn {
@@ -1277,29 +1306,22 @@ p.split {
   text-align: center;
   color: white;
 }
-#how-does-it-work-trigger {
-  cursor: pointer;
-  text-align: center;
-  font-size: 2em;
-  color: white;
-  padding: 2em 0 1em 0;
-}
-#how-does-it-work.modal {
+#help-modal.modal {
   .modal-header {
   	border-bottom: none;
   }
   .modal-title {
-    text-align:center;
-  	font-size:2em;
-  	font-weight:600;
-  	color: $crucial-light-blue;
+    text-align: center;
+  	font-size: 2em;
+  	color: white;
   }
   .modal-content {
-    background-color: #333333;
+    background-color: $crucial-light-blue;
     color: white;
   }
   .modal-body {
-  	font-size: 1.5em;
+  	font-size: 1.2em;
+  	padding: 2em;
   }
   .modal-footer {
     border-top: none;
@@ -1311,7 +1333,7 @@ p.split {
   -moz-transform: scale(0.1);
   -ms-transform: scale(0.1);
   transform: scale(0.1);
-  top: 6em;
+  top: 0;
   opacity: 0;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
@@ -1374,4 +1396,45 @@ p.split {
   .pluralize-word {
     display: inline-block;
   }
+}
+#help-contents {
+  text-align: center;
+  padding: 1em 0;
+  a {
+    color: white;
+    font-size: 1.2em;
+    line-height: 2.5em;
+    &:hover, &:focus, &:active {
+      color: white;
+    }
+  }
+}
+.panel-help {
+  background: none;
+  color: white;
+  border: none;
+  webkit-box-shadow: none; 
+  box-shadow: none;
+
+  .panel-title {
+    color: $crucial-aqua;
+    text-align: center;
+    font-size: 2em;
+  }
+  .panel-body {
+    h3 {
+      font-size: 1.5em;
+    }
+  }
+  .panel-footer {
+    text-align: center;
+    background: none;
+    color: white;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+.help-image {
+  height: 1.5em;
 }

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="77.020912mm"
+   width="246.92995mm"
+   version="1"
+   viewBox="0 0 797.55481 247.04533"
+   id="svg3336"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="crucendo_logo.svg"
+   inkscape:export-filename="C:\Users\trist\Pictures\TheCrucialTeam\SVG\crucendo_logo.png"
+   inkscape:export-xdpi="534.73999"
+   inkscape:export-ydpi="534.73999">
+  <metadata
+     id="metadata3366">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#efefef"
+     bordercolor="#666665"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview3364"
+     showgrid="false"
+     inkscape:zoom="0.81620549"
+     inkscape:cx="453.41041"
+     inkscape:cy="124.29623"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3336"
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10"
+     showborder="false"
+     borderlayer="false"
+     inkscape:showpageshadow="false" />
+  <defs
+     id="defs3338">
+    <linearGradient
+       id="a">
+      <stop
+         stop-color="#00bcf5"
+         offset="0"
+         id="stop3341" />
+      <stop
+         stop-color="#052b61"
+         offset="1"
+         id="stop3343" />
+    </linearGradient>
+    <radialGradient
+       id="d"
+       xlink:href="#a"
+       gradientUnits="userSpaceOnUse"
+       cy="0.0095277"
+       cx="343.62"
+       gradientTransform="matrix(-1.1976,1.4969,-0.97771,-0.78217,871.51,-482.01)"
+       r="306.84" />
+    <radialGradient
+       id="c"
+       gradientUnits="userSpaceOnUse"
+       cy="313.45999"
+       cx="164.00999"
+       gradientTransform="matrix(0.90631,2.4245,-1.556,0.58164,519.19,-345.58)"
+       r="183.39999">
+      <stop
+         stop-color="#d2d2e1"
+         offset="0"
+         id="stop3347" />
+      <stop
+         stop-color="#555568"
+         offset="1"
+         id="stop3349" />
+    </radialGradient>
+    <radialGradient
+       id="b"
+       xlink:href="#a"
+       gradientUnits="userSpaceOnUse"
+       cy="505.04999"
+       cx="232.7"
+       gradientTransform="matrix(1.6987,0.26103,-0.21343,1.389,-54.803,-261.33)"
+       r="220.67" />
+  </defs>
+  <g
+     transform="matrix(0.287091,0,0,0.287091,16.221733,18.678036)"
+     id="g3352"
+     style="fill:#ffffff;fill-opacity:1;shape-rendering:geometricPrecision">
+    <path
+       d="M 376.96,44.443 A 320.96,320.96 0 0 0 56,365.403 a 320.96,320.96 0 0 0 59.23,185.1 321.06,321.06 0 0 1 -27.824,-129.77 321.06,321.06 0 0 1 321.06,-321.06 321.06,321.06 0 0 1 261.21,135.07 320.96,320.96 0 0 0 -292.72,-190.3 z"
+       id="path3354"
+       style="fill:#ffffff;fill-opacity:1"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     transform="matrix(0.287091,0,0,0.287091,16.221733,18.678036)"
+     id="g3356"
+     style="fill:#ffffff;fill-opacity:1;shape-rendering:geometricPrecision">
+    <path
+       d="M 396.63,122.99 A 281.97,281.97 0 0 0 114.66,404.96 281.97,281.97 0 0 0 377.04,685.95 281.11,281.11 0 0 1 173.07,415.88 281.11,281.11 0 0 1 454.18,134.76 a 281.11,281.11 0 0 1 27.283,1.3652 281.97,281.97 0 0 0 -84.832,-13.143 z"
+       id="path3358"
+       style="fill:#ffffff;fill-opacity:1"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     transform="matrix(0.287091,0,0,0.287091,16.221733,18.678036)"
+     id="g3360"
+     style="fill:#ffffff;fill-opacity:1">
+    <path
+       d="M 262.92,272.96 A 234.09,234.09 0 0 0 201.94,430.13 234.09,234.09 0 0 0 436.03,664.22 234.09,234.09 0 0 0 643.28,538.61 232.98,232.98 0 0 1 464.72,621.98 232.98,232.98 0 0 1 231.74,388.99 232.98,232.98 0 0 1 262.92,272.96 Z"
+       id="path3362"
+       style="fill:#ffffff;fill-opacity:1;shape-rendering:geometricPrecision"
+       inkscape:connector-curvature="0" />
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:68.97536469px;line-height:125%;font-family:sans-serif;letter-spacing:-4.557724px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+     x="197.08186"
+     y="208.44792"
+     id="text3368"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3370"
+       x="197.08186"
+       y="208.44792"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:155.19459534px;font-family:Raleway;-inkscape-font-specification:Raleway;letter-spacing:-4.557724px;fill:#ffffff;fill-opacity:1;"
+       dx="0">rucendo</tspan></text>
+  <flowRoot
+     xml:space="preserve"
+     id="flowRoot3372"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     transform="translate(18.084182,19.493226)"><flowRegion
+       id="flowRegion3374"><rect
+         id="rect3376"
+         width="251.23694"
+         height="105.69278"
+         x="278.95963"
+         y="556.18658" /></flowRegion><flowPara
+       id="flowPara3378" /></flowRoot>  <flowRoot
+     xml:space="preserve"
+     id="flowRoot3352"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     transform="matrix(0.91154473,0,0,0.91154463,18.084182,17.255916)"><flowRegion
+       id="flowRegion3354"><rect
+         id="rect3356"
+         width="77.970085"
+         height="53.712723"
+         x="121.2868"
+         y="211.38556" /></flowRegion><flowPara
+       id="flowPara3358"></flowPara></flowRoot></svg>

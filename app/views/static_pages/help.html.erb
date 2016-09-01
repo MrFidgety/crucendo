@@ -1,36 +1,30 @@
 <% provide(:title, "Help") %>
 <h1 class="page-title">
-  <i class="fa fa-question-circle-o"></i><br>
+  <% if logged_in? %>
+    <i class="fa fa-question-circle-o"></i>
+  <% else %>
+    <%= link_to image_tag("crucendo_logo_web.svg", class: 'help-image'), root_url %>
+  <% end %><br>
   <small>Help</small>
 </h1>
-<div class="policies">
+<div class="policies aqua">
   <%= link_to 'Privacy', privacy_url %> | 
   <%= link_to 'Terms & Conditions', terms_url %> | 
   <%= link_to 'Contact', 'mailto:support@thecrucialteam.com' %>
 </div>
-<div id="contents" class="list-group">
-  <a href="#why-am-i-here" class="list-group-item">
-    <%= fa_icon 'link', text: 'Why am I here?' %></a>
-  <a href="#crucendo-features" class="list-group-item">
-    <%= fa_icon 'link', text: 'Description of Crucendo’s features' %></a>
-  <a href="#quick-start-guide" class="list-group-item">
-    <%= fa_icon 'link', text: 'Crucendo Quick Start Guide' %></a>
-  <a href="#" class="list-group-item">
-    <%= fa_icon 'link', text: 'Your Dashboard (coming soon)' %></a>
-  <a href="#" class="list-group-item">
-    <%= fa_icon 'link', text: 'Your Profile (coming soon)' %></a>
-  <a href="#" class="list-group-item">
-    <%= fa_icon 'link', text: 'Completing a Crucendo (coming soon)' %></a>
-  <a href="#" class="list-group-item">
-    <%= fa_icon 'link', text: 'Managing the Subscriptions (coming soon)' %></a>
-  <a href="#" class="list-group-item">
-    <%= fa_icon 'link', text: 'Reviewing and editing your Wants (coming soon)' %></a>
-  <a href="#" class="list-group-item">
-    <%= fa_icon 'link', text: 'Reviewing and editing your Haves (coming soon)' %></a>
-  <a href="#" class="list-group-item">
-    <%= fa_icon 'link', text: 'Using the Reports (coming soon)' %></a>
-</div>
-<div id="why-am-i-here" class="panel panel-default">
+<ul id="help-contents">
+  <li><a href="#why-am-i-here">Why am I here?</a></li>
+  <li><a href="#crucendo-features">Description of Crucendo’s features</a></li>
+  <li><a href="#quick-start-guide">Crucendo Quick Start Guide</a></li>
+  <li><a href="#">Your Dashboard (coming soon)</a></li>
+  <li><a href="#">Your Profile (coming soon)</a></li>
+  <li><a href="#">Completing a Crucendo (coming soon)</a></li>
+  <li><a href="#">Managing the Subscriptions (coming soon)</a></li>
+  <li><a href="#">Reviewing and editing your Wants (coming soon)</a></li>
+  <li><a href="#">Reviewing and editing your Haves (coming soon)</a></li>
+  <li><a href="#">Using the Reports (coming soon)</a></li>
+</ul>
+<div id="why-am-i-here" class="panel panel-help">
   <div class="panel-heading">
     <div class="panel-title">Why am I here?</div>
   </div>
@@ -72,11 +66,11 @@
     Crucendo will be your new best friend, because you deserve the opportunity 
     to impress yourself.</p>
   </div>
-  <a href="#contents">
-  <div class="panel-footer"><%= fa_icon 'chevron-up', text: 'Return to top.' %></div>
+  <a href="#site-content">
+  <div class="panel-footer"><%= fa_icon 'chevron-up', text: 'return to top' %></div>
   </a>
 </div>
-<div id="crucendo-features" class="panel panel-default">
+<div id="crucendo-features" class="panel panel-help">
   <div class="panel-heading">
     <div class="panel-title">Description of Crucendo’s features</div>
   </div>
@@ -149,11 +143,11 @@
     Days counter is not only for what you’ve currently achieved, but also to 
     display your all-time best number of consecutive days.</p>
   </div>
-  <a href="#contents">
-  <div class="panel-footer"><%= fa_icon 'chevron-up', text: 'Return to top.' %></div>
+  <a href="#site-content">
+  <div class="panel-footer"><%= fa_icon 'chevron-up', text: 'return to top' %></div>
   </a>
 </div>
-<div id="quick-start-guide" class="panel panel-default">
+<div id="quick-start-guide" class="panel panel-help">
   <div class="panel-heading">
     <div class="panel-title">Crucendo Quick Start Guide</div>
   </div>
@@ -197,21 +191,9 @@
     looking for new suggestions for possible options, so if you come up with 
     something that you don’t see here, email your suggestion to us at 
     support@thecrucialteam.com using the subject Crucendo Accomplishments 
-    Suggestion. </p>
-    <h3>Learning is fun, so here’s some suggestions on how you can learn some more.</h3>
-    <ul>
-      <li>Read the full help guide</li>
-      <li>We belong to the same community, so come and join our social media 
-      conversations</li>
-      <li>Get support from our team by sending us an email to 
-      <a href="mailto:support@thecrucialteam.com">support@thecrucialteam.com</a>
-      </li>
-    </ul>
-    <h3>Was this article helpful? 
-    <a href="mailto:support@thecrucialteam.com?subject=Helpful">Yes</a> | 
-    <a href="mailto:support@thecrucialteam.com?subject=Unhelpful">No</a></h3>
+    Suggestion.</p>
   </div>
-  <a href="#contents">
-  <div class="panel-footer"><%= fa_icon 'chevron-up', text: 'Return to top.' %></div>
+  <a href="#site-content">
+  <div class="panel-footer"><%= fa_icon 'chevron-up', text: 'return to top' %></div>
   </a>
 </div>

@@ -1,40 +1,44 @@
 <% provide(:title, "Welcome") %>
-<h1 class="welcome-title">
-  Crucendo
-  <small>
-    Everyone deserves the opportunity to impress themselves. 
-    <span>
-      Start impressing yourself today.
-    </span>
-  </small>
-</h1>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for @user, :url => root_url, class: 'signup-form' do |f| %>
+<header class="row title-logo">
+  <%= image_tag 'crucendo_logo_web.svg', alt: 'Crucendo Logo' %>
+</header>
+<section class="tagline aqua">
+  <p>impress yourself every day</p>
+</section>
+<section class="row">
+  <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+    <%= form_for @user, :url => root_url, :html => {:class => 'signup-form'} do |f| %>
       <div class="input-group break-group-xs">
-        <%= f.email_field :email, placeholder: "Your email here...",
+        <%= f.email_field :email, placeholder: "youremail@here.com",
                                   class: "form-control input-lg" %>
         <span class="input-group-btn hidden-xs">
-        <%= f.submit "Let's Go!", :data => {:disable_with => "Going..."}, 
-              class: "btn btn-orange btn-lg btn-fill"%>
+        <%= f.submit "Begin now", :data => {:disable_with => "Welcome!"}, 
+              class: "btn btn-green btn-lg btn-fill"%>
         </span>
       </div>
       <span class="visible-xs">
-        <%= f.submit "Let's Go!", :data => {:disable_with => "Going..."}, 
-              class: "btn btn-orange btn-lg btn-block" %>
+        <%= f.submit "Begin now", :data => {:disable_with => "Welcome!"}, 
+              class: "btn btn-green btn-lg btn-block" %>
       </span>
     <% end %>
-    <p id="how-does-it-work-trigger" class="modal-trigger" data-toggle="modal" data-target="#how-does-it-work">
-      How does it work? 
-    </p>
-    <div class="policies">
-      <%= link_to 'Privacy', privacy_url %> | 
-      <%= link_to 'Terms & Conditions', terms_url %> | 
-      <%= link_to 'Contact', 'mailto:support@thecrucialteam.com' %>
-    </div>
-  </div>
-</div>
-<div id="how-does-it-work" class="modal fade" role="dialog">
+</section>
+<section class="tagline aqua">
+  <p>
+    <small>
+      <span class="modal-trigger" data-toggle="modal" data-target="#help-modal">
+        How does it work?
+      </span>
+    </small>
+  </p>
+</section>
+<section class="extra-padding">
+  <p class="policies aqua">
+    <%= link_to 'Privacy', privacy_url %> | 
+    <%= link_to 'Terms & Conditions', terms_url %> | 
+    <%= link_to 'Contact', 'mailto:support@thecrucialteam.com' %>
+  </p>
+</section>
+<div id="help-modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -54,7 +58,7 @@
 			<div class="modal-footer">
 			  <%= link_to fa_icon('question-circle-o', text: "Help", right: true), 
           help_path, class: 'btn btn-default btn-lg' %>
-			  <button type="button" class="btn btn-lg btn-orange" 
+			  <button type="button" class="btn btn-lg btn-green" 
 			    data-dismiss="modal">
 			    <%= fa_icon 'check', text: 'Got it', right: true %>
 			  </button>
