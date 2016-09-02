@@ -1,7 +1,6 @@
 <% provide(:title, "Want") %>
 <% provide(:page_class, "want-show") %>
-<h1 class="page-title"><%= fa_icon 'bullseye' %><br>
-  <%= @goal.content %></h1>
+<h1 class="page-title light"><%= @goal.content %></h1>
 <div class="goal-details">
   <% if @goal.improvements.size > 0 %>
     <p class="improvements-large">
@@ -12,8 +11,6 @@
         </span>
       </span>
     </p>
-  <% else %>
-    <p class="goal-begin">you are working toward your first improvement</p>
   <% end %>
   <ul>
     <li>
@@ -38,8 +35,10 @@
         <p>
           you have improved <%= pluralize(@goal.improvements.size, 'time') %>
         </p>
+      <% elsif @goal.completed? %>
+        <p>you have not acknowledged any improvements</p>
       <% else %>
-        <p>you are working toward your first improvement<p>
+        <p>you are working toward your first improvement</p>
       <% end %>
     </li>
     <% if !@goal.due_date.blank? %>
@@ -53,10 +52,13 @@
     </li>
   </ul>
 </div>
-<div class="goal-improvements">
-  <%= render @improvements %>
+<h2 class="line-span teal"><span>Haves</span></h2>
+<div class="goal-improvements panel-group">
+  <%= render(@improvements) || render('goals/helpers/first_improvement', 
+                                  locals: {completed: @goal.completed} ) %>
 </div>
 <div class="goal-actions">
-  <%= link_to fa_icon('pencil-square-o', text: 'Edit', right: true), edit_goal_path(@goal), 
+  <%= link_to fa_icon('pencil-square-o', text: 'Edit', right: true), 
+        edit_goal_path(@goal), 
         class: 'btn btn-orange pull-right btn-lg' %>
 </div>

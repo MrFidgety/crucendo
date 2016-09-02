@@ -34,6 +34,8 @@
             <span class="offset">
               you have improved <%= pluralize(goal.improvements.size, 'time') %>
             </span>
+          <% elsif goal.completed? %>
+            <span class="offset">you have not acknowledged any improvements<span>
           <% else %>
             <span class="offset">you are working toward your first improvement<span>
           <% end %>
@@ -48,10 +50,8 @@
         <% end %>
         </li>
       </ul>
-    </div>
-    <div class="panel-footer">
-      <span class="helper">
-        Select to view/edit
+      <span class="pull-right helper">
+        <%= fa_icon 'hand-pointer-o', text: 'Select', right: true%>
       </span>
     </div>
   <% end %>

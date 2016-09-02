@@ -1,7 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-@import 'https://fonts.googleapis.com/css?family=Open+Sans|Raleway:400,600';
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400|Raleway:400,600';
 
 /* mixins, variables, etc. */
 
@@ -17,7 +17,7 @@ $friendly-green: #0bd00b;
 $crucial-green: #00d2a3;
 $box-shadow: rgba(0,2,34,0.75);
 
-$friendly-green-dark: darken($friendly-green, 2%);
+$crucial-green-dark: darken($crucial-green, 2%);
 
 $hornets-purple: #2352bf;
 $hornets-purple-light: lighten($hornets-purple, 20%);
@@ -429,7 +429,26 @@ input[type="month"] {
 /* panels */
 .panel {
   border: 1px solid white;
-  
+  .panel-body {
+    padding: 10px;
+    ul {
+      padding: 0;
+      margin: 0;
+      li {
+        .fa {
+          position: absolute;
+          line-height: inherit;
+          padding-left: 0.5em;
+        }
+        .fa-play {
+          margin-left: 1px;
+        }
+        span.offset {
+          padding-left: 3em;
+        }
+      }
+    }
+  }
 }
 .panel-group {
   margin-bottom: 10px;
@@ -453,26 +472,6 @@ input[type="month"] {
       background-color: $hornets-teal;
       color: white;
     }
-    .panel-body {
-      padding: 10px;
-      ul {
-        padding: 0;
-        margin: 0;
-        li {
-          .fa {
-            position: absolute;
-            line-height: inherit;
-            padding-left: 0.5em;
-          }
-          .fa-play {
-            margin-left: 1px;
-          }
-          span.offset {
-            padding-left: 3em;
-          }
-        }
-      }
-    }
     .panel-footer {
       color: $hornets-teal;
       background-color: inherit;
@@ -492,6 +491,20 @@ input[type="month"] {
         color: $hornets-purple;
       }
     }
+  }
+}
+
+.improvement-panel {
+  border: 1px solid white;
+  background-color: white;
+  .panel-heading {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    background-color: $hornets-purple;
+    color: white;
+  }
+  .panel-body {
+    padding: 10px;
   }
 }
 
@@ -645,10 +658,17 @@ textarea.form-control {
   float: right;
 }
 
-.goal-panel a {
-  color: inherit;
-  text-decoration: inherit;
+.goal-panel, .interaction-panel {
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
 }
+.goal-panel, .improvement-panel, .crucendo-panel {
+  .panel-title {
+    font-weight: 300;
+  }
+} 
 
 h3.panel-title {
   font-size: 1.6em;
@@ -659,7 +679,8 @@ h3.panel-title {
 }
 
 .helper {
-   font-size: 0.9em;
+  font-size: 0.9em;
+  color: $crucial-gray;
 }
 
 .interaction-summary {
@@ -742,19 +763,18 @@ h3.panel-title {
 .scotch-is-showing>#site-content {
   position: relative;
 }
-// #site-content:after {
-//   pointer-events: none; // allow clicks through overlay
-//   content: " ";
-//   z-index: 10;
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   height: 100%;
-//   width: 100%;
-// }
+#site-content:after {
+  pointer-events: none; // allow clicks through overlay
+  content: " ";
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
 .scotch-is-showing>#site-content:after {
   pointer-events: auto;
-  //background: rgba(0, 0, 0, 0.4);
   cursor: pointer;
 }
 #site-wrapper {
@@ -766,6 +786,9 @@ h3.panel-title {
   padding-top: 10px;
   &.want-show {
     background: $hornets-teal;
+  }
+  &.crucendo-show {
+    background: $crucial-green;
   }
   &.padded-top {
     padding-top: 70px;
@@ -1032,8 +1055,8 @@ hr {
   text-align: center;
   .fa-stack {
     font-size: 10em;
-    height: 1.5em;
-    line-height: 1.5em;
+    height: 1.2em;
+    line-height: 1em;
     .fa {
       color: $hornets-purple;
     }
@@ -1055,6 +1078,10 @@ hr {
 h1.page-title {
   margin-bottom: 10px;
   color: white;
+  &.light {
+    font-weight: 300;
+    margin-bottom: 1em;
+  }
   small {
     color: $crucial-aqua;
   }
@@ -1085,12 +1112,12 @@ input[type=text] {
   }
 }
 .btn-green {
-  background-color: $friendly-green;
-  border: 1px solid $friendly-green;
+  background-color: $crucial-green;
+  border: 1px solid $crucial-green;
   color: white;
   &:hover, &:active, &:focus {
     color: white;
-    background-color: $friendly-green-dark;
+    background-color: $crucial-green-dark;
   }
 }
 .scaled-btn.improve-btn {
@@ -1160,29 +1187,6 @@ input[type=text] {
         color: white;
       }
     }
-  }
-}
-.improvement-small.panel {
-  margin-bottom: 5px;
-  background-color: $hornets-purple;
-  border-color: $hornets-purple;
-  color: white;
-  .panel-body {
-    padding: 10px;
-  }
-  .icons {
-    position: absolute;
-    line-height: inherit;
-    font-size: 1.5em;
-  }
-  .improvement-details {
-    span {
-      font-size: 1.2em;
-      display: block;
-    }
-    padding-left: 4em;
-    margin-bottom: 0;
-    font-size: 1em;
   }
 }
 .crucendo-begin {
@@ -1282,14 +1286,18 @@ input[type="date"]
     color: $crucial-aqua;
   }
 }
-.goal-helper, .improvement-helper {
+.goal-helper, .improvement-helper, .missing-content-helper {
   font-size: 1.5em;
   text-align: center;
   color: white;
   padding: 1em;
+  a {
+    color: white;
+    text-decoration: underline;
+  }
 }
 .alert {
-  font-size: 1.5em;
+  font-size: 1.3em;
   border: none;
   &.alert-success {
     color: white;
@@ -1368,9 +1376,8 @@ p.split {
     color: white;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
-    span {
-      font-size: 0.5em;
-      line-height: 2em;
+    img {
+      margin-top: -0.25em;
     }
   }
   .panel-body {
@@ -1397,11 +1404,19 @@ p.split {
     background-color: inherit;
     text-align: center;
   }
+  &:hover {
+    border-color: $crucial-green;
+    transform: scale(1.03);
+    .panel-heading {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+  }
 }
 
 .interaction-stats {
   text-align: center;
-  color: #9076de;
+  color: $crucial-gray;
   .pluralize-number {
     display: block;
     font-size: 4em;
@@ -1457,4 +1472,43 @@ p.split {
   text-align: center;
   font-size: 1.2em;
   color: white;
+}
+img.c-logo {
+  height: 1.5em;
+}
+.answer-panel {
+  color: white;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  font-size: 1.2em;
+  -webkit-box-shadow: none;
+  .panel-heading {
+    padding: 1em 0;
+  }
+  .panel-body {
+   padding: 0;
+  }
+}
+blockquote {
+  font-size: 1.5em;
+  font-weight: 300;
+  border-left: 2px solid white;
+}
+h2.line-span {
+  width: 100%; 
+  text-align: center; 
+  border-bottom: 1px solid white; 
+  line-height: 0.1em;
+  margin: 2em 0;
+  font-size: 2em;
+  color: white;
+  &.green span {
+    background: $crucial-green; 
+    padding:0 10px;
+  }
+  &.teal span {
+    background: $hornets-teal; 
+    padding:0 10px;
+  }
 }

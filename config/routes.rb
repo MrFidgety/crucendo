@@ -24,6 +24,10 @@ Rails.application.routes.draw do
   
   resources :accomplishments
   
+  namespace :accomplishments do
+    resources :crucendos
+  end
+  
   resources :goals, :path => 'wants' do
     post 'improve', on: :member
   end

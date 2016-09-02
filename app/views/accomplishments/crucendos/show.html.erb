@@ -1,0 +1,33 @@
+<% provide(:title, "View Crucendo") %>
+<% provide(:page_class, "crucendo-show") %>
+<h1 class="page-title"><%= image_tag("crucendo_c_web.svg", class: "c-logo") %><br>
+  <small>
+    Your <%= current_user.interactions
+                .where("updated_at <= ?", @crucendo.updated_at)
+                .size.ordinalize %> Crucendo
+  </small>
+</h1>
+<p class="title-helper">
+  This was completed <%= local_time_ago(@crucendo.updated_at) %>
+</p>
+<% unless @crucendo.answers.blank? %>
+  <h2 class="line-span green"><span>Answers</span></h2>
+<% end %>
+<section id="answers" class="panel-group">
+  <%= render @crucendo.answers %>
+</section>
+<% unless @crucendo.improvements.blank? %>
+  <h2 class="line-span green"><span>Haves</span></h2>
+<% end %>
+<section id="haves" class="panel-group">
+  <%= render(partial: "improvements/improvement", collection: @crucendo.improvements) %>
+</section>
+<% unless @crucendo.goals.blank? %>
+  <h2 class="line-span green"><span>Wants</span></h2>
+<% end %>
+<section id="wants" class="panel-group">
+  <%= render(partial: "goals/goal", collection: @crucendo.goals) %>
+</section>
+<section id="feeling">
+  
+</section>

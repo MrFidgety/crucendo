@@ -1,12 +1,35 @@
-<div class="panel improvement-small">
+<div class="panel improvement-panel">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <span class="pull-right">
+        <%= fa_icon('star') if improvement.unexpected %>
+        <%= fa_icon('trophy') %>
+      </span>
+      <%= improvement.goal.content %>
+    </h3>
+  </div>
   <div class="panel-body">
-    <span class="icons">
-      <%= fa_icon('trophy') %>
-      <%= fa_icon('star') if improvement.unexpected %>
-    </span>
-    <p class="improvement-details">
-      <span><%= improvement.goal.content %></span>
-      Improved <%= local_time_ago(improvement.created_at) %>
-    </p>
+    <ul>
+      <li>
+        <%= fa_icon 'clock-o' %>
+        <span class="offset">
+          acknowledged <%= local_time_ago(improvement.created_at) %>
+        </span>
+      </li>
+      <li>
+        <%= fa_icon 'hashtag' %>
+        <span class="offset">
+          your <%= improvement.goal.improvements
+                    .where("created_at <= ?", improvement.created_at)
+                    .size.ordinalize %> improvement
+        </span>
+      </li>
+      <% if improvement.unexpected? %>
+        <li>
+          <%= fa_icon 'star' %> 
+          <span class="offset">this was an unexpected win!</span>
+        </li>
+        <% end %>
+    </ul>
   </div>
 </div>

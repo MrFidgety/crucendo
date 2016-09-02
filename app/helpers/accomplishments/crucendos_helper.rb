@@ -1,0 +1,2 @@
+module Accomplishments::CrucendosHelper
+end
