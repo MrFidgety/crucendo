@@ -12,20 +12,20 @@
     <a data-toggle="tab" href="#profile-sessions">Sessions</a>
   </li>
   <li class="col-xs-4">
-    <a data-toggle="tab" href="#profile-contact">Contact</a>
+    <a data-toggle="tab" href="#profile-security">Security</a>
   </li>
 </ul>
 <div class="tab-content">
   <div id="profile-me" class="tab-pane fade in active">
-    <%= form_for @user do |f| %>
+    <%= form_for @user, remote: true do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name, placeholder: 'Hey mate, what’s your name?', 
                               class: 'form-control input-lg' %>
       <%= f.label :year_of_birth %>
-      <%= f.number_field  :year_of_birth, 
-                          class: 'form-control input-lg', 
-                          in: Time.now.year-120...Time.now.year, 
-                          placeholder: 'When did you enter the world?' %>
+      <%= f.select :year_of_birth, 
+            ((Time.zone.now.year - 100)..(Time.zone.now.year)).to_a.reverse,
+            { prompt: 'When did you enter the world?' },
+            class: 'form-control input-lg' %>
       <%= f.label :gender %>
       <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
         <label class="btn btn-default btn-lg">
@@ -53,7 +53,21 @@
   <div id="profile-sessions" class="tab-pane fade">
     <%= render @user.remembers.order(updated_at: :desc) %>
   </div>
-  <div id="profile-contact" class="tab-pane fade">
+  <div id="profile-security" class="tab-pane fade">
+    <%= form_for @user, remote: true do |f| %>
+      <%= f.label :password %>
+      <%= f.password_field :password, placeholder: 'Set a new password', 
+                              class: 'form-control input-lg' %>
+      <%= f.label :password_confirmation, "New Password Confirmation" %>
+      <%= f.password_field :password_confirmation, placeholder: 'Confirm new password',
+                              class: 'form-control input-lg' %>
+      <%= button_tag(type: 'submit', class: "btn btn-orange pull-right btn-lg",
+            :data => {:disable_with => "Saving..."}) do %>
+        <%= fa_icon('floppy-o', text: 'Save', right: true) %>
+      <% end %>
+    <% end %>
+    <div class="clearfix"></div>
+    <hr>
     <%= text_field_tag 'email', @user.email, disabled: true,
           class: 'form-control input-lg' %>
     <button class="btn btn-orange btn-block btn-lg" data-toggle="modal" data-target="#new-email">I want to change my account email</button>

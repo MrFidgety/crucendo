@@ -20,7 +20,7 @@ class ActiveSupport::TestCase
     get edit_session_path(user.login_token, email: user.email)
   end
   
-  def post_to_begin(user)
+  def post_to_root(user)
     post root_url, user: { email: user.email }
   end
 

@@ -9,7 +9,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   test "invalid signup information" do
     get root_url
     assert_no_difference 'User.count' do
-      post root_url, user: { email: "user@invalid" }
+      post root_url, user: { email: "user@invalid" }, xhr: true
     end
     assert_template 'users/new'
     assert_select 'div.error'
@@ -18,7 +18,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   test "valid signup information with account activation" do
     get root_url
     assert_difference 'User.count', 1 do
-      post root_url, user: { email: "user@example.com" }
+      post root_url, user: { email: "user@example.com" }, xhr: true
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
     user = assigns(:user)
@@ -44,5 +44,4 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert is_logged_in?
   end
-
 end

@@ -12,7 +12,7 @@ module FlashHelper
   end
   
   def flash_path
-    File.join(flash[:controller], 'flash', flash[:from].to_s, flash[:result].to_s)
+    File.join(flash[:controller].to_s, 'flash', flash[:from].to_s, flash[:result].to_s)
   end
   
   def flash_alert_result

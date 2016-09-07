@@ -9,8 +9,8 @@
     confirm_text += ' you have made.' 
   end
 %>
-<h1>Edit this want</h1>
-<%= form_for @goal do |f| %>
+<h1 class="page-title"><small>Edit this want</small></h1>
+<%= form_for @goal, remote: true do |f| %>
   <%= f.label :content, 'What do you want to improve?' %>
   <%= f.text_field :content, placeholder: 'What do you want to improve?', 
                           class: 'form-control input-lg' %>

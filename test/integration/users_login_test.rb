@@ -12,38 +12,27 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_not @unactivated_user.activated?
     # set activation link to expired
     @unactivated_user.update_attribute(:activation_sent_at, 16.minutes.ago)
-    post_to_begin @unactivated_user
+    post root_url, user: { email: @unactivated_user.email }, xhr: true
     # ensure new activation is automatically sent
     assert_equal 1, ActionMailer::Base.deliveries.size
-    assert_redirected_to root_url
-    follow_redirect!
-    assert_not flash.empty?
     # set activation link to valid
     ActionMailer::Base.deliveries.clear
     @unactivated_user.update_attribute(:activation_sent_at, Time.zone.now)
-    post_to_begin @unactivated_user
+    post root_url, user: { email: @unactivated_user.email }, xhr: true
     # ensure new activation is not automatically sent
     assert_equal 0, ActionMailer::Base.deliveries.size
-    assert_redirected_to root_url
-    follow_redirect!
-    assert_not flash.empty?
-    assert_select "a[href=?]", resend_path(email: @unactivated_user.email)
-    get resend_path(email: @unactivated_user.email)
+    post sendemail_path, session: { email: @unactivated_user.email}, xhr: true
     assert_equal 1, ActionMailer::Base.deliveries.size
-    follow_redirect!
-    assert_not flash.empty?
   end
   
-  test "login with active account" do
+  test "email login with active account" do
     assert @activated_user.activated?
-    post_to_begin @activated_user
-    # get instance variable so login token can be accessed
+    # Simulate click of 'havent set password' button
+    post sendemail_path, session: { email: @activated_user.email }, xhr: true
+    # Get instance variable so login token can be accessed
     user = assigns(:user)
-    # ensure login email is sent
+    # Ensure login email is sent
     assert_equal 1, ActionMailer::Base.deliveries.size
-    assert_redirected_to root_url
-    follow_redirect!
-    assert_not flash.empty?
     # Invalid activation token
     get edit_session_path("invalid token", email: user.email)
     assert_not is_logged_in?
@@ -56,7 +45,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
                             email: @activated_user.email)
     assert_not is_logged_in?
     @activated_user.update_attribute(:login_sent_at, Time.zone.now)
-    # Valid activation token
+    # Valid login token
     assert_difference 'Remember.count', 1 do
       get edit_session_path(user.login_token, 
                             email: @activated_user.email)

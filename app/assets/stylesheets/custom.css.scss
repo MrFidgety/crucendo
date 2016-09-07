@@ -12,7 +12,7 @@ $crucial-dark-blue-gray: #545471;
 $crucial-aqua: #a5edff;
 $gray-medium-light: #eaeaea;
 $gray-metal: #e2e5f1;
-$friendly-red: #ff0033;
+$friendly-red: #ff5275;
 $friendly-green: #0bd00b;
 $crucial-green: #00d2a3;
 $box-shadow: rgba(0,2,34,0.75);
@@ -113,7 +113,7 @@ body {
 h3 {
   font-size: 2em;
 }
-.signup-form {
+.signup-form, .welcome-spacing {
   margin: 2em 0;
   .error {
     color: white;
@@ -1181,7 +1181,7 @@ input[type=text] {
       font-size: 1.3em;
       color: $crucial-dark-blue-gray;
       padding: 10px 0px;
-      &:hover {
+      &:hover, &:focus {
         background-color: inherit;
         border: none;
         color: white;
@@ -1445,7 +1445,8 @@ p.split {
   border: none;
   webkit-box-shadow: none; 
   box-shadow: none;
-
+  padding-top: 62px; // account for fixed nav
+  margin-top: -62px; // account for fixed nav
   .panel-title {
     color: $crucial-aqua;
     text-align: center;
@@ -1510,5 +1511,83 @@ h2.line-span {
   &.teal span {
     background: $hornets-teal; 
     padding:0 10px;
+  }
+}
+/* errors */
+.has-error .form-control {
+  border: 2px solid $knicks-orange;
+  &:focus {
+    border: 2px solid $knicks-orange;
+  }
+}
+.signup-error {
+  color: white;
+}
+.user-edit-error {
+  color: white;
+  float: right;
+  margin-top: -15px; // Fix input margin
+  margin-bottom: -15px; // Prevent save button from misalignment
+}
+.goal-error {
+  float: right;
+  margin-top: -15px; // Fix input margin
+  margin-bottom: -15px; // Prevent save button from misalignment
+}
+.btn {
+  transition: all 0.3s;
+}
+.welcome-message {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  a {
+    text-decoration: inherit;
+    color: inherit;
+    .fa {
+      color: $knicks-orange;
+      font-size: 0.9em;
+    }
+  }
+}
+label {
+  font-weight: 400;
+}
+form {
+  &.edit_user, &.edit_goal {
+    label {
+      color: white;
+    }
+  }
+}
+.btn-group {
+  .btn-default {
+    color: $crucial-gray;
+    &:hover, &:focus {
+      border-color: #9be0d0;
+      background-color: #9be0d0;
+      color: white;
+    }
+    &:active, &.active {
+      color: white;
+      background-color: $crucial-green;
+      border-color: $crucial-green;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+  }
+  .improve-btn {
+    &:hover, &:focus {
+      border-color: $hornets-teal;
+      background-color: $hornets-teal;
+      color: white;
+    }
+    &:active, &.active {
+      color: white;
+      background-color: $hornets-teal;
+      border-color: $hornets-teal;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
   }
 }

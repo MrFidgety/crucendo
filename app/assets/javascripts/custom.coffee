@@ -1,13 +1,14 @@
 $(document).on "page:change page:restore", ->
   
   # fade main content in
-  #$('#site-content').hide().fadeIn('slow');
+  $('#site-content').hide().fadeIn(600)
   
   # focus on signup form when help modal closes
   $('#help-modal').on 'hidden.bs.modal', ->
     $('#user_email').focus()
     
-  # smooth scroll to current-page anchors
+  # Ensure preselected radio buttons are visually clicked
+  $('[checked="checked"]').parent().click()
 
   # set off-canvas navigation menu
   panel = $('#slide-panel').scotchPanel({
@@ -20,14 +21,11 @@ $(document).on "page:change page:restore", ->
     enableEscapeKey: true
     beforePanelOpen: -> 
       $('#fixed-nav').show()
-      # esure overlay remains full screen
-      #$('#site-content').css('position', 'relative')
     afterPanelClose: ->
       $('#fixed-nav').hide()
-      #$('#site-content').css('position', 'static')
   })
   
-  # ensure starts closed 
+  # ensure navigation panel starts closed 
   # (fix issue when back button is pressed after using navigation)
   panel.close()
   
@@ -48,3 +46,20 @@ $(document).on "page:change page:restore", ->
 
   $('a[data-toggle="tab"]').on 'shown', (e) ->
     location.hash = $(e.target).attr('href').substr(1)
+    
+  # AJAX form responses - errors
+  $.fn.render_form_errors = (model_name, error_class, errors) ->
+    form = this
+    this.clear_form_errors()
+  
+    $.each(errors, (field, messages) ->
+      $('#' + model_name + '_' + field).wrap('<div class="has-error"></div>')
+      error = $('<small class="'+error_class+'">'+messages[0]+'</small>').hide()
+      $('#' + model_name + '_' + field).parent().append(error)
+      error.fadeIn(300)
+    )
+  
+  # clear AJAX form errors  
+  $.fn.clear_form_errors = () ->
+    $('.error-message').unwrap()
+    $('.error-message').remove()

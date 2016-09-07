@@ -3,24 +3,75 @@ class SessionsController < ApplicationController
   before_action :get_user,          only: [:edit]
   before_action :valid_user,        only: [:edit]
   before_action :check_expiration,  only: [:edit]
-  
-  def new
+
+  def create
+    @user = User.find_by(email: params[:session][:email].downcase)
+    if @user && @user.has_password? && @user.authenticate(params[:session][:password])
+      # Log in and remember
+      log_in @user
+      remember @user
+      # Set most recent "remember" browser details
+      @user.remembers.order(:updated_at).last.update_attributes(
+                                          browser: browser.name,
+                                          device: browser.device.name,
+                                          platform: browser.platform.name)
+      set_flash :welcome, type: :success
+      # Take user to dashboard
+      respond_to do |format|
+        format.html { redirect_to root_url }
+        format.js   { render js: "window.location = '#{root_url}'" }
+      end
+    else
+      @user = User.new
+      @user.errors.add(:password, :invalid, message: "nup, that's not it")
+      # Display login errors
+      respond_to do |format|
+        format.html { render action: 'new' }
+        format.js   { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
   
   def edit
-    # consume login digest
+    # Consume login digest
     @user.update_attributes(login_digest: nil,
                             login_sent_at: nil)
-    
+    # Log in and remember
     log_in @user
     remember @user
-    # set most recent "remember" browser details
+    # Set most recent "remember" browser details
     @user.remembers.order(:updated_at).last.update_attributes(
                                           browser: browser.name,
                                           device: browser.device.name,
                                           platform: browser.platform.name)
     set_flash :welcome, type: :success
     redirect_to root_url
+  end
+  
+  def send_email
+    # Ensure email parameter is set
+    if !params[:session][:email].blank? 
+      @user = User.find_by(email: params[:session][:email].downcase)
+      if @user
+        if @user.activated?
+          # Send regular log in email
+          @user.send_login_email
+          # Respond with login sent notice
+          respond_to do |format|
+            format.html { redirect_to root_url }
+            format.js   { @response_form = 'users/login_sent' }
+          end
+        else
+          # Send regular activation email
+          @user.send_activation_email
+          # Respond with activation sent notice
+          respond_to do |format|
+            format.html { redirect_to root_url }
+            format.js   { @response_form = 'users/activation_sent' }
+          end
+        end
+      end
+    end
   end
   
   def remove
@@ -60,5 +111,4 @@ class SessionsController < ApplicationController
         redirect_to root_url
       end
     end
-    
 end

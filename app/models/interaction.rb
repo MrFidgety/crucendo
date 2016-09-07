@@ -26,6 +26,7 @@ class Interaction < ActiveRecord::Base
     LEFT OUTER JOIN interactions 
     ON interactions.user_id = :user_id 
     AND (interactions.updated_at AT TIME ZONE :zone_offset)::date = series_date
+    AND interactions.completed = true
     GROUP BY series_date
     HAVING COUNT(interactions.id) = 0
     ORDER BY series_date DESC

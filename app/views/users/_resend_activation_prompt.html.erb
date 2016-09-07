@@ -1,0 +1,16 @@
+<div id="login_module">
+  <div class="welcome-message">
+    <%= @user.email %>
+    <%= link_to fa_icon('pencil-square-o'), root_url %><br>
+    <div class="welcome-spacing">
+      Awesome! You've been here before. Once upon a time we sent you an email with
+      an activation link. Cool story right?
+    </div>
+  </div>
+  <%= form_tag sendemail_path, method: "post", remote: true do |f| %>
+    <%= hidden_field(:session, :email, :value => @user.email) %>
+    <%= submit_tag "Click here if the activation link has gone walkabout", 
+          :data => {:disable_with => "Sending email..."},
+          class: "btn btn-orange btn-block btn-lg" %>
+  <% end %>
+</div>

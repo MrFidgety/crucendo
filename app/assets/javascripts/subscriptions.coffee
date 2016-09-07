@@ -12,5 +12,4 @@
     else if !topic.hasClass('clicked')
       topic.toggleClass('subscribed')
       topic.addClass('clicked')
-
   )

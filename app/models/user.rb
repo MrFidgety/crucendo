@@ -14,24 +14,30 @@ class User < ActiveRecord::Base
   has_many      :topics,        through:    :subscriptions
   
   before_save   :downcase_email
-  before_create :create_activation_digest
   after_create  :default_subscriptions
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   
-  validates     :name,          length: { maximum: 50 }
-  validates     :email,         presence: { message: "the first step to 
-                                  impressing yourself is providing your email 
-                                  address" }, 
-                                length: { maximum: 255 },
-                                format: { with: VALID_EMAIL_REGEX, 
-                                message: "our robot, Baxter, has told us that 
-                                  this email address isn't valid" },
-                                uniqueness: { case_sensitive: false }
-  validates     :year_of_birth, length: { is: 4 }, 
-                                allow_nil: true
-  validates     :gender,        inclusion: { in: %w(female male) }, 
-                                allow_nil: true
+  has_secure_password validations: false
+  
+  validates :name,          length: { maximum: 50 }
+  validates :email,         presence: { message: "the first step to 
+                            impressing yourself is providing your email 
+                            address" }, 
+                            length: { maximum: 255 },
+                            format: { with: VALID_EMAIL_REGEX, 
+                            message: "our robot, Baxter, has told us that 
+                            this email address isn't valid" },
+                            uniqueness: { case_sensitive: false }
+  validates :year_of_birth, numericality: { only_integer: true, 
+                            greater_than_or_equal_to: Time.zone.now.year - 100, 
+                            less_than_or_equal_to: Time.zone.now.year}, 
+                            allow_nil: true
+  validates :gender,        inclusion: { in: %w(female male) }, 
+                            allow_nil: true
+  validates :password,      length: (8..32), 
+                            confirmation: true, 
+                            if: :setting_password?
   
   class << self              
     # Returns the hash digest of the given string.
@@ -55,6 +61,11 @@ class User < ActiveRecord::Base
   def remember
     self.remember_token = User.new_token
     self.remembers.create(remember_digest: User.digest(remember_token))
+  end
+  
+  # Return true if user has password
+  def has_password?
+    !self.password_digest.blank?
   end
   
   # Returns true if the given token matches the digest.
@@ -90,17 +101,9 @@ class User < ActiveRecord::Base
     update_columns(activated: true, activated_at: Time.zone.now)
   end
 
-  # Sends activation email.
+  # Creates activation token and sends activation email.
   def send_activation_email
-    update_attribute(:activation_sent_at, Time.zone.now)
-    UserMailer.account_activation(self).deliver_now
-  end
-  
-  # Resends activation email.
-  def resend_activation_email
-    self.activation_token  = User.new_token
-    update_columns(activation_digest:  User.digest(activation_token),
-                   activation_sent_at: Time.zone.now)
+    create_activation_digest
     UserMailer.account_activation(self).deliver_now
   end
   
@@ -109,7 +112,7 @@ class User < ActiveRecord::Base
     activation_sent_at < 15.minutes.ago
   end
   
-  # Sends login email.
+  # Creates login token and sends login email.
   def send_login_email
     create_login_digest
     UserMailer.account_login(self).deliver_now
@@ -186,14 +189,19 @@ class User < ActiveRecord::Base
     # Creates and assigns the activation token and digest.
     def create_activation_digest
       self.activation_token  = User.new_token
-      self.activation_digest = User.digest(activation_token)
+      update_columns( activation_digest:  User.digest(activation_token),
+                      activation_sent_at: Time.zone.now)
     end
     
     # Creates and assigns the login token and digest.
     def create_login_digest
       self.login_token  = User.new_token
-      update_columns(login_digest:  User.digest(login_token),
-               login_sent_at: Time.zone.now)
+      update_columns( login_digest:  User.digest(login_token),
+                      login_sent_at: Time.zone.now)
     end
-
+    
+    # checks if either password field has a value
+    def setting_password?
+      password || password_confirmation
+    end
 end

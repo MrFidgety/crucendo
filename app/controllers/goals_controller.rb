@@ -19,9 +19,15 @@ class GoalsController < ApplicationController
   def update
     if @goal.update_attributes(goal_params)
       set_flash :good_button, type: :success
-      redirect_to goal_path(@goal)
+      respond_to do |format|
+        format.html { redirect_to goal_path(@goal) }
+        format.js
+      end
     else
-      render 'edit'
+      respond_to do |format|
+        format.html { render action: 'edit' }
+        format.js   { render json: @goal.errors, status: :unprocessable_entity }
+      end
     end
   end
   

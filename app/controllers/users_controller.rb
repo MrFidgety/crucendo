@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include InteractionsHelper
   
   before_action :allow_signup,      only: :show
-  before_action :set_current_user,  except: [:new, :create, :resend]
+  before_action :set_current_user,  except: [:new, :create]
   before_action :admin_user,        only: :destroy
   
   def show
@@ -38,36 +38,47 @@ class UsersController < ApplicationController
     # Check if user exists
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
+      # Check if user is activated
       if @user.activated?
-        if !@user.login_sent_at || @user.login_link_expired?
-          # Create login digest and send email
-          @user.send_login_email
-          set_flash :send_login, type: :success, object: @user
-        else
-          # Prompt for login to be resent
-          set_flash :resend_login_prompt, type: :success, object: @user
+        # Respond with login form
+        respond_to do |format|
+          format.html { redirect_to root_url }
+          format.js   { @response_form = 'password_login' }
         end
       else
         if @user.activation_link_expired?
           # Resend activation automatically
-          @user.resend_activation_email
-          set_flash :resend_activation, type: :success, object: @user
+          @user.send_activation_email
+          # Respond with activation sent notice
+          respond_to do |format|
+            format.html { redirect_to root_url }
+            format.js   { @response_form = 'activation_sent' }
+          end
         else
-          # Prompt for activation to be resent
-          set_flash :resend_activation_prompt, type: :success, object: @user
+          # Respond with resend activation prompt
+          respond_to do |format|
+            format.html { redirect_to root_url }
+            format.js   { @response_form = 'resend_activation_prompt' }
+          end
         end
       end
-      redirect_to root_url
     else
       # Attempt to create new user
       @user = User.new(signup_params)
       if @user.save
         # Send activation email
         @user.send_activation_email
-        set_flash :send_activation, type: :success, object: @user
-        redirect_to root_url
+        # Respond with activation sent notice
+        respond_to do |format|
+          format.html { redirect_to root_url }
+          format.js   { @response_form = 'activation_sent' }
+        end
       else
-        render 'new'
+        # Display signup errors
+        respond_to do |format|
+          format.html { render action: 'new' }
+          format.js   { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -75,29 +86,17 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       set_flash :good_button, type: :success
-      redirect_to profile_path
+      
+      respond_to do |format|
+        format.html { redirect_to profile_path }
+        format.js
+      end
     else
-      render 'edit'
-    end
-  end
-  
-  def resend
-    # Ensure email parameter is set
-    if !params[:email].blank? 
-      @user = User.find_by(email: params[:email].downcase)
-      if @user
-        if @user.activated?
-          # Send regular log in email
-          @user.send_login_email
-          set_flash :resend_login_confirm, type: :success, object: @user
-        else
-          # Send regular activation email
-          @user.resend_activation_email
-          set_flash :resend_activation_confirm, type: :success, object: @user
-        end
+      respond_to do |format|
+        format.html { render action: 'edit' }
+        format.js   { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-    redirect_to root_url
   end
   
   def destroy
@@ -110,7 +109,8 @@ class UsersController < ApplicationController
     # Allowed user parameters
     def user_params
       params.require(:user).permit(:name, :year_of_birth, :gender, 
-                                    :country_code, :time_zone)
+                                    :country_code, :time_zone,
+                                    :password, :password_confirmation)
     end
     
     # Allowed signup parameters

@@ -41,9 +41,9 @@ $(document).on "page:change", ->
   # pre-emptivley toggle to improved on link click (before ajax)
   $(document).on('click', 'a.goal-have' , ->
     goal = $( this ).parents('.goal-panel')
-
+    
     if !goal.hasClass('improved')
-      goal.detach().prependTo('#improved-goals').hide().slideDown('slow')
+      goal.detach().prependTo('#improved-goals')
       $('#select-goals-modal').modal('hide')
       goal.addClass('improved')
       $('#new_improvement_text').val('')
@@ -129,9 +129,11 @@ $(document).on "page:change", ->
     $("#new_goal form").clear_form_errors()
 
   # render new goal form errors
-  $(document).on "ajax:error", "form", (evt, xhr, status, error) ->
-    $("#new_goal form").render_form_errors('goal', $.parseJSON(xhr.responseText))
-    
+  $("#new_goal").on "ajax:error", (e, data, status, xhr) ->
+    $("#new_goal form").render_form_errors('goal', 
+      'error-message goal-error',
+      $.parseJSON(data.responseText))
+                                              
   # convert date-time on submit
   $("#goal_due_date").on 'change', ->
     time = new Date($('#goal_due_date').val())
@@ -181,18 +183,18 @@ $(document).on "page:change", ->
         $('#interaction_feeling').val(feeling.activeIndex+1)
     })
   
-# display form errors for each input
-$.fn.render_form_errors = (model_name, errors) ->
-  form = this
-  this.clear_form_errors()
+# # display form errors for each input
+# $.fn.render_form_errors = (model_name, errors) ->
+#   form = this
+#   this.clear_form_errors()
 
-  $.each(errors, (field, messages) ->
-    input = $('input[name="' + model_name + '[' + field + ']"]');
-    input.wrap('<div class="error"></div>')
-    input.parent().append('<small class="error_message">' + messages.join(' and ') + '</small>')
-  )
+#   $.each(errors, (field, messages) ->
+#     input = $('input[name="' + model_name + '[' + field + ']"]');
+#     input.wrap('<div class="error"></div>')
+#     input.parent().append('<small class="error_message">' + messages.join(' and ') + '</small>')
+#   )
 
-# clear AJAX form errors  
-$.fn.clear_form_errors = () ->
-  $('.error :input').unwrap()
-  $('.error_message').remove()
+# # clear AJAX form errors  
+# $.fn.clear_form_errors = () ->
+#   $('.error :input').unwrap()
+#   $('.error_message').remove()
