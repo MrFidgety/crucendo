@@ -35,7 +35,9 @@ class User < ActiveRecord::Base
                             allow_nil: true
   validates :gender,        inclusion: { in: %w(female male) }, 
                             allow_nil: true
-  validates :password,      length: (8..32), 
+  validates :password,      length: { in: (8..32), 
+                            too_long: "thats too long mate, 32 characters or less please", 
+                            too_short: "thats too short mate, 8 characters or more please"}, 
                             confirmation: true, 
                             if: :setting_password?
   

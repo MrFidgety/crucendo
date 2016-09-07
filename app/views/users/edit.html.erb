@@ -55,6 +55,8 @@
   </div>
   <div id="profile-security" class="tab-pane fade">
     <%= form_for @user, remote: true do |f| %>
+      <%= label_tag :current_password %>
+      <%= render partial: 'users/current_password' %>
       <%= f.label :password %>
       <%= f.password_field :password, placeholder: 'Set a new password', 
                               class: 'form-control input-lg' %>

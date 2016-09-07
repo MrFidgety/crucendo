@@ -15,4 +15,4 @@ $(document).on "page:change page:restore", ->
   # Clear errors when form is submitted again    
   $(".edit_user").on "submit", ->
     $(".edit_user form").clear_form_errors()
-    $(".alert").alert("close")
+    $(".alert-success").alert("close")
