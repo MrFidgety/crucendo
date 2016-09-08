@@ -27,20 +27,17 @@
   <% if logged_in? %>
     <%= render 'layouts/header' %>
   <% end %>
-  <div id="site-wrapper">
-    <div id="slide-panel"></div>
-    <div id="site-content" class="<%= yield(:page_class) %> <%= 'padded-top' if logged_in? %>">
-      <div id="primary-container" class="container">
-        <%= render_flash %>
-        <% if !@breadcrumbs.blank? %>
-          <ol class="breadcrumb">
-            <%= render_breadcrumbs :tag => :li, :separator => "" %>
-          </ol>
-        <% end %>
-        <%= yield %>
-        <%= render 'layouts/footer' %>
-        <%= debug(params) if Rails.env.development? %>
-      </div>
+  <div id="site-content" class="<%= yield(:page_class) %> <%= 'padded-top' if logged_in? %>">
+    <div id="primary-container" class="container">
+      <%= render_flash %>
+      <% if !@breadcrumbs.blank? %>
+        <ol class="breadcrumb">
+          <%= render_breadcrumbs :tag => :li, :separator => "" %>
+        </ol>
+      <% end %>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
   </div>
   <%= render 'layouts/navigation' if logged_in? %>

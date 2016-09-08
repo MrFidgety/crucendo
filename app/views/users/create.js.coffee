@@ -5,7 +5,10 @@ $('#new_user').fadeOut 600, ->
   # Replace form with response
   $(this).replaceWith(response)
   # Fade response in
-  response.fadeIn 600
+  response.fadeIn 600, ->
+    # Automatically focus on password input
+    if "<%= j @response_form %>" == "password_login"
+      $('#session_password').focus()
   
 # Report new user signup to google conversion
 if "<%= j @response_form %>" == "activation_sent"

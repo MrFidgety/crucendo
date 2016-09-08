@@ -1,53 +1,35 @@
 $(document).on "page:change page:restore", ->
   
-  # fade main content in
-  $('#site-content').hide().fadeIn(600)
-  
-  # focus on signup form when help modal closes
-  $('#help-modal').on 'hidden.bs.modal', ->
-    $('#user_email').focus()
+  # Toggle fixed navigation
+  $('#navigation-button').click ->
+    $(this).add('#fixed-nav, #site-content').toggleClass('nav-active')
     
   # Ensure preselected radio buttons are visually clicked
   $('[checked="checked"]').parent().click()
 
-  # set off-canvas navigation menu
-  panel = $('#slide-panel').scotchPanel({
-    containerSelector: '#site-wrapper',
-    direction: 'left',
-    duration: 600,
-    transition: 'ease',
-    clickSelector: '.toggle-panel',
-    distanceX: '300px',
-    enableEscapeKey: true
-    beforePanelOpen: -> 
-      $('#fixed-nav').show()
-    afterPanelClose: ->
-      $('#fixed-nav').hide()
-  })
+  # Click/touch site content to close navigation
+  $('#site-content').on 'click touchstart', (e) ->
+    if $(this).hasClass('nav-active')
+      $('#navigation-button, #fixed-nav, #site-content').removeClass('nav-active')
+      # Prevent safari from registering touch event under overlay
+      e.preventDefault() 
   
-  # ensure navigation panel starts closed 
-  # (fix issue when back button is pressed after using navigation)
-  panel.close()
+  # Prevent touch-scrolling on fixed-nav
+  $('#fixed-nav').on 'touchmove',(e) ->
+    e.preventDefault()
   
-  # click/touch to close menu
-  $(document).on('click touchstart', '.scotch-is-showing', (e) ->
-    panel.close()
-    # prevent safari from registering touch event under overlay
-    e.preventDefault() 
-  )
-  
-  # move all modals to end of body (prevent nested z-index issues)
+  # Move all modals to end of body (prevent nested z-index issues)
   $('.modal').each ->
     $(this).detach().appendTo('body')
     
-  # manage tab persistence
+  # Manage tab persistence
   if location.hash != ''
     $('a[href="'+location.hash+'"]').tab('show')
 
   $('a[data-toggle="tab"]').on 'shown', (e) ->
     location.hash = $(e.target).attr('href').substr(1)
     
-  # AJAX form responses - errors
+  # Render errors on failed AJAX
   $.fn.render_form_errors = (model_name, error_class, errors) ->
     form = this
     this.clear_form_errors()
@@ -59,7 +41,7 @@ $(document).on "page:change page:restore", ->
       error.fadeIn(300)
     )
   
-  # clear AJAX form errors  
+  # Clear form errors
   $.fn.clear_form_errors = () ->
     $('.error-message').unwrap()
     $('.error-message').remove()

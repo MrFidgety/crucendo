@@ -1,3 +1,4 @@
+# Render any flash set during AJAX call
 $("#primary-container").prepend("<%= j render_flash %>")
 
 # Clear new password fields

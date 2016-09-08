@@ -1,0 +1,21 @@
+// Pastel colors
+$pastel-blue: #0498d9;
+$pastel-aqua: #a5edff;
+$pastel-green: #00d2a3;
+$pastel-teal: #00c8d2;
+$pastel-navy: #2352bf;
+$pastel-orange: #fdac55;
+$pastel-red: #ff5275;
+
+// Pastel variants
+$pastel-green-dark: darken($pastel-green, 2%);
+$pastel-teal-light: lighten($pastel-teal, 20%);
+$pastel-teal-dark: darken($pastel-teal, 5%);
+$pastel-navy-light: lighten($pastel-navy, 20%);
+$pastel-navy-dark: darken($pastel-navy, 5%);
+$pastel-orange-light: lighten($pastel-orange, 20%);
+$pastel-orange-dark: darken($pastel-orange, 5%);
+
+// Other colors
+$light-gray: #d8d8d8;
+$dark-gray: #848484;

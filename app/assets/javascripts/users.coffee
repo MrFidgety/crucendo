@@ -16,3 +16,7 @@ $(document).on "page:change page:restore", ->
   $(".edit_user").on "submit", ->
     $(".edit_user form").clear_form_errors()
     $(".alert-success").alert("close")
+    
+  # Focus on signup form when help modal closes
+  $('#help-modal').on 'hidden.bs.modal', ->
+    $('#user_email').focus()
