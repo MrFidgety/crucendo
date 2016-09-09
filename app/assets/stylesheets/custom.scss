@@ -1,8 +1,4 @@
-
-
 /* mixins, variables, etc. */
-
-
 $a-tags: 'a, a:active, a:hover, a:visited';
 
 @mixin box_sizing {
@@ -452,35 +448,53 @@ input[type="month"] {
 }
 
 /* swipe slider */
-.swiper-container {
-  height: 200px;
+#swiper-feeling {
+  &.swiper-container {
+    height: 200px;
+  }
+  .swiper-slide {
+    cursor: pointer;
+    background: white;
+    transition: border-color 0.3s ease;
+    border: 5px solid $pastel-blue;
+    text-align: center;
+    font-size: 24px;
+  }
+  .swiper-slide-active {
+    border: 5px solid $pastel-orange;
+    span {
+      font-weight: 600;
+    }
+  }
 }
-.swiper-slide {
-  cursor: pointer;
-  background: white;
-  transition: border-color 0.3s ease;
-  border: 5px solid $pastel-blue;
-  text-align: center;
-  font-size: 24px;
-  
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
-.swiper-slide-active {
-  border: 5px solid $pastel-orange;
-  span {
-    font-weight: 600;
+#swiper-testimonials {
+  &.swiper-container {
+    height: 20em;
+  }
+  .swiper-slide {
+    font-weight: 300;
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+    
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    
+    small {
+      display: block;
+      font-size: 0.8em;
+    }
   }
 }
 

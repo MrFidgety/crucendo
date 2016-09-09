@@ -153,8 +153,8 @@ $(document).on "page:change", ->
   
   #------------------ FEELING ------------------#
   # initialize swiper when document ready
-  if $('.swiper-container').length
-    feeling = $('.swiper-container').swiper({
+  if $('#swiper-feeling.swiper-container').length
+    feeling = $('#swiper-feeling.swiper-container').swiper({
       pagination: '.swiper-pagination',
       initialSlide: 2,
       centeredSlides: true,

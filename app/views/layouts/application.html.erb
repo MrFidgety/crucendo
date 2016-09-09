@@ -1,3 +1,6 @@
+<% description = "Crucendo improves self awareness and promotes personal 
+                  development through short, introspective sessions designed to 
+                  challenge and encourage you." %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,21 +10,21 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Crucendo">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta property="og:title" content="Crucendo" />
-    <meta name="description" content="Everyone deserves the opportunity to impress themselves. Start impressing yourself today.">
-    <meta property="og:description" content="Everyone deserves the opportunity to impress themselves. Start impressing yourself today." />
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="http://crucendo.com" />
-    <meta property="og:image" content="<%= image_url("crucendo-social.png") %>" />
+    <meta property="og:title" content="Crucendo">
+    <meta name="description" content="<%= description %>">
+    <meta property="og:description" content="<%= description %>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://crucendo.com">
+    <meta property="og:image" content="<%= image_url("crucendo-social.png") %>">
     <link rel="apple-touch-icon" href="<%= image_path("logo_icon.png") %>">
     <link rel="apple-touch-startup-image" href="<%= image_path("logo_icon.png") %>">
+    <%= favicon_link_tag 'logo_icon.png', sizes: 'any', type: 'image/png' %>
     <%= stylesheet_link_tag     'application', media: 'all', 
                                 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= render 'layouts/google_analytics' %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
-    <%= favicon_link_tag 'logo_icon.png', sizes: 'any', type: 'image/png' %>
   </head>
 <body>
   <% if logged_in? %>

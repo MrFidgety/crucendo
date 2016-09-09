@@ -45,3 +45,19 @@ $(document).on "page:change page:restore", ->
   $.fn.clear_form_errors = () ->
     $('.error-message').unwrap()
     $('.error-message').remove()
+    
+  # Testimonal swiper
+  testimonials = $('#swiper-testimonials.swiper-container').swiper({
+    loop: true,
+    effect: 'cube',
+    slidesPerView: 1,
+    spaceBetween: 30,
+    centeredSlides: true,
+    speed: 1000,
+    autoplay: 10000,
+    autoplayDisableOnInteraction: false,
+    cube: {
+      shadow: false,
+      slideShadows: false,
+    }
+  })
