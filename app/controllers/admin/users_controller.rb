@@ -7,7 +7,7 @@ class Admin::UsersController < AdminController
     respond_to do |format|
       format.html
       format.csv { send_data User.all.order(id: :asc).to_csv, 
-                    filename: "users-#{Time.current}.csv" }
+                  filename: "crucendo-#{Rails.env}-users-#{Time.current}.csv" }
     end
   end
   
