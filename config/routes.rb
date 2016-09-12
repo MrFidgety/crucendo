@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       post :activate_questions, on: :member
     end
     resources :authors
+    resources :users
     resources :skills
   end
   

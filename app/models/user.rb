@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   before_save   :downcase_email
   after_create  :default_subscriptions
   
+  scope :created_recent,       -> { order(created_at: :desc) }
+  
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   
   has_secure_password validations: false
@@ -52,6 +54,18 @@ class User < ActiveRecord::Base
     # Returns a random token.
     def new_token
       SecureRandom.urlsafe_base64
+    end
+    
+    def to_csv
+      attributes = %w{id email name gender activated country_code time_zone password_digest}
+  
+      CSV.generate(headers: true) do |csv|
+        csv << attributes
+  
+        all.each do |user|
+          csv << attributes.map{ |attr| user.send(attr) }
+        end
+      end
     end
   end
   
