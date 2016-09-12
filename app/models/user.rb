@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
     end
     
     def to_csv
-      attributes = %w{id email name gender activated country_code time_zone password_digest}
+      attributes = %w{id created_at email name gender activated country_code time_zone password_digest}
   
       CSV.generate(headers: true) do |csv|
         csv << attributes
