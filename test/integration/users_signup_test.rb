@@ -33,7 +33,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     get edit_account_activation_path(user.activation_token, email: 'wrong')
     assert_not is_logged_in?
     # Expired activation token
-    user.update_attribute(:activation_sent_at, 16.minutes.ago)
+    user.update_attribute(:activation_sent_at, 25.hours.ago)
     get edit_account_activation_path(user.activation_token, 
                             email: user.email)
     assert_not is_logged_in?

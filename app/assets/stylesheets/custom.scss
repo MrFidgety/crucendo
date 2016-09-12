@@ -485,7 +485,7 @@ input[type="month"] {
 }
 #swiper-testimonials {
   &.swiper-container {
-    height: 20em;
+    height: 22em;
   }
   .swiper-slide {
     font-weight: 300;
@@ -496,6 +496,15 @@ input[type="month"] {
     small {
       display: block;
       font-size: 0.8em;
+    }
+    p {
+      //line-height: 1.5em;
+    }
+    h1{
+      small {
+        color: white;
+        font-size: 0.7em;
+      }
     }
   }
 }
@@ -1233,8 +1242,9 @@ p.split {
     color: white;
   }
   .modal-body {
-  	font-size: 1.2em;
+  	font-size: 1.5em;
   	padding: 2em;
+  	text-align: center;
   }
   .modal-footer {
     border-top: none;

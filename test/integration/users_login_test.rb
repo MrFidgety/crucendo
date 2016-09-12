@@ -11,7 +11,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "login with unactivated account" do
     assert_not @unactivated_user.activated?
     # set activation link to expired
-    @unactivated_user.update_attribute(:activation_sent_at, 16.minutes.ago)
+    @unactivated_user.update_attribute(:activation_sent_at, 25.hours.ago)
     post root_url, user: { email: @unactivated_user.email }, xhr: true
     # ensure new activation is automatically sent
     assert_equal 1, ActionMailer::Base.deliveries.size
@@ -40,7 +40,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get edit_session_path(user.login_token, email: 'wrong')
     assert_not is_logged_in?
     # Expired login token
-    @activated_user.update_attribute(:login_sent_at, 16.minutes.ago)
+    @activated_user.update_attribute(:login_sent_at, 25.hours.ago)
     get edit_session_path(user.login_token, 
                             email: @activated_user.email)
     assert_not is_logged_in?

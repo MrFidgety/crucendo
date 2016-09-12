@@ -125,7 +125,7 @@ class User < ActiveRecord::Base
   
   # Returns true if a activation link has expired.
   def activation_link_expired?
-    activation_sent_at < 15.minutes.ago
+    activation_sent_at < 24.hours.ago
   end
   
   # Creates login token and sends login email.
@@ -136,7 +136,7 @@ class User < ActiveRecord::Base
   
   # Returns true if a login link has expired.
   def login_link_expired?
-    login_sent_at < 15.minutes.ago
+    login_sent_at < 24.hours.ago
   end
   
   # Send email requesting approval for change of email.
