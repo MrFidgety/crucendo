@@ -65,8 +65,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  host = 'http://bugs.thecrucialteam.com';
-  config.action_mailer.asset_host = 'http://bugs.thecrucialteam.com'
+  host = 'http://bax.thecrucialteam.com';
+  config.action_mailer.asset_host = 'http://bax.thecrucialteam.com'
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.smtp_settings = {
      :authentication        => :plain,
