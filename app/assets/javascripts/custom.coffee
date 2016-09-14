@@ -56,6 +56,7 @@ $(document).on "page:change page:restore", ->
     speed: 1000,
     autoplay: 10000,
     autoplayDisableOnInteraction: false,
+    onlyExternal: true,
     cube: {
       shadow: false,
       slideShadows: false,
