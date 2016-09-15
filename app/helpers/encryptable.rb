@@ -21,9 +21,12 @@ module Encryptable
 
   def crypt
     @crypt ||= begin
-      key = ActiveSupport::KeyGenerator.new(
-              Rails.application.secrets.answer_key).generate_key(
-              Rails.application.secrets.answer_salt)    
+      case self
+      when Answer.class
+        env_key = Rails.application.secrets.answer_key
+        env_salt = Rails.application.secrets.answer_salt
+      end
+      key = ActiveSupport::KeyGenerator.new(env_key).generate_key(env_salt)    
       ActiveSupport::MessageEncryptor.new(key)
     end
   end
