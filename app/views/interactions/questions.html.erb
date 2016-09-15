@@ -5,7 +5,7 @@
   <span class="question-topic">- <%= @answer.question.topic.name %> -</span>
 </p><hr>
 <%= form_for @answer, url: wizard_path, method: :put do |f| %>
-  <%= f.text_area :content, rows: 4, class: 'form-control',
+  <%= f.text_area :encrypted_answer, rows: 4, class: 'form-control',
         placeholder: "type your answer here ..." %>
   <%= hidden_field(:answer, :id) %>
   <%= button_tag(type: 'submit', class: "btn btn-orange pull-right btn-lg",

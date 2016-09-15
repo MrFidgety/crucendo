@@ -44,7 +44,7 @@ class Interaction < ActiveRecord::Base
   
   # find first linked answer that is incomplete
   def find_next_answer
-    answers.where(:content => nil).first
+    answers.where(:encrypted_answer => nil).first
   end
   
   # set interaction as completed
@@ -56,10 +56,6 @@ class Interaction < ActiveRecord::Base
   
     # assign questions to interaction
     def assign_question_answers
-      # @questions = Question.active.order("RANDOM()").limit(3)
-      # @questions.each do |question|
-      #   answers.build(question_id: question.id, user_id: user.id)
-      # end
       
       @topics_answered = user.topics
                           .eager_load(questions: {answers: :interaction } )

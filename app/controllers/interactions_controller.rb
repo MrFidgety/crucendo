@@ -34,6 +34,9 @@ class InteractionsController < ApplicationController
       # if answer saves, move to next unanswered question
       if @answer.update_attributes(answer_params)
         @answer = @interaction.find_next_answer
+      else
+        # reset the answer value to plain text
+        @answer.plain_encrypted_answer = params[:answer][:encrypted_answer]
       end
       
       # move to next step if no "next answer"
@@ -91,7 +94,7 @@ class InteractionsController < ApplicationController
           redirect_to root_url
         end
         
-        if !@answer.content.blank?
+        if @answer.answered?
           # set flash notice advising question already answered
           set_flash :question_already_answered, type: :info
           redirect_to wizard_path(:questions)
@@ -101,7 +104,7 @@ class InteractionsController < ApplicationController
     end
     
     def answer_params
-      params.require(:answer).permit(:content)
+      params.require(:answer).permit(:encrypted_answer)
     end
     
     def interaction_params
