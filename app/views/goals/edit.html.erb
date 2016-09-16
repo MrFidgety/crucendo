@@ -11,8 +11,8 @@
 %>
 <h1 class="page-title"><small>Edit this want</small></h1>
 <%= form_for @goal, remote: true do |f| %>
-  <%= f.label :content, 'What do you want to improve?' %>
-  <%= f.text_field :content, placeholder: 'What do you want to improve?', 
+  <%= f.label :encrypted_goal, 'What do you want to improve?' %>
+  <%= f.text_field :encrypted_goal, placeholder: 'What do you want to improve?', 
                           class: 'form-control input-lg' %>
   <%= f.label :due_date, 'Set a due date.' %>
   <div class="input-group date">

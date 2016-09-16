@@ -1,6 +1,5 @@
 class Answer < ActiveRecord::Base
   extend Encryptable
-  
   encrypt_columns :encrypted_answer
   
   belongs_to  :interaction

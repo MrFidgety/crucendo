@@ -74,7 +74,7 @@ class UserTest < ActiveSupport::TestCase
   
   test "associated goals should be destroyed" do
     @user.save
-    @user.goals.create!(content: "Lorem ipsum")
+    @user.goals.create!(encrypted_goal: "Lorem ipsum")
     assert_difference 'Goal.count', -1 do
       @user.destroy
     end
