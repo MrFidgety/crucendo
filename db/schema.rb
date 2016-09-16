@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915035712) do
+ActiveRecord::Schema.define(version: 20160916010735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160915035712) do
     t.boolean  "active",             default: true
     t.integer  "interaction_id"
     t.integer  "improvements_count", default: 0
+    t.text     "encrypted_goal"
   end
 
   add_index "goals", ["interaction_id"], name: "index_goals_on_interaction_id", using: :btree

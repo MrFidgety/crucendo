@@ -4,7 +4,7 @@ class GoalTest < ActiveSupport::TestCase
   
   def setup
     @user = users(:richard)
-    @goal = @user.goals.build(content: "Be the best.")
+    @goal = @user.goals.build(encrypted_goal: "Be the best.")
   end
   
   test "should be valid" do
@@ -17,12 +17,12 @@ class GoalTest < ActiveSupport::TestCase
   end
   
   test "content should be present" do
-    @goal.content = "   "
+    @goal.encrypted_goal = "   "
     assert_not @goal.valid?
   end
 
   test "content should be at most 140 characters" do
-    @goal.content = "a" * 141
+    @goal.encrypted_goal = "a" * 141
     assert_not @goal.valid?
   end
 end

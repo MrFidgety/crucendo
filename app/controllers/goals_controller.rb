@@ -147,7 +147,7 @@ class GoalsController < ApplicationController
           params[:goal][:completed_date] = nil
         end
       end
-      params.require(:goal).permit(:content, :due_date, :completed, 
+      params.require(:goal).permit(:encrypted_goal, :due_date, :completed, 
                                     :completed_date, :active)
     end
     

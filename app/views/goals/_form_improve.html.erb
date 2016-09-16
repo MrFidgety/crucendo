@@ -4,8 +4,8 @@
       url: '/unexpected', 
       remote: remote, 
       method: 'post' do |f| %>
-  <%= f.label :content, 'What have you improved recently?' %>
-  <%= f.text_field :content, placeholder: 'type what you have improved...', 
+  <%= f.label :encrypted_goal, 'What have you improved recently?' %>
+  <%= f.text_field :encrypted_goal, placeholder: 'type what you have improved...', 
         class: 'form-control input-lg' %>
   <%= f.label :completed, 'Select to add to your list of active wants.' %>
   <div class="btn-group btn-block" data-toggle="buttons">

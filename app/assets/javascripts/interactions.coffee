@@ -11,7 +11,7 @@ $(document).on "page:change", ->
   # open new improvement modal
   $('#new_improvement_start').click ->
     $('#new_improvement_modal').modal('show')
-    $('#goal_content').val($('#new_improvement_text').val())
+    $('#goal_encrypted_goal').val($('#new_improvement_text').val())
     
   # trigger new improvement modal on 'enter'
   $('#new_improvement_text').keypress (e) ->
@@ -29,7 +29,7 @@ $(document).on "page:change", ->
   
   # reset improvement form
   $('#new_improvement_modal').on 'hidden.bs.modal', ->
-    $('#goal_content').val('')
+    $('#goal_encrypted_goal').val('')
     # reset 'want to actively improve this' button
     if $('.improve-btn').hasClass('active')
       $('.improve-btn').button('toggle')
@@ -75,7 +75,7 @@ $(document).on "page:change", ->
         if search_text.length > 2 
           search_terms.push(search_text)
           
-      $('#all-goals .goal_content').each ->
+      $('#all-goals .goal_encrypted_goal').each ->
         match = false
         text = $(this).text().toLowerCase()
         # search goals for each term
@@ -110,7 +110,7 @@ $(document).on "page:change", ->
   # open new goal modal
   $('#new_goal_start').click ->
     $('#new_goal_modal').modal('show')
-    $('#goal_content').val($('#new_goal_text').val())
+    $('#goal_encrypted_goal').val($('#new_goal_text').val())
     
   # trigger new goal modal on 'enter'
   $('#new_goal_text').keypress (e) ->
@@ -124,7 +124,7 @@ $(document).on "page:change", ->
   
   # reset goal form
   $('#new_goal_modal').on 'hidden.bs.modal', ->
-    $('#goal_content, #goal_due_date').val('')
+    $('#goal_encrypted_goal, #goal_due_date').val('')
     $('#due_date_container').collapse('hide')
     $("#new_goal form").clear_form_errors()
 

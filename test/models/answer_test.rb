@@ -23,7 +23,7 @@ class AnswerTest < ActiveSupport::TestCase
   end
   
   test "content should not be too long" do
-    @answer.content = "a" * 3501
+    @answer.encrypted_answer = "a" * 3501
     assert_not @answer.valid?
   end
   
