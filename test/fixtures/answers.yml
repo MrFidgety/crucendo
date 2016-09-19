@@ -2,12 +2,12 @@
 
 a1:
   interaction: i1 
-  content: some answer
+  encrypted_answer: some answer
 
 a2:
   interaction: i1 
-  content: some answer
+  encrypted_answer: some answer
   
 a3:
   interaction: i1 
-  content: some answer
+  encrypted_answer: some answer
