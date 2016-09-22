@@ -277,6 +277,9 @@ input[type="month"] {
   .btn-lg {
     height: 46px;
   }
+  .btn-begin {
+    width: 150px;
+  }
 }
 
 .error {
@@ -333,7 +336,6 @@ input[type="month"] {
       margin: 0;
       li {
         .fa {
-          position: absolute;
           line-height: inherit;
           padding-left: 0.5em;
         }
@@ -608,6 +610,9 @@ h3.panel-title {
   font-size: 0.9em;
   color: $dark-gray;
 }
+a.helper {
+  text-decoration: inherit;
+}
 
 .interaction-summary {
   font-size: 1.5em;
@@ -665,7 +670,18 @@ h3.panel-title {
   font-size: 12px;
   font-weight: 600;
 }
-
+.control-menu {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 25px;
+  line-height: 60px;
+  color: white;
+  padding: 6px 0;
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+}
 .nav-button-left {
   padding: 6px 10px 6px 0px;
 }
@@ -749,108 +765,6 @@ h3.panel-title {
   transform: translateX(20px);
   
 }
-
-/* hamburger button */
-.c-hamburger {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  width: 48px;
-  height: 48px;
-  font-size: 0;
-  text-indent: -9999px;
-  appearance: none;
-  box-shadow: none;
-  border-radius: none;
-  border: none;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.c-hamburger:focus {
-  outline: none;
-}
-
-.c-hamburger span {
-  display: block;
-  position: absolute;
-  top: 22px;
-  left: 9px;
-  right: 9px;
-  height: 2px;
-  background: white;
-  border-radius: 2px;
-}
-
-.c-hamburger span::before,
-.c-hamburger span::after {
-  position: absolute;
-  display: block;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: white;
-  content: "";
-  border-radius: 2px;
-}
-
-.c-hamburger span::before {
-  top: -10px;
-}
-
-.c-hamburger span::after {
-  bottom: -10px;
-}
-
-.c-hamburger--htx {
-  //background-color: #ff3264;
-  background: none;
-}
-
-.c-hamburger--htx span {
-  transition: background 0s 0.3s;
-}
-
-.c-hamburger--htx span::before,
-.c-hamburger--htx span::after {
-  transition-duration: 0.3s, 0.3s;
-  transition-delay: 0.3s, 0s;
-}
-
-.c-hamburger--htx span::before {
-  transition-property: top, transform;
-}
-
-.c-hamburger--htx span::after {
-  transition-property: bottom, transform;
-}
-
-/* active state, i.e. menu open */
-.c-hamburger--htx.nav-active {
-  background: none;
-}
-
-.c-hamburger--htx.nav-active span {
-  background: none;
-}
-
-.c-hamburger--htx.nav-active span::before {
-  top: 0;
-  transform: rotate(45deg);
-}
-
-.c-hamburger--htx.nav-active span::after {
-  bottom: 0;
-  transform: rotate(-45deg);
-}
-
-.c-hamburger--htx.nav-active span::before,
-.c-hamburger--htx.nav-active span::after {
-  transition-delay: 0s, 0.3s;
-}
-
 /* interactions have */
 .section-split-text {
   margin: 5px;
@@ -1050,23 +964,6 @@ input[type=text] {
     background-color: $pastel-teal-dark;
   }
 }
-.btn-modal-fixed {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 9;
-  margin: 0;
-}
-.modal-transparent {
-  .modal-content {
-    background-color: transparent;
-    box-shadow: none;
-    border: none;
-  }
-  .modal-body {
-    padding: inherit;
-  }
-}
 .nav-tabs {
   margin: 20px 0px;
   li {
@@ -1129,9 +1026,7 @@ input[type="date"]
   min-height: 1.2em;
   padding: 0 16px;
 }
-.modal-footer .btn {
-  margin: 0;
-}
+
 .input-group.date {
   margin-bottom: 15px;
 }
@@ -1222,56 +1117,12 @@ p.split {
   margin: 2em 0;
 }
 .btn .fa {
-  margin-left: 0.3em;
+  //margin-left: 0.3em;
 }
 .feeling-helper {
   text-align: center;
   color: white;
 }
-#help-modal.modal {
-  .modal-header {
-  	border-bottom: none;
-  }
-  .modal-title {
-    text-align: center;
-  	font-size: 2em;
-  	color: white;
-  }
-  .modal-content {
-    background-color: $pastel-blue;
-    color: white;
-  }
-  .modal-body {
-  	font-size: 1.5em;
-  	padding: 2em;
-  	text-align: center;
-  }
-  .modal-footer {
-    border-top: none;
-  }
-}
-/* modal fade */
-.modal.fade .modal-dialog {
-  -webkit-transform: scale(0.1);
-  -moz-transform: scale(0.1);
-  -ms-transform: scale(0.1);
-  transform: scale(0.1);
-  top: 0;
-  opacity: 0;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-}
-.modal.fade.in .modal-dialog {
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  opacity: 1;
-}
-
 .interaction-panel {
   transition: all 0.3s;
   border: 1px solid white;
@@ -1447,11 +1298,8 @@ h2.line-span {
   font-size: 18px;
   a {
     text-decoration: inherit;
-    color: inherit;
-    .fa {
-      color: $pastel-orange;
-      font-size: 0.9em;
-    }
+    color: $pastel-orange;
+    font-size: 0.9em;
   }
 }
 label {
@@ -1467,9 +1315,9 @@ form {
 .btn-group {
   .btn-default {
     color: $dark-gray;
-    &:hover, &:focus {
-      border-color: #9be0d0;
-      background-color: #9be0d0;
+    &:hover {
+      border-color: $pastel-green-light;
+      background-color: $pastel-green-light;
       color: white;
     }
     &:active, &.active {
@@ -1481,9 +1329,9 @@ form {
     }
   }
   .improve-btn {
-    &:hover, &:focus {
-      border-color: $pastel-teal;
-      background-color: $pastel-teal;
+    &:hover {
+      border-color: $pastel-teal-light;
+      background-color: $pastel-teal-light;
       color: white;
     }
     &:active, &.active {
@@ -1495,9 +1343,7 @@ form {
     }
   }
 }
-#help-modal {
-  font-weight: 300;
-}
+
 .hidden_file {
   display: none !important;
 }

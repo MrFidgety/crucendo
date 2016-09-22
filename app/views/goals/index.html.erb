@@ -1,4 +1,9 @@
 <% provide(:title, "Wants") %>
+<% content_for :control_menu do %>
+  <div id="new_goal_start" class='plus-icon'>
+    <span></span>
+  </div>
+<% end %>
 <h1 class="page-title">
   <i class="fa fa-bullseye"></i><br>
   <small>Wants</small>
@@ -26,3 +31,4 @@
     <%= render(@completed_goals) || render('goals/helpers/completed') %>
   </div>
 </div>
+<%= render 'goals/wants/new_want' %>

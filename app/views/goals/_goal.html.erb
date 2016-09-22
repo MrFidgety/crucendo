@@ -25,7 +25,7 @@
             <span class="offset">you are actively improving this want</span>
           <% else %>
             <%= fa_icon 'pause' %> 
-            <span class="offset">you have put this want on hold</span>
+            <span class="offset">this want is inactive</span>
           <% end %>
         </li>
         <li>
@@ -51,7 +51,7 @@
         </li>
       </ul>
       <span class="pull-right helper">
-        <%= fa_icon 'hand-pointer-o', text: 'Select', right: true%>
+        <%= fa_icon 'hand-pointer-o', text: 'Select' %>
       </span>
     </div>
   <% end %>

@@ -1,0 +1,51 @@
+<% interaction ||= false %>
+<div class="modal fade" id="new_goal_modal" tabindex="-1" role="dialog" 
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content want-modal">
+      <div class="modal-header">
+        <button type="button" class="modal-button-left close-icon" 
+          data-dismiss="modal" aria-hidden="true"><span></span></button>
+        <%= button_tag(type: 'submit', class: "modal-button-right check-icon",
+            form: 'new_goal', 
+            data: {disable_with: "<div class='loader'></div>".html_safe}) do %>
+          <span></span>
+        <% end %>
+        <h4 class="modal-title">I Want</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for @goal, remote: true do |f| %>
+          <%= f.text_field :encrypted_goal, placeholder: 'What do you want to improve?', 
+                class: 'form-control input-lg' %>
+          <%= f.label :due_date, 'Set a due date. (optional)' %>
+          <div class="input-group date">
+            <span class="input-group-btn">
+              <%= button_tag fa_icon('calendar'), type: 'button', class: "btn btn-default btn-lg", id: 'calendar-button' %>
+            </span>
+            <%= f.date_field :due_date, class: 'form-control input-lg' %>
+          </div>
+          <%= hidden_field_tag 'goal[due_date_utc]' %>
+          <%= hidden_field(:goal, :interaction_id) if interaction %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $( document ).ready(function() {
+    // enable bootstrap datepicker if native method unavailable
+    if ( $('[type="date"]').prop('type') != 'date' ) {
+      $('#goal_due_date').datepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        clearBtn: true,
+        todayHighlight: true
+      });
+    }
+    
+    // trigger calendar input when button pressed
+    $('#calendar-button').click(function() {
+      $('#goal_due_date').click().focus();
+    });
+  });
+</script>

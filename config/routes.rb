@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :interactions,        only: [:index, :show, :update]
   resources :subscriptions,       only: [:index, :update]
   
-  resources :improvements, :path => 'haves',  only: :index
+  resources :improvements, :path => 'haves'
   
   resources :accomplishments
   

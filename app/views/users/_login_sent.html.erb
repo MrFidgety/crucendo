@@ -1,8 +1,8 @@
 <div class="welcome-message">
-  <%= @user.email %>
-    <%= link_to fa_icon('pencil-square-o'), root_url %><br>
-    <div class="welcome-spacing">
-      We’ve sent you an email that you can use to log in. Check your spam 
-      folder, just in case. It’s okay, we’ll wait here.
-    </div>
+  <%= @user.email %><br>
+  <%= link_to fa_icon('pencil-square-o', text: 'change'), root_url %><br>
+  <div class="welcome-spacing">
+    We’ve sent you an email that you can use to log in. Check your spam 
+    folder, just in case. It’s okay, we’ll wait here.
+  </div>
 </div>

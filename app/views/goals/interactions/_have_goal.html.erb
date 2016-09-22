@@ -1,6 +1,6 @@
-<% improvement = goal.has_improvement?(interaction) unless interaction.blank? %>
+<% improvement ||= goal.has_improvement?(interaction_id) %>
 <div id="goal_<%= goal.id %>" class="panel goal-panel <%= 'improved' if improvement %>">
-  <%= link_to improve_goal_path(goal, interaction_id: interaction.id), 
+  <%= link_to improve_goal_path(goal, interaction_id: interaction_id), 
         method: :post, remote: true, class: "goal-have" do %>
     <div class="panel-heading">
       <h3 class="panel-title">

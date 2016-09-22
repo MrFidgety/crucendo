@@ -1,4 +1,4 @@
-<div class="panel improvement-panel">
+<div id="improvement_<%= improvement.id %>" class="panel improvement-panel">
   <div class="panel-heading">
     <h3 class="panel-title">
       <span class="pull-right">
@@ -31,5 +31,11 @@
         </li>
         <% end %>
     </ul>
+    <%= link_to fa_icon('trash-o', text: 'Delete'), improvement_path(improvement), 
+        method: :delete,
+        remote: true,
+        title: "Are you sure?", 
+        data: {confirm: "This will permanently delete this have."},
+        class: "pull-right helper" %>
   </div>
 </div>

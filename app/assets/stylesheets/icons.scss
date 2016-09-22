@@ -1,0 +1,213 @@
+// Set up custom icons
+.custom-icon {
+  margin: 0;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  font-size: 0;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    opacity: 0.6;
+  }
+  span, span:after {
+    display: block;
+    position: absolute;
+  }
+}
+// Plus icon
+.plus-icon {
+  @extend .custom-icon;
+  span {
+    top: 22px;
+    left: 9px;
+    right: 9px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    &:after {
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: white;
+      content: "";
+      border-radius: 2px;
+      transform: rotate(90deg);
+    }
+  }
+}
+// Close icon, same as plus, but rotated
+.close-icon {
+  @extend .plus-icon;
+  span {
+    transform: rotate(45deg);
+  }
+}
+.check-icon {
+  @extend .custom-icon;
+  span {
+    top: 9px;
+    bottom: 9px;
+    right: 18px;
+    width: 2px;
+    background: white;
+    border-radius: 2px;
+    transform: rotate(45deg);
+    &:after {
+      left: -7px;
+      bottom: -7px;
+      height: 50%;
+      width: 2px;
+      background: white;
+      content: "";
+      border-radius: 2px;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+/* hamburger button */
+.c-hamburger {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  font-size: 0;
+  text-indent: -9999px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+}
+
+.c-hamburger:focus {
+  outline: none;
+}
+
+.c-hamburger span {
+  display: block;
+  position: absolute;
+  top: 22px;
+  left: 9px;
+  right: 9px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+}
+
+.c-hamburger span::before,
+.c-hamburger span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  content: "";
+  border-radius: 2px;
+}
+
+.c-hamburger span::before {
+  top: -10px;
+}
+
+.c-hamburger span::after {
+  bottom: -10px;
+}
+
+.c-hamburger--htx {
+  //background-color: #ff3264;
+  background: none;
+}
+
+.c-hamburger--htx span {
+  transition: background 0s 0.3s;
+}
+
+.c-hamburger--htx span::before,
+.c-hamburger--htx span::after {
+  transition-duration: 0.3s, 0.3s;
+  transition-delay: 0.3s, 0s;
+}
+
+.c-hamburger--htx span::before {
+  transition-property: top, transform;
+}
+
+.c-hamburger--htx span::after {
+  transition-property: bottom, transform;
+}
+
+/* active state, i.e. menu open */
+.c-hamburger--htx.nav-active {
+  background: none;
+}
+
+.c-hamburger--htx.nav-active span {
+  background: none;
+}
+
+.c-hamburger--htx.nav-active span::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.c-hamburger--htx.nav-active span::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+
+.c-hamburger--htx.nav-active span::before,
+.c-hamburger--htx.nav-active span::after {
+  transition-delay: 0s, 0.3s;
+}
+
+// Spinning loader icon
+.loader {
+  border: 2px solid white;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  
+  -webkit-animation: spin 1.5s linear infinite;
+  -moz-animation: spin 1.5s linear infinite;
+  -ms-animation: spin 1.5s linear infinite;
+  -o-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+  
+  &.with-text {
+    margin-left: 10px;
+    margin-top: -4px;
+  }
+}
+.btn-block .loader {
+  vertical-align: middle;
+  margin-top:-4px;
+}
+
+// Set up spin
+@-webkit-keyframes spin {
+  100% { -webkit-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+  100% { -moz-transform: rotate(360deg); }
+}
+@-o-keyframes spin {
+  100% { -o-transform: rotate(360deg); }
+}
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}

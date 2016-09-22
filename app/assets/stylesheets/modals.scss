@@ -1,0 +1,116 @@
+// All modals
+.modal-content {
+  border: 1px solid #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.modal-header {
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  button {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    font-size: 1.8em;
+    &:focus {
+      outline: none;
+    }
+    &.modal-button-right {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+    }
+    &.modal-button-left {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+    }
+  }
+}
+.modal-title {
+  text-align: center;
+}
+// Fix multiple footer button alignment issue
+.modal-footer .btn {
+  margin: 0;
+}
+// Modal fade transition
+.modal.fade .modal-dialog {
+  -webkit-transform: scale(0.1);
+  -moz-transform: scale(0.1);
+  -ms-transform: scale(0.1);
+  transform: scale(0.1);
+  top: 0;
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.modal.fade.in .modal-dialog {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+// Fixed position modal button
+button.btn-fixed {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9;
+  margin: 0;
+}
+// Have modal
+.modal-content.have-modal {
+  .modal-header {
+    color: white;
+    background: $pastel-navy;
+  }
+}
+// Want modal
+.modal-content.want-modal {
+  .modal-header {
+    color: white;
+    background: $pastel-teal;
+  }
+}
+// Confirm modal
+.modal-content.confirm-modal {
+  .modal-header {
+    color: white;
+    background: $pastel-orange;
+  }
+}
+// Transparent modal
+.modal-content.transparent-modal {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  .modal-body {
+    padding: inherit;
+  }
+}
+// Help modal
+.modal-content.help-modal {
+  font-weight: 300;
+  background-color: $pastel-blue;
+  color: white;
+  .modal-body {
+  	font-size: 1.5em;
+  	padding: 2em;
+  	text-align: center;
+  }
+  .modal-footer {
+    border-top: none;
+  }
+}

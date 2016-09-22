@@ -13,20 +13,24 @@
         <%= f.email_field :email, placeholder: "youremail@here.com",
                                   class: "form-control input-lg" %>
         <span class="input-group-btn hidden-xs">
-        <%= f.submit "Begin now", :data => {:disable_with => "Welcome!"}, 
-              class: "btn btn-green btn-lg btn-fill"%>
+        <%= f.button(type: 'submit', class: "btn btn-green btn-lg btn-begin",
+            data: {disable_with: "<div class='loader'></div>".html_safe}) do %>
+          Begin now
+        <% end %>
         </span>
       </div>
       <span class="visible-xs">
-        <%= f.submit "Begin now", :data => {:disable_with => "Welcome!"}, 
-              class: "btn btn-green btn-lg btn-block" %>
+        <%= f.button(type: 'submit', class: "btn btn-green btn-lg btn-block",
+            data: {disable_with: "<div class='loader'></div>".html_safe}) do %>
+          Begin now
+        <% end %>
       </span>
     <% end %>
 </section>
 <section class="tagline aqua">
   <p>
     <small>
-      <span class="modal-trigger" data-toggle="modal" data-target="#help-modal">
+      <span class="modal-trigger" data-toggle="modal" data-target="#landing-help-modal">
         How does Crucendo work?
       </span>
     </small>
@@ -40,9 +44,9 @@
     <%= link_to 'Contact', 'mailto:support@thecrucialteam.com' %>
   </p>
 </section>
-<div id="help-modal" class="modal fade" role="dialog">
+<div id="landing-help-modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content help-modal">
 			<div class="modal-body">
 				<p>1. Choose the areas you want to focus on. You control your destiny.</p>
 				<hr>

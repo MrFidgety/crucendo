@@ -14,9 +14,12 @@
   </span>
 </div>
 <p class="section-split-text">or</p>
-<button id="select-goals-button" class="btn btn-block btn-default btn-lg text-button" 
+<button id="select-goals-button" 
+  class="btn btn-block btn-default btn-lg text-button" 
   data-toggle="modal" data-target="#select-goals-modal">
-   <span class="button-title">Select from your active <strong>wants</strong></span><br> 
+   <span class="button-title">
+     Select from your active <strong>wants</strong>
+    </span><br> 
    <div class="button-helper">
      <span class="button-result"><%= @goals.size %> found in total</span>
      <span class="button-search-terms"></span>
@@ -28,27 +31,19 @@
 </section><br>
 <%= link_to fa_icon('chevron-right', text: 'Continue', right: true),
       next_wizard_path, class: 'btn btn-orange pull-right btn-lg' %>
-<div class="modal fade" id="new_improvement_modal" tabindex="-1" role="dialog" aria-hidden="true">
+<%= render 'goals/haves/new_have', interaction: @interaction %>
+<div class="modal fade" id="select-goals-modal" tabindex="-1" 
+  role="dialog" aria-hidden="true">
+  <button type="button" class="btn btn-orange btn-lg btn-fixed" 
+    data-dismiss="modal"><%= fa_icon 'times', text:'Close', right: true %>
+  </button>
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title"><%= fa_icon 'trophy', text: 'Have' %></h4>
-      </div>
-      <div class="modal-body">
-        <%= render 'goals/form_improve', modal: true %>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal modal-transparent fade" id="select-goals-modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <button type="button" class="btn btn-orange btn-lg btn-modal-fixed" data-dismiss="modal"><%= fa_icon 'times', text:'Close', right: true %></button>
-  <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content transparent-modal">
       <div class="modal-body">
         <div id="all-goals" class="panel-group">
-          <%= render partial: "goals/have_goal", collection: @goals, 
-              as: :goal, locals: {interaction: @interaction, type: :have} %>
+          <%= render partial: "goals/interactions/have_goal", 
+              collection: @goals, as: :goal, 
+              locals: {interaction_id: @interaction.id} %>
         </div>
       </div>
     </div>

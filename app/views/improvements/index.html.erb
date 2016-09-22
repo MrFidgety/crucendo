@@ -1,4 +1,9 @@
 <% provide(:title, "Haves") %>
+<% content_for :control_menu do %>
+  <div id="new_improvement_start" class='plus-icon'>
+    <span></span>
+  </div>
+<% end %>
 <h1 class="page-title">
   <i class="fa fa-trophy"></i><br>
   <small>Haves</small>
@@ -10,7 +15,8 @@
   </li>
 </ul>
 <div class="tab-content">
-  <div id="haves" class="tab-pane fade in active panel-group">
+  <div id="improved-goals" class="tab-pane fade in active panel-group">
     <%= render(@improvements) || render('improvements/helpers/all') %>
   </div>
 </div>
+<%= render 'goals/haves/new_have' %>

@@ -5,6 +5,7 @@ class GoalsController < ApplicationController
   before_action :correct_user,  except: [:index, :create, :unexpected]
   
   def index
+    @goal = Goal.new
     # Get lists of each goal status
     @active_goals = @user.goals.active_most_recent
     @inactive_goals = @user.goals.inactive
@@ -34,19 +35,48 @@ class GoalsController < ApplicationController
   def create
     # Create new goal from params
     @goal = @user.goals.build(goal_params)
-    # Set interaction id, only if params includes interaction
+    
+    # Link to interaction if there is an interaction parameter
     if params[:goal].try(:has_key?, :interaction_id)
       # Interaction id is found from currently incomplete interaction
       @goal.interaction_id = get_interaction(@user).id 
     end
-    # Response allows for ajax calls
+    
+    # Respond to AJAX call
     respond_to do |format|
       if @goal.save
         format.html { redirect_to @goal }
-        format.js
+        # Include variable to determine if this came from an interaction
+        format.js   { @type = @goal.interaction_id ? 'interaction' : 'improvement' }
       else
         format.html { render action: 'new' }
-        format.json { render json: @goal.errors, status: :unprocessable_entity }
+        format.js   { render json: @goal.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def unexpected
+    # Create new goal from params
+    @goal = @user.goals.build(goal_params)
+    
+    # Link to interaction if there is an interaction parameter
+    if params[:goal].try(:has_key?, :interaction_id)
+      # Interaction id is found from currently incomplete interaction
+      @goal.interaction_id = get_interaction(@user).id
+    end
+    
+    # Respond to AJAX call
+    respond_to do |format|
+      if @goal.save
+        # Create improvement if goal saves
+        @improvement = @goal.improvements.create(unexpected: true, 
+                        interaction_id: @goal.interaction_id)
+                        
+        format.html { redirect_to @improvement.goal }
+        # Include variable to determine if this came from an interaction
+        format.js   { @type = @goal.interaction_id ? 'interaction' : 'improvement' }
+      else
+        format.html { render action: 'new' }
         format.js   { render json: @goal.errors, status: :unprocessable_entity }
       end
     end
@@ -80,30 +110,6 @@ class GoalsController < ApplicationController
         format.html { redirect_to @improvement.goal }
         format.json { render json: @improvement.errors, status: :unprocessable_entity }
         format.js   { render json: @improvement.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-  
-  def unexpected
-    # Find users current interaction
-    @interaction = get_interaction(@user)
-    # Create new goal
-    @goal = @user.goals.build(goal_params)
-    @goal.attributes = { interaction_id: @interaction.id }
-    @goal.attributes = { completed_date: Time.zone.now } if @goal.completed?
-    # Response allows for ajax calls
-    respond_to do |format|
-      if @goal.save
-        # Create improvement if goal saves
-        @improvement = @goal.improvements.create(
-                          interaction_id: @interaction.id,
-                          unexpected: true)
-        format.html { redirect_to @improvement.goal }
-        format.js
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @goal.errors, status: :unprocessable_entity }
-        format.js   { render json: @goal.errors, status: :unprocessable_entity }
       end
     end
   end

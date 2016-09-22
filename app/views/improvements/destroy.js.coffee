@@ -1,0 +1,1 @@
+$('#improvement_<%= @improvement.id %>').slideUp('slow')
