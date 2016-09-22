@@ -2,7 +2,7 @@
   provide(:title, "Edit Want")
   provide(:page_class, "want-show")
   
-  confirm_text = 'This will permanently delete this want.'
+  confirm_text = 'This <strong>want</strong> will be permanently deleted.'
   if @goal.improvements.size > 0
     confirm_text += '<br>Along with the ' 
     confirm_text += pluralize(@goal.improvements.size, 'improvement') 

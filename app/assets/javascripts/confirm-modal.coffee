@@ -30,7 +30,7 @@ $(document).on "page:change page:restore", ->
     """
     $(html).modal()
       .on 'shown.bs.modal', ->
-        $('.check-icon').on 'click', -> 
+        $(this).find('.check-icon').on 'click', -> 
           $.rails.confirmed(link)
       .on 'hidden.bs.modal', -> 
         $(@).remove()
