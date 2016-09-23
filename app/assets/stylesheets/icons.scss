@@ -1,5 +1,6 @@
 // Set up custom icons
 .custom-icon {
+  text-align:center;
   margin: 0;
   padding: 0;
   width: 48px;
@@ -20,6 +21,14 @@
   span, span:after {
     display: block;
     position: absolute;
+  }
+  .material-icons {
+    margin-top: 5px;
+    font-size: 36px;
+  }
+  button {
+    background: transparent;
+    border: none;
   }
 }
 // Plus icon

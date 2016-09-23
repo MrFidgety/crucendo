@@ -1,5 +1,5 @@
 <% improvement ||= goal.has_improvement?(interaction_id) %>
-<div id="goal_<%= goal.id %>" class="panel goal-panel <%= 'improved' if improvement %>">
+<div id="goal_<%= goal.id %>" class="panel goal-panel selectable <%= 'improved' if improvement %>">
   <%= link_to improve_goal_path(goal, interaction_id: interaction_id), 
         method: :post, remote: true, class: "goal-have" do %>
     <div class="panel-heading">
@@ -56,10 +56,8 @@
         </li>
         <% end %>
       </ul>
-    </div>
-    <div class="panel-footer">
-      <span class="helper">
-        <%= improvement ? 'Select to remove improvement' : 'Select to improve' %>
+      <span class="pull-right helper">
+        <%= improvement ? fa_icon('hand-pointer-o', text: 'Remove') :  fa_icon('hand-pointer-o', text: 'Improve') %>
       </span>
     </div>
   <% end %>

@@ -1,4 +1,4 @@
-<div id="goal_<%= goal.id %>" class="panel goal-panel">
+<div id="goal_<%= goal.id %>" class="panel goal-panel selectable">
   <%= link_to goal_path(goal) do %>
     <div class="panel-heading">
       <h3 class="panel-title">
@@ -51,7 +51,7 @@
         </li>
       </ul>
       <span class="pull-right helper">
-        <%= fa_icon 'hand-pointer-o', text: 'Select' %>
+        <%= fa_icon 'hand-pointer-o', text: 'View' %>
       </span>
     </div>
   <% end %>

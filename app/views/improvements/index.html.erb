@@ -9,14 +9,7 @@
   <small>Haves</small>
 </h1>
 <p class="title-helper">This is what you have improved.</p>
-<ul class="nav nav-tabs">
-  <li class="col-xs-6 col-xs-offset-3 active">
-    <a data-toggle="tab" href="#haves">All</a>
-  </li>
-</ul>
-<div class="tab-content">
-  <div id="improved-goals" class="tab-pane fade in active panel-group">
-    <%= render(@improvements) || render('improvements/helpers/all') %>
-  </div>
+<div id="improved-goals" class="panel-group">
+  <%= render(@improvements, selectable: true) || render('improvements/helpers/all') %>
 </div>
 <%= render 'goals/haves/new_have' %>

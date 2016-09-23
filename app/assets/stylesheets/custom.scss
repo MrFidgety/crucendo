@@ -325,88 +325,6 @@ input[type="month"] {
 .sort-chosen {
   background-color: $light-gray;
 }
-
-/* panels */
-.panel {
-  border: 1px solid white;
-  .panel-body {
-    padding: 10px;
-    ul {
-      padding: 0;
-      margin: 0;
-      li {
-        .fa {
-          line-height: inherit;
-          padding-left: 0.5em;
-        }
-        .fa-play {
-          margin-left: 1px;
-        }
-        span.offset {
-          padding-left: 3em;
-        }
-      }
-    }
-  }
-}
-.panel-group {
-  margin-bottom: 10px;
-}
-.goal-panel {
-  &.panel {
-    transition: all 0.3s;
-    border: 1px solid white;
-    background-color: white;
-    &:hover {
-      border-color: $pastel-teal;
-      transform: scale(1.03);
-      .panel-heading {
-        border-top-right-radius: 0;
-        border-top-left-radius: 0;
-      }
-    }
-    .panel-heading {
-      border-top-right-radius: 4px;
-      border-top-left-radius: 4px;
-      background-color: $pastel-teal;
-      color: white;
-    }
-    .panel-footer {
-      color: $pastel-teal;
-      background-color: inherit;
-      text-align: center;
-    }
-  }
-  &.improved {
-    &.panel {
-      .panel-heading {
-        background-color: $pastel-navy;
-        color: white;
-      }
-      &:hover {
-        border-color: $pastel-navy;
-      }
-      .panel-footer {
-        color: $pastel-navy;
-      }
-    }
-  }
-}
-
-.improvement-panel {
-  border: 1px solid white;
-  background-color: white;
-  .panel-heading {
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
-    background-color: $pastel-navy;
-    color: white;
-  }
-  .panel-body {
-    padding: 10px;
-  }
-}
-
 .text-danger .fa {
   //color: $pastel-red;
 }
@@ -586,12 +504,7 @@ textarea.form-control {
   float: right;
 }
 
-.goal-panel, .interaction-panel {
-  a {
-    color: inherit;
-    text-decoration: inherit;
-  }
-}
+
 .goal-panel, .improvement-panel, .crucendo-panel {
   .panel-title {
     font-weight: 300;

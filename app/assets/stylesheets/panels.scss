@@ -1,0 +1,63 @@
+// All panels
+.panel {
+  border: 1px solid white;
+  .panel-body {
+    padding: 10px;
+    ul {
+      padding: 0;
+      margin: 0;
+      li {
+        .fa {
+          line-height: inherit;
+          padding-left: 0.5em;
+        }
+        .fa-play {
+          margin-left: 1px;
+        }
+        span.offset {
+          padding-left: 1em;
+        }
+      }
+    }
+  }
+  &.selectable {
+    transition: all 0.3s;
+    &:hover {
+      transform: scale(1.03);
+    }
+    a {
+      color: inherit;
+      text-decoration: inherit;
+    }
+  }
+}
+.panel-group {
+  margin-bottom: 10px;
+}
+.goal-panel {
+  .panel-heading {
+    background-color: $pastel-teal;
+    color: white;
+  }
+  &.selectable:hover {
+    border-color: $pastel-teal;
+  }
+  &.improved {
+    .panel-heading {
+      background-color: $pastel-navy;
+      color: white;
+    }
+    &:hover {
+      border-color: $pastel-navy;
+    }
+  }
+}
+.improvement-panel {
+  .panel-heading {
+    background-color: $pastel-navy;
+    color: white;
+  }
+  &.selectable:hover {
+    border-color: $pastel-navy;
+  }
+}

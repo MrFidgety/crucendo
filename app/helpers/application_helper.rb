@@ -23,4 +23,10 @@ module ApplicationHelper
     [content_tag(:span, count, class: 'pluralize-number'), 
       content_tag(:span, counted, class: 'pluralize-word')].join(' ').html_safe
   end
+  
+  # allow link_to_if to work with html blocks
+  def link_to_if(*args,&block)
+    args.insert 1, capture(&block) if block_given?
+    super *args
+  end
 end

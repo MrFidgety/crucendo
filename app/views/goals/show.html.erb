@@ -1,5 +1,10 @@
 <% provide(:title, "Want") %>
 <% provide(:page_class, "want-show") %>
+<% content_for :control_menu do %>
+  <%#= link_to material_icon.mode_edit, 
+        edit_goal_path(@goal), 
+        class: 'custom-icon' %>
+<% end %>
 <h1 class="page-title light"><%= @goal.encrypted_goal %></h1>
 <div class="goal-details">
   <% if @goal.improvements.size > 0 %>
@@ -26,7 +31,7 @@
         <p>you are actively improving this want</p>
       <% else %>
         <%= fa_icon 'pause' %> 
-        <p>you have put this want on hold</p>
+        <p>this want is inactive</p>
       <% end %>
     </li>
     <li>
