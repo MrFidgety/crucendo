@@ -61,3 +61,30 @@
     border-color: $pastel-navy;
   }
 }
+.panel-help {
+  background: none;
+  color: white;
+  border: none;
+  webkit-box-shadow: none; 
+  box-shadow: none;
+  padding-top: 62px; // account for fixed nav
+  margin-top: -62px; // account for fixed nav
+  .panel-title {
+    color: $pastel-aqua;
+    text-align: center;
+    font-size: 2em;
+  }
+  .panel-body {
+    h3 {
+      font-size: 1.5em;
+    }
+  }
+  .panel-footer {
+    text-align: center;
+    background: none;
+    color: white;
+  }
+  a {
+    text-decoration: none;
+  }
+}
