@@ -61,6 +61,21 @@
     border-color: $pastel-navy;
   }
 }
+.interaction-panel {
+  .panel-heading {
+    background-color: $pastel-green;
+    color: white;
+    img {
+      margin-top: -0.25em;
+    }
+  }
+  &:hover {
+    border-color: $pastel-green;
+  }
+}
+.answer-panel {
+  border: none;
+}
 .panel-help {
   background: none;
   color: white;

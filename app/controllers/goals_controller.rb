@@ -3,13 +3,12 @@ class GoalsController < ApplicationController
   
   before_action :set_current_user
   before_action :correct_user,  except: [:index, :create, :unexpected]
+  before_action :validate_search, only: :index
   
   def index
     @goal = Goal.new
-    # Get lists of each goal status
-    @active_goals = @user.goals.active_most_recent
-    @inactive_goals = @user.goals.inactive
-    @completed_goals = @user.goals.completed
+    @goals = @user.goals.filter(
+                        params.slice(:min_date, :max_date, :active, :completed))
   end
   
   def show
@@ -160,5 +159,18 @@ class GoalsController < ApplicationController
     def correct_user
       # Ensure goal belongs to current user
       redirect_to root_url unless @goal = @user.goals.find_by(id: params[:id])
+    end
+    
+    def validate_search
+      params[:min_date] = Time.zone.parse(params[:min_date]) if params.has_key?(:min_date)
+      params[:max_date] = Time.zone.parse(params[:max_date]) if params.has_key?(:max_date)
+      case params[:status]
+      when 'complete'
+        params[:completed] = true
+      when 'active'
+        params[:active] = '1'
+      when 'inactive'
+        params[:active] = '0'
+      end
     end
 end

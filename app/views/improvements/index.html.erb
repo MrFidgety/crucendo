@@ -1,7 +1,10 @@
 <% provide(:title, "Haves") %>
 <% content_for :control_menu do %>
-  <div id="new_improvement_start" class='plus-icon'>
-    <span></span>
+  <div id="search-haves" class="custom-icon icon-group" data-toggle="modal" data-target="#search-haves-modal">
+    <%= material_icon.search %>
+  </div>
+  <div id="new_improvement_start" class="custom-icon icon-group material-lg">
+    <%= material_icon.add %>
   </div>
 <% end %>
 <h1 class="page-title">
@@ -13,3 +16,4 @@
   <%= render(@improvements, selectable: true) || render('improvements/helpers/all') %>
 </div>
 <%= render 'goals/haves/new_have' %>
+<%= render 'improvements/search' %>

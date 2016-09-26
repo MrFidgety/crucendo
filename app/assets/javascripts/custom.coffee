@@ -62,3 +62,19 @@ $(document).on "page:change page:restore", ->
       slideShadows: false,
     }
   })
+  
+  # Detect if mobile
+  @mobileWeb = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/i.test(navigator.userAgent)
+
+  # Enable bootstrap datepicker if native method unavailable
+  if ( $('[type="date"]').prop('type') != 'date' )
+    $('[type="date"]').each ->
+      $(this).datepicker
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        clearBtn: true,
+        todayHighlight: true
+
+  # Trigger calendar input when button pressed
+  $('.calendar-helper').click ->
+    $(this).parent().next().click().focus()

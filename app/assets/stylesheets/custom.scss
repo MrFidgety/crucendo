@@ -497,6 +497,11 @@ textarea.form-control {
   &:active {
     box-shadow: none;
   }
+  &:before {
+    content: "\f25a";
+    font-family: FontAwesome;
+    float: right;
+  }
 }
 .improve-btn.active:before {
   content: "\f140";
@@ -1036,52 +1041,6 @@ p.split {
   text-align: center;
   color: white;
 }
-.interaction-panel {
-  transition: all 0.3s;
-  border: 1px solid white;
-  .panel-heading {
-    background-color: $pastel-green;
-    color: white;
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
-    img {
-      margin-top: -0.25em;
-    }
-  }
-  .panel-body {
-    padding: 10px;
-    ul {
-      padding: 0;
-      margin: 0;
-      li {
-        .fa {
-          position: absolute;
-          line-height: inherit;
-          padding-left: 0.5em;
-        }
-        .fa-play {
-          margin-left: 1px;
-        }
-        span.offset {
-          padding-left: 3em;
-        }
-      }
-    }
-  }
-  .panel-footer {
-    background-color: inherit;
-    text-align: center;
-  }
-  &:hover {
-    border-color: $pastel-green;
-    transform: scale(1.03);
-    .panel-heading {
-      border-top-right-radius: 0;
-      border-top-left-radius: 0;
-    }
-  }
-}
-
 .interaction-stats {
   text-align: center;
   color: $dark-gray;
@@ -1232,4 +1191,16 @@ form {
 
 .hidden_file {
   display: none !important;
+}
+button.calendar-helper.plus-text {
+  padding-top: 0;
+  span {
+    font-size: 0.6em;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 1px;
+  }
 }

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   
   def show
     # Get basic dashboard stats
-    @goals_completed_count = @user.goals.completed.size
+    @goals_completed_count = @user.goals.completed(true).size
     @improvements_count = @user.improvements.size
     @consecutive_days = @user.interaction_streak_days
     # Add todays interaction if complete

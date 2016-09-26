@@ -8,7 +8,7 @@
     <li><%= link_to  fa_icon('trophy', text: "Haves"), 
           improvements_path %></li>
     <li><%= link_to  fa_icon('bullseye', text: "Wants"), 
-          goals_path %></li>
+          goals_path(status: 'active') %></li>
     <li><%= link_to  fa_icon('line-chart', text: "Accomplishments"), 
           accomplishments_path %></li>
     <li><%= link_to fa_icon('list-alt', text: 'Subscriptions'),

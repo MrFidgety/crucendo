@@ -1,7 +1,10 @@
 <% provide(:title, "Wants") %>
 <% content_for :control_menu do %>
-  <div id="new_goal_start" class='plus-icon'>
-    <span></span>
+  <div id="search-wants" class="custom-icon icon-group" data-toggle="modal" data-target="#search-wants-modal">
+    <%= material_icon.search %>
+  </div>
+  <div id="new_goal_start" class="custom-icon icon-group material-lg">
+    <%= material_icon.add %>
   </div>
 <% end %>
 <h1 class="page-title">
@@ -9,26 +12,8 @@
   <small>Wants</small>
 </h1>
 <p class="title-helper">This is what you want to improve.</p>
-<ul class="nav nav-tabs">
-  <li class="col-xs-4 active">
-    <a data-toggle="tab" href="#active-goals">Active</a>
-  </li>
-  <li class="col-xs-4">
-    <a data-toggle="tab" href="#inactive-goals">Inactive</a>
-  </li>
-  <li class="col-xs-4">
-    <a data-toggle="tab" href="#completed-goals">Complete</a>
-  </li>
-</ul>
-<div class="tab-content">
-  <div id="active-goals" class="tab-pane fade in active panel-group">
-    <%= render(@active_goals) || render('goals/helpers/active') %>
-  </div>
-  <div id="inactive-goals" class="tab-pane fade panel-group">
-    <%= render(@inactive_goals) || render('goals/helpers/inactive') %>
-  </div>
-  <div id="completed-goals" class="tab-pane fade panel-group">
-    <%= render(@completed_goals) || render('goals/helpers/completed') %>
-  </div>
+<div id="active-goals" class="tab-pane fade in active panel-group">
+  <%= render(@goals) || render('goals/helpers/active') %>
 </div>
 <%= render 'goals/wants/new_want' %>
+<%= render 'goals/wants/search' %>

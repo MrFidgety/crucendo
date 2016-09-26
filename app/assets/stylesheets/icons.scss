@@ -18,17 +18,31 @@
   &:hover {
     opacity: 0.6;
   }
+  &.icon-group {
+    display: inline-block;
+  }
   span, span:after {
     display: block;
     position: absolute;
   }
-  .material-icons {
-    margin-top: 5px;
-    font-size: 36px;
-  }
   button {
     background: transparent;
     border: none;
+  }
+}
+.material-icons {
+  font-size: 38px;
+  margin-top: 4px;
+}
+.control-menu {
+  .material-icons {
+    margin-top: 6px;
+  }
+  .material-lg {
+    .material-icons {
+      margin-top: 1px;
+      font-size: 46px;
+    }
   }
 }
 // Plus icon
@@ -81,7 +95,6 @@
     }
   }
 }
-
 /* hamburger button */
 .c-hamburger {
   display: block;
@@ -110,9 +123,8 @@
   top: 22px;
   left: 9px;
   right: 9px;
-  height: 2px;
+  height: 3px;
   background: white;
-  border-radius: 2px;
 }
 
 .c-hamburger span::before,
@@ -121,10 +133,9 @@
   display: block;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 3px;
   background-color: white;
   content: "";
-  border-radius: 2px;
 }
 
 .c-hamburger span::before {
@@ -184,7 +195,7 @@
 
 // Spinning loader icon
 .loader {
-  border: 2px solid white;
+  border: 3px solid white;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;

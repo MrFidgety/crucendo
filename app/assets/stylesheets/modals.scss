@@ -71,14 +71,16 @@ button.btn-fixed {
   margin: 0;
 }
 // Have modal
-.modal-content.have-modal {
+.modal-content.have-modal,  
+.modal-content.search-haves {
   .modal-header {
     color: white;
     background: $pastel-navy;
   }
 }
 // Want modal
-.modal-content.want-modal {
+.modal-content.want-modal,
+.modal-content.search-wants {
   .modal-header {
     color: white;
     background: $pastel-teal;

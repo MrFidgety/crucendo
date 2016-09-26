@@ -1,4 +1,5 @@
 class Goal < ActiveRecord::Base
+  include Filterable
   extend Encryptable
   encrypt_columns :encrypted_goal
   
@@ -8,13 +9,12 @@ class Goal < ActiveRecord::Base
   has_one     :skill
   has_one     :interaction
   
-  scope :due_soonest,         -> { order(due_date: :asc, created_at: :desc) }
-  scope :active,              -> { where(completed: false, active: true) }
-  scope :active_most_recent,  -> { active.order(created_at: :desc) }
-  scope :inactive,            -> { where(active: false, completed: false)
-                                    .order(created_at: :desc) }
-  scope :completed,           -> { where(completed: true)
-                                    .order(completed_date: :desc) }
+  default_scope     -> { order(created_at: :desc) }
+  scope :due_soonest, -> { order(due_date: :asc, created_at: :desc) }
+  scope :active,      -> (value) { where(completed: false, active: value) }
+  scope :completed,   -> (value) { where(completed: value) }
+  scope :min_date,  -> (date) { where("created_at >= ?", date.beginning_of_day) }
+  scope :max_date,  -> (date) { where("created_at <= ?", date.end_of_day) }
   
   validates :user_id,           presence: true
   validates :encrypted_goal,    presence: true, 
