@@ -1,9 +1,17 @@
 <% provide(:title, "Accomplishments") %>
+<% content_for :control_menu do %>
+  <%= link_to interactions_path do %>
+    <div id="new_improvement_start" class="custom-icon icon-group material-lg">
+      <%= material_icon.add %>
+    </div>
+  <% end %>
+<% end %>
 <h1 class="page-title">
   <i class="fa fa-line-chart"></i><br>
   <small>Accomplishments</small>
 </h1>
 <p class="title-helper">These are your accomplishments.</p>
-<div class="panel-group">
+<div id="completed-interactions" class="panel-group">
   <%= render(@interactions) || render('accomplishments/crucendos/helpers/all')  %>
 </div>
+<%= will_paginate @interactions %>

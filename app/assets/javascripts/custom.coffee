@@ -78,3 +78,7 @@ $(document).on "page:change page:restore", ->
   # Trigger calendar input when button pressed
   $('.calendar-helper').click ->
     $(this).parent().next().click().focus()
+    
+  # Fix ios safari issue with clearing date value
+  $('[type="date"]').focus (e) ->
+    e.currentTarget.defaultValue = ''

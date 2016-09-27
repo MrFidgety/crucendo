@@ -9,6 +9,7 @@ class ImprovementsController < ApplicationController
     @goal.active = false
     @improvements = @user.improvements.filter(
                         params.slice(:min_date, :max_date, :unexpected))
+                        .paginate(:per_page => 10, :page => params[:page])
   end
   
   def destroy

@@ -2,6 +2,7 @@
   provide(:title, "Edit Want")
   provide(:page_class, "want-show")
   
+  form_id = "edit_goal_#{@goal.id}"
   confirm_text = 'This <strong>want</strong> will be permanently deleted.'
   if @goal.improvements.size > 0
     confirm_text += '<br>Along with the ' 
@@ -9,6 +10,13 @@
     confirm_text += ' you have made.' 
   end
 %>
+<% content_for :control_menu do %>
+  <%= button_tag(type: 'submit', class: "custom-icon with-loader",
+      form: form_id, 
+      data: {disable_with: "<div class='loader'></div>".html_safe}) do %>
+    <%= fa_icon('floppy-o') %>
+  <% end %>
+<% end %>
 <h1 class="page-title"><small>Edit this want</small></h1>
 <%= form_for @goal, remote: true do |f| %>
   <%= f.label :encrypted_goal, 'What do you want to improve?' %>
@@ -17,7 +25,8 @@
   <%= f.label :due_date, 'Set a due date.' %>
   <div class="input-group date">
     <span class="input-group-btn">
-      <%= button_tag fa_icon('calendar'), type: 'button', class: "btn btn-default btn-lg", id: 'calendar-button' %>
+      <%= button_tag fa_icon('calendar'), type: 'button', 
+        class: "btn btn-default btn-lg calendar-helper" %>
     </span>
     <%= f.date_field :due_date, class: 'form-control input-lg' %>
   </div>
@@ -39,10 +48,10 @@
         title: "Are you sure?", 
         data: {confirm: confirm_text },
         class: "btn btn-danger btn-link" %>
-  <%= button_tag(type: 'submit', class: "btn btn-orange pull-right btn-lg", 
+  <%#= button_tag(type: 'submit', class: "btn btn-orange pull-right btn-lg", 
         :data => {:disable_with => "Saving..."}) do %>
-    <%= fa_icon('floppy-o', text: 'Save', right: true) %>
-  <% end %>
+    <%#= fa_icon('floppy-o', text: 'Save', right: true) %>
+  <%# end %>
 <% end %>
 <script>
   $( document ).ready(function() {
@@ -63,25 +72,5 @@
       var date = moment.utc('<%= @goal.due_date %>');
       $('#goal_due_date').val(date.local().format('YYYY-MM-DD'));
     <% end %>
-    
-    // fix ios safari issue with clearing date value
-    $('[type="date"]').focus(function(e) {
-      e.currentTarget.defaultValue = '';
-    });
-    
-    // enable bootstrap datepicker if native method unavailable
-    if ( $('[type="date"]').prop('type') != 'date' ) {
-      $('#goal_due_date').datepicker({
-        format: "yyyy-mm-dd",
-        autoclose: true,
-        clearBtn: true,
-        todayHighlight: true
-      });
-    }
-    
-    // trigger calendar input when button pressed
-    $('#calendar-button').click(function() {
-      $('#goal_due_date').click().focus();
-    });
   });
 </script>

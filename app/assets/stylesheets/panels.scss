@@ -1,6 +1,9 @@
 // All panels
 .panel {
   border: 1px solid white;
+  .panel-heading {
+    transition: all 0.3s;
+  }
   .panel-body {
     padding: 10px;
     ul {
@@ -22,8 +25,12 @@
   }
   &.selectable {
     transition: all 0.3s;
-    &:hover {
-      transform: scale(1.03);
+    &:hover, &:focus {
+      border-color: $pastel-orange;
+      .panel-heading {
+        background-color: $pastel-orange;
+      }
+     // transform: scale(1.03);
     }
     a {
       color: inherit;
@@ -40,7 +47,7 @@
     color: white;
   }
   &.selectable:hover {
-    border-color: $pastel-teal;
+    //border-color: $pastel-teal;
   }
   &.improved {
     .panel-heading {
@@ -58,7 +65,7 @@
     color: white;
   }
   &.selectable:hover {
-    border-color: $pastel-navy;
+    //border-color: $pastel-navy;
   }
 }
 .interaction-panel {
@@ -70,7 +77,7 @@
     }
   }
   &:hover {
-    border-color: $pastel-green;
+    //border-color: $pastel-green;
   }
 }
 .answer-panel {

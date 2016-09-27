@@ -18,9 +18,13 @@ $(document).on "page:change page:restore", ->
           <div class="modal-content confirm-modal">
             <div class="modal-header">
               <button type="button" class="modal-button-left close-icon" 
-                data-dismiss="modal" aria-hidden="true"><span></span></button>
+                data-dismiss="modal" aria-hidden="true">
+                <i class="material-icons">clear</i>
+              </button>
               <button type="button" class="modal-button-right check-icon" 
-                data-dismiss="modal" aria-hidden="true"><span></span></button>
+                data-dismiss="modal" aria-hidden="true">
+                <i class="material-icons">done</i>
+              </button>
               <h4 class="modal-title">Are you sure?</h4>
             </div>
             <div class="modal-body">#{message}</div>

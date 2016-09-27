@@ -14,7 +14,7 @@
   border-radius: none;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease;
   &:hover {
     opacity: 0.6;
   }
@@ -32,16 +32,40 @@
 }
 .material-icons {
   font-size: 38px;
-  margin-top: 4px;
+  padding-top: 4px;
 }
 .control-menu {
+  color: white;
+  padding: 6px 0;
+  line-height: 60px;
   .material-icons {
-    margin-top: 6px;
+    padding-top: 5px;
+    vertical-align: top;
   }
   .material-lg {
     .material-icons {
-      margin-top: 1px;
-      font-size: 46px;
+      font-size: 47px;
+      line-height: 36px;
+    }
+  }
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+  .fa {
+    font-size: 32px;
+    padding-top: 10px;
+  }
+  button {
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    &:focus {
+      outline: none;
+    }
+    &.with-loader:disabled {
+      padding-top: 5px;
     }
   }
 }

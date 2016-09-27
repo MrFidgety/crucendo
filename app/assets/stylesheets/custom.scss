@@ -588,18 +588,6 @@ a.helper {
   font-size: 12px;
   font-weight: 600;
 }
-.control-menu {
-  font-family: 'Raleway', sans-serif;
-  font-weight: 300;
-  font-size: 25px;
-  line-height: 60px;
-  color: white;
-  padding: 6px 0;
-  a {
-    color: inherit;
-    text-decoration: inherit;
-  }
-}
 .nav-button-left {
   padding: 6px 10px 6px 0px;
 }
@@ -1203,4 +1191,8 @@ button.calendar-helper.plus-text {
     right: 0;
     bottom: 1px;
   }
+}
+.pagination {
+  width: 100%;
+  text-align: center;
 }

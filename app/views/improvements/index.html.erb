@@ -15,5 +15,6 @@
 <div id="improved-goals" class="panel-group">
   <%= render(@improvements, selectable: true) || render('improvements/helpers/all') %>
 </div>
+<%= will_paginate @improvements %>
 <%= render 'goals/haves/new_have' %>
 <%= render 'improvements/search' %>

@@ -9,6 +9,7 @@ class GoalsController < ApplicationController
     @goal = Goal.new
     @goals = @user.goals.filter(
                         params.slice(:min_date, :max_date, :active, :completed))
+                        .paginate(:per_page => 10, :page => params[:page])
   end
   
   def show

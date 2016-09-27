@@ -1,7 +1,7 @@
 <% provide(:title, "Want") %>
 <% provide(:page_class, "want-show") %>
 <% content_for :control_menu do %>
-  <%#= link_to material_icon.mode_edit, 
+  <%= link_to fa_icon('pencil-square-o'), 
         edit_goal_path(@goal), 
         class: 'custom-icon' %>
 <% end %>
@@ -61,9 +61,4 @@
 <div class="goal-improvements panel-group">
   <%= render(@improvements) || render('goals/helpers/first_improvement', 
                                   locals: {completed: @goal.completed} ) %>
-</div>
-<div class="goal-actions">
-  <%= link_to fa_icon('pencil-square-o', text: 'Edit', right: true), 
-        edit_goal_path(@goal), 
-        class: 'btn btn-orange pull-right btn-lg' %>
 </div>
