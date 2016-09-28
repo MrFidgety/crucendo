@@ -8,7 +8,7 @@ $("<%= j render partial: 'goals/interactions/have_goal', object: @goal,
     .prependTo('#improved-goals')
 <% else %>
 # Add the new improvement to the 'haves' display
-$("<%= j render(@improvement, selectable: true) %>").prependTo('#improved-goals')
+$("<%= j render(@improvement, selectable: true) %>").prependTo('#improvements-container')
 # Remove the helper if present
-$(".improvement-helper").remove()
+$("#helper-container").remove()
 <% end %>

@@ -30,7 +30,6 @@
       .panel-heading {
         background-color: $pastel-orange;
       }
-     // transform: scale(1.03);
     }
     a {
       color: inherit;
@@ -45,9 +44,6 @@
   .panel-heading {
     background-color: $pastel-teal;
     color: white;
-  }
-  &.selectable:hover {
-    //border-color: $pastel-teal;
   }
   &.improved {
     .panel-heading {
@@ -64,9 +60,6 @@
     background-color: $pastel-navy;
     color: white;
   }
-  &.selectable:hover {
-    //border-color: $pastel-navy;
-  }
 }
 .interaction-panel {
   .panel-heading {
@@ -75,9 +68,6 @@
     img {
       margin-top: -0.25em;
     }
-  }
-  &:hover {
-    //border-color: $pastel-green;
   }
 }
 .answer-panel {
@@ -108,5 +98,30 @@
   }
   a {
     text-decoration: none;
+  }
+}
+.subscription-panel {
+  a.update-subscription {
+    color: inherit;
+    text-decoration: inherit;
+  }
+  .panel-heading {
+    :before {
+      content: "\f096";
+      font-family: FontAwesome;
+      float: right;
+    }
+  }
+  &.subscribed {
+    .panel-heading {
+      background: $pastel-orange;
+      color: white;
+      text-align: left;
+      :before {
+        content: "\f046";
+        font-family: FontAwesome;
+        float: right;
+      }
+    }
   }
 }

@@ -1,4 +1,99 @@
-<div class="improvement-helper">
-  <p>All of your haves, will appear here. In the meantime, imagine how good 
-  you’ll feel when you have improved.</p>
+<% search = params.has_key?(:search) %>
+<div id="helper-container">
+  <% if search %>
+    <div class="improvement-helper">
+      <p>I've done 99 searches and a result ain't one.</p>
+      <p>Our robot, Baxter, suggests that you try a fresh search.</p>
+    </div>
+  <% else %>
+  <div class="improvement-helper">
+    <p>All of your haves will appear here. Hit the 
+      <%= material_icon.add.css_class('helper-button').html({ data: { helper: "new_improvement_start" } }) %> to get started.</p>
+    <p>In the meantime, here are some 
+    examples to get your improvement juices flowing!</p>
+  </div>
+  <div class="panel improvement-panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span class="pull-right">
+          <%= fa_icon('trophy') %>
+        </span>
+        Being more patient
+      </h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li>
+          <%= fa_icon 'clock-o' %>
+          <span class="offset">
+            improvement acknowledged <%= local_time_ago(12.hours.ago) %>
+          </span>
+        </li>
+        <li>
+          <%= fa_icon 'hashtag' %>
+          <span class="offset">
+            your 3rd improvement towards this want
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel improvement-panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span class="pull-right">
+          <%= fa_icon('star') %>
+          <%= fa_icon('trophy') %>
+        </span>
+        Setting realistic expecations at work
+      </h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li>
+          <%= fa_icon 'clock-o' %>
+          <span class="offset">
+            improvement acknowledged <%= local_time_ago(3.days.ago) %>
+          </span>
+        </li>
+        <li>
+          <%= fa_icon 'hashtag' %>
+          <span class="offset">
+            your 1st improvement towards this want
+          </span>
+        </li>
+        <li>
+          <%= fa_icon 'star' %> 
+          <span class="offset">this was an unexpected win!</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel improvement-panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span class="pull-right">
+          <%= fa_icon('trophy') %>
+        </span>
+        Eating healthier and drinking more water
+      </h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li>
+          <%= fa_icon 'clock-o' %>
+          <span class="offset">
+            improvement acknowledged <%= local_time_ago(10.days.ago) %>
+          </span>
+        </li>
+        <li>
+          <%= fa_icon 'hashtag' %>
+          <span class="offset">
+            your 10th improvement towards this want
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <% end %>
 </div>

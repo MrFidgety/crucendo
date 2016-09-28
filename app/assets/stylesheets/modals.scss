@@ -93,6 +93,13 @@ button.btn-fixed {
     background: $pastel-orange;
   }
 }
+// Alert modal
+.modal-content.alert-modal {
+  .modal-header {
+    color: white;
+    background: $pastel-red;
+  }
+}
 // Transparent modal
 .modal-content.transparent-modal {
   background-color: transparent;

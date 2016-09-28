@@ -10,20 +10,21 @@
           collection: @subscriptions, as: 'topic' %>
   </div>
 </div>
-<div class="modal fade" id="subscription-limit" role="dialog">
+<div class="modal fade" id="subscription-limit" tabindex="-1" role="dialog" 
+  aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content confirm-modal">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="modal-button-right close-icon" 
+          data-dismiss="modal" aria-hidden="true">
+          <%= material_icon.done %>
+        </button>
         <h4 class="modal-title">Minimum Subscription Limit</h4>
       </div>
       <div class="modal-body">
         <p>You must be subscribed to at least seven topics! 
-        This is an arbitrary number that Brett came up with, 
-        because he likes odd numbers.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        This limit was decided by Brett because he is a fan of odd numbers .. 
+        <br><br>and so you get a good variety of questions in Crucendo.</p>
       </div>
     </div>
   </div>

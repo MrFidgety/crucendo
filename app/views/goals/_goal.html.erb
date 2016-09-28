@@ -3,6 +3,7 @@
     <div class="panel-heading">
       <h3 class="panel-title">
         <span class="pull-right">
+          <%= fa_icon 'check' if goal.completed? %> 
           <%= fa_icon('bullseye') %>
         </span>
         <span class="goal_encrypted_goal"><%= goal.encrypted_goal %></span>

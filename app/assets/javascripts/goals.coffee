@@ -10,3 +10,8 @@ $(document).on "page:change page:restore", ->
   $(".edit_goal").on "submit", ->
     $(".edit_goal form").clear_form_errors()
     $(".alert").alert("close")
+    
+  # Trigger action when helper clicked
+  $('.helper-button').click ->
+    console.log($(this).data("helper"))
+    $("#"+$(this).data("helper")).click()

@@ -20,6 +20,7 @@
       <div class="modal-body">
         <%= form_tag("/wants", {id: "search-wants-form", class: "search-form", 
           enforce_utf8: false, method: "get"} ) do %>
+          <%= hidden_field_tag 'search', 'true' %>
           <%= select_tag "status", 
             options_for_select([["Active", "active"], ["Inactive", "inactive"], 
               ["Complete", "complete"]], params[:status]), 

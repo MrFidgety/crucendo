@@ -20,6 +20,7 @@
       <div class="modal-body">
         <%= form_tag("/haves", {id: "search-haves-form", class: "search-form", 
           enforce_utf8: false, method: "get"} ) do %>
+          <%= hidden_field_tag 'search', 'true' %>
           <%= select_tag "unexpected", 
             options_for_select([["Unexpected", "1"], 
               ["Actively improving", "0"]], params[:unexpected]), 

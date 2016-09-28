@@ -7,6 +7,8 @@ class ImprovementsController < ApplicationController
   def index
     @goal = Goal.new
     @goal.active = false
+    
+    # Get list of improvements filtered with params
     @improvements = @user.improvements.filter(
                         params.slice(:min_date, :max_date, :unexpected))
                         .paginate(:per_page => 10, :page => params[:page])

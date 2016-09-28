@@ -12,7 +12,7 @@
   <small>Haves</small>
 </h1>
 <p class="title-helper">This is what you have improved.</p>
-<div id="improved-goals" class="panel-group">
+<div id="improvements-container" class="panel-group">
   <%= render(@improvements, selectable: true) || render('improvements/helpers/all') %>
 </div>
 <%= will_paginate @improvements %>

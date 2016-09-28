@@ -7,10 +7,8 @@ $("<%= j render partial: 'goals/interactions/want_goal',
           object: @goal, as: :goal %>")
           .prependTo('#active-goals')
 <% else %>
-# Ensure the active goals tab is showing
-$('.nav-tabs a[href="#active-goals"]').tab('show')
 # Add the new improvement to the 'wants' display
-$("<%= j render @goal %>").prependTo('#active-goals')
+$("<%= j render @goal %>").prependTo('#goals-container')
 # Remove the helper if present
-$("#active-goals-helper").remove()
+$("#helper-container").remove()
 <% end %>

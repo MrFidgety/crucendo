@@ -736,43 +736,6 @@ hr {
   display: inline-block;
   max-height: 30px;
 }
-.subscription-panel {
-  border: 1px solid white;
-  transition: all 0.3s;
-  a.update-subscription {
-    color: inherit;
-    text-decoration: inherit;
-  }
-  .panel-heading {
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
-    :before {
-      content: "\f096";
-      font-family: FontAwesome;
-      float: right;
-    }
-  }
-  &.subscribed {
-    .panel-heading {
-      background: $pastel-orange;
-      color: white;
-      text-align: left;
-      :before {
-        content: "\f046";
-        font-family: FontAwesome;
-        float: right;
-      }
-    }
-  }
-  &:hover {
-    border: 1px solid $pastel-orange;
-    transform: scale(1.05);
-    .panel-heading {
-      border-top-right-radius: 0;
-      border-top-left-radius: 0;
-    }
-  }
-}
 
 .improvements-large {
   text-align: center;

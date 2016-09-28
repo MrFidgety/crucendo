@@ -12,8 +12,8 @@
   <small>Wants</small>
 </h1>
 <p class="title-helper">This is what you want to improve.</p>
-<div id="active-goals" class="panel-group">
-  <%= render(@goals) || render('goals/helpers/active') %>
+<div id="goals-container" class="panel-group">
+  <%= render(@goals) || render('goals/helpers/all') %>
 </div>
 <%= will_paginate @goals %>
 <%= render 'goals/wants/new_want' %>

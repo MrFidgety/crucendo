@@ -1,0 +1,112 @@
+<% search = params.has_key?(:search) %>
+<div id="helper-container">
+  <% if search %>
+    <div class="goal-helper">
+      <p>I've done 99 searches and a result ain't one.</p>
+      <p>Our robot, Baxter, suggests that you try a fresh search.</p>
+    </div>
+  <% else %>
+  <div class="goal-helper">
+    <p>All of your wants will appear here. Hit the 
+      <%= material_icon.add.css_class('helper-button').html({ data: { helper: "new_goal_start" } }) %> to get started.</p>
+    <p>In the meantime, here are some 
+    examples to get your improvement juices flowing!</p>
+  </div>
+  <div class="panel goal-panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span class="pull-right">
+          <%= fa_icon('bullseye') %>
+        </span>
+        <span class="goal_encrypted_goal">Setting realistic expecations at work</span>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li>
+          <%= fa_icon 'clock-o' %>
+          <span class="offset">
+            created <%= local_time_ago(3.days.ago) %>
+          </span>
+        </li>
+        <li>
+          <%= fa_icon 'pause' %> 
+          <span class="offset">this want is inactive</span>
+        </li>
+        <li>
+          <%= fa_icon 'trophy' %> 
+          <span class="offset">
+            you have improved 1 time
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel goal-panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span class="pull-right">
+          <%= fa_icon('bullseye') %>
+        </span>
+        <span class="goal_encrypted_goal">Being more patient</span>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li>
+          <%= fa_icon 'clock-o' %>
+          <span class="offset">
+            created <%= local_time_ago(6.days.ago) %>
+          </span>
+        </li>
+        <li>
+          <%= fa_icon 'play' %> 
+          <span class="offset">you are actively improving this want</span>
+        </li>
+        <li>
+          <%= fa_icon 'trophy' %> 
+          <span class="offset">you have improved 3 times</span>
+        </li>
+        <li>
+          <%= fa_icon 'calendar' %> 
+          <span class="offset">
+            you want to achieve this by 
+            <%= local_relative_time(10.days.from_now, type: 'weekday-or-date') %>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel goal-panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span class="pull-right">
+          <%= fa_icon 'check' %> 
+          <%= fa_icon('bullseye') %>
+        </span>
+        <span class="goal_encrypted_goal">Eating healthier and drinking more water</span>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li>
+          <%= fa_icon 'clock-o' %>
+          <span class="offset">
+            created <%= local_time_ago(5.weeks.ago) %>
+          </span>
+        </li>
+        <li>
+          <%= fa_icon 'check' %> 
+          <span class="offset">completed <%= local_time_ago(10.days.ago) %></span>
+        </li>
+        <li>
+          <%= fa_icon 'trophy' %> 
+          <span class="offset">
+            you have improved 10 times
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <% end %>
+</div>
