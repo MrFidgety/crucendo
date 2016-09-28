@@ -37,6 +37,11 @@
 .modal-title {
   text-align: center;
 }
+.modal-body {
+  p {
+    margin: 0;
+  }
+}
 // Fix multiple footer button alignment issue
 .modal-footer .btn {
   margin: 0;
@@ -98,6 +103,13 @@ button.btn-fixed {
   .modal-header {
     color: white;
     background: $pastel-red;
+  }
+}
+// Alert modal
+.modal-content.start-crucendo {
+  .modal-header {
+    color: white;
+    background: $pastel-green;
   }
 }
 // Transparent modal

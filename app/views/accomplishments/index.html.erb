@@ -1,10 +1,9 @@
 <% provide(:title, "Accomplishments") %>
 <% content_for :control_menu do %>
-  <%= link_to interactions_path do %>
-    <div id="new_improvement_start" class="custom-icon icon-group material-lg">
-      <%= material_icon.add %>
-    </div>
-  <% end %>
+  <div id="new_improvement_start" class="custom-icon icon-group material-lg"
+    data-toggle="modal" data-target="#start-crucendo-modal">
+    <%= material_icon.add %>
+  </div>
 <% end %>
 <h1 class="page-title">
   <i class="fa fa-line-chart"></i><br>
@@ -15,3 +14,4 @@
   <%= render(@interactions) || render('accomplishments/crucendos/helpers/all')  %>
 </div>
 <%= will_paginate @interactions %>
+<%= render 'accomplishments/start_crucendo' %>

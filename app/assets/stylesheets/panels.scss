@@ -40,6 +40,11 @@
 .panel-group {
   margin-bottom: 10px;
 }
+.goal-panel, .improvement-panel, .crucendo-panel {
+  .panel-title {
+    font-weight: 300;
+  }
+} 
 .goal-panel {
   .panel-heading {
     background-color: $pastel-teal;
@@ -49,9 +54,6 @@
     .panel-heading {
       background-color: $pastel-navy;
       color: white;
-    }
-    &:hover {
-      border-color: $pastel-navy;
     }
   }
 }

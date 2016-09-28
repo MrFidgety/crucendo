@@ -509,13 +509,6 @@ textarea.form-control {
   float: right;
 }
 
-
-.goal-panel, .improvement-panel, .crucendo-panel {
-  .panel-title {
-    font-weight: 300;
-  }
-} 
-
 h3.panel-title {
   font-size: 1.6em;
 }
@@ -770,6 +763,13 @@ h1.page-title {
   }
   small {
     color: $pastel-aqua;
+  }
+  a {
+    color: inherit;
+    transition: opacity 0.3s ease;
+    &:hover {
+      opacity: 0.6;
+    }
   }
 }
 // scale placeholder text so it fits on smaller mobile devices

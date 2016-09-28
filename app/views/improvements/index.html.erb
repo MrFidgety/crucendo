@@ -1,6 +1,8 @@
 <% provide(:title, "Haves") %>
 <% content_for :control_menu do %>
-  <div id="search-haves" class="custom-icon icon-group" data-toggle="modal" data-target="#search-haves-modal">
+  <div id="search-haves" 
+    class="custom-icon icon-group <%= 'icon-active' if params.has_key?(:search) %>" 
+    data-toggle="modal" data-target="#search-haves-modal">
     <%= material_icon.search %>
   </div>
   <div id="new_improvement_start" class="custom-icon icon-group material-lg">
@@ -8,7 +10,7 @@
   </div>
 <% end %>
 <h1 class="page-title">
-  <i class="fa fa-trophy"></i><br>
+  <%= link_to  fa_icon('trophy'), improvements_path %><br>
   <small>Haves</small>
 </h1>
 <p class="title-helper">This is what you have improved.</p>

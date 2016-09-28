@@ -20,7 +20,9 @@
   <h2 class="line-span green"><span>Haves</span></h2>
 <% end %>
 <section id="haves" class="panel-group">
-  <%= render(partial: "improvements/improvement", collection: @crucendo.improvements) %>
+  <%= render(partial: "improvements/improvement", 
+    collection: @crucendo.improvements, 
+    locals: {selectable: true}) %>
 </section>
 <% unless @crucendo.goals.blank? %>
   <h2 class="line-span green"><span>Wants</span></h2>

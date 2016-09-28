@@ -27,7 +27,7 @@ $(document).on "page:change page:restore", ->
               </button>
               <h4 class="modal-title">Are you sure?</h4>
             </div>
-            <div class="modal-body">#{message}</div>
+            <div class="modal-body"><p>#{message}</p></div>
           </div>
         </div>
       </div>

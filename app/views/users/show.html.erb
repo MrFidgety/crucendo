@@ -1,11 +1,4 @@
 <% provide(:title, "Dashboard") %>
-<%
-  if get_interaction(current_user)
-    crucendo_text =  fa_icon('play', text: 'Continue recent Crucendo')
-  else
-    crucendo_text = fa_icon('plus', text: 'Begin a new Crucendo')
-  end
-%>
 <h1 class="page-title">
   <i class="fa fa-tachometer"></i><br>
   <small>Dashboard</small>
@@ -25,7 +18,7 @@
   <div class="col-sm-12">
     <div class="panel panel-crucendo">
       <%= link_to interactions_path do %>
-      <div class="panel-heading"><%= crucendo_text %></div>
+      <div class="panel-heading"><%= commence_crucendo_text %></div>
       <% end %>
     </div>
   </div>
