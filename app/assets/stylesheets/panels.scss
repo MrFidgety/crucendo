@@ -127,3 +127,20 @@
     }
   }
 }
+.panel-crucendo {
+  margin: 2em 0;
+  color: white;
+  background-color: $pastel-green;
+  transition: all 0.3s;
+  a {
+    text-decoration: inherit;
+    color: inherit;
+  }
+  .panel-heading {
+    font-size: 2em;
+    text-align: center;
+  }
+  &:hover {
+    border-color: $pastel-green;
+  }
+}

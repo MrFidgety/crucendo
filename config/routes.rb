@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   
   resources :improvements, :path => 'haves'
   
-  resources :accomplishments
+  resources :accomplishments, :path => 'crucendos'
   
   namespace :accomplishments do
     resources :crucendos

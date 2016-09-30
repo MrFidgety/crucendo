@@ -5,6 +5,9 @@ class GoalsController < ApplicationController
   before_action :correct_user,  except: [:index, :create, :unexpected]
   before_action :validate_search, only: :index
   
+  # Prevent flash from appearing twice after AJAX call
+  after_filter { flash.discard if request.xhr? }
+  
   def index
     @goal = Goal.new
     @goals = @user.goals.filter(
@@ -35,16 +38,16 @@ class GoalsController < ApplicationController
   def create
     # Create new goal from params
     @goal = @user.goals.build(goal_params)
-    
     # Link to interaction if there is an interaction parameter
     if params[:goal].try(:has_key?, :interaction_id)
       # Interaction id is found from currently incomplete interaction
       @goal.interaction_id = get_interaction(@user).id 
     end
-    
     # Respond to AJAX call
     respond_to do |format|
       if @goal.save
+        # Set flash to notify user of success
+        set_flash :want_added, type: :success   
         format.html { redirect_to @goal }
         # Include variable to determine if this came from an interaction
         format.js   { @type = @goal.interaction_id ? 'interaction' : 'improvement' }
@@ -58,20 +61,19 @@ class GoalsController < ApplicationController
   def unexpected
     # Create new goal from params
     @goal = @user.goals.build(goal_params)
-    
     # Link to interaction if there is an interaction parameter
     if params[:goal].try(:has_key?, :interaction_id)
       # Interaction id is found from currently incomplete interaction
       @goal.interaction_id = get_interaction(@user).id
     end
-    
     # Respond to AJAX call
     respond_to do |format|
       if @goal.save
         # Create improvement if goal saves
         @improvement = @goal.improvements.create(unexpected: true, 
                         interaction_id: @goal.interaction_id)
-                        
+        # Set flash to notify user of success
+        set_flash :have_added, type: :success           
         format.html { redirect_to @improvement.goal }
         # Include variable to determine if this came from an interaction
         format.js   { @type = @goal.interaction_id ? 'interaction' : 'improvement' }
@@ -96,16 +98,21 @@ class GoalsController < ApplicationController
       else
         # Create new improvement linked to interaction
         @improvement = @goal.improvements.build(interaction_id: @interaction.id)
+        # Set flash to notify user of success
+        set_flash :have_added, type: :success   
       end
     else
       # Create new basic improvement (with no linked interaction)
-      @improvement = @goal.improvements.build
+      @improvement = @goal.improvements.build(improvement_params)
+      # Set flash to notify user of success
+      set_flash :have_added, type: :success   
     end
     # Response allows for ajax calls
     respond_to do |format|
       if @improvement.save
         format.html { redirect_to @improvement.goal }
-        format.js
+        # Include variable to determine if this came from an interaction
+        format.js   { @type = @interaction ? 'interaction' : 'improvement' }
       else
         format.html { redirect_to @improvement.goal }
         format.json { render json: @improvement.errors, status: :unprocessable_entity }
@@ -155,6 +162,20 @@ class GoalsController < ApplicationController
       end
       params.require(:goal).permit(:encrypted_goal, :due_date, :completed, 
                                     :completed_date, :active)
+    end
+    
+    def improvement_params
+      # Perform date calculation if date set
+      if !params[:improvement_date].blank?
+        if !params[:improvement_date_utc].blank? && current_user.time_zone.blank?
+          # Use javascript UTC date if user hasn't set timezone
+          params[:created_at] = params[:improvement_date_utc]
+        else
+          # Use middle of day on date selected by user
+          params[:created_at] = Time.zone.parse(params[:improvement_date]).middle_of_day
+        end
+      end
+      params.permit(:created_at)
     end
     
     def correct_user

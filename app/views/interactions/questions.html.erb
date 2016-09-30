@@ -1,4 +1,15 @@
-<% provide(:title, "Question") %>
+<% 
+  provide(:title, "Question")
+  form_id = "edit_answer_#{@answer.id}"
+%>
+<% content_for :control_menu do %>
+  <%= button_tag(type: 'submit', 
+      class: "custom-icon with-loader icon-pulse",
+      form: form_id, 
+      data: {disable_with: "<div class='loader'></div>".html_safe}) do %>
+    <%= material_icon.done %>
+  <% end %>
+<% end %>
 <%= render 'interactions/header' %>
 <p class="interaction-question">
   <%= @answer.question.content %><br>
@@ -8,8 +19,4 @@
   <%= f.text_area :encrypted_answer, rows: 4, class: 'form-control',
         placeholder: "type your answer here ..." %>
   <%= hidden_field(:answer, :id) %>
-  <%= button_tag(type: 'submit', class: "btn btn-orange pull-right btn-lg",
-        :data => {:disable_with => "Saving..."}) do %>
-    <%= fa_icon 'chevron-right', text: 'Continue', right: true %>
-  <% end %>
 <% end %>

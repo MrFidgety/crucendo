@@ -28,9 +28,9 @@
   <% if logged_in? %>
     <%= render 'layouts/header' %>
   <% end %>
+  <div id="flash-container"><%= render_flash %></div>
   <div id="site-content" class="<%= yield(:page_class) %> <%= 'padded-top' if logged_in? %>">
     <div id="primary-container" class="container">
-      <%= render_flash %>
       <% if !@breadcrumbs.blank? %>
         <ol class="breadcrumb">
           <%= render_breadcrumbs :tag => :li, :separator => "" %>

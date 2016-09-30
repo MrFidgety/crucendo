@@ -38,6 +38,11 @@
   text-align: center;
 }
 .modal-body {
+  h3 {
+    margin-top: 0;
+    line-height: inherit;
+    font-weight: 300;
+  }
   p {
     margin: 0;
   }

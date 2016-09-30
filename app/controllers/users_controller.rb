@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   before_action :set_current_user,  except: [:new, :create]
   before_action :admin_user,        only: :destroy
   
+  # Prevent flash from appearing twice after AJAX call
+  after_filter { flash.discard if request.xhr? }
+  
   def show
     # Get basic dashboard stats
     @goals_completed_count = @user.goals.completed(true).size
@@ -85,8 +88,8 @@ class UsersController < ApplicationController
   
   def update
     if @user.update_attributes(user_params)
+      # Set flash to notify user of success
       set_flash :good_button, type: :success
-      
       respond_to do |format|
         format.html { redirect_to profile_path }
         format.js

@@ -1,4 +1,11 @@
 <% provide(:title, "Have") %>
+<% content_for :control_menu do %>
+  <%= button_to next_wizard_path, method: :get, 
+      class: "custom-icon with-loader icon-pulse",
+      data: {disable_with: "<div class='loader'></div>".html_safe} do %>
+    <%= material_icon.done %>
+  <% end %>
+<% end %>
 <%= render 'interactions/header' %>
 <p class="interaction-title">
   What have you improved recently?
@@ -28,9 +35,7 @@
 <br>
 <section id="goals-section">
   <div id="improved-goals" class="panel-group"></div>
-</section><br>
-<%= link_to fa_icon('chevron-right', text: 'Continue', right: true),
-      next_wizard_path, class: 'btn btn-orange pull-right btn-lg' %>
+</section>
 <%= render 'goals/haves/new_have', interaction: @interaction %>
 <div class="modal fade" id="select-goals-modal" tabindex="-1" 
   role="dialog" aria-hidden="true">

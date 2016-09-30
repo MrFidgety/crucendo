@@ -15,7 +15,7 @@
         <li>
           <%= fa_icon 'clock-o' %>
           <span class="offset">
-            improvement acknowledged <%= local_time_ago(improvement.created_at) %>
+            improvement acknowledged <%= local_relative_time(improvement.created_at, 'weekday-or-date') %>
           </span>
         </li>
         <li>

@@ -8,9 +8,6 @@ class ApplicationController < ActionController::Base
   
   before_filter :set_user_time_zone
   
-  # Prevent flash from appearing twice after AJAX call
-  after_filter { flash.discard if request.xhr? }
-  
   def set_flash(result, type: 'info', object: nil, controller: controller_path)
     if object
       flash[:from] = action_name

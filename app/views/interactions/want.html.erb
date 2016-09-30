@@ -1,4 +1,11 @@
 <% provide(:title, "Want") %>
+<% content_for :control_menu do %>
+  <%= button_to next_wizard_path, method: :get, 
+      class: "custom-icon with-loader icon-pulse",
+      data: {disable_with: "<div class='loader'></div>".html_safe} do %>
+    <%= material_icon.done %>
+  <% end %>
+<% end %>
 <%= render 'interactions/header' %>
 <p class="interaction-title">
   What do you want to improve?
@@ -15,7 +22,5 @@
 <div id="active-goals" class="panel-group">
   <%= render partial: "goals/interactions/want_goal", 
       collection: @goals, as: :goal %>
-</div><br>
-<%= link_to fa_icon('chevron-right', text: 'Continue', right: true),
-      next_wizard_path, class: 'btn btn-orange pull-right btn-lg' %>
+</div>
 <%= render 'goals/wants/new_want', interaction: @interaction %>

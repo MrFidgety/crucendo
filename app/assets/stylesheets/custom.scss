@@ -551,7 +551,6 @@ a.helper {
   transition: all 0.3s;
   &:hover {
     border-color: $pastel-teal;
-    transform: scale(1.05);
   }
 }
 
@@ -688,27 +687,6 @@ button.text-button {
     position: absolute;
     left: 0;
     line-height: inherit;
-  }
-}
-.panel-crucendo {
-  margin: 2em 0;
-  color: white;
-  background-color: $pastel-green;
-  transition: all 0.3s;
-  a {
-    text-decoration: inherit;
-    color: inherit;
-  }
-  .panel-heading {
-    font-size: 2em;
-    text-align: center;
-    .fa {
-      margin-right: 0.5em;
-    }
-  }
-  &:hover {
-    border-color: $pastel-green;
-    transform: scale(1.05);
   }
 }
 hr {
@@ -1158,4 +1136,47 @@ button.calendar-helper.plus-text {
 .pagination {
   width: 100%;
   text-align: center;
+}
+#flash-container {
+  cursor: pointer;
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  .alert {
+    min-height: 62px;
+    font-size: 20px;
+  }
+}
+// User security form button hidden by default
+#save-security {
+  display: none;
+}
+
+.edit_answer {
+  .error {
+    small {
+      color: white;
+    }
+    textarea {
+      border: 2px solid $pastel-orange;
+    }
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% { -webkit-transform: scale(1); }
+  50% { -webkit-transform: scale(1.2); }
+  100% { -webkit-transform: scale(1); }
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+.icon-pulse {
+  .material-icons, .fa {
+    -webkit-animation: pulse 2s ease infinite;
+    animation: pulse 2s ease infinite;
+  }
 }

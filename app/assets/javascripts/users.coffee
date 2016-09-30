@@ -15,8 +15,12 @@ $(document).on "page:change page:restore", ->
   # Clear errors when form is submitted again    
   $(".edit_user").on "submit", ->
     $(".edit_user form").clear_form_errors()
-    $(".alert-success").alert("close")
     
   # Focus on signup form when help modal closes
   $('#help-modal').on 'hidden.bs.modal', ->
     $('#user_email').focus()
+    
+  $('a[data-toggle="tab"]').on 'shown.bs.tab', (e) ->
+    target = $(e.target).data("save")
+    $('.toggle-save:visible').hide()
+    $('#'+target).show()

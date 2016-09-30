@@ -1,4 +1,11 @@
 <% provide(:title, "Begin") %>
+<% content_for :control_menu do %>
+  <%= button_to next_wizard_path, method: :get, 
+      class: "custom-icon with-loader icon-pulse",
+      data: {disable_with: "<div class='loader'></div>".html_safe} do %>
+    <%= material_icon.done %>
+  <% end %>
+<% end %>
 <%= render 'interactions/header' %>
 <div class="crucendo-begin">
   <h3>You’ve made a great decision to start improving, so Crucendo is here to 
@@ -9,6 +16,4 @@
   and yourself. Crucendo is designed to help you to improve all aspects of your 
   life.</p>
   <h3>Close your eyes, take three slow, deep breaths, and begin.</h3><br>
-  <%= link_to fa_icon('play', text: 'Begin', right: true), next_wizard_path, 
-        class: 'btn btn-orange btn-lg' %>
 </div>

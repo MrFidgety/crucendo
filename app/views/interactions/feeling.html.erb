@@ -1,4 +1,15 @@
-<% provide(:title, "Feeling") %>
+<% 
+  provide(:title, "Feeling") 
+  form_id = "edit_interaction_#{@interaction.id}"
+%>
+<% content_for :control_menu do %>
+  <%= button_tag(type: 'submit', 
+      class: "custom-icon with-loader icon-pulse",
+      form: form_id, 
+      data: {disable_with: "<div class='loader'></div>".html_safe}) do %>
+    <%= material_icon.done %>
+  <% end %>
+<% end %>
 <%= render 'interactions/header' %>
 <div class="interaction-title">
   <p>If 1 is how you would least like to feel, and 5 is how you would most like to 
@@ -64,8 +75,4 @@
 <br><br>
 <%= form_for @interaction, url: wizard_path, method: :put do |f| %>
   <%= hidden_field(:interaction, :feeling) %>
-    <%= button_tag(type: 'submit', class: "btn btn-orange pull-right btn-lg",
-        :data => {:disable_with => "Trying..."}) do %>
-    <%= fa_icon 'chevron-right', text: 'Continue', right: true %>
-  <% end %>
 <% end %>

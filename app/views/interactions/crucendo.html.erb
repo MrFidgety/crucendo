@@ -1,4 +1,11 @@
 <% provide(:title, "Complete") %>
+<% content_for :control_menu do %>
+  <%= button_to root_url, method: :get, 
+      class: "custom-icon with-loader icon-pulse",
+      data: {disable_with: "<div class='loader'></div>".html_safe} do %>
+    <%= fa_icon('hand-peace-o') %>
+  <% end %>
+<% end %>
 <%= render 'interactions/header' %>
 <div class="interaction-summary">
   <h1>That's it!</h1>
@@ -30,5 +37,3 @@
   </p>
   <p>Nice job, and<br><span>keep impressing yourself!</span></p><br>
 </div>
-<%= link_to fa_icon('hand-peace-o', text: ' See you tomorrow', right: true), 
-      root_url, class: 'btn btn-orange pull-right btn-lg' %>

@@ -1,5 +1,6 @@
 # Render any flash set during AJAX call
-$("#primary-container").prepend("<%= j render_flash %>")
+$("#flash-container").html("<%= j render_flash %>").hide().fadeIn ->
+  $(this).delay(3000).fadeOut()
 
 # Clear new password fields
 $("#user_password, #user_password_confirmation").val('')

@@ -16,10 +16,11 @@ class SessionsController < ApplicationController
                                           device: browser.device.name,
                                           platform: browser.platform.name)
       set_flash :welcome, type: :success
+
       # Take user to dashboard
       respond_to do |format|
-        format.html { redirect_to root_url }
-        format.js   { render js: "window.location = '#{root_url}'" }
+        format.html { redirect_to root_path }
+        format.js   { render js: "window.location = '#{root_path}'" }
       end
     else
       @user = User.new

@@ -3,9 +3,16 @@
 <% content_for :control_menu do %>
   <%= link_to fa_icon('pencil-square-o'), 
         edit_goal_path(@goal), 
-        class: 'custom-icon' %>
+        class: 'custom-icon icon-group' %>
+  <div class="custom-icon icon-group material-lg"
+    data-toggle="modal" data-target="#new_improvement_modal">
+    <%= material_icon.add %>
+  </div>
 <% end %>
-<h1 class="page-title light"><%= @goal.encrypted_goal %></h1>
+<h1 class="page-title light">
+  <%= link_to  fa_icon('bullseye'), goals_path %><br>
+  <%= @goal.encrypted_goal %>
+</h1>
 <div class="goal-details">
   <% if @goal.improvements.size > 0 %>
     <p class="improvements-large">
@@ -58,7 +65,8 @@
   </ul>
 </div>
 <h2 class="line-span teal"><span>Haves</span></h2>
-<div class="goal-improvements panel-group">
+<div id="improvements-container" class="panel-group">
   <%= render(@improvements) || render('goals/helpers/first_improvement', 
                                   locals: {completed: @goal.completed} ) %>
 </div>
+<%= render 'goals/wants/improve', goal: @goal %>
