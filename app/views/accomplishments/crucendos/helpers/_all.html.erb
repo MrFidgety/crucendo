@@ -1,4 +1,14 @@
-<div class="missing-content-helper">
-  <p>When you have completed a Crucendo there will be more information here. 
-  You can begin your first Crucendo from the <%= link_to 'Dashboard', root_url %>.</p>
+<% search = params.has_key?(:search) %>
+<div id="helper-container">
+  <% if search %>
+    <div class="improvement-helper">
+      <p>I've done 99 searches and a result ain't one.</p>
+      <p>Our robot, Baxter, suggests that you try a fresh search.</p>
+    </div>
+  <% else %>
+  <div class="improvement-helper">
+    <p>All of your completed Crucendos will appear here. Hit the 
+      <%= material_icon.add.css_class('helper-button').html({ data: { helper: "new_crucendo_start" } }) %> to get started.</p>
+  </div>
+  <% end %>
 </div>
