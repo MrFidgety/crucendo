@@ -3,52 +3,76 @@ class InteractionsController < ApplicationController
   include InteractionsHelper
   
   before_action :find_interaction
-  before_action :correct_step,    only: :show
-  before_action :answer_current,  only: :update
   
-  steps :begin, :questions, :have, :want, :feeling, :crucendo
+  steps :begin, :q1, :q2, :q3, :haves, :wants, :feels, :crucendo
   
   def show
-    
     case step
-      when :questions
-        @answer = @interaction.find_next_answer
-        skip_step if @answer.blank?
-      when :have
+      # Retrieve answer
+      when :q1
+        @answer = @interaction.answers.order(:id).first
+      when :q2
+        @answer = @interaction.answers.order(:id).second
+      when :q3
+        @answer = @interaction.answers.order(:id).third
+      when :haves
+        # Set up new goal and set to inactive by default
         @goal = Goal.new
         @goal.active = false
+        # Find all current active goals, plus those linked to this interaction
         @goals = current_user.goals.includes(:improvements)
-          .where('(active = ? AND completed = ?) OR interaction_id = ?', 'true', 'false', @interaction.id)
-      when :want
+          .where('(active = ? AND completed = ?) OR interaction_id = ?', 
+          'true', 'false', @interaction.id)
+      when :wants
+        # Set up new goal
         @goal = Goal.new
-        @goals = @interaction.goals.where(completed: false)
+        # Find all goals linked to this interaction that are active
+        @goals = @interaction.goals.active(true)
       when :crucendo
+        # Set this interaction to complete
         @interaction.complete
     end
-    
     render_wizard
   end
   
   def update
-    
-    if step.equal? :questions
-      # if answer saves, move to next unanswered question
+    # If question is being answered
+    if [:q1, :q2, :q3].include? step
+      # Get current answer
+      case step
+        when :q1
+          @answer = @interaction.answers.order(:id).first
+        when :q2
+          @answer = @interaction.answers.order(:id).second
+        when :q3
+          @answer = @interaction.answers.order(:id).third
+      end
+      # Try to update answer
       if @answer.update_attributes(answer_params)
-        @answer = @interaction.find_next_answer
+        # Move to next step if answer saves
+        skip_step
       else
-        # reset the answer value to plain text
+        # Otherwise reset the answer value to plain text for display
         @answer.plain_encrypted_answer = params[:answer][:encrypted_answer]
       end
-      
-      # move to next step if no "next answer"
-      skip_step if @answer.blank?
+    elsif step.equal? :feels
+      # Check if all questions have been answered
+      if @answer = @interaction.missing_answers
+        # Alert user that criteria must be met
+        set_flash :answer_required, type: :warning
+        # Take user to specific step
+        if @answer == @interaction.answers.order(:id).first
+          jump_to(:q1)
+        elsif @answer == @interaction.answers.order(:id).second
+          jump_to(:q2)
+        else
+          jump_to(:q3)
+        end
+      else
+        @interaction.update_attributes(interaction_params)
+        skip_step
+      end
     end
-    
-    if step.equal? :feeling
-      @interaction.update_attributes(interaction_params)
-      skip_step
-    end
-    
     render_wizard
   end
   
@@ -59,48 +83,25 @@ class InteractionsController < ApplicationController
     end
     
     def find_interaction
-      # find first incomplete interaction, or create one
-      @interaction = get_interaction(current_user) || current_user.interactions.build
-      
-      # redirect to root if interaction does not save
-      redirect_to root_url if !@interaction.save 
-    end
-    
-    def correct_step
-      answered = @interaction.answers.answered.size
-      case step
-        when :begin
-          # ok if no questions answered
-          if answered != 0
-            if answered == 3
-              redirect_to wizard_path(:have)
-            else
-              redirect_to wizard_path(:questions)
-            end
+      # If first step, check if interaction already exists
+      if step == :begin
+        if @interaction = get_interaction(current_user)
+          # Take user to next logical step if iteraction exists
+          redirect_to wizard_path(:q1)
+        end
+      else
+        # Find first incomplete interaction
+        unless @interaction = get_interaction(current_user)
+          if step == :q1
+            # Build interaction if we are viewing q1
+            @interaction = current_user.interactions.build
+            # Redirect to root if interaction does not save
+            redirect_to root_url if !@interaction.save 
+          else
+            # Redirect to begin step
+            redirect_to wizard_path(Wicked::FIRST_STEP)
           end
-        when :questions
-          redirect_to wizard_path(:have) if answered == 3
-        else
-          redirect_to wizard_path(:questions) if answered < 3
-      end
-    end
-    
-    def answer_current
-      if step.equal? :questions
-        # find answer
-        @answer = current_user.answers.find_by_id(params[:answer][:id].to_i)
-        
-        if @answer.blank?
-          # set flash notice advising issue answering question
-          redirect_to root_url
         end
-        
-        if @answer.answered?
-          # set flash notice advising question already answered
-          set_flash :question_already_answered, type: :info
-          redirect_to wizard_path(:questions)
-        end
-
       end
     end
     

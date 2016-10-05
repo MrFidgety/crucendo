@@ -47,6 +47,15 @@ class Interaction < ActiveRecord::Base
     answers.where(:encrypted_answer => nil).first
   end
   
+  # Check if criteria have been met to complete this interaction
+  def ready_to_complete?
+    answers.where(:encrypted_answer => nil).blank?
+  end
+  
+  def missing_answers
+    answers.where(:encrypted_answer => nil).order(:id).first
+  end
+  
   # set interaction as completed
   def complete
     update_attribute(:completed, true)

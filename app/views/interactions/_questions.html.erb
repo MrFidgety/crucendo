@@ -1,13 +1,10 @@
-<% 
-  provide(:title, "Question")
-  form_id = "edit_answer_#{@answer.id}"
-%>
+<% form_id = "edit_answer_#{@answer.id}" %>
 <% content_for :control_menu do %>
   <%= button_tag(type: 'submit', 
       class: "custom-icon with-loader icon-pulse",
       form: form_id, 
       data: {disable_with: "<div class='loader'></div>".html_safe}) do %>
-    <%= material_icon.done %>
+    <%= material_icon.keyboard_arrow_right %>
   <% end %>
 <% end %>
 <%= render 'interactions/header' %>

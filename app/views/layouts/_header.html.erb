@@ -1,5 +1,13 @@
 <header class="navbar navbar-fixed-top">
   <div class="container-fluid">
+    <% if content_for? :navigation_left %>
+      <%= yield :navigation_left %>
+      <div class="center-logo">
+        <%= link_to root_url do %>
+          <%= image_tag("crucendo_c_web.svg") %>
+        <% end %>
+      </div>
+    <% else %>
     <div class="nav-button-left pull-left">
       <%= button_tag '', id: 'navigation-button',
           class: 'c-hamburger c-hamburger--htx toggle-panel' do %>
@@ -14,6 +22,7 @@
         <div class="beta-logo">beta</div>
       </div>
     </div>
+    <% end %>
     <% if content_for? :control_menu %>
       <div class="pull-right control-menu">
         <%= yield :control_menu %>
