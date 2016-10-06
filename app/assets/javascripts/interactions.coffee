@@ -155,14 +155,14 @@ $(document).on "page:change", ->
   # initialize swiper when document ready
   if $('#swiper-feeling.swiper-container').length
     feeling = $('#swiper-feeling.swiper-container').swiper({
-      pagination: '.swiper-pagination',
+      #pagination: '.swiper-pagination',
       initialSlide: 2,
       centeredSlides: true,
-      paginationClickable: true,
+      #paginationClickable: true,
       mousewheelControl: true,
       slideToClickedSlide: true,
       slidesPerView: 5,
-      spaceBetween: 10,
+      #spaceBetween: 10,
       breakpoints: {
         1024: {
           slidesPerView: 4,

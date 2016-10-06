@@ -371,68 +371,6 @@ input[type="month"] {
   padding-top: 2em;
 }
 
-/* swipe slider */
-.swiper-slide {
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;  
-}
-
-#swiper-feeling {
-  &.swiper-container {
-    height: 200px;
-  }
-  .swiper-slide {
-    cursor: pointer;
-    background: white;
-    transition: border-color 0.3s ease;
-    border: 5px solid $pastel-blue;
-    text-align: center;
-    font-size: 24px;
-  }
-  .swiper-slide-active {
-    border: 5px solid $pastel-orange;
-    span {
-      font-weight: 600;
-    }
-  }
-}
-#swiper-testimonials {
-  &.swiper-container {
-    height: 22em;
-  }
-  .swiper-slide {
-    font-weight: 300;
-    text-align: center;
-    font-size: 1.5em;
-    color: white;
-    
-    small {
-      display: block;
-      font-size: 0.8em;
-    }
-    p {
-      //line-height: 1.5em;
-    }
-    h1{
-      small {
-        color: white;
-        font-size: 0.7em;
-      }
-    }
-  }
-}
-
 /* privacy and terms */
 .policies {
   padding: 1em 0;
@@ -1199,59 +1137,59 @@ button.calendar-helper.plus-text {
   margin-right: -10px;
 }
 .progressbar li {
-    list-style-type: none;
-    width: 16.6%;
-    float: left;
-    font-size: 12px;
-    position: relative;
-    text-align: center;
-    text-transform: uppercase;
-    color: $pastel-green;
-    a {
-      color: white;
-    }
+  list-style-type: none;
+  width: 16.6%;
+  float: left;
+  font-size: 12px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  color: $pastel-green;
+  a {
+    color: white;
+  }
 }
 .progressbar li:before {
-    width: 30px;
-    height: 30px;
-    content: counter(step);
-    counter-increment: step;
-    line-height: 28px;
-    border: 2px solid $pastel-green;
-    display: block;
-    text-align: center;
-    margin: 0 auto 10px auto;
-    border-radius: 50%;
-    background-color: $pastel-blue;
-    position: relative;
-    z-index: 1;
+  width: 30px;
+  height: 30px;
+  content: counter(step);
+  counter-increment: step;
+  line-height: 28px;
+  border: 2px solid $pastel-green;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: $pastel-blue;
+  position: relative;
+  z-index: 1;
 }
 .progressbar li:after {
-    width: 100%;
-    height: 2px;
-    content: '';
-    position: absolute;
-    background-color: $pastel-green;
-    top: 15px;
-    left: -50%;
+  width: 100%;
+  height: 2px;
+  content: '';
+  position: absolute;
+  background-color: $pastel-green;
+  top: 15px;
+  left: -50%;
 }
 .progressbar li:first-child:after {
-    content: none;
+  content: none;
 }
 .progressbar li.current {
+  color: white;
+  & ~ li {
     color: white;
-    & ~ li {
-      color: white;
-      &:before {
-        border-color: white;
-      }
-      &:after {
-        background-color: white;
-      }
+    &:before {
+      border-color: white;
     }
+    &:after {
+      background-color: white;
+    }
+  }
 }
 .progressbar li.current + li:after {
-    background-color: white;
+  background-color: white;
 }
 .center-logo {
   position: absolute;
@@ -1260,3 +1198,4 @@ button.calendar-helper.plus-text {
   text-align: center;
   margin-left: -20px;
 }
+

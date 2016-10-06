@@ -1,0 +1,99 @@
+.swiper-slide {
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;  
+}
+#swiper-feeling {
+  &.swiper-container {
+    height: 200px;
+  }
+  .swiper-slide {
+    cursor: pointer;
+    transition: font-size 0.3s ease;
+    border: 5px solid $pastel-blue;
+    text-align: center;
+  }
+  .swiper-slide-active {
+    font-size: 3em;
+  }
+}
+#swiper-testimonials {
+  &.swiper-container {
+    height: 22em;
+  }
+  .swiper-slide {
+    font-weight: 300;
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+    
+    small {
+      display: block;
+      font-size: 0.8em;
+    }
+    p {
+      //line-height: 1.5em;
+    }
+    h1{
+      small {
+        color: white;
+        font-size: 0.7em;
+      }
+    }
+  }
+}
+
+.feeling-circle {
+	position: relative;
+	width: 90%;
+	border-radius: 50%;
+	background-color: #fff;
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+}
+.feeling-circle-inner {
+	border-radius: 50%;
+	width: 90%;
+	height: 90%;
+  top: 5%;
+  left: 5%;
+	background: $pastel-blue;
+	position: absolute;
+	color: white;
+	font-size: 1.2em;
+	.valign {
+	  position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+	}
+}
+
+$step: 1; // step of % for created classes
+$loops: 100;
+$increment: (360 / $loops);
+$half: round($loops / 2);
+@for $i from 0 through $loops {
+  .progress-#{$i*$step} {
+    @if $i < 50 {
+		$nextdeg: 90deg + ( $increment * $i );
+		background-image: linear-gradient(90deg, #fff 50%, transparent 50%, transparent), linear-gradient($nextdeg, $pastel-green 50%, #fff 50%, #fff);
+    }
+    @else {
+		$nextdeg: -90deg + ( $increment * ( $i - $half ) );
+		background-image: linear-gradient($nextdeg, $pastel-green 50%, transparent 50%, transparent), linear-gradient(270deg, $pastel-green 50%, #fff 50%, #fff);
+    }
+  }
+}
