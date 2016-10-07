@@ -49,6 +49,9 @@ body {
 .navbar.navbar-fixed-top {
   box-shadow: none;
   background: $pastel-blue;
+  &.fixfixed {
+    position: absolute !important;
+  }
   .container-fluid {
     padding-left: 10px;
     padding-right: 10px;
@@ -405,6 +408,7 @@ textarea.form-control {
   background: none;
   font-size: 1.5em;
   color: white;
+  padding: 0;
   
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
@@ -422,6 +426,11 @@ textarea.form-control {
   &:-moz-placeholder { /* Firefox 18- */
     color: $light-gray;
   }
+}
+
+textarea.autogrow {
+  resize: none;
+  overflow: hidden;
 }
 
 .improve-btn {
@@ -544,7 +553,7 @@ a.helper {
     padding-top: 70px;
   }
   &.nav-active {
-    opacity: 0.5;
+    opacity: 0;
   }
   &.nav-active:after {
     cursor: pointer;
@@ -558,7 +567,7 @@ a.helper {
   }
 }
 #fixed-nav {
-  background: $pastel-blue;
+  //background: $pastel-blue;
   position: fixed;
   height: 100%; 
   top: 60px;
@@ -567,7 +576,7 @@ a.helper {
   z-index: 1;
   transition: all 0.6s ease;
 }
-.nav-active:not(button) {
+#fixed-nav.nav-active {
   -webkit-transform: translateX(300px) scale(1);
   -moz-transform: translateX(300px) scale(1);
   -ms-transform: translateX(300px) scale(1);
@@ -1150,6 +1159,7 @@ button.calendar-helper.plus-text {
   }
 }
 .progressbar li:before {
+  cursor: pointer;
   width: 30px;
   height: 30px;
   content: counter(step);

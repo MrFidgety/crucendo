@@ -1,6 +1,24 @@
 $(document).on "page:change", -> 
   
+  # Follow link click when progress 'circle' is clicked
+  $('ul.progressbar > li').on 'click', () ->
+    href = $(this).find('a:first').attr('href')
+    window.location.href = href
+  
   #---------------- QUESTIONS ---------------#
+  
+  # Function to auto grow text areas  
+  auto_grow = (x) -> 
+    x.css('height', '5px')
+    x.css('height', (x.prop("scrollHeight"))+"px")
+    
+  # Ensure any prefilled text areas are the correct size
+  $('textarea.autogrow').each () ->
+    auto_grow($(this))
+  
+  # Resize text area on input
+  $('textarea.autogrow').on 'input', () ->
+    auto_grow($(this))
   
   #------------------ HAVE ------------------#
   

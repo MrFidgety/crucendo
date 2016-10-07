@@ -1,18 +1,19 @@
 $(document).on "page:change page:restore", ->
   
   # Toggle fixed navigation
-  $('#navigation-button').click ->
+  $('#navigation-button').on 'click touchstart', (e) ->
+    e.preventDefault()
     $(this).add('#fixed-nav, #site-content').toggleClass('nav-active')
     
-  # Ensure preselected radio buttons are visually clicked
-  $('[checked="checked"]').parent().click()
-
   # Click/touch site content to close navigation
   $('#site-content').on 'click touchstart', (e) ->
     if $(this).hasClass('nav-active')
       $('#navigation-button, #fixed-nav, #site-content').removeClass('nav-active')
       # Prevent safari from registering touch event under overlay
       e.preventDefault() 
+      
+  # Ensure preselected radio buttons are visually clicked
+  $('[checked="checked"]').parent().click()
   
   # Prevent touch-scrolling on fixed-nav
   $('#fixed-nav').on 'touchmove',(e) ->
