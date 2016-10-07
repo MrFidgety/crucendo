@@ -1,4 +1,4 @@
 <%= link_to '#', class: "list-group-item" do %>
   <span class="badge"><%= user.created_at %></span>
-  <span class="title"><%= user.email %></span>
+  <span class="title"><%= user.email %> (<%= user.interactions.size %> Crucendos)</span>
 <% end %>
