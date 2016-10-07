@@ -9,8 +9,14 @@
     <% end %>
     <div class="panel-body">
       <% unless topic.author.blank? %>
-        <%= image_tag topic.author.logo.url, class: "img-responsive" if topic.author.logo? %>
-        <h4><small>Brought to you by</small><br><%= link_to topic.author.name, topic.author.link, target: '_blank' %></h4>
+      <div class="row">
+        <div class="col-xs-6 col-sm-12">
+          <%= image_tag topic.author.logo.url, class: "img-responsive" if topic.author.logo? %>
+        </div>
+        <div class="col-xs-6 col-sm-12">
+          <h4><small>Brought to you by</small><br><%= link_to topic.author.name, topic.author.link, target: '_blank' %></h4>
+        </div>
+      </div>
       <% end %>
     </div>
   </div>
