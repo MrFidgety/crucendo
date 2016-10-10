@@ -7,16 +7,13 @@
         <span class="pull-right pull-right-padded">
           <%= fa_icon('trophy', text: goal.improvements.size, right: :true) %>
         </span>
-        <%= improvement && improvement.unexpected ? fa_icon('star') : fa_icon('bullseye') %>
+        <span class="pull-left pull-left-padded">
+          <%= improvement && improvement.unexpected ? fa_icon('star') : fa_icon('bullseye') %>
+        </span>
         <span class="goal_encrypted_goal">
           <%= goal.encrypted_goal %>
         </span>
       </h3>
     </div>
-    <!--<div class="panel-body">-->
-    <!--  <span class="pull-right helper">-->
-    <!--    <%#= improvement ? fa_icon('hand-pointer-o', text: 'Remove') :  fa_icon('hand-pointer-o', text: 'Improve') %>-->
-    <!--  </span>-->
-    <!--</div>-->
   <% end %>
 </div>

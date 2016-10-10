@@ -30,7 +30,7 @@ class InteractionsController < ApplicationController
         # Set up new goal
         @goal = Goal.new
         # Find all goals linked to this interaction that are active
-        @goals = @interaction.goals.active(true)
+        @goals = @interaction.goals.active(true).order('created_at desc')
       when :crucendo
         # Set this interaction to complete
         @interaction.complete

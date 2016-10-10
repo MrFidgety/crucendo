@@ -8,7 +8,10 @@
   .panel-heading {
     transition: all 0.3s;
     .pull-right-padded {
-      padding-left: 10px;
+      padding-left: 15px;
+    }
+    .pull-left-padded {
+      padding-right: 15px;
     }
   }
   .panel-body {

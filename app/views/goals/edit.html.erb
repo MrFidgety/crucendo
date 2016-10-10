@@ -51,10 +51,6 @@
         title: "Are you sure?", 
         data: {confirm: confirm_text },
         class: "btn btn-danger btn-link" %>
-  <%#= button_tag(type: 'submit', class: "btn btn-orange pull-right btn-lg", 
-        :data => {:disable_with => "Saving..."}) do %>
-    <%#= fa_icon('floppy-o', text: 'Save', right: true) %>
-  <%# end %>
 <% end %>
 <script>
   $( document ).ready(function() {
@@ -71,8 +67,8 @@
     <% end %>
     
     <% unless @goal.due_date.blank? %>
-      // set current due date in local time
-      var date = moment.utc('<%= @goal.due_date %>');
+      set current due date in local time
+      var date = moment.utc('<%#= @goal.due_date %>');
       $('#goal_due_date').val(date.local().format('YYYY-MM-DD'));
     <% end %>
   });

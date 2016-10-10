@@ -25,7 +25,7 @@ class GoalsController < ApplicationController
       set_flash :good_button, type: :success
       respond_to do |format|
         format.html { redirect_to goal_path(@goal) }
-        format.js
+        format.js { @type = params[:goal].try(:has_key?, :interaction_id) ? 'interaction' : 'standard'}
       end
     else
       respond_to do |format|

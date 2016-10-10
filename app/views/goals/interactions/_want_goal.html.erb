@@ -1,54 +1,17 @@
-<div id="goal_<%= goal.id %>" class="panel goal-panel">
+<div id="goal_<%= goal.id %>" class="panel goal-panel heading-only">
+  <%= link_to edit_goal_path(goal), remote: true do %>
   <div class="panel-heading">
     <h3 class="panel-title">
-      <span class="pull-right">
-        <%= fa_icon('bullseye') %>
+      <span class="pull-right pull-right-padded">
+        <%= fa_icon('pencil-square-o') %>
       </span>
-      <span class="goal_encrypted_goal"><%= goal.encrypted_goal %></span>
+      <span class="pull-left pull-left-padded">
+        <%= goal.due_date.blank? ? fa_icon('bullseye') : fa_icon('calendar') %>
+      </span>
+      <span class="goal_encrypted_goal">
+        <%= goal.encrypted_goal %>
+      </span>
     </h3>
   </div>
-  <div class="panel-body">
-    <ul>
-      <li>
-        <%= fa_icon 'clock-o' %>
-        <span class="offset">
-          created <%= local_time_ago(goal.created_at) %>
-        </span>
-      </li>
-      <li>
-        <% if @goal.completed? %>
-          <%= fa_icon 'check' %> 
-          <span class="offset">completed <%= local_time_ago(@goal.completed_date) %></span>
-        <% elsif @goal.active? %>
-          <%= fa_icon 'play' %> 
-          <span class="offset">you are actively improving this want</span>
-        <% else %>
-          <%= fa_icon 'pause' %> 
-          <span class="offset">you have put this want on hold</span>
-        <% end %>
-      </li>
-      <li>
-        <%= fa_icon 'trophy' %> 
-        <% if goal.improvements.size > 0 %>
-          <span class="offset">
-            you have improved <%= pluralize(goal.improvements.size, 'time') %>
-          </span>
-        <% else %>
-          <span class="offset">you are working toward your first improvement<span>
-        <% end %>
-      </li>
-      <% if !goal.due_date.blank? %>
-      <li>
-        <%= fa_icon 'calendar' %> 
-        <span class="offset">
-          you want to achieve this by 
-          <%= local_relative_time(goal.due_date, type: 'weekday-or-date') %>
-        </span>
-      <% end %>
-      </li>
-    </ul>
-    <span class="pull-right helper">
-      <%= fa_icon('eye', text: ' View in Wants') %>
-    </span>
-  </div>
+  <% end %>
 </div>

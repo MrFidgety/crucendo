@@ -1,0 +1,34 @@
+<% form_id = "edit_goal_#{goal.id}" %>
+<div class="modal-dialog">
+  <div class="modal-content want-modal">
+    <div class="modal-header">
+      <button type="button" class="modal-button-left close-icon" 
+        data-dismiss="modal" aria-hidden="true">
+        <%= material_icon.clear %>
+      </button>
+      <%= button_tag(type: 'submit', class: "modal-button-right custom-icon",
+          form: form_id, 
+          data: {disable_with: "<div class='loader'></div>".html_safe}) do %>
+        <%= material_icon.done %>
+      <% end %>
+      <h4 class="modal-title"><%= goal.encrypted_goal %></h4>
+    </div>
+    <div class="modal-body">
+      <%= form_for goal, :html => { class: 'modal-form edit_goal', remote: true } do |f| %>
+        <%= f.text_field :encrypted_goal, placeholder: 'What do you want to improve?', 
+              class: 'form-control input-lg', id: 'edit_goal_encrypted_goal' %>
+        <%= f.label :due_date, 'Set a due date. (optional)' %>
+        <div class="input-group date">
+          <span class="input-group-btn">
+            <%= button_tag fa_icon('calendar'), type: 'button', 
+              class: 'btn btn-default btn-lg calendar-helper' %>
+          </span>
+          <%= f.date_field :due_date, class: 'form-control input-lg', 
+            id: 'edit_goal_due_date'%>
+        </div>
+        <%= hidden_field_tag 'goal[due_date_utc]' %>
+        <%= hidden_field(:goal, :interaction_id) %>
+      <% end %>
+    </div>
+  </div>
+</div>
