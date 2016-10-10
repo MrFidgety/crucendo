@@ -23,8 +23,8 @@ $(document).on "page:change", ->
   #------------------ HAVE ------------------#
   
   # move initial 'improved' goals
-  $('.goal-panel.improved').each ->
-    $(this).detach().appendTo('#improved-goals')
+  # $('.goal-panel.improved').each ->
+  #   $(this).detach().appendTo('#improved-goals')
   
   # open new improvement modal
   $('#new_improvement_start').click ->
@@ -59,69 +59,70 @@ $(document).on "page:change", ->
   # pre-emptivley toggle to improved on link click (before ajax)
   $(document).on('click', 'a.goal-have' , ->
     goal = $( this ).parents('.goal-panel')
+    goal.toggleClass('improved')
     
-    if !goal.hasClass('improved')
-      goal.detach().prependTo('#improved-goals')
-      $('#select-goals-modal').modal('hide')
-      goal.addClass('improved')
-      $('#new_improvement_text').val('')
-      $('#new_improvement_text').keyup()
-    else
-      goal.detach().appendTo('#all-goals')
-      goal.removeClass('improved')
-      $('#new_improvement_text').keyup()
+    # if !goal.hasClass('improved')
+    #   goal.detach().prependTo('#improved-goals')
+    #   $('#select-goals-modal').modal('hide')
+    #   goal.addClass('improved')
+    #   $('#new_improvement_text').val('')
+    #   $('#new_improvement_text').keyup()
+    # else
+    #   goal.detach().appendTo('#all-goals')
+    #   goal.removeClass('improved')
+    #   $('#new_improvement_text').keyup()
   )
   
   # search/filter functionality for improvements
-  $('#new_improvement_text').keyup ->
+  # $('#new_improvement_text').keyup ->
     
-    # array to hold each search term
-    search_terms = []
+  #   # array to hold each search term
+  #   search_terms = []
     
-    # show all goals if there is no search term
-    if !$(this).val().trim()
-      $('#all-goals > .goal-panel').each ->
-        $(this).show()
-      count = $('#all-goals > .goal-panel').length
-    else
-      # split the search term on spaces
-      search_array = $(this).val().toLowerCase().split(/[\s,]+/)
-      count = 0
+  #   # show all goals if there is no search term
+  #   if !$(this).val().trim()
+  #     $('#all-goals > .goal-panel').each ->
+  #       $(this).show()
+  #     count = $('#all-goals > .goal-panel').length
+  #   else
+  #     # split the search term on spaces
+  #     search_array = $(this).val().toLowerCase().split(/[\s,]+/)
+  #     count = 0
       
-      # select all strings greater than 2 characters
-      for search_text in search_array
-        if search_text.length > 2 
-          search_terms.push(search_text)
+  #     # select all strings greater than 2 characters
+  #     for search_text in search_array
+  #       if search_text.length > 2 
+  #         search_terms.push(search_text)
           
-      $('#all-goals .goal_encrypted_goal').each ->
-        match = false
-        text = $(this).text().toLowerCase()
-        # search goals for each term
-        for search_text in search_terms
-          if text.indexOf(search_text) != -1
-            match = true 
-            count++
-        # show or hide the goals    
-        if match
-          $(this).parents('.goal-panel').show()
-        else
-          $(this).parents('.goal-panel').hide()
-    if count == 0
-      $('#select-goals-button>.button-title').html('Awesome, something new!')
-      $('#select-goals-button>.button-helper>.button-result').html('Hit the Add+ button to add your improvement')
-      $('#select-goals-button>.button-helper>.button-search-terms').html('')
-      $('#select-goals-button').prop("disabled", true)
-    else
-      $('#select-goals-button>.button-title').html('Select from your active <strong>wants</strong>')
-      $('#select-goals-button>.button-helper>.button-result').html(count + ' found')
-      if search_terms.length
-        $('#select-goals-button>.button-helper>.button-search-terms').html(' from searching ' + '"' + search_terms.join('", "') + '"')
-      else
-        $('#select-goals-button>.button-helper>.button-search-terms').html(' in total')
-      $('#select-goals-button').prop("disabled", false)
+  #     $('#all-goals .goal_encrypted_goal').each ->
+  #       match = false
+  #       text = $(this).text().toLowerCase()
+  #       # search goals for each term
+  #       for search_text in search_terms
+  #         if text.indexOf(search_text) != -1
+  #           match = true 
+  #           count++
+  #       # show or hide the goals    
+  #       if match
+  #         $(this).parents('.goal-panel').show()
+  #       else
+  #         $(this).parents('.goal-panel').hide()
+  #   if count == 0
+  #     $('#select-goals-button>.button-title').html('Awesome, something new!')
+  #     $('#select-goals-button>.button-helper>.button-result').html('Hit the Add+ button to add your improvement')
+  #     $('#select-goals-button>.button-helper>.button-search-terms').html('')
+  #     $('#select-goals-button').prop("disabled", true)
+  #   else
+  #     $('#select-goals-button>.button-title').html('Select from your active <strong>wants</strong>')
+  #     $('#select-goals-button>.button-helper>.button-result').html(count + ' found')
+  #     if search_terms.length
+  #       $('#select-goals-button>.button-helper>.button-search-terms').html(' from searching ' + '"' + search_terms.join('", "') + '"')
+  #     else
+  #       $('#select-goals-button>.button-helper>.button-search-terms').html(' in total')
+  #     $('#select-goals-button').prop("disabled", false)
   
-  # emulate keyup on page load
-  $('#new_improvement_text').keyup()
+  # # emulate keyup on page load
+  # $('#new_improvement_text').keyup()
   
   #------------------ WANT ------------------#
   

@@ -9,7 +9,7 @@ class Goal < ActiveRecord::Base
   has_one     :skill
   has_one     :interaction
   
-  default_scope     -> { order(created_at: :desc) }
+  scope :most_recent, -> { order(created_at: :desc) }
   scope :due_soonest, -> { order(due_date: :asc, created_at: :desc) }
   scope :active,      -> (value) { where(completed: false, active: value) }
   scope :completed,   -> (value) { where(completed: value) }

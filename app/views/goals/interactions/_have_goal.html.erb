@@ -1,64 +1,22 @@
 <% improvement ||= goal.has_improvement?(interaction_id) %>
-<div id="goal_<%= goal.id %>" class="panel goal-panel selectable <%= 'improved' if improvement %>">
+<div id="goal_<%= goal.id %>" class="panel goal-panel heading-only <%= 'improved' if improvement %>">
   <%= link_to improve_goal_path(goal, interaction_id: interaction_id), 
         method: :post, remote: true, class: "goal-have" do %>
     <div class="panel-heading">
       <h3 class="panel-title">
-        <span class="pull-right">
-          <%= improvement.blank? ? fa_icon('bullseye') : fa_icon('trophy') %>
+        <span class="pull-right pull-right-padded">
+          <%= fa_icon('trophy', text: goal.improvements.size, right: :true) %>
         </span>
-        <span class="goal_encrypted_goal"><%= goal.encrypted_goal %></span>
+        <%= improvement && improvement.unexpected ? fa_icon('star') : fa_icon('bullseye') %>
+        <span class="goal_encrypted_goal">
+          <%= goal.encrypted_goal %>
+        </span>
       </h3>
     </div>
-    <div class="panel-body">
-      <ul>
-        <li>
-          <%= fa_icon 'clock-o' %>
-          <span class="offset">
-            created <%= local_time_ago(goal.created_at) %>
-          </span>
-        </li>
-        <li>
-          <% if goal.completed? %>
-            <%= fa_icon 'check' %> 
-            <span class="offset">completed <%= local_time_ago(goal.completed_date) %></span>
-          <% elsif goal.active? %>
-            <%= fa_icon 'play' %> 
-            <span class="offset">you are actively improving this want</span>
-          <% else %>
-            <%= fa_icon 'pause' %> 
-            <span class="offset">you have put this want on hold</span>
-          <% end %>
-        </li>
-        <li>
-          <%= fa_icon 'trophy' %> 
-          <% if goal.improvements.size > 0 %>
-            <span class="offset">
-              you have improved <%= pluralize(goal.improvements.size, 'time') %>
-            </span>
-          <% else %>
-            <span class="offset">you are working toward your first improvement<span>
-          <% end %>
-        </li>
-        <% if !goal.due_date.blank? %>
-        <li>
-          <%= fa_icon 'calendar' %> 
-          <span class="offset">
-            you want to achieve this by 
-            <%= local_relative_time(goal.due_date, type: 'weekday-or-date') %>
-          </span>
-        <% end %>
-        </li>
-        <% if improvement && improvement.unexpected? %>
-        <li>
-          <%= fa_icon 'star' %> 
-          <span class="offset">this was an unexpected win!</span>
-        </li>
-        <% end %>
-      </ul>
-      <span class="pull-right helper">
-        <%= improvement ? fa_icon('hand-pointer-o', text: 'Remove') :  fa_icon('hand-pointer-o', text: 'Improve') %>
-      </span>
-    </div>
+    <!--<div class="panel-body">-->
+    <!--  <span class="pull-right helper">-->
+    <!--    <%#= improvement ? fa_icon('hand-pointer-o', text: 'Remove') :  fa_icon('hand-pointer-o', text: 'Improve') %>-->
+    <!--  </span>-->
+    <!--</div>-->
   <% end %>
 </div>

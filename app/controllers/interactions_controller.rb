@@ -20,9 +20,12 @@ class InteractionsController < ApplicationController
         @goal = Goal.new
         @goal.active = false
         # Find all current active goals, plus those linked to this interaction
-        @goals = current_user.goals.includes(:improvements)
-          .where('(active = ? AND completed = ?) OR interaction_id = ?', 
-          'true', 'false', @interaction.id)
+        @active_goals = current_user.goals.includes(:improvements)
+          .where('active = ? AND completed = ? AND interaction_id != ?', 
+          'true', 'false', @interaction.id).order('improvements_count asc')
+        @interaction_goals = current_user.goals.includes(:improvements)
+          .where('interaction_id = ?', @interaction.id).order('created_at desc')
+        @goals = @interaction_goals + @active_goals
       when :wants
         # Set up new goal
         @goal = Goal.new

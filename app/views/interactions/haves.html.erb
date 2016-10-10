@@ -18,6 +18,7 @@
 <%= render 'interactions/header' %>
 <p class="interaction-title">
   What have you improved recently?
+  <span class="interaction-helper">Add something new, or select from your wants</span>
 </p><hr>
 <div class="input-group">
   <%= text_field_tag 'new_improvement_text', nil,
@@ -29,21 +30,26 @@
     </button>
   </span>
 </div>
-<p class="section-split-text">or</p>
-<button id="select-goals-button" 
-  class="btn btn-block btn-default btn-lg text-button" 
-  data-toggle="modal" data-target="#select-goals-modal">
-   <span class="button-title">
-     Select from your active <strong>wants</strong>
-    </span><br> 
-   <div class="button-helper">
-     <span class="button-result"><%= @goals.size %> found in total</span>
-     <span class="button-search-terms"></span>
-   </div>
-</button>
-<br>
+<!--<p class="section-split-text">or</p>-->
+<!--<button id="select-goals-button" -->
+<!--  class="btn btn-block btn-default btn-lg text-button" -->
+<!--  data-toggle="modal" data-target="#select-goals-modal">-->
+<!--   <span class="button-title">-->
+<!--     Select from your active <strong>wants</strong>-->
+<!--    </span><br> -->
+<!--   <div class="button-helper">-->
+<!--     <span class="button-result"><%#= @goals.size %> found in total</span>-->
+<!--     <span class="button-search-terms"></span>-->
+<!--   </div>-->
+<!--</button>-->
+<!--<br>-->
 <section id="goals-section">
   <div id="improved-goals" class="panel-group"></div>
+  <div id="all-goals" class="panel-group">
+    <%= render partial: "goals/interactions/have_goal", 
+        collection: @goals, as: :goal, 
+        locals: {interaction_id: @interaction.id} %>
+  </div>
 </section>
 <%= render 'goals/haves/new_have', interaction: @interaction %>
 <div class="modal fade" id="select-goals-modal" tabindex="-1" 
@@ -54,11 +60,7 @@
   <div class="modal-dialog">
     <div class="modal-content transparent-modal">
       <div class="modal-body">
-        <div id="all-goals" class="panel-group">
-          <%= render partial: "goals/interactions/have_goal", 
-              collection: @goals, as: :goal, 
-              locals: {interaction_id: @interaction.id} %>
-        </div>
+        
       </div>
     </div>
   </div>

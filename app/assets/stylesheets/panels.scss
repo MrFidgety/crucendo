@@ -1,8 +1,15 @@
 // All panels
 .panel {
   border: 1px solid white;
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
   .panel-heading {
     transition: all 0.3s;
+    .pull-right-padded {
+      padding-left: 10px;
+    }
   }
   .panel-body {
     padding: 10px;
@@ -31,9 +38,10 @@
         background-color: $pastel-orange;
       }
     }
-    a {
-      color: inherit;
-      text-decoration: inherit;
+  }
+  &.heading-only {
+    .panel-heading {
+      border-radius: 3px;
     }
   }
 }

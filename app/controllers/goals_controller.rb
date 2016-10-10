@@ -10,7 +10,7 @@ class GoalsController < ApplicationController
   
   def index
     @goal = Goal.new
-    @goals = @user.goals.filter(
+    @goals = @user.goals.most_recent.filter(
                         params.slice(:min_date, :max_date, :active, :completed))
                         .paginate(:per_page => 10, :page => params[:page])
   end
@@ -98,6 +98,8 @@ class GoalsController < ApplicationController
       else
         # Create new improvement linked to interaction
         @improvement = @goal.improvements.build(interaction_id: @interaction.id)
+        # Set to unexpected if goal was created this interaction
+        @improvement.unexpected = true if @goal.interaction_id == @interaction.id
         # Set flash to notify user of success
         set_flash :have_added, type: :success   
       end
