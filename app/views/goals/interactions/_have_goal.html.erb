@@ -7,12 +7,12 @@
         <span class="pull-right pull-right-padded">
           <%= fa_icon('trophy', text: goal.improvements.size, right: :true) %>
         </span>
-        <span class="pull-left pull-left-padded">
+        <span class="pull-left-absolute">
           <%= improvement && improvement.unexpected ? fa_icon('star') : fa_icon('bullseye') %>
         </span>
-        <span class="goal_encrypted_goal">
+        <div class="goal_encrypted_goal">
           <%= goal.encrypted_goal %>
-        </span>
+        </div>
       </h3>
     </div>
   <% end %>

@@ -2,41 +2,29 @@
   <%= link_to accomplishments_crucendo_path(interaction) do %>
   <div class="panel-heading">
     <h3 class="panel-title">
-      <span class="pull-right"><%= image_tag("crucendo_c_web.svg", class: "c-logo") %></span>
-      Your Crucendo from <%= local_time_ago(interaction.updated_at) %>
-    </h3>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-sm-6">
-        <ul class="list-group">
-          <% interaction.answers.each do |answer| %>
-            <li class="list-group-item">
-              <%= answer.question.topic.name.camelize %>
-            </li>
+      <span class="pull-left-absolute">
+        <%= image_tag("crucendo_c_web.svg", class: "c-logo") %>
+      </span>
+      <div>
+        <% interaction.answers.each do |answer| %>
+          <% if answer == interaction.answers.last %>
+            and <%= answer.question.topic.name.camelize %>
+          <% else %>
+            <%= answer.question.topic.name.camelize %>, 
           <% end %>
-        </ul>
+        <% end %>
       </div>
-      <div class="col-sm-6">
-        <div class="row">
-          <div class="col-xs-4">
-            <p class="interaction-stats"><%=pluralize(interaction.improvements.size, 'have') %> achieved</p>
-          </div>
-          <div class="col-xs-4">
-            <p class="interaction-stats"><%= pluralize(interaction.goals.size, 'want') %> created</p>
-          </div>
-          <div class="col-xs-4">
-            <p class="interaction-stats">
-              <span class="pluralize-number"><%= interaction.feeling %></span>
-              <span class="pluralize-word">feeling</span>
-            </p>
-          </div>
+      <div>
+        <div class="panel-title-helper">
+          Completed <%= when_did_it_happen(interaction.updated_at) %>
+          <span class="pull-right pull-right-padded">
+            <%= fa_icon('trophy', text: interaction.improvements.size, right: true) %>
+            <%= fa_icon('bullseye', text: interaction.goals.size, right: true) %>
+            <%= fa_icon('smile-o', text: interaction.feeling, right: true) %>
+          </span>
         </div>
       </div>
-    </div>
-    <span class="pull-right helper">
-      <%= fa_icon 'hand-pointer-o', text: 'Select', right: true%>
-    </span>
+    </h3>
   </div>
   <% end %>
 </div>

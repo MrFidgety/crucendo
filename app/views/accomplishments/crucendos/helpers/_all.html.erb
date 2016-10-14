@@ -8,7 +8,77 @@
   <% else %>
   <div class="improvement-helper">
     <p>All of your completed Crucendos will appear here. Hit the 
-      <%= material_icon.add.css_class('helper-button').html({ data: { helper: "new_crucendo_start" } }) %> to get started.</p>
+      <%= material_icon.add.css_class('helper-button').html({ data: { helper: "new_crucendo_start" } }) %> 
+      to get started.
+    </p>
+    <p>In the meantime, here are some 
+    examples to get your improvement juices flowing!</p>
+  </div>
+  <div class="panel interaction-panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span class="pull-left-absolute">
+          <%= image_tag("crucendo_c_web.svg", class: "c-logo") %>
+        </span>
+        <div>
+          Adding value, Time management, and Listening & being present
+        </div>
+        <div>
+          <div class="panel-title-helper">
+            Completed <%= when_did_it_happen(3.hours.ago) %>
+            <span class="pull-right pull-right-padded">
+              <%= fa_icon('trophy', text: '5', right: true) %>
+              <%= fa_icon('bullseye', text: '1', right: true) %>
+              <%= fa_icon('smile-o', text: '4', right: true) %>
+            </span>
+          </div>
+        </div>
+      </h3>
+    </div>
+  </div>
+  <div class="panel interaction-panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span class="pull-left-absolute">
+          <%= image_tag("crucendo_c_web.svg", class: "c-logo") %>
+        </span>
+        <div>
+          Self motivating, Adversity, and Positive attitude & language
+        </div>
+        <div>
+          <div class="panel-title-helper">
+            Completed <%= when_did_it_happen(26.hours.ago) %>
+            <span class="pull-right pull-right-padded">
+              <%= fa_icon('trophy', text: '2', right: true) %>
+              <%= fa_icon('bullseye', text: '0', right: true) %>
+              <%= fa_icon('smile-o', text: '3', right: true) %>
+            </span>
+          </div>
+        </div>
+      </h3>
+    </div>
+  </div>
+  <div class="panel interaction-panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span class="pull-left-absolute">
+          <%= image_tag("crucendo_c_web.svg", class: "c-logo") %>
+        </span>
+        <div>
+          Teamwork, Ownership, and Health
+        </div>
+        <div>
+          <div class="panel-title-helper">
+            Completed <%= when_did_it_happen(3.days.ago) %>
+            <span class="pull-right pull-right-padded">
+              <%= fa_icon('trophy', text: '6', right: true) %>
+              <%= fa_icon('bullseye', text: '2', right: true) %>
+              <%= fa_icon('smile-o', text: '5', right: true) %>
+            </span>
+          </div>
+        </div>
+      </h3>
+    </div>
   </div>
   <% end %>
 </div>

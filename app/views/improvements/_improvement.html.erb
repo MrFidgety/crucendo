@@ -1,50 +1,35 @@
 <% selectable ||= false %>
-<div id="improvement_<%= improvement.id %>" class="panel improvement-panel <%= 'selectable' if selectable %>">
+<div id="improvement_<%= improvement.id %>" 
+  class="panel improvement-panel heading-only <%= 'selectable' if selectable %>">
   <%= link_to_if(selectable, goal_path(improvement.goal)) do %>
     <div class="panel-heading">
       <h3 class="panel-title">
-        <span class="pull-right">
-          <%= fa_icon('star') if improvement.unexpected %>
-          <%= fa_icon('trophy') %>
+        <span class="pull-left-absolute">
+          <%= improvement.unexpected ? fa_icon('star') : fa_icon('trophy') %>
         </span>
-        <%= improvement.goal.encrypted_goal %>
+        <div class="goal_encrypted_goal">
+          <%= improvement.goal.encrypted_goal %>
+          <span class="pull-right pull-right-padded">
+            <% if !selectable %>
+              <%= link_to fa_icon('trash-o'), improvement_path(improvement), 
+                  method: :delete,
+                  remote: true,
+                  title: "Are you sure?", 
+                  data: {confirm: "This <strong>have</strong> will be permanently deleted."},
+                  class: "pull-right helper" %>
+            <% end %>
+          </span>
+        </div>
+        <div>
+          <div class="panel-title-helper">
+            <%= when_did_it_happen(improvement.created_at) %>
+            <span class="pull-right pull-right-padded">
+              <%= improvement.goal.improvements.where("created_at <= ?", improvement.created_at).size.ordinalize %> of
+              <%= improvement.goal.improvements_count %>
+            </span>
+          </div>
+        </div>
       </h3>
-    </div>
-    <div class="panel-body">
-      <ul>
-        <li>
-          <%= fa_icon 'clock-o' %>
-          <span class="offset">
-            improvement acknowledged <%= local_relative_time(improvement.created_at, 'weekday-or-date') %>
-          </span>
-        </li>
-        <li>
-          <%= fa_icon 'hashtag' %>
-          <span class="offset">
-            your <%= improvement.goal.improvements
-                      .where("created_at <= ?", improvement.created_at)
-                      .size.ordinalize %> improvement towards this want
-          </span>
-        </li>
-        <% if improvement.unexpected? %>
-          <li>
-            <%= fa_icon 'star' %> 
-            <span class="offset">this was an unexpected win!</span>
-          </li>
-          <% end %>
-      </ul>
-      <% if selectable %>
-        <span class="pull-right helper">
-          <%= fa_icon 'hand-pointer-o', text: 'View Want' %>
-        </span>
-      <% else %>
-        <%= link_to fa_icon('trash-o', text: 'Delete'), improvement_path(improvement), 
-            method: :delete,
-            remote: true,
-            title: "Are you sure?", 
-            data: {confirm: "This <strong>have</strong> will be permanently deleted."},
-            class: "pull-right helper" %>
-      <% end %>
     </div>
   <% end %>
 </div>

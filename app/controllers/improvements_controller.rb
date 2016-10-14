@@ -9,7 +9,7 @@ class ImprovementsController < ApplicationController
     @goal.active = false
     
     # Get list of improvements filtered with params
-    @improvements = @user.improvements.filter(
+    @improvements = @user.improvements.includes(:goal).filter(
                         params.slice(:min_date, :max_date, :unexpected))
                         .paginate(:per_page => 10, :page => params[:page])
   end

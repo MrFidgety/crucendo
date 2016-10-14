@@ -8,104 +8,70 @@
   <% else %>
   <div class="goal-helper">
     <p>All of your wants will appear here. Hit the 
-      <%= material_icon.add.css_class('helper-button').html({ data: { helper: "new_goal_start" } }) %> to get started.</p>
+      <%= material_icon.add.css_class('helper-button').html({ data: { helper: "new_goal_start" } }) %>
+      to get started.
+    </p>
     <p>In the meantime, here are some 
     examples to get your improvement juices flowing!</p>
   </div>
-  <div class="panel goal-panel">
+  <div class="panel goal-panel heading-only">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <span class="pull-right">
-          <%= fa_icon('bullseye') %>
+        <span class="pull-left-absolute">
+          <%= fa_icon('bullseye') %> 
         </span>
-        <span class="goal_encrypted_goal">Setting realistic expecations at work</span>
+        <div class="goal_encrypted_goal">
+          Setting realistic expecations at work
+        </div>
+        <div>
+          <div class="panel-title-helper">
+            Inactive, Last Improved <%= when_did_it_happen(3.days.ago) %>
+            <span class="pull-right pull-right-padded">
+              <%= fa_icon('trophy', text: '1', right: :true) %>
+            </span>
+          </div>
+        </div>
       </h3>
-    </div>
-    <div class="panel-body">
-      <ul>
-        <li>
-          <%= fa_icon 'clock-o' %>
-          <span class="offset">
-            created <%= local_time_ago(3.days.ago) %>
-          </span>
-        </li>
-        <li>
-          <%= fa_icon 'pause' %> 
-          <span class="offset">this want is inactive</span>
-        </li>
-        <li>
-          <%= fa_icon 'trophy' %> 
-          <span class="offset">
-            you have improved 1 time
-          </span>
-        </li>
-      </ul>
     </div>
   </div>
-  <div class="panel goal-panel">
+  <div class="panel goal-panel heading-only">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <span class="pull-right">
-          <%= fa_icon('bullseye') %>
+        <span class="pull-left-absolute">
+          <%= fa_icon('calendar') %> 
         </span>
-        <span class="goal_encrypted_goal">Being more patient</span>
+        <div class="goal_encrypted_goal">
+          Being more patient
+        </div>
+        <div>
+          <div class="panel-title-helper">
+            Active, Last Improved <%= when_did_it_happen(12.hours.ago) %>
+            <span class="pull-right pull-right-padded">
+              <%= fa_icon('trophy', text: '4', right: :true) %>
+            </span>
+          </div>
+        </div>
       </h3>
-    </div>
-    <div class="panel-body">
-      <ul>
-        <li>
-          <%= fa_icon 'clock-o' %>
-          <span class="offset">
-            created <%= local_time_ago(6.days.ago) %>
-          </span>
-        </li>
-        <li>
-          <%= fa_icon 'play' %> 
-          <span class="offset">you are actively improving this want</span>
-        </li>
-        <li>
-          <%= fa_icon 'trophy' %> 
-          <span class="offset">you have improved 3 times</span>
-        </li>
-        <li>
-          <%= fa_icon 'calendar' %> 
-          <span class="offset">
-            you want to achieve this by 
-            <%= local_relative_time(10.days.from_now, type: 'weekday-or-date') %>
-          </span>
-        </li>
-      </ul>
     </div>
   </div>
-  <div class="panel goal-panel">
+  <div class="panel goal-panel heading-only">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <span class="pull-right">
-          <%= fa_icon 'check' %> 
-          <%= fa_icon('bullseye') %>
+        <span class="pull-left-absolute">
+          <%= fa_icon('bullseye') %> 
         </span>
-        <span class="goal_encrypted_goal">Eating healthier and drinking more water</span>
+        <div class="goal_encrypted_goal">
+          Eating healthier, and drinking more water
+        </div>
+        <div>
+          <div class="panel-title-helper">
+            Completed, Last Improved <%= when_did_it_happen(6.days.ago) %>
+            <span class="pull-right pull-right-padded">
+              <%= fa_icon('trophy', text: '15', right: :true) %>
+            </span>
+          </div>
+        </div>
       </h3>
-    </div>
-    <div class="panel-body">
-      <ul>
-        <li>
-          <%= fa_icon 'clock-o' %>
-          <span class="offset">
-            created <%= local_time_ago(5.weeks.ago) %>
-          </span>
-        </li>
-        <li>
-          <%= fa_icon 'check' %> 
-          <span class="offset">completed <%= local_time_ago(10.days.ago) %></span>
-        </li>
-        <li>
-          <%= fa_icon 'trophy' %> 
-          <span class="offset">
-            you have improved 10 times
-          </span>
-        </li>
-      </ul>
     </div>
   </div>
   <% end %>

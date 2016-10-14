@@ -7,13 +7,18 @@
           root_url %></li>
     <li><%= link_to fa_icon('list-alt', text: 'Subscriptions'),
           subscriptions_path %></li>
-    <li><%= link_to  fa_icon('line-chart', text: "Crucendos"), 
-          accomplishments_path %></li>
+    <li><%= link_to accomplishments_path do %>
+        <div class="fa">
+          <%= image_tag("crucendo_c_web.svg", class: "c-logo") %>
+        </div>
+        Crucendos
+        <% end %>      
+    </li>
     <li><%= link_to  fa_icon('trophy', text: "Haves"), 
           improvements_path %></li>
     <li><%= link_to  fa_icon('bullseye', text: "Wants"), 
           goals_path %></li>
-    <li><%= link_to fa_icon('smile-o', text: "Profile"), 
+    <li><%= link_to fa_icon('lock', text: "Profile"), 
           profile_path %></li>
     <li class="divider"></li>
     <li><%= link_to fa_icon('question-circle-o', text: "Help"), 

@@ -607,6 +607,11 @@ a.helper {
     line-height: inherit;
     padding-left: 25px;
     font-size: 1.5em;
+    .c-logo {
+      vertical-align: inherit;
+      margin-top: 5px;
+      margin-left: -5px;
+    }
   }
 }
 #fixed-nav ul li a:hover {

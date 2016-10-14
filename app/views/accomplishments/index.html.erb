@@ -6,10 +6,10 @@
   </div>
 <% end %>
 <h1 class="page-title">
-  <i class="fa fa-line-chart"></i><br>
+  <%= image_tag("crucendo_c_web.svg", class: "c-logo") %><br>
   <small>Crucendos</small>
 </h1>
-<p class="title-helper">These are your accomplishments.</p>
+<p class="title-helper">This is what you have accomplished.</p>
 <div id="completed-interactions" class="panel-group">
   <%= render(@interactions) || render('accomplishments/crucendos/helpers/all')  %>
 </div>

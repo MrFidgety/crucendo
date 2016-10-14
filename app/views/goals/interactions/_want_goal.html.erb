@@ -5,12 +5,12 @@
       <span class="pull-right pull-right-padded">
         <%= fa_icon('pencil-square-o') %>
       </span>
-      <span class="pull-left pull-left-padded">
+      <span class="pull-left-absolute">
         <%= goal.due_date.blank? ? fa_icon('bullseye') : fa_icon('calendar') %>
       </span>
-      <span class="goal_encrypted_goal">
+      <div class="goal_encrypted_goal">
         <%= goal.encrypted_goal %>
-      </span>
+      </div>
     </h3>
   </div>
   <% end %>

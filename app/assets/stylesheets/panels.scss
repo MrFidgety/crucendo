@@ -7,11 +7,24 @@
   }
   .panel-heading {
     transition: all 0.3s;
+    .panel-title-helper {
+      font-size: 0.7em;
+      opacity: 0.8;
+    }
     .pull-right-padded {
       padding-left: 15px;
     }
     .pull-left-padded {
       padding-right: 15px;
+    }
+    .pull-left-absolute {
+      position: absolute;
+      .c-logo {
+        margin-left: -0.2em;
+      }
+    }
+    .pull-left-absolute ~ div { 
+      padding-left: 1.7em;
     }
   }
   .panel-body {
@@ -51,9 +64,10 @@
 .panel-group {
   margin-bottom: 10px;
 }
-.goal-panel, .improvement-panel, .crucendo-panel {
+.goal-panel, .improvement-panel, .crucendo-panel, .interaction-panel {
   .panel-title {
     font-weight: 300;
+    line-height: 1.4em;
   }
 } 
 .goal-panel {

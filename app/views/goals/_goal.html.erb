@@ -1,59 +1,33 @@
-<div id="goal_<%= goal.id %>" class="panel goal-panel selectable">
+<div id="goal_<%= goal.id %>" class="panel goal-panel heading-only selectable">
   <%= link_to goal_path(goal) do %>
     <div class="panel-heading">
       <h3 class="panel-title">
-        <span class="pull-right">
-          <%= fa_icon 'check' if goal.completed? %> 
-          <%= fa_icon('bullseye') %>
+        <span class="pull-left-absolute">
+          <%= goal.due_date.present? ? fa_icon('calendar') : fa_icon('bullseye') %> 
         </span>
-        <span class="goal_encrypted_goal"><%= goal.encrypted_goal %></span>
-      </h3>
-    </div>
-    <div class="panel-body">
-      <ul>
-        <li>
-          <%= fa_icon 'clock-o' %>
-          <span class="offset">
-            created <%= local_time_ago(goal.created_at) %>
-          </span>
-        </li>
-        <li>
-          <% if goal.completed? %>
-            <%= fa_icon 'check' %> 
-            <span class="offset">completed <%= local_time_ago(goal.completed_date) %></span>
-          <% elsif goal.active? %>
-            <%= fa_icon 'play' %> 
-            <span class="offset">you are actively improving this want</span>
-          <% else %>
-            <%= fa_icon 'pause' %> 
-            <span class="offset">this want is inactive</span>
-          <% end %>
-        </li>
-        <li>
-          <%= fa_icon 'trophy' %> 
-          <% if goal.improvements.size > 0 %>
-            <span class="offset">
-              you have improved <%= pluralize(goal.improvements.size, 'time') %>
+        <div class="goal_encrypted_goal">
+          <%= goal.encrypted_goal %>
+        </div>
+        <div>
+          <div class="panel-title-helper">
+            <% if goal.completed? %>
+              Completed,
+            <% elsif goal.active? %>
+              Active,
+            <% else %>
+              Inactive,
+            <% end %>
+            <% if goal.improvements.exists? %>
+              Last Improved <%= when_did_it_happen(goal.improvements.recent.first.created_at) %>
+            <% else %>
+              Created <%= when_did_it_happen(goal.created_at) %>
+            <% end %>
+            <span class="pull-right pull-right-padded">
+              <%= fa_icon('trophy', text: goal.improvements.size, right: :true) %>
             </span>
-          <% elsif goal.completed? %>
-            <span class="offset">you have not acknowledged any improvements<span>
-          <% else %>
-            <span class="offset">you are working toward your first improvement<span>
-          <% end %>
-        </li>
-        <% if !goal.due_date.blank? %>
-        <li>
-          <%= fa_icon 'calendar' %> 
-          <span class="offset">
-            you want to achieve this by 
-            <%= local_relative_time(goal.due_date, type: 'weekday-or-date') %>
-          </span>
-        <% end %>
-        </li>
-      </ul>
-      <span class="pull-right helper">
-        <%= fa_icon 'hand-pointer-o', text: 'View' %>
-      </span>
+          </div>
+        </div>
+      </h3>
     </div>
   <% end %>
 </div>

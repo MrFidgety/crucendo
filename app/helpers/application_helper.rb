@@ -29,4 +29,8 @@ module ApplicationHelper
     args.insert 1, capture(&block) if block_given?
     super *args
   end
+  
+  def when_did_it_happen(date)
+    date > 6.days.ago ? local_relative_time(date, 'weekday') : local_date(date, '%B %e, %Y')
+  end
 end

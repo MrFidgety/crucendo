@@ -6,6 +6,7 @@ class Improvement < ActiveRecord::Base
   has_one     :interaction
   
   default_scope -> { order(created_at: :desc) }
+  scope :recent, -> { order(created_at: :desc) }
   scope :min_date, -> (date) { where("improvements.created_at >= ?", date.beginning_of_day) }
   scope :max_date, -> (date) { where("improvements.created_at <= ?", date.end_of_day) }
   scope :unexpected, -> (value) { where unexpected: value}

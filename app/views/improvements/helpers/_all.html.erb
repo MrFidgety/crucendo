@@ -8,91 +8,70 @@
   <% else %>
   <div class="improvement-helper">
     <p>All of your haves will appear here. Hit the 
-      <%= material_icon.add.css_class('helper-button').html({ data: { helper: "new_improvement_start" } }) %> to get started.</p>
+      <%= material_icon.add.css_class('helper-button').html({ data: { helper: "new_improvement_start" } }) %>
+      to get started.
+    </p>
     <p>In the meantime, here are some 
     examples to get your improvement juices flowing!</p>
   </div>
-  <div class="panel improvement-panel">
+  <div class="panel improvement-panel heading-only">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <span class="pull-right">
+        <span class="pull-left-absolute">
           <%= fa_icon('trophy') %>
         </span>
-        Being more patient
+        <div class="goal_encrypted_goal">
+          Being more patient
+        </div>
+        <div>
+          <div class="panel-title-helper">
+            <%= when_did_it_happen(12.hours.ago) %>
+            <span class="pull-right pull-right-padded">
+              3rd of 4
+            </span>
+          </div>
+        </div>
       </h3>
     </div>
-    <div class="panel-body">
-      <ul>
-        <li>
-          <%= fa_icon 'clock-o' %>
-          <span class="offset">
-            improvement acknowledged <%= local_time_ago(12.hours.ago) %>
-          </span>
-        </li>
-        <li>
-          <%= fa_icon 'hashtag' %>
-          <span class="offset">
-            your 3rd improvement towards this want
-          </span>
-        </li>
-      </ul>
-    </div>
   </div>
-  <div class="panel improvement-panel">
+  <div class="panel improvement-panel heading-only">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <span class="pull-right">
+        <span class="pull-left-absolute">
           <%= fa_icon('star') %>
-          <%= fa_icon('trophy') %>
         </span>
-        Setting realistic expecations at work
+        <div class="goal_encrypted_goal">
+          Setting realistic expecations at work
+        </div>
+        <div>
+          <div class="panel-title-helper">
+            <%= when_did_it_happen(3.days.ago) %>
+            <span class="pull-right pull-right-padded">
+              1st of 1
+            </span>
+          </div>
+        </div>
       </h3>
-    </div>
-    <div class="panel-body">
-      <ul>
-        <li>
-          <%= fa_icon 'clock-o' %>
-          <span class="offset">
-            improvement acknowledged <%= local_time_ago(3.days.ago) %>
-          </span>
-        </li>
-        <li>
-          <%= fa_icon 'hashtag' %>
-          <span class="offset">
-            your 1st improvement towards this want
-          </span>
-        </li>
-        <li>
-          <%= fa_icon 'star' %> 
-          <span class="offset">this was an unexpected win!</span>
-        </li>
-      </ul>
     </div>
   </div>
-  <div class="panel improvement-panel">
+  <div class="panel improvement-panel heading-only">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <span class="pull-right">
+        <span class="pull-left-absolute">
           <%= fa_icon('trophy') %>
         </span>
-        Eating healthier and drinking more water
+        <div class="goal_encrypted_goal">
+          Eating healthier, and drinking more water
+        </div>
+        <div>
+          <div class="panel-title-helper">
+            <%= when_did_it_happen(10.days.ago) %>
+            <span class="pull-right pull-right-padded">
+              10th of 15
+            </span>
+          </div>
+        </div>
       </h3>
-    </div>
-    <div class="panel-body">
-      <ul>
-        <li>
-          <%= fa_icon 'clock-o' %>
-          <span class="offset">
-            improvement acknowledged <%= local_time_ago(10.days.ago) %>
-          </span>
-        </li>
-        <li>
-          <%= fa_icon 'hashtag' %>
-          <span class="offset">
-            your 10th improvement towards this want
-          </span>
-        </li>
-      </ul>
     </div>
   </div>
   <% end %>
