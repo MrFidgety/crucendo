@@ -3,7 +3,8 @@ $(document).on "page:change", ->
   # Follow link click when progress 'circle' is clicked
   $('ul.progressbar > li').on 'click', () ->
     href = $(this).find('a:first').attr('href')
-    window.location.href = href
+    if href.length
+      window.location.href = href
   
   #---------------- QUESTIONS ---------------#
   

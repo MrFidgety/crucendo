@@ -1,7 +1,7 @@
 <% provide(:title, "Want") %>
 <% provide(:page_class, "want-show") %>
-<% content_for :control_menu do %>
-  <%= link_to fa_icon('pencil-square-o'), 
+<% content_for :navigation_right do %>
+  <%= link_to material_icon.edit.css_class('material-34'), 
         edit_goal_path(@goal), 
         class: 'custom-icon icon-group' %>
   <div class="custom-icon icon-group material-lg"

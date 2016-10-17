@@ -208,11 +208,22 @@ input[type="month"] {
 .navbar {
   height: 60px;
   img {
-    height: 60px;
-    padding: 8px 0 14px 0;
+    height: 40px;
+    margin-top: 3px;
+    //padding: 8px 0 14px 0;
   }
   a {
     transition: all 0.2s ease-in-out;
+  }
+  .navigation-text {
+    text-align: center;
+    line-height: 60px;
+    color: $pastel-aqua;
+    font-size: 1.5em;
+    img {
+      height: 2em;
+      margin-top: -8px;
+    }
   }
 }
 .navbar-fixed-top {
@@ -371,7 +382,7 @@ input[type="month"] {
   }  
 }
 .subscriptions {
-  padding-top: 2em;
+  //padding-top: 2em;
 }
 
 /* privacy and terms */

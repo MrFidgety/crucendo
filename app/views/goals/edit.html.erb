@@ -10,7 +10,7 @@
     confirm_text += ' you have made.' 
   end
 %>
-<% content_for :control_menu do %>
+<% content_for :navigation_right do %>
   <%= button_tag(type: 'submit', class: "custom-icon with-loader",
       form: form_id, 
       data: {disable_with: "<div class='loader'></div>".html_safe}) do %>

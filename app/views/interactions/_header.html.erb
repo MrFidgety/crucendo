@@ -18,3 +18,13 @@ unless step == :begin
   end
 end
 %>
+
+<% 
+unless step == :begin || step == :crucendo
+  content_for :navigation_heading do
+    link_to root_url do
+      image_tag("crucendo_logo_web.svg")
+    end
+  end
+end
+%>

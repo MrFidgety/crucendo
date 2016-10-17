@@ -45,13 +45,23 @@ p .material-icons {
 .control-menu {
   color: white;
   padding: 6px 0;
-  line-height: 60px;
+  &.pull-left {
+    position: absolute;
+    left: 10px;
+  }
+  &.pull-right {
+    position: absolute;
+    right: 10px;
+  }
   .icon-active {
     color: $pastel-orange;
   }
   .material-icons {
     padding-top: 5px;
-    vertical-align: top;
+    //vertical-align: top;
+    &.material-34 {
+      font-size: 34px;
+    }
   }
   .material-lg {
     .material-icons {
@@ -65,7 +75,6 @@ p .material-icons {
   }
   .fa {
     font-size: 31px;
-    padding-top: 10px;
   }
   button {
     cursor: pointer;
@@ -76,7 +85,7 @@ p .material-icons {
       outline: none;
     }
     &.with-loader:disabled {
-      padding-top: 5px;
+      margin-top: -2px;
     }
   }
 }
@@ -132,7 +141,7 @@ p .material-icons {
 }
 /* hamburger button */
 .c-hamburger {
-  display: block;
+  display: inline-block;
   position: relative;
   overflow: hidden;
   margin: 0;

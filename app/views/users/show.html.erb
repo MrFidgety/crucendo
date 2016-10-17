@@ -1,8 +1,9 @@
 <% provide(:title, "Dashboard") %>
-<h1 class="page-title">
-  <i class="fa fa-tachometer"></i><br>
-  <small>Dashboard</small>
-</h1>
+<% provide(:navigation_heading, "Dashboard") %>
+<!--<h1 class="page-title">-->
+<!--  <i class="fa fa-tachometer"></i><br>-->
+<!--  <small>Dashboard</small>-->
+<!--</h1>-->
 <div class="row">
   <div class="col-xs-4">
     <p class="dash-achievement"><%= pluralize(@goals_completed_count, 'completed want') %> </p>

@@ -1,7 +1,7 @@
 <% provide(:title, "Begin") %>
-<% content_for :control_menu do %>
+<% content_for :navigation_right do %>
   <%= button_to next_wizard_path, method: :get, 
-      class: "custom-icon with-loader icon-pulse",
+      class: "custom-icon material-lg with-loader icon-pulse",
       data: {disable_with: "<div class='loader'></div>".html_safe} do %>
     <%= material_icon.done %>
   <% end %>

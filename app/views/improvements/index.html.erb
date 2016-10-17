@@ -1,5 +1,6 @@
 <% provide(:title, "Haves") %>
-<% content_for :control_menu do %>
+<% provide(:navigation_heading, "Haves") %>
+<% content_for :navigation_right do %>
   <div id="search-haves" 
     class="custom-icon icon-group <%= 'icon-active' if params.has_key?(:search) %>" 
     data-toggle="modal" data-target="#search-haves-modal">
@@ -9,11 +10,11 @@
     <%= material_icon.add %>
   </div>
 <% end %>
-<h1 class="page-title">
-  <%= link_to  fa_icon('trophy'), improvements_path %><br>
-  <small>Haves</small>
-</h1>
-<p class="title-helper">This is what you have improved.</p>
+<!--<h1 class="page-title">-->
+<!--  <%#= link_to  fa_icon('trophy'), improvements_path %><br>-->
+<!--  <small>Haves</small>-->
+<!--</h1>-->
+<!--<p class="title-helper">This is what you have improved.</p>-->
 <div id="improvements-container" class="panel-group">
   <%= render(@improvements, selectable: true) || render('improvements/helpers/all') %>
 </div>
