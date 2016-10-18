@@ -134,12 +134,17 @@ h1 {
   }
 }
 h2 {
-  font-size: 1.2em;
+  font-size: 2em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
+  font-weight: 300;
+  margin-bottom: 2em;
   text-align: center;
-  font-weight: normal;
-  color: $gray-light;
+  color: white;
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 400;
+  }
 }
 p {
   font-size: 1.1em;
@@ -610,8 +615,9 @@ a.helper {
   color: white;
   text-align: left;
   font-size: 16px;
-  padding-left: 90px;
+  padding-left: 75px;
   transition: 0.3s ease;
+  //font-weight: 300;
   .fa {
     position: absolute;
     left: 0;
@@ -885,16 +891,16 @@ input[type="date"]
 }
 .dash-achievement {
   text-align: center;
-  font-size: 1.5em;
   color: white;
+  margin: 0;
   .pluralize-number {
     display: block;
     font-size: 4em;
-    line-height: 1.5em;
+    line-height: 1em;
   }
   .pluralize-word {
     display: inline-block;
-    line-height: 1em;
+    //line-height: 1em;
     color: $pastel-aqua;
   }
 }
@@ -1234,4 +1240,75 @@ span.interaction-helper {
   display: block;
   font-size: 0.5em;
   color: white;
+}
+.crucendo-circle {
+	position: relative;
+  width: 100%;
+  max-width: 250px;
+  margin: auto;
+	border-radius: 50%;
+	background-color: $pastel-green;
+	cursor: pointer;
+	-webkit-box-shadow: 0px 4px 15px -5px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 4px 15px -5px rgba(0,0,0,0.75);
+  box-shadow: 0px 4px 15px -5px rgba(0,0,0,0.75);
+  transition: transform 0.3s ease-out;
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+  &:hover {
+    transform: scale(0.95);
+  }
+}
+.crucendo-circle-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  img {
+    width: 100%;
+    margin-left: -1.5%;
+    margin-top: -1%;
+  }
+  .text-container {
+    color: white;
+    font-size: 2em;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: auto;
+    left: 50%;
+    .text-offset {
+      position: relative;
+      left: -15%;
+    }
+  }
+}
+.tall {
+	position: relative;
+  width: 100%;
+	background-color: white;
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 200%;
+  }
+}
+.tall-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

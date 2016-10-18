@@ -1,11 +1,11 @@
 <% provide(:title, "Help") %>
+<% provide(:navigation_heading, "Help") %>
 <h1 class="page-title">
-  <% if logged_in? %>
-    <i class="fa fa-question-circle-o"></i>
-  <% else %>
+  <% if !logged_in? %>
     <%= link_to image_tag("crucendo_logo_web.svg", class: 'help-image'), root_url %>
-  <% end %><br>
-  <small>Help</small>
+    <br>
+    <small>Help</small>
+  <% end %>
 </h1>
 <div class="policies aqua">
   <%= link_to 'Privacy', privacy_url, target: '_blank' %> | 
@@ -17,13 +17,13 @@
   <li><a href="#why-am-i-here">Why am I here?</a></li>
   <li><a href="#crucendo-features">Description of Crucendo’s features</a></li>
   <li><a href="#quick-start-guide">Crucendo Quick Start Guide</a></li>
-  <li><a href="#">Your Dashboard (coming soon)</a></li>
-  <li><a href="#">Your Profile (coming soon)</a></li>
-  <li><a href="#">Completing a Crucendo (coming soon)</a></li>
-  <li><a href="#">Managing the Subscriptions (coming soon)</a></li>
-  <li><a href="#">Reviewing and editing your Wants (coming soon)</a></li>
-  <li><a href="#">Reviewing and editing your Haves (coming soon)</a></li>
-  <li><a href="#">Using the Reports (coming soon)</a></li>
+  <!--<li><a href="#">Your Dashboard (coming soon)</a></li>-->
+  <!--<li><a href="#">Your Profile (coming soon)</a></li>-->
+  <!--<li><a href="#">Completing a Crucendo (coming soon)</a></li>-->
+  <!--<li><a href="#">Managing the Subscriptions (coming soon)</a></li>-->
+  <!--<li><a href="#">Reviewing and editing your Wants (coming soon)</a></li>-->
+  <!--<li><a href="#">Reviewing and editing your Haves (coming soon)</a></li>-->
+  <!--<li><a href="#">Using the Reports (coming soon)</a></li>-->
 </ul>
 <div id="overview" class="panel panel-help">
   <div class="panel-heading">
@@ -99,8 +99,8 @@
     <div class="panel-title">Description of Crucendo’s features</div>
   </div>
   <div class="panel-body">
-    <h3>Dashboard</h3>
-    <p>The Dashboard is like a home to all of your activities. Want to think 
+    <h3>Home Page</h3>
+    <p>The Home page is a home to all of your activities. Want to think 
     about what you’ve improved today? How about what you’d like to improve in 
     the future? Would you like to see your history, or impress yourself? This is
     the place to do all of that, and more.</p>
@@ -122,9 +122,9 @@
     want to improve your question asking skills, you could write something like 
     “improve the quality of questions I ask”. This will then feature in your 
     list of areas, that you want to develop in the future.</p>
-    <h3>Accomplishments</h3>
+    <h3>Crucendos</h3>
     <p>Every great achiever has a list of their past accomplishments, and 
-    Crucendo is no different. Jump in to the Accomplishments section, and you 
+    Crucendo is no different. Jump in to the Crucendos section, and you 
     can view all of your past Crucendos along with anything else you’ve 
     completed. You can run reports and gather statistical information, so that 
     you can learn more about your awesome efforts.</p>
@@ -187,31 +187,31 @@
     an email from The Crucial Team to welcome you, they’re so nice. In the email
     is a button to verify your account, go ahead and click the button which 
     will verify that you’re a real person, and bring you to your Crucendo 
-    dashboard.</p>
+    home page.</p>
     <h3>Editing your Profile</h3>
     <p>Let’s start at the shallow end of the pool with something simple. Select 
     the menu icon in the top left corner, and select the “Profile” option. 
     Editing your Profile will give you a look at how the Crucendo menu works, 
     and you can personalise your Profile with a couple of basics. Once you’re 
     happy with how your Profile looks, select the “Save” button. Now click the 
-    Crucendo logo at the top of the page, to head back to your dashboard.</p>
+    Crucendo logo at the top of the page, to head back to your home page.</p>
     <h3>Completing a Crucendo</h3>
     <p>Now that your profile is all set, let’s move on to the reason that you’re
-    here. From your dashboard select the “Begin a new Crucendo” button, which 
+    here. From your home page select the “Begin a new Crucendo” button, which 
     will get you started on your very first Crucendo. As you move through your 
     Crucendo, you will need to answer questions and reflect on what you have 
     improved recently, and what you want to improve in the future. At the end 
     of your Crucendo you’ll be given a summary of how you’ve improved. Once 
     you’ve read the summary, select the “See you tomorrow” button to head back 
-    to your dashboard.</p>
-    <h3>In depth with Accomplishments</h3>
+    to your home page.</p>
+    <h3>In depth with Crucendos</h3>
     <p>Time to get your goggles on, we’re heading to the deep end for 
-    Accomplishments. Since you’re in the dashboard, click the menu icon in the 
-    top left corner of the screen. From the menu, select the “Accomplishments” 
+    Accomplishments. Since you’re at your home page, click the menu icon in the 
+    top left corner of the screen. From the menu, select the “Crucendos” 
     option. This is where you’ll find all the cool reporting functionality that 
     you’ll need, to be able to review your Crucendo lifetime. You can’t break 
     anything in here, so feel welcome to change the settings available, and 
-    select the “Show Me” button to see the accomplishments. We’re always 
+    select the individual Crucendos. We’re always 
     looking for new suggestions for possible options, so if you come up with 
     something that you don’t see here, email your suggestion to us at 
     support@thecrucialteam.com using the subject Crucendo Accomplishments 
@@ -221,3 +221,19 @@
   <div class="panel-footer"><%= fa_icon 'chevron-up', text: 'return to top' %></div>
   </a>
 </div>
+<script>
+// Smooth scroll
+$(document).ready(function(){
+  $("a").on('click', function(event) {
+    if (this.hash !== "") {
+      event.preventDefault();
+      var hash = this.hash;
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+        window.location.hash = hash;
+      });
+    }
+  });
+});
+</script>

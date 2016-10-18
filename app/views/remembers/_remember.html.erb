@@ -3,7 +3,7 @@
   <div class="panel-body">
     <%= link_to 'End Session', remove_session_path(id: remember.id), 
           method: :post, remote: true, 
-          class: "btn btn-danger pull-right" unless current %>
+          class: "btn btn-red pull-right" unless current %>
     <span><%= remember.browser %>, <%= remember.platform %> 
     <%= '(current device)' if current %></span> 
     <span>Created <%= time_ago_in_words(remember.created_at) %> ago</span>

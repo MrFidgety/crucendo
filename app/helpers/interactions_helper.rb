@@ -8,10 +8,11 @@ module InteractionsHelper
   # Get text for Crucendo buttons
   def commence_crucendo_text
     if get_interaction(current_user)
-      'Continue recent Crucendo'
+      #"Continue your #{(current_user.interactions.completed.size + 1).ordinalize} Crucendo"
+      "Continue"
     else
-      'Begin a new Crucendo'
+      #"Begin your #{(current_user.interactions.completed.size + 1).ordinalize} Crucendo"
+      "Begin"
     end
   end
-  
 end

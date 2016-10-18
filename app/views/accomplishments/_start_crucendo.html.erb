@@ -7,13 +7,28 @@
           data-dismiss="modal" aria-hidden="true">
           <%= material_icon.clear %>
         </button>
-        <%= button_to interactions_path, method: :get, class: "modal-button-right check-icon" do %>
+        <%= button_to interactions_path, method: :get, class: "modal-button-right check-icon", id: "start-crucendo-button" do %>
           <%= material_icon.check %>
         <% end %>
-        <h4 class="modal-title">Ready for Crucendo?</h4>
+        <h4 class="modal-title">You’ve made a great decision</h4>
       </div>
-      <div class="modal-body">
-        <p><%= commence_crucendo_text %></p>
+      <div class="modal-body text-center">
+        <h3>
+          <% if get_interaction(current_user) %>
+            You are about to continue your
+            <%= (current_user.interactions.completed.size + 1).ordinalize %>
+            Crucendo
+          <% else %>
+            You are about to begin your
+            <%= (current_user.interactions.completed.size + 1).ordinalize %>
+            Crucendo
+          <% end %>
+        </h3>
+        <p>Remember, the questions in Crucendo come from your Subscriptions. You can manage your subscriptions from
+        <%= link_to 'here', subscriptions_path %>.</p>
+        <br><p>Take three deep breaths and select 
+        <%= material_icon.check.css_class('helper-button').html({ data: { helper: "start-crucendo-button" } }) %>
+        to begin.</p>
       </div>
     </div>
   </div>

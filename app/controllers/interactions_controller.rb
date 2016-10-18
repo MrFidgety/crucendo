@@ -4,7 +4,7 @@ class InteractionsController < ApplicationController
   
   before_action :find_interaction
   
-  steps :begin, :q1, :q2, :q3, :haves, :wants, :feels, :crucendo
+  steps :q1, :q2, :q3, :haves, :wants, :feels, :crucendo
   
   def show
     case step
@@ -87,12 +87,12 @@ class InteractionsController < ApplicationController
     
     def find_interaction
       # If first step, check if interaction already exists
-      if step == :begin
-        if @interaction = get_interaction(current_user)
-          # Take user to next logical step if iteraction exists
-          redirect_to wizard_path(:q1)
-        end
-      else
+      # if step == :begin
+      #   if @interaction = get_interaction(current_user)
+      #     # Take user to next logical step if iteraction exists
+      #     redirect_to wizard_path(:q1)
+      #   end
+      # else
         # Find first incomplete interaction
         unless @interaction = get_interaction(current_user)
           if step == :q1
@@ -101,11 +101,11 @@ class InteractionsController < ApplicationController
             # Redirect to root if interaction does not save
             redirect_to root_url if !@interaction.save 
           else
-            # Redirect to begin step
+            # Redirect to first step
             redirect_to wizard_path(Wicked::FIRST_STEP)
           end
         end
-      end
+      # end
     end
     
     def answer_params

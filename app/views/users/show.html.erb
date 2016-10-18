@@ -1,26 +1,32 @@
-<% provide(:title, "Dashboard") %>
-<% provide(:navigation_heading, "Dashboard") %>
-<!--<h1 class="page-title">-->
-<!--  <i class="fa fa-tachometer"></i><br>-->
-<!--  <small>Dashboard</small>-->
-<!--</h1>-->
-<div class="row">
-  <div class="col-xs-4">
-    <p class="dash-achievement"><%= pluralize(@goals_completed_count, 'completed want') %> </p>
+<% provide(:title, "Home") %>
+<% provide(:navigation_heading, "Home") %>
+<h2>Hi <%= link_to get_name(current_user), profile_path %>,
+<br>ready to impress yourself today?</h2>
+<div class="row row-eq-height">
+  <div class="col-xs-3 flex-center">
+    <p class="dash-achievement">
+      <%= pluralize(@consecutive_days, "consecutive day") %>
+    </p>
   </div>
-  <div class="col-xs-4">
-    <p class="dash-achievement"><%= pluralize(@improvements_count, 'total improvement') %></p>
-  </div>
-  <div class="col-xs-4">
-    <p class="dash-achievement"><%= pluralize(@consecutive_days, 'consecutive day') %> </p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="panel panel-crucendo">
-      <%= link_to interactions_path do %>
-      <div class="panel-heading"><%= commence_crucendo_text %></div>
-      <% end %>
+  <div class="col-xs-6">
+    <div class="crucendo-circle">
+      <%#= link_to interactions_path do %>
+      <div class="crucendo-circle-content" data-toggle="modal" data-target="#start-crucendo-modal">
+        <%= image_tag("crucendo_c_web.svg") %>
+        <div class="text-container">
+          <div class="text-offset">
+            <%= commence_crucendo_text %>
+          </div>
+        </div>
+      </div>
+      <%# end %>
     </div>
   </div>
+  <div class="col-xs-3 flex-center">
+    <p class="dash-achievement">
+      <%= pluralize(@improvements_count, "improvement") %>
+      <span class="pluralize-word"><%= (Time.zone.now).strftime("%b").downcase %></span>
+    </p>
+  </div>
 </div>
+<%= render 'accomplishments/start_crucendo' %>

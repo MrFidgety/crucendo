@@ -10,6 +10,8 @@ class Improvement < ActiveRecord::Base
   scope :min_date, -> (date) { where("improvements.created_at >= ?", date.beginning_of_day) }
   scope :max_date, -> (date) { where("improvements.created_at <= ?", date.end_of_day) }
   scope :unexpected, -> (value) { where unexpected: value}
+  scope :this_month, lambda { where("improvements.updated_at >= ? AND improvements.updated_at <= ?", 
+    Time.zone.now.beginning_of_month, Time.zone.now.end_of_month) }
   
   validates :goal_id, presence: true
   validates_numericality_of :value, equal_to: 1
