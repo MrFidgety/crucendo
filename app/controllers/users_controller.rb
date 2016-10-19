@@ -52,6 +52,8 @@ class UsersController < ApplicationController
         if @user.activation_link_expired?
           # Resend activation automatically
           @user.send_activation_email
+          # Set flash to notify user of email
+          set_flash :email_sent, type: :success
           # Respond with activation sent notice
           respond_to do |format|
             format.html { redirect_to root_url }
@@ -71,6 +73,8 @@ class UsersController < ApplicationController
       if @user.save
         # Send activation email
         @user.send_activation_email
+        # Set flash to notify user of email
+        set_flash :email_sent, type: :success
         # Respond with activation sent notice
         respond_to do |format|
           format.html { redirect_to root_url }

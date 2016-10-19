@@ -1,3 +1,7 @@
+# Render any flash set during AJAX call
+$("#flash-container").html("<%= j render_flash %>").hide().fadeIn ->
+  $(this).delay(3000).fadeOut()
+
 # Fade out new_user form
 $('#new_user').fadeOut 600, ->
   # Create new partial based on response
