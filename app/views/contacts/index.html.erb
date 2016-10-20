@@ -1,0 +1,22 @@
+<% provide(:title, "Contact") %>
+<header class="row title-logo">
+  <%= link_to image_tag('crucendo_logo_web.svg', alt: 'Crucendo Logo'), root_url %>
+</header>
+<section class="tagline aqua">
+  <p>contact us</p>
+</section>
+<div class="row">
+  <div class="col-sm-6">
+    <%= link_to new_contact_path, remote: true, class: "btn btn-block btn-lg btn-green" do %>
+      <h3>General</h3>
+      <p class="contact-text">Looking to provide feedback, ask for support, or have any other question?</p>
+    <% end %>
+  </div>
+  <div class="col-sm-6">
+    <%= link_to new_contact_path(type: :business), remote: true, class: "btn btn-block btn-lg btn-green modal-trigger" do %>
+      <h3>Business</h3>
+      <p class="contact-text">Would you like to use Crucendo in a business, school, or team environment?</p>
+    <% end %>
+  </div>
+</div>
+<div id="contact-modal-container"></div>

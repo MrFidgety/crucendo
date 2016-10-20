@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   patch   'profile'       =>  'users#edit'
   delete  'logout'        =>  'sessions#destroy'
   
+  resources :contacts, :path => 'contact', only: [:index, :new, :create]
   resources :users,               only: :update
   resources :account_activations, only: :edit
   resources :sessions,            only: :edit

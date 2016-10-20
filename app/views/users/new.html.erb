@@ -27,13 +27,11 @@
       </span>
     <% end %>
 </section>
-<section class="tagline aqua">
+<section class="aqua modal-trigger-helper">
   <p>
-    <small>
-      <span class="modal-trigger" data-toggle="modal" data-target="#landing-help-modal">
-        How does Crucendo work?
-      </span>
-    </small>
+    <span class="modal-trigger" data-toggle="modal" data-target="#landing-help-modal">
+      How does Crucendo work?
+    </span>
   </p>
 </section>
 <%= render 'shared/testimonials' %>
@@ -41,7 +39,7 @@
   <p class="policies aqua">
     <%= link_to 'Privacy', privacy_url, target: '_blank' %> | 
     <%= link_to 'Terms & Conditions', terms_url, target: '_blank' %> | 
-    <%= link_to 'Contact', 'mailto:support@thecrucialteam.com' %>
+    <%= link_to 'Contact', contacts_path %>
   </p>
 </section>
 <div id="landing-help-modal" class="modal fade" role="dialog">

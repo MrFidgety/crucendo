@@ -30,6 +30,8 @@ gem 'validate_url',               '1.0.2'
 gem 'momentjs-rails',             '2.11.1'
 gem 'bootstrap-datepicker-rails', '1.6.4.1'
 gem 'material_icons'
+gem 'mail_form'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug',                   '3.4.0'
