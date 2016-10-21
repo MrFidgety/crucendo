@@ -1,11 +1,15 @@
-<% provide(:title, "View Crucendo") %>
-<% provide(:page_class, "crucendo-show") %>
-<h1 class="page-title"><%= image_tag("crucendo_c_web.svg", class: "c-logo") %><br>
-  <small>
+<% 
+  provide(:title, "View Crucendo")
+  provide(:page_class, "crucendo-show")
+  provide(:navigation_heading, "View Crucendo")
+%>
+<p class="center-large">
+  <%= link_to material_icon.keyboard_arrow_up, accomplishments_path %>
+</p>
+<h1 class="page-title light">
     Your <%= current_user.interactions
                 .where("updated_at <= ?", @crucendo.updated_at)
                 .size.ordinalize %> Crucendo
-  </small>
 </h1>
 <p class="title-helper">
   This was completed <%= when_did_it_happen(@crucendo.updated_at) %>

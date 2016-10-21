@@ -10,11 +10,17 @@
     <%= material_icon.add %>
   </div>
 <% end %>
-<!--<h1 class="page-title">-->
-<!--  <%#= link_to  fa_icon('trophy'), improvements_path %><br>-->
-<!--  <small>Haves</small>-->
-<!--</h1>-->
-<!--<p class="title-helper">This is what you have improved.</p>-->
+<% if params.has_key?(:search) %>
+<div class="search-params">
+  <p>
+    You are viewing filtered results.<br>
+   <%= link_to improvements_path do %>
+     <%= material_icon.autorenew %>
+     Reset Search
+    <% end %>
+  </p>
+</div>
+<% end %>
 <div id="improvements-container" class="panel-group">
   <%= render(@improvements, selectable: true) || render('improvements/helpers/all') %>
 </div>

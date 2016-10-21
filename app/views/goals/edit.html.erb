@@ -1,6 +1,7 @@
 <%
   provide(:title, "Edit Want")
   provide(:page_class, "want-show")
+  provide(:navigation_heading, "Edit Want")
   
   form_id = "edit_goal_#{@goal.id}"
   confirm_text = 'This <strong>want</strong> will be permanently deleted.'
@@ -17,10 +18,9 @@
     <%= fa_icon('floppy-o') %>
   <% end %>
 <% end %>
-<h1 class="page-title">
-  <%= link_to  fa_icon('bullseye'), goal_path(@goal) %><br>
-  <small>Edit this want</small>
-</h1>
+<p class="center-large">
+  <%= link_to material_icon.keyboard_arrow_up, goal_path(@goal) %>
+</p>
 <%= form_for @goal, remote: true do |f| %>
   <%= f.label :encrypted_goal, 'What do you want to improve?' %>
   <%= f.text_field :encrypted_goal, placeholder: 'What do you want to improve?', 
@@ -50,12 +50,11 @@
         method: :delete,
         title: "Are you sure?", 
         data: {confirm: confirm_text },
-        class: "btn btn-danger btn-link" %>
+        class: "delete-link" %>
 <% end %>
 <script>
-  $( document ).ready(function() {
-    
-    // show current goal status
+  $(document).ready(function() {
+    // Update status buttons to reflect current status
     <% if @goal.completed? %>
       $('#status_complete').parent().click();
     <% else %>
@@ -65,10 +64,9 @@
         $('#status_inactive').parent().click();
       <% end %>
     <% end %>
-    
-    <% unless @goal.due_date.blank? %>
-      set current due date in local time
-      var date = moment.utc('<%#= @goal.due_date %>');
+    // Set current due date in device local time if no timezone
+    <% if @goal.due_date.present? && current_user.time_zone.blank? %>
+      var date = moment.utc('<%= @goal.due_date %>');
       $('#goal_due_date').val(date.local().format('YYYY-MM-DD'));
     <% end %>
   });

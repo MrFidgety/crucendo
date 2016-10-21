@@ -1,6 +1,6 @@
 $(document).on "page:change", -> 
   
-  # Follow link click when progress 'circle' is clicked
+  # Follow link click when crucendo progress 'circle' is clicked
   $('ul.progressbar > li').on 'click', () ->
     href = $(this).find('a:first').attr('href')
     if href.length
@@ -33,7 +33,8 @@ $(document).on "page:change", ->
     if(e.keyCode == 13)
       $('#new_improvement_start').click()
       return false
-      
+  
+  # Clear improvement text input when modal is closed   
   $('#new_improvement_modal').on 'hide.bs.modal', ->
     $('#new_improvement_text').val('')
   
@@ -84,12 +85,6 @@ $(document).on "page:change", ->
     $(".edit_goal form").render_form_errors('edit_goal', 
       'error-message goal-error',
       $.parseJSON(data.responseText))
-    
-  # Convert date-time on submit
-  $("#goal_due_date").on 'change', ->
-    time = new Date($('#goal_due_date').val())
-    time.setHours(0,0,0,0)
-    $('#goal_due_date_utc').val(time.toUTCString())
     
   #------------------ FEELING ------------------#
   

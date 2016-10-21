@@ -548,7 +548,11 @@ a.helper {
 }
 
 .btn-link.btn-danger {
-  color: $dark-gray;
+  color: white;
+}
+.delete-link {
+  color: white;
+  text-decoration: inherit;
 }
 #site-content {
   transition: all 0.6s ease;
@@ -1321,5 +1325,18 @@ span.interaction-helper {
   .modal-trigger {
     cursor: pointer;
     text-decoration: underline;
+  }
+}
+.center-large {
+  text-align: center;
+  font-size: 2em;
+}
+.search-params {
+  color: white;
+  text-align: center;
+  font-size: 1.2em;
+  a {
+    text-decoration: inherit;
+    color: inherit;
   }
 }

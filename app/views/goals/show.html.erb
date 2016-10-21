@@ -1,5 +1,8 @@
-<% provide(:title, "Want") %>
-<% provide(:page_class, "want-show") %>
+<% 
+  provide(:title, "Want")
+  provide(:page_class, "want-show")
+  provide(:navigation_heading, "View Want") 
+%>
 <% content_for :navigation_right do %>
   <%= link_to material_icon.edit.css_class('material-34'), 
         edit_goal_path(@goal), 
@@ -9,8 +12,10 @@
     <%= material_icon.add %>
   </div>
 <% end %>
+<p class="center-large">
+  <%= link_to material_icon.keyboard_arrow_up, goals_path %>
+</p>
 <h1 class="page-title light">
-  <%= link_to  fa_icon('bullseye'), goals_path %><br>
   <%= @goal.encrypted_goal %>
 </h1>
 <div class="goal-details">

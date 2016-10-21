@@ -139,7 +139,7 @@ class GoalsController < ApplicationController
   
     def goal_params
       # Only use javascript UTC date if user hasn't set timezone
-      if !params[:goal][:due_date_utc].blank? && current_user.time_zone.blank?
+      if params[:goal][:due_date_utc].present? && current_user.time_zone.blank?
         params[:goal][:due_date] = params[:goal][:due_date_utc]
       end
       case params[:status]
@@ -168,8 +168,8 @@ class GoalsController < ApplicationController
     
     def improvement_params
       # Perform date calculation if date set
-      if !params[:improvement_date].blank?
-        if !params[:improvement_date_utc].blank? && current_user.time_zone.blank?
+      if params[:improvement_date].present?
+        if params[:improvement_date_utc].present? && current_user.time_zone.blank?
           # Use javascript UTC date if user hasn't set timezone
           params[:created_at] = params[:improvement_date_utc]
         else

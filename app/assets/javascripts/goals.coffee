@@ -20,6 +20,12 @@ $(document).on "page:change page:restore", ->
   # Convert date-time on submit
   $("#improvement_date").on 'change', ->
     time = new Date($('#improvement_date').val())
-    # middle of the day
+    # Middle of the day
     time.setHours(12,0,0,0)
     $('#improvement_date_utc').val(time.toUTCString())
+    
+  # Convert date-time on submit
+  $("#goal_due_date").on 'change', ->
+    time = new Date($('#goal_due_date').val())
+    time.setHours(0,0,0,0)
+    $('#goal_due_date_utc').val(time.toUTCString())

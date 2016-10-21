@@ -7,7 +7,7 @@ $("#contact-modal-container").html(
   "<%= j render partial: 'contacts/general_contact' %>")
 <% end %>
   
-# Show the edit modal
+# Show the contact modal
 $('#contact-modal').modal('show')
 
 # Set up error handling

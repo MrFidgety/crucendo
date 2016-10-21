@@ -10,6 +10,17 @@
     <%= material_icon.add %>
   </div>
 <% end %>
+<% if params.has_key?(:search) %>
+<div class="search-params">
+  <p>
+    You are viewing filtered results.<br>
+   <%= link_to goals_path do %>
+     <%= material_icon.autorenew %>
+     Reset Search
+    <% end %>
+  </p>
+</div>
+<% end %>
 <div id="goals-container" class="panel-group">
   <%= render(@goals) || render('goals/helpers/all') %>
 </div>
