@@ -138,6 +138,10 @@
   }
 }
 .subscription-panel {
+  img {
+    max-height: 7em;
+    margin: 0 auto;
+  }
   a.update-subscription {
     color: inherit;
     text-decoration: inherit;
