@@ -590,7 +590,7 @@ a.helper {
   left: -300px;
   width: 300px;
   z-index: 1;
-  transition: all 0.6s ease;
+  transition: transform 0.6s ease;
 }
 #fixed-nav.nav-active {
   //overflow-y: auto;
