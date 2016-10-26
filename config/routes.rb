@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :sessions,            only: :edit
   resources :change_user_email,   only: :edit
   resources :interactions,        only: [:index, :show, :update]
-  resources :subscriptions,       only: [:index, :update]
+  resources :subscriptions,       :path => 'tracks', only: [:index, :update]
   
   resources :improvements, :path => 'haves'
   

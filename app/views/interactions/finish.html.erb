@@ -1,14 +1,11 @@
 <% 
-  provide(:title, "Feeling") 
+  provide(:title, "Finish") 
   form_id = "edit_interaction_#{@interaction.id}"
 %>
 <% content_for :navigation_left do %>
   <div class="control-menu pull-left">
-  <%= button_to previous_wizard_path, method: :get, 
-      class: "custom-icon material-lg with-loader",
-      data: {disable_with: "<div class='loader'></div>".html_safe} do %>
-    <%= material_icon.keyboard_arrow_left %>
-  <% end %>
+  <%= link_to material_icon.keyboard_arrow_left, previous_wizard_path, 
+      class: "custom-icon material-lg with-loader" %>
   </div>
 <% end %>
 <% content_for :navigation_right do %>
@@ -21,9 +18,9 @@
 <% end %>
 <%= render 'interactions/header' %>
 <div class="interaction-title">
-  <p>If 1 is how you would least like to feel, and 5 is how you would most like to 
-  feel..</p>
-  How are you feeling today?
+  Before you finish, how are you feeling?
+  <span class="interaction-helper">If 1 is how you would least 
+  like to feel, and 5 is how you would most like to feel today</span>
 </div>
 <hr>
 <!-- Slider main container -->

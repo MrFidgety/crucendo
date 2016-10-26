@@ -17,18 +17,19 @@
           <% if get_interaction(current_user) %>
             You are about to continue your
             <%= (current_user.interactions.completed.size + 1).ordinalize %>
-            Crucendo
+            Crucendo.
           <% else %>
             You are about to begin your
             <%= (current_user.interactions.completed.size + 1).ordinalize %>
             Crucendo
           <% end %>
         </h3>
-        <p>Remember, the questions in Crucendo come from your Subscriptions. You can manage your subscriptions from
-        <%= link_to 'here', subscriptions_path %>.</p>
-        <br><p>Take three deep breaths and select 
-        <%= material_icon.check.css_class('helper-button').html({ data: { helper: "start-crucendo-button" } }) %>
-        to begin.</p>
+        <p>Take three deep breaths and select 
+          <%= material_icon.check.css_class('helper-button').html({ data: { helper: "start-crucendo-button" } }) %>
+          to begin.</p>
+          <hr>
+        <p>Remember, the questions in Crucendo come from your Tracks<br>
+        <%= link_to 'Explore My Tracks', subscriptions_path %></p>
       </div>
     </div>
   </div>

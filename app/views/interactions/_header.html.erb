@@ -1,5 +1,5 @@
 <%=
-unless step == :begin
+unless step == :crucendo
   content_tag(:section, class: "crucendo-progress") do
     content_tag(:ul, class: "progressbar") do
       wizard_steps.collect do |every_step|
@@ -9,7 +9,7 @@ unless step == :begin
           class_str = "finished" if past_step?(every_step)
           concat(
             content_tag(:li, class: class_str) do
-              link_to_unless step == :crucendo, every_step, wizard_path(every_step)
+              link_to every_step, wizard_path(every_step)
             end 
           )
         end
@@ -22,7 +22,7 @@ end
 <% 
 unless step == :begin || step == :crucendo
   content_for :navigation_heading do
-    link_to root_url do
+    link_to root_url, class: "home", id: "leave-crucendo" do
       image_tag("crucendo_logo_web.svg")
     end
   end

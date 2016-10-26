@@ -1,11 +1,8 @@
 <% provide(:title, "Question 2") %>
 <% content_for :navigation_left do %>
   <div class="control-menu pull-left">
-  <%= button_to previous_wizard_path, method: :get, 
-      class: "custom-icon material-lg with-loader",
-      data: {disable_with: "<div class='loader'></div>".html_safe} do %>
-    <%= material_icon.keyboard_arrow_left %>
-  <% end %>
+    <%= link_to material_icon.keyboard_arrow_left, previous_wizard_path, 
+        class: "custom-icon material-lg with-loader" %>
   </div>
 <% end %>
 <%= render 'questions' %>

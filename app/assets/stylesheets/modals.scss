@@ -12,13 +12,14 @@
   -moz-border-radius-topright: 3px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  button {
+  button, .btn {
     padding: 0;
     cursor: pointer;
     background: transparent;
     border: 0;
     -webkit-appearance: none;
     font-size: 1.8em;
+    color: inherit;
     &:focus {
       outline: none;
     }

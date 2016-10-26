@@ -1,11 +1,5 @@
-<% provide(:title, "Subscriptions") %>
-<% provide(:navigation_heading, "Subscriptions") %>
-<!--<h1 class="page-title">-->
-<!--  <i class="fa fa-list-alt"></i><br>-->
-<!--  <small>Subscriptions</small>-->
-<!--</h1>-->
-<!--<p class="title-helper">Select the areas of your personal and professional life -->
-<!--that you would like to improve</p>-->
+<% provide(:title, "Tracks") %>
+<% provide(:navigation_heading, "Tracks") %>
 <div class="subscriptions">
   <div class="row">
     <%= render partial: "subscriptions/panel", 
@@ -21,12 +15,11 @@
           data-dismiss="modal" aria-hidden="true">
           <%= material_icon.done %>
         </button>
-        <h4 class="modal-title">Subscriptions Limit</h4>
+        <h4 class="modal-title">Tracks Limit</h4>
       </div>
       <div class="modal-body">
-        <p>You must be subscribed to at least seven topics! 
-        This limit was decided by Brett because he is a fan of odd numbers .. 
-        <br><br>and so you get a good variety of questions in Crucendo.</p>
+        <h3>You must be on at least five tracks!</h3>
+        <p>This is so you get a good variety of questions in Crucendo.</p>
       </div>
     </div>
   </div>

@@ -4,7 +4,10 @@ class InteractionsController < ApplicationController
   
   before_action :find_interaction
   
-  steps :q1, :q2, :q3, :haves, :wants, :feels, :crucendo
+  steps :q1, :q2, :q3, :haves, :wants, :finish, :crucendo
+    
+  # Prevent flash from appearing twice after answer update
+  after_filter { flash.discard if [:q1, :q2, :q3].include? step }
   
   def show
     case step
@@ -53,12 +56,16 @@ class InteractionsController < ApplicationController
       # Try to update answer
       if @answer.update_attributes(answer_params)
         # Move to next step if answer saves
-        skip_step
+        params.has_key?(:follow) ? (return redirect_to(params[:follow])) : skip_step
       else
         # Otherwise reset the answer value to plain text for display
         @answer.plain_encrypted_answer = params[:answer][:encrypted_answer]
+        # Alert user that criteria must be met
+        set_flash :something_missing, type: :warning
       end
-    elsif step.equal? :feels
+    elsif step.equal? :finish
+      # Set crucendo feelings
+      @interaction.update_attributes(interaction_params)
       # Check if all questions have been answered
       if @answer = @interaction.missing_answers
         # Alert user that criteria must be met
@@ -72,7 +79,6 @@ class InteractionsController < ApplicationController
           jump_to(:q3)
         end
       else
-        @interaction.update_attributes(interaction_params)
         skip_step
       end
     end
@@ -86,26 +92,18 @@ class InteractionsController < ApplicationController
     end
     
     def find_interaction
-      # If first step, check if interaction already exists
-      # if step == :begin
-      #   if @interaction = get_interaction(current_user)
-      #     # Take user to next logical step if iteraction exists
-      #     redirect_to wizard_path(:q1)
-      #   end
-      # else
-        # Find first incomplete interaction
-        unless @interaction = get_interaction(current_user)
-          if step == :q1
-            # Build interaction if we are viewing q1
-            @interaction = current_user.interactions.build
-            # Redirect to root if interaction does not save
-            redirect_to root_url if !@interaction.save 
-          else
-            # Redirect to first step
-            redirect_to wizard_path(Wicked::FIRST_STEP)
-          end
+      # Find first incomplete interaction
+      unless @interaction = get_interaction(current_user)
+        if step == :q1
+          # Build interaction if we are viewing q1
+          @interaction = current_user.interactions.build
+          # Redirect to root if interaction does not save
+          redirect_to root_url if !@interaction.save 
+        else
+          # Redirect to first step
+          redirect_to wizard_path(Wicked::FIRST_STEP)
         end
-      # end
+      end
     end
     
     def answer_params

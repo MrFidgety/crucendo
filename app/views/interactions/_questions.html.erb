@@ -1,19 +1,35 @@
 <% form_id = "edit_answer_#{@answer.id}" %>
 <% content_for :navigation_right do %>
-  <%= button_tag(type: 'submit', 
-      class: "custom-icon material-lg with-loader icon-pulse",
-      form: form_id, 
-      data: {disable_with: "<div class='loader'></div>".html_safe}) do %>
-    <%= material_icon.keyboard_arrow_right %>
-  <% end %>
+  <%= link_to material_icon.keyboard_arrow_right, next_wizard_path, 
+      class: "custom-icon material-lg with-loader icon-pulse" %>
 <% end %>
 <%= render 'interactions/header' %>
-<p class="interaction-question">
+<p class="interaction-title">
   <%= @answer.question.content %><br>
-  <span class="question-topic">- <%= @answer.question.topic.name %> -</span>
+  <span class="interaction-helper"><%= @answer.question.topic.name.camelize %></span>
 </p><hr>
 <%= form_for @answer, url: wizard_path, method: :put do |f| %>
   <%= f.text_area :encrypted_answer, rows: 1, class: 'form-control clean-input autogrow',
         placeholder: "type your answer here ..." %>
   <%= hidden_field(:answer, :id) %>
 <% end %>
+<div class="modal fade" id="leave-crucendo-modal" tabindex="-1" role="dialog" 
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content confirm-modal">
+      <div class="modal-header">
+        <button type="button" class="modal-button-left close-icon" 
+          data-dismiss="modal" aria-hidden="true">
+          <%= material_icon.clear %>
+        </button>
+        <%= link_to material_icon.done, root_url, class: "btn modal-button-right custom-icon home" %>
+        <h4 class="modal-title">Are you sure?</h4>
+      </div>
+      <div class="modal-body text-center">
+        <p>It looks like you've provided an answer to this question. 
+        If you leave this Crucendo the answer won't be saved.</p><br>
+        <%= link_to fa_icon('floppy-o', text: 'Save and exit'), root_path, class: 'btn btn-default btn-lg' %>
+      </div>
+    </div>
+  </div>
+</div>

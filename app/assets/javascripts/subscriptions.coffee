@@ -5,9 +5,9 @@ $(document).on 'click', 'a.update-subscription' , (event) ->
   topic = $(this).parents('.subscription-panel')
   
   if topic.hasClass('subscribed') && 
-      $('.subscription-panel.subscribed').length < 8
+      $('.subscription-panel.subscribed').length < 6
     # show subscription limit modal
-    $('#subscription-limit').modal('show');
+    $('#subscription-limit').modal('show')
   else if !topic.hasClass('clicked')
     topic.toggleClass('subscribed')
     topic.addClass('clicked')

@@ -5,8 +5,15 @@
   <ul>
     <li><%= link_to  fa_icon('home', text: "Home"), 
           root_url %></li>
-    <li><%= link_to fa_icon('list-alt', text: 'Subscriptions'),
-          subscriptions_path %></li>
+    <li><%#= link_to fa_icon('list-alt', text: 'Subscriptions'),
+          subscriptions_path %>
+        <%= link_to subscriptions_path do %>
+        <div class="fa">
+          <%= image_tag("tracks.svg", class: "tracks-logo") %>
+        </div>
+        Tracks
+        <% end %>  
+    </li>
     <li><%= link_to accomplishments_path do %>
         <div class="fa">
           <%= image_tag("crucendo_c_web.svg", class: "c-logo") %>
@@ -18,9 +25,8 @@
           improvements_path %></li>
     <li><%= link_to  fa_icon('bullseye', text: "Wants"), 
           goals_path %></li>
-    <li><%= link_to fa_icon('lock', text: "Profile"), 
+    <li><%= link_to fa_icon('id-card-o', text: "Profile"), 
           profile_path %></li>
-    <li class="divider"></li>
     <li><%= link_to fa_icon('question-circle-o', text: "Help"), 
           help_path %></li>
     <li><%= link_to fa_icon('sign-out ', text: "Log Out"), 

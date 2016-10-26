@@ -1,3 +1,4 @@
+<script>ga('send', 'event', 'Crucendo', 'Complete');</script>
 <% provide(:title, "Complete") %>
 <% content_for :navigation_right do %>
   <%= button_to root_url, method: :get, 
@@ -8,32 +9,31 @@
 <% end %>
 <%= render 'interactions/header' %>
 <div class="interaction-summary">
-  <h1>That's it!</h1>
-  <p>You <strong>answered three crucial questions</strong> from the topics</p>
-  <ul>
-    <% @interaction.answers.each_with_index do |answer, index| %>
-      <li><span><%= answer.question.topic.name %></span></li>
+  <h1>Fantastic!</h1>
+  <p>You have just completed your 
+  <%= (current_user.interactions.completed.size).ordinalize %>
+  Crucendo</p>
+</div>
+<div class="row">
+  <div class="col-xs-4">
+    <%= link_to accomplishments_path, class: "crucendo-link" do %>
+      <%= image_tag("crucendo_c_web.svg", class: "img-responsive") %>
+      <h1>Crucendos</h1>
+      <p>All the times you have impressed yourself.</p>
     <% end %>
-  </ul>
-  <p>
-    <% if @interaction.improvements.size > 0 %>
-      You have <strong>acknowledged improvements</strong> in 
-      <% if @interaction.improvements.size > 1 %>
-        <%= pluralize(@interaction.improvements.size, 'aspect') %>
-      <% else %>
-        an aspect
-      <% end %>
-      of your life recently.
+  </div>
+  <div class="col-xs-4">
+    <%= link_to subscriptions_path, class: "crucendo-link" do %>
+      <%= image_tag("tracks.svg", class: "img-responsive") %>
+      <h1>Tracks</h1>
+      <p>Choose the Tracks you want to explore.</p>
     <% end %>
-    <% if @interaction.goals.where(completed: false).size > 0 %>
-      You also <strong>embraced that you want to improve</strong> 
-      <% if @interaction.goals.where(completed: false).size > 1 %>
-        another <%= pluralize(@interaction.goals.where(completed: false).size, 'aspect') %>
-      <% else %>
-        another aspect
-      <% end %>
-      of your life.
-    <% end %>
-  </p>
-  <p>Nice job, and<br><span>keep impressing yourself!</span></p><br>
+  </div>
+  <div class="col-xs-4">
+    <div class="crucendo-link">
+      <%= image_tag("journal.svg", class: "img-responsive") %>
+      <h1>Journal</h1>
+      <p>Coming Soon ...</p>
+    </div>
+  </div>
 </div>

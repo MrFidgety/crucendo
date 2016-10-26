@@ -1,10 +1,18 @@
 $(document).on "page:change", -> 
   
   # Follow link click when crucendo progress 'circle' is clicked
-  $('ul.progressbar > li').on 'click', () ->
-    href = $(this).find('a:first').attr('href')
-    if href.length
-      window.location.href = href
+  # $('ul.progressbar > li').on 'click', (e) ->
+  #   console.log(e.target)
+  #   if !$(e.target).is('a')
+  #     link = $(this).find('a:first')
+  #     link.click()
+  #     console.log('triggered click')
+  #   href = $(this).find('a:first').attr('href')
+  #   if href.length
+  #     window.location.href = href
+      
+  # $('ul.progressbar > li > a').on 'click', (e) ->
+  #   e.preventDefault()
   
   #---------------- QUESTIONS ---------------#
   
@@ -20,6 +28,30 @@ $(document).on "page:change", ->
   # Resize text area on input
   $('textarea.autogrow').on 'input', () ->
     auto_grow($(this))
+  
+  # Detect answer content change
+  $('textarea#answer_encrypted_answer').one 'input', () ->
+    # Set crucendo exit link to be modal
+    $('#leave-crucendo').attr('data-target','#leave-crucendo-modal')
+    $('#leave-crucendo').attr('data-toggle','modal')
+    $("#leave-crucendo").removeAttr("href").css("cursor","pointer")
+    
+    # Submit answer on any anchor  
+    $('a:not(.home)').on 'click', (e) ->
+      # Get anchor href
+      follow = $(this).attr('href')
+      # Prevent following link
+      e.preventDefault()
+      e.stopPropagation()
+      # Submit form with additional follow param
+      $('<input />').attr('type', 'hidden')
+          .attr('name', "follow")
+          .attr('value', follow)
+          .appendTo('.edit_answer')
+      $('form').submit()
+      
+  # Trigger input event if page starts with error on textarea input    
+  $('.error textarea#answer_encrypted_answer').trigger('input')
   
   #------------------ HAVE ------------------#
   
@@ -88,10 +120,13 @@ $(document).on "page:change", ->
     
   #------------------ FEELING ------------------#
   
+  # Get feeling value if it exists
+  initial = if $('#interaction_feeling').val() then $('#interaction_feeling').val() else 3
+    
   # Initialize swiper when document ready
   if $('#swiper-feeling.swiper-container').length
     feeling = $('#swiper-feeling.swiper-container').swiper({
-      initialSlide: 2,
+      initialSlide: initial - 1,
       centeredSlides: true,
       mousewheelControl: true,
       slideToClickedSlide: true,
