@@ -16,7 +16,7 @@
       <p>Let’s verify your account by clicking the Activate
       button below. It will allow you to use Crucendo right away. 
       Please note, the link will expire after 24 hours.</p>
-      <p style="//text-align:center;"><%= link_to "Activate", 
+      <p><%= link_to "Activate", 
         edit_account_activation_url(@user.activation_token, 
         email: @user.email), 
         style: "font-size: 1.5em; 
@@ -35,8 +35,9 @@
       <p>Brett Stone & Tristan Hart<br>
       <span style="font-weight:400;">Creators of Crucendo</span></p>
     </div>
-    <div style="font-size:0.8em;color:#fff;padding:8px;">
-      <p>You received this message because your email address was entered at crucendo.com . 
+    <div style="font-size:0.8em;color:#fff;padding:20px 0px;">
+      <p>You received this message because your email address was entered at 
+      <a style="color:#fff;" href="http://crucendo.thecrucialteam.com">crucendo.com</a><br> 
       If this wasn't you, let us know <a style="color:#fff;" href="http://crucendo.thecrucialteam.com/contact">
       here</a>, because we’ve got your back.</p>
       <p><a style="color:#fff;" href="http://crucendo.thecrucialteam.com/privacy">

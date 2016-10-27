@@ -12,7 +12,7 @@ class UserMailer < ApplicationMailer
 
   def account_login(user)
     @user = user
-    mail to: user.email, subject: "Log in: Welcome back to Crucendo. Log in to your Account. "
+    mail to: user.email, subject: "Log in: Welcome back to Crucendo. Log in to your Account."
   end
   
   def change_email_approval(user)
