@@ -8,17 +8,23 @@ font-family: Arial, sans-serif;
 }
 </style>
 <![endif]-->
-<div id="main-content" style="background:#0498d9;">
-  <div style="font-family:'Open Sans',Arial,sans-serif; 
+<div style="background:#0498d9;">
+  <div id="main-content" style="font-family:'Open Sans',Arial,sans-serif; 
               max-width:500px; 
               margin:auto;
               font-weight:300;">
     <div>
-      <% if Rails.env.development? %>
-        <%= image_tag("crucendo_logo_web.png", style: "width:100%;margin:20px auto;") %>
-      <% else %>
-        <%= email_image_tag("crucendo_logo_web.png", style: "width:100%;margin:20px auto;") %>
-      <% end %>
+      <table>
+        <tr>
+          <td style="padding:20px;text-align:center;">
+          <% if Rails.env.development? %>
+            <%= image_tag("crucendo_logo_web.png", style: "width:90%;") %>
+          <% else %>
+            <%= email_image_tag("crucendo_logo_web.png", style: "width:90%;margin:20px auto;") %>
+          <% end %>
+          </td>
+        </tr>
+      </table>
     </div>
     <div style="background:#fff;">
       <div style="margin:0px 20px;">
