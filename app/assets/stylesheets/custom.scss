@@ -515,25 +515,6 @@ a.helper {
     border-color: $pastel-teal;
   }
 }
-
-.crucendo-logo {
-  font-family: 'Raleway', sans-serif;
-  font-size: 30px;
-  margin-top: 2px;
-  color: $pastel-blue;
-  position: relative;
-  a {
-    color: inherit;
-    text-decoration: inherit;
-  }
-  span {
-    content: "";
-    height: 100%;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: -11px;
-  }
-}
 .beta-logo {
   color: $pastel-aqua;
   position: absolute;
