@@ -3,55 +3,66 @@
 </head>
 <!--[if mso]>
 <style type=”text/css”>
-.body-text {
+#main-content {
 font-family: Arial, sans-serif;
 }
 </style>
 <![endif]-->
-<div style="background:#0498d9;">
-  <div style="font-family:'Open Sans',Helvetica,sans-serif; 
+<div id="main-content" style="background:#0498d9;">
+  <div style="font-family:'Open Sans',Arial,sans-serif; 
               max-width:500px; 
               margin:auto;
               font-weight:300;">
-    <div style="padding:40px 20px;">
-      <%= Rails.env.development? ? image_tag("crucendo_logo_web.png", style: "width:100%;") : email_image_tag("crucendo_logo_web.png") %>
+    <div>
+      <% if Rails.env.development? %>
+        <%= image_tag("crucendo_logo_web.png", style: "width:100%;margin:20px auto;") %>
+      <% else %>
+        <%= email_image_tag("crucendo_logo_web.png", style: "width:100%;margin:20px auto;") %>
+      <% end %>
     </div>
-    <div style="background:#fff; padding:10px 20px;">
-      <p style="font-size:1.5em;text-align:center;">Welcome back to Crucendo.</p>
-      <p>As we say around the office, everyone deserves the opportunity to 
-      impress themselves. It’s great to see you back here, and committed to your 
-      development.</p>
-      <p>Let’s log in to your account by clicking the Log in button below. 
-      It will allow you to use Crucendo right away. 
-      Please note, the link will expire after 24 hours.</p>
-      <p><%= link_to "Log in", 
-        edit_session_url(@user.login_token, 
-        email: @user.email),
-        style: "font-size: 1.5em; 
-                color: #fff;
-                background-color: #00d2a3;
-                padding: 10px 20px; 
-                -webkit-border-radius: 6px;
-                -moz-border-radius: 6px;
-                border-radius: 6px;
-                border: none;
-                text-decoration: none;
-                display: inline-block;
-                font-weight:400;" %>
-      </p>
-      <p>We wish you the greatest success,</p>
-      <p>Brett Stone & Tristan Hart<br>
-      <span style="font-weight:400;">Creators of Crucendo</span></p>
+    <div style="background:#fff;">
+      <div style="margin:0px 20px;">
+        <p style="height:1px"></p>
+        <p style="font-size:1.5em;text-align:center;">Welcome back to Crucendo.</p>
+        <p>As we say around the office, everyone deserves the opportunity to 
+        impress themselves. It’s great to see you back here, and committed to your 
+        development.</p>
+        <p>Let’s log in to your account by clicking the Log in button below. 
+        It will allow you to use Crucendo right away. 
+        Please note, the link will expire after 24 hours.</p>
+        <p><%= link_to "Log in", 
+          edit_session_url(@user.login_token, 
+          email: @user.email),
+          style: "font-size: 1.5em; 
+                  color: #fff;
+                  background-color: #00d2a3;
+                  padding: 10px 20px; 
+                  -webkit-border-radius: 6px;
+                  -moz-border-radius: 6px;
+                  border-radius: 6px;
+                  border: none;
+                  text-decoration: none;
+                  display: inline-block;
+                  font-weight:400;" %>
+        </p>
+        <p>We wish you the greatest success,</p>
+        <p>Brett Stone & Tristan Hart<br>
+        <span style="font-weight:400;">Creators of Crucendo</span></p>
+        <p style="height:1px"></p>
+      </div>
     </div>
-    <div style="font-size:0.8em;color:#fff;padding:20px 8px;">
-      <p>You received this message because your email address was entered at 
-      <a style="color:#fff;" href="http://crucendo.thecrucialteam.com">crucendo.com</a><br> 
-      If this wasn't you, let us know <a style="color:#fff;" href="http://crucendo.thecrucialteam.com/contact">
-      here</a>, because we’ve got your back.</p>
-      <p><a style="color:#fff;" href="http://crucendo.thecrucialteam.com/privacy">
-      crucendo.thecrucialteam.com/privacy</a></p>
-      <address>The Crucial Team Australia Pty Ltd, PO Box 4081<br>Frankston Heights, 
-      VIC, Australia, 3199.</address>
+    <div style="font-size:0.8em;color:#fff;">
+      <div style="margin:10px;">
+        <p>You received this message because your email address was entered at 
+        <a style="color:#fff;" href="http://crucendo.thecrucialteam.com">crucendo.com</a><br> 
+        If this wasn't you, let us know <a style="color:#fff;" href="http://crucendo.thecrucialteam.com/contact">
+        here</a>, because we’ve got your back.</p>
+        <p><a style="color:#fff;" href="http://crucendo.thecrucialteam.com/privacy">
+        crucendo.thecrucialteam.com/privacy</a></p>
+        <address>The Crucial Team Australia Pty Ltd, PO Box 4081<br>Frankston Heights, 
+        VIC, Australia, 3199.</address>
+        <p style="height:1px"></p>
+      </div>
     </div>
   </div>
 </div>
