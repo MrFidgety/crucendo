@@ -1,13 +1,20 @@
 <head>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
 </head>
+<!--[if mso]>
+<style type=”text/css”>
+.body-text {
+font-family: Arial, sans-serif;
+}
+</style>
+<![endif]-->
 <div style="background:#0498d9;">
   <div style="font-family:'Open Sans',Helvetica,sans-serif; 
               max-width:500px; 
               margin:auto;
               font-weight:300;">
-    <div style="padding:8px;">
-      <%= Rails.env.development? ? image_tag("crucendo_logo_web.svg", style: "width:100%;") : email_image_tag("crucendo_logo_web.svg") %>
+    <div style="padding:40px 20px;">
+      <%= Rails.env.development? ? image_tag("crucendo_logo_web.png", style: "width:100%;") : email_image_tag("crucendo_logo_web.png") %>
     </div>
     <div style="background:#fff; padding:10px 20px;">
       <p style="font-size:1.5em;text-align:center;">Welcome to Crucendo.<br>We’re really excited to have you join us.</p>
@@ -35,7 +42,7 @@
       <p>Brett Stone & Tristan Hart<br>
       <span style="font-weight:400;">Creators of Crucendo</span></p>
     </div>
-    <div style="font-size:0.8em;color:#fff;padding:20px 0px;">
+    <div style="font-size:0.8em;color:#fff;padding:20px 8px;">
       <p>You received this message because your email address was entered at 
       <a style="color:#fff;" href="http://crucendo.thecrucialteam.com">crucendo.com</a><br> 
       If this wasn't you, let us know <a style="color:#fff;" href="http://crucendo.thecrucialteam.com/contact">
