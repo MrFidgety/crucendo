@@ -2,30 +2,28 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
 </head>
 <!--[if mso]>
-<style type=”text/css”>
+<style type="text/css">
 #main-content {
-font-family: Arial, sans-serif;
+font-family: Verdana, sans-serif;
 }
 </style>
 <![endif]-->
 <div style="background:#0498d9;">
-  <div id="main-content" style="font-family:'Open Sans',Arial,sans-serif; 
+  <div id="main-content" style="font-family:'Open Sans',Verdana,sans-serif; 
               max-width:500px; 
               margin:auto;
               font-weight:300;">
-    <div>
-      <table style="width:100%;">
-        <tr>
-          <td style="padding:20px;text-align:center;background:#0498d9;">
-          <% if Rails.env.development? %>
-            <%= image_tag("crucendo_logo_web.png", style: "width:90%;") %>
-          <% else %>
-            <%= email_image_tag("crucendo_logo_web.png", style: "width:90%;margin:20px auto;") %>
-          <% end %>
-          </td>
-        </tr>
-      </table>
-    </div>
+    <table style="width:100%;">
+      <tr>
+        <td style="padding:20px;text-align:center;background:#0498d9;">
+        <% if Rails.env.development? %>
+          <%= image_tag("crucendo_logo_web.png", style: "width:90%;") %>
+        <% else %>
+          <%= email_image_tag("crucendo_logo_web.png", style: "width:90%;margin:20px auto;") %>
+        <% end %>
+        </td>
+      </tr>
+    </table>
     <div style="background:#fff;">
       <div style="margin:0px 20px;">
         <p style="height:1px"></p>
@@ -57,18 +55,21 @@ font-family: Arial, sans-serif;
         <p style="height:1px"></p>
       </div>
     </div>
-    <div style="font-size:0.8em;color:#fff;">
-      <div style="margin:10px;">
-        <p>You received this message because your email address was entered at 
-        <a style="color:#fff;" href="http://crucendo.thecrucialteam.com">crucendo.com</a><br> 
-        If this wasn't you, let us know <a style="color:#fff;" href="http://crucendo.thecrucialteam.com/contact">
-        here</a>, because we’ve got your back.</p>
-        <p><a style="color:#fff;" href="http://crucendo.thecrucialteam.com/privacy">
-        crucendo.thecrucialteam.com/privacy</a></p>
-        <address>The Crucial Team Australia Pty Ltd, PO Box 4081<br>Frankston Heights, 
-        VIC, Australia, 3199.</address>
-        <p style="height:1px"></p>
-      </div>
+    <table style="width:100%;">
+        <tr>
+          <td style="font-size:0.8em;color:#fff;padding:20px;background:#0498d9;">
+            <p>You received this message because your email address was entered at 
+            <a style="color:#fff;" href="http://crucendo.thecrucialteam.com">crucendo.com</a><br> 
+            If this wasn't you, let us know <a style="color:#fff;" href="http://crucendo.thecrucialteam.com/contact">
+            here</a>, because we’ve got your back.</p>
+            <p><a style="color:#fff;" href="http://crucendo.thecrucialteam.com/privacy">
+            crucendo.thecrucialteam.com/privacy</a></p>
+            <address>The Crucial Team Australia Pty Ltd, PO Box 4081<br>Frankston Heights, 
+            VIC, Australia, 3199.</address>
+            <p style="height:1px"></p>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
