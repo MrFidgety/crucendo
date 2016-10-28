@@ -3,8 +3,8 @@ class Contact < MailForm::Base
   attribute :business_name
   attribute :phone
   attribute :email,     :validate => /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  attribute :message
-  attribute :type
+  attribute :message,   :validate => true
+  attribute :type,      :validate => true
   attribute :nickname,  :captcha  => true
 
   # Declare the e-mail headers. It accepts anything the mail method
