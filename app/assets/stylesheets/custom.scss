@@ -573,7 +573,6 @@ a.helper {
   transition: transform 0.6s ease;
 }
 #fixed-nav.nav-active {
-  //overflow-y: auto;
   -webkit-transform: translateX(300px) scale(1);
   -moz-transform: translateX(300px) scale(1);
   -ms-transform: translateX(300px) scale(1);
@@ -725,7 +724,9 @@ input[type=text], input[type=email] {
   //   font-size: 0.8em;
   // }
 }
-
+.btn-lg.scaled {
+  font-size: 1.5em;
+}
 .btn-orange {
   background-color: $pastel-orange;
   border: 1px solid $pastel-orange;
@@ -742,6 +743,13 @@ input[type=text], input[type=email] {
   &:hover, &:active, &:focus {
     color: white;
     background-color: $pastel-green-dark;
+  }
+}
+.btn-transparent {
+  color: white;
+  border: 1px solid white;
+  &:hover, &:focus {
+    color: white;
   }
 }
 .scaled-btn.improve-btn {

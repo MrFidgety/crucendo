@@ -27,8 +27,8 @@
           goals_path %></li>
     <li><%= link_to fa_icon('id-card-o', text: "Profile"), 
           profile_path %></li>
-    <li><%= link_to fa_icon('question-circle-o', text: "Help"), 
-          help_path %></li>
+    <li><%= link_to fa_icon('wrench', text: "Support"), 
+          contacts_path %></li>
     <li><%= link_to fa_icon('sign-out ', text: "Log Out"), 
           logout_path, method: "delete" %></li>
     <% if current_user.admin? %>

@@ -1,22 +1,38 @@
+<% if logged_in? %>
+<% provide(:title, "Support") %>
+<% provide(:navigation_heading, "Support") %>
+<% else %>
 <% provide(:title, "Contact") %>
 <header class="row title-logo">
   <%= link_to image_tag('crucendo_logo_web.svg', alt: 'Crucendo Logo'), root_url %>
 </header>
 <section class="tagline aqua">
-  <p>contact us</p>
+  <p>Contact us</p>
 </section>
+<% end %>
 <div class="row">
   <div class="col-sm-6">
-    <%= link_to new_contact_path, remote: true, class: "btn btn-block btn-lg btn-green" do %>
+    <%= link_to new_contact_path, remote: true, class: "btn btn-block btn-lg scaled btn-green" do %>
       <h3>General</h3>
       <p class="contact-text">Looking to provide feedback, ask for support, or have any other question?</p>
     <% end %>
   </div>
   <div class="col-sm-6">
-    <%= link_to new_contact_path(type: :business), remote: true, class: "btn btn-block btn-lg btn-green modal-trigger" do %>
+    <%= link_to new_contact_path(type: :business), remote: true, class: "btn btn-block btn-lg scaled btn-green modal-trigger" do %>
       <h3>Business</h3>
       <p class="contact-text">Would you like to use Crucendo in a business, school, or team environment?</p>
     <% end %>
   </div>
+  <div class="col-xs-12">
+    <%= link_to help_path, class: "btn btn-block btn-transparent btn-lg scaled" do %>
+      <h3>View the Crucendo Help Guide</h3>
+      <p class="contact-text">Want to learn more about Crucendo, how it works, and its features? Click Here</p>
+    <% end %>
+  </div>
+</div>
+<div class="policies aqua">
+  <%= link_to 'Privacy', privacy_url, target: '_blank' %> | 
+  <%= link_to 'Terms & Conditions', terms_url, target: '_blank' %> | 
+  <%= link_to 'Contact', contacts_path %>
 </div>
 <div id="contact-modal-container"></div>
