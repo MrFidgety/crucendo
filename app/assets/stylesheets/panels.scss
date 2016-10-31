@@ -73,6 +73,10 @@
 }
 .panel-group {
   margin-bottom: 10px;
+  .panel-heading {
+    // Fix IE/Edge border-bottom display issue
+    border-bottom: 1px solid transparent;
+  }
 }
 .goal-panel, .improvement-panel, .crucendo-panel, .interaction-panel {
   .panel-title {

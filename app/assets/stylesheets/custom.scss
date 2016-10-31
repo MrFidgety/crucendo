@@ -535,6 +535,7 @@ a.helper {
   text-decoration: inherit;
 }
 #site-content {
+  position: relative; // Fix IE opacity issue with non-static elements
   transition: all 0.6s ease;
   background: $pastel-blue;
   min-height: 100%;
@@ -569,7 +570,7 @@ a.helper {
   top: 60px;
   left: -300px;
   width: 300px;
-  z-index: 1;
+  z-index: 20;
   transition: transform 0.6s ease;
 }
 #fixed-nav.nav-active {
@@ -616,12 +617,16 @@ a.helper {
       vertical-align: inherit;
     }
   }
+  &:hover, &:focus {
+    text-decoration: none;
+    transform: translateX(20px);
+    -ms-transform: translateX(20px); /* IE 9 */
+    -moz-transform: translateX(20px); /* Firefox */
+    -webkit-transform: translateX(20px); /* Safari and Chrome */
+    -o-transform: translateX(20px); /* Opera */
+  }
 }
-#fixed-nav ul li a:hover {
-  text-decoration: none;
-  transform: translateX(20px);
-  
-}
+
 /* interactions have */
 .section-split-text {
   margin: 5px;

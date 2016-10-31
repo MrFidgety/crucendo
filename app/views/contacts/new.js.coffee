@@ -6,7 +6,7 @@ $("#contact-modal-container").html(
 $("#contact-modal-container").html(
   "<%= j render partial: 'contacts/general_contact' %>")
 <% end %>
-  
+
 # Show the contact modal
 $('#contact-modal').modal('show')
 

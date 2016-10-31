@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :change_user_email,   only: :edit
   resources :interactions,        only: [:index, :show, :update]
   resources :subscriptions,       :path => 'tracks', only: [:index, :update]
+  resources :posts, :path => 'blog', only: [:index, :show]
   
   resources :improvements, :path => 'haves'
   
@@ -46,6 +47,7 @@ Rails.application.routes.draw do
     resources :authors
     resources :users
     resources :skills
+    resources :posts,        only: [:new, :create, :edit, :update]
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

@@ -91,3 +91,4 @@ $(document).on "page:change page:restore", ->
   # Fade out flash container when clicked
   $('#flash-container').click ->
     $(this).stop().fadeOut()
+    

@@ -18,7 +18,7 @@
   <h2 class="line-span green"><span>Answers</span></h2>
 <% end %>
 <section id="answers" class="panel-group">
-  <%= render @crucendo.answers %>
+  <%= render @crucendo.answers.order(:id) %>
 </section>
 <% unless @crucendo.improvements.blank? %>
   <h2 class="line-span green"><span>Haves</span></h2>
