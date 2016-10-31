@@ -7,6 +7,7 @@ $("#contact-modal-container").html(
   "<%= j render partial: 'contacts/general_contact' %>")
 <% end %>
 
+# Fix IE submit issue  
 $(document).ie_fix()
 
 # Show the contact modal

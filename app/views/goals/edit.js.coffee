@@ -2,7 +2,10 @@
 $("#edit_goal_modal").html(
   "<%= j render partial: 'goals/interactions/edit_want_modal', 
   object: @goal, as: :goal %>")
-  
+
+# Fix IE submit issue  
+$(document).ie_fix()
+
 # Show the edit modal
 $('#edit_goal_modal').modal('show')
 
