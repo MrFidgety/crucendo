@@ -1,5 +1,5 @@
-# Fix form attribute not working in IE and Edge
-ie_fix = () ->
+ # Fix form attribute not working in IE and Edge
+$.fn.ie_fix = () ->
   # Detect if browser supports this
   sampleElement = $('[form]').get(0)
   isIE11 = !window.ActiveXObject and 'ActiveXObject' of window
@@ -56,10 +56,9 @@ ie_fix = () ->
     return
   return
 
-
-$(document).on "page:change page:restore show.bs.modal", ->
+$(document).on "page:change page:restore", ->
   
-  ie_fix()
+  $(document).ie_fix()
   
   # Fix for modal input on iOS devices
   if( navigator.userAgent.match(/iPhone|iPad|iPod/i) )

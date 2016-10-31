@@ -7,6 +7,8 @@ $("#contact-modal-container").html(
   "<%= j render partial: 'contacts/general_contact' %>")
 <% end %>
 
+$(document).ie_fix()
+
 # Show the contact modal
 $('#contact-modal').modal('show')
 
