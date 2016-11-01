@@ -1,11 +1,30 @@
 <% provide(:title, "Admin - Users") %>
-<h1>Users</h1>
+<% provide(:navigation_heading, "Admin - Users") %>
+<% content_for :navigation_right do %>
+  <div id="search-users" 
+    class="custom-icon icon-group <%= 'icon-active' if params.has_key?(:search) %>" 
+    data-toggle="modal" data-target="#search-users-modal">
+    <%= material_icon.search %>
+  </div>
+<% end %>
+<% if params.has_key?(:search) %>
+<div class="search-params">
+  <p>
+    You are viewing filtered results.<br>
+   <%= link_to admin_users_path do %>
+     <%= material_icon.autorenew %>
+     Reset Search
+    <% end %>
+  </p>
+</div>
+<% end %>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Information</h3>
   </div>
   <div class="panel-body">
-    <%= pluralize(User.all.size, 'User') %>
+    <%= pluralize(@users.total_entries, 'User') %>
+    found.
   </div>
 </div>
 <div class="panel panel-default">
@@ -13,18 +32,12 @@
     <h3 class="panel-title">Actions</h3>
   </div>
   <div class="panel-body">
-      <%= link_to fa_icon("download", text: "Download Users CSV"), 
-        admin_users_path(format: :csv), class: "btn btn-default" %>
+      <%= link_to fa_icon("download", text: "Download These Users in CSV format"), 
+        admin_users_path({format: :csv}.merge(request.query_parameters)), class: "btn btn-default" %>
   </div>
 </div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Users List</h3>
-  </div>
-  <div class="panel-body">
-    <div class="list-group">
-      <%= render @users %>
-    </div>
-    <%= will_paginate @users %>
-  </div>
+<div id="users-container" class="list-group">
+  <%= render @users %>
 </div>
+<%= will_paginate @users %>
+<%= render 'search' %>

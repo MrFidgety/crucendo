@@ -1,4 +1,6 @@
 <%= link_to '#', class: "list-group-item" do %>
-  <span class="badge">Created <%= user.created_at %></span>
-  <span class="title"><%= user.email %> (<%= user.interactions.completed.size %> Completed Crucendos)</span>
+  <%= user.activated ? fa_icon("circle", class: "crucial-active") : fa_icon("circle", class: "crucial-inactive") %>
+  <span class="pull-right">
+    Signup <%= local_relative_time(user.created_at, type: 'time-or-date') %></span>
+  <span class="title"><%= user.email %> - <%= user.interactions.completed.size %> Crucendos</span>
 <% end %>

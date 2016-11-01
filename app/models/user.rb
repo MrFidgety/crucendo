@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include Filterable
   
   attr_accessor :remember_token, 
                 :activation_token, 
@@ -17,6 +18,9 @@ class User < ActiveRecord::Base
   after_create  :default_subscriptions
   
   scope :created_recent,       -> { order(created_at: :desc) }
+  scope :activated,   -> (value) { where(activated: value) }
+  scope :min_date,    -> (date) { where("created_at >= ?", date.beginning_of_day) }
+  scope :max_date,    -> (date) { where("created_at <= ?", date.end_of_day) }
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   
