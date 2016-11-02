@@ -1,2 +1,22 @@
 <% provide(:title, "Admin Posts") %>
 <% provide(:navigation_heading, "Admin Posts") %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Information</h3>
+  </div>
+  <div class="panel-body">
+    <%#= pluralize(@posts.total_entries, 'Post') %>
+    found.
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Actions</h3>
+  </div>
+  <div class="panel-body">
+  </div>
+</div>
+<div id="posts-container" class="list-group">
+  <%#= render @posts %>
+</div>
+<%#= will_paginate @posts %>
