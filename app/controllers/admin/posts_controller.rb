@@ -6,6 +6,7 @@ class Admin::PostsController < AdminController
   
   # Write new blog post
   def new
+    #@post = Post.new
   end
   
   # Save new blog post
