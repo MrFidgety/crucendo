@@ -74,20 +74,20 @@ class Admin::QuestionsController < AdminController
         when 'index'
           add_breadcrumb "questions"
         when 'show'
-          add_breadcrumb "topics", :admin_topics_path
+          add_breadcrumb "tracks", :admin_topics_path
           add_breadcrumb @question.topic.name, admin_topic_path(@question.topic)
-          add_breadcrumb "Q#{@question.id}"
+          add_breadcrumb "q#{@question.id}"
         when 'edit', 'update'
-          add_breadcrumb "topics", :admin_topics_path
+          add_breadcrumb "tracks", :admin_topics_path
           add_breadcrumb @question.topic.name, admin_topic_path(@question.topic)
-          add_breadcrumb "Q#{@question.id}", admin_question_path(@question)
+          add_breadcrumb "q#{@question.id}", admin_question_path(@question)
           add_breadcrumb "edit"
         when 'new'
           if @topic.blank?
             add_breadcrumb "questions", :admin_questions_path
             add_breadcrumb "new"
           else
-            add_breadcrumb "topics", :admin_topics_path
+            add_breadcrumb "tracks", :admin_topics_path
             add_breadcrumb @topic.name, admin_topic_path(@topic)
             add_breadcrumb "new"
           end

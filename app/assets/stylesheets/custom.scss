@@ -1365,3 +1365,24 @@ span.interaction-helper {
     }
   }
 }
+.btn-danger {
+  color: white !important;
+  background-color: $pastel-red;
+  border-color: $pastel-red;
+  &:hover {
+    background-color: darken($pastel-red, 10%);
+    border-color: darken($pastel-red, 10%);
+  }
+}
+.btn-success {
+  color: white !important;
+  background-color: $pastel-green;
+  border-color: $pastel-green;
+  &:hover {
+    background-color: darken($pastel-green, 10%);
+    border-color: darken($pastel-green, 10%);
+  }
+}
+.text-white {
+  color: white;
+}

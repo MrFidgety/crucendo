@@ -1,11 +1,11 @@
-<% provide(:title, "Admin - Topics") %>
-<h1>Topics</h1>
+<% provide(:title, "Admin Tracks") %>
+<% provide(:navigation_heading, "Admin Tracks") %>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Information</h3>
   </div>
   <div class="panel-body">
-    <%= @topics.size %> Topics (<%= @topics.active.size %> Active)
+    <%= @topics.size %> Tracks (<%= @topics.active.size %> Active)
   </div>
 </div>
 <div class="panel panel-default">
@@ -13,13 +13,13 @@
     <h3 class="panel-title">Actions</h3>
   </div>
   <div class="panel-body">
-    <%= link_to fa_icon("plus", text: "New Topic"), new_admin_topic_path,
+    <%= link_to fa_icon("plus", text: "New Track"), new_admin_topic_path,
                             class: "btn btn-default" %>
   </div>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Topics List</h3>
+    <h3 class="panel-title">Tracks List</h3>
   </div>
   <div class="panel-body">
     <div class="list-group">

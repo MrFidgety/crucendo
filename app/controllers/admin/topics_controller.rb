@@ -67,17 +67,17 @@ class Admin::TopicsController < AdminController
       add_breadcrumb "admin", :admin_path
       case action_name
         when 'index'
-          add_breadcrumb "topics"
+          add_breadcrumb "tracks"
         when 'show'
-          add_breadcrumb "topics", :admin_topics_path
+          add_breadcrumb "tracks", :admin_topics_path
           add_breadcrumb @topic.name
         when 'edit', 'update'
-          add_breadcrumb "topics", :admin_topics_path
+          add_breadcrumb "tracks", :admin_topics_path
           add_breadcrumb @topic.name, admin_topic_path(@topic)
           add_breadcrumb "edit"
         when 'new'
           if @author.blank?
-            add_breadcrumb "topics", :admin_topics_path
+            add_breadcrumb "tracks", :admin_topics_path
             add_breadcrumb "new"
           else
             add_breadcrumb "authors", :admin_authors_path

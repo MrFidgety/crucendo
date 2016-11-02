@@ -1,5 +1,5 @@
-<% provide(:title, "Admin - Topics - #{@topic.name.camelize}") %>
-<h1><%= @topic.name.camelize %></h1>
+<% provide(:title, "Admin Tracks Show") %>
+<% provide(:navigation_heading, @topic.name.camelize) %>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Information</h3>
@@ -12,7 +12,7 @@
             fa_icon("circle", class: "crucial-active", text: "Active")
           else
             fa_icon("circle", class: "crucial-inactive", text: "Inactive") 
-          end %> Topic with
+          end %> Track with
           <%= @topic.questions.active.size %> Active Questions
         </p>
         <% unless @topic.author.blank? %>
@@ -37,7 +37,7 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-sm-4 col-md-3">
-        <%= link_to fa_icon("pencil-square-o", text: "Edit Topic"), 
+        <%= link_to fa_icon("pencil-square-o", text: "Edit Track"), 
               edit_admin_topic_path(@topic), 
               class: "btn btn-default btn-block" %>
       </div>
@@ -57,7 +57,7 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Topic Questions</h3>
+    <h3 class="panel-title">Track Questions</h3>
   </div>
   <div class="panel-body">
     <div class="list-group">

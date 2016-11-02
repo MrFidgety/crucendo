@@ -41,13 +41,13 @@ Rails.application.routes.draw do
     resources :questions do
       post :import, on: :collection
     end
-    resources :topics do
+    resources :topics, :path => 'tracks' do
       post :activate_questions, on: :member
     end
     resources :authors
     resources :users
     resources :skills
-    resources :posts,        only: [:new, :create, :edit, :update]
+    resources :posts
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

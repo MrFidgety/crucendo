@@ -1,5 +1,6 @@
-<% provide(:title, "Admin - Questions - #{@question.content.camelize}") %>
-<h1><%= @question.content.camelize %></h1>
+<% provide(:title, "Admin Questions Show") %>
+<% provide(:navigation_heading, "Admin Questions Show") %>
+<h1 class="text-white"><%= @question.content.camelize %></h1>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Information</h3>
@@ -9,8 +10,8 @@
       fa_icon("circle", class: "crucial-active", text: "Active")
     else
       fa_icon("circle", class: "crucial-inactive", text: "Inactive") 
-    end %> Question from the topic 
-    <%= @question.topic.name.camelize %>
+    end %> Question from the Track 
+    <strong><%= @question.topic.name.camelize %></strong>
   </div>
 </div>
 <div class="panel panel-default">
