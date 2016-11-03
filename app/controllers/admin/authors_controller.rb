@@ -3,7 +3,7 @@ class Admin::AuthorsController < AdminController
   before_action :insert_breadcrumbs
   
   def index
-    @authors = Author.all.paginate(page: params[:page])
+    @authors = Author.all
   end
   
   def new

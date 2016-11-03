@@ -1,18 +1,11 @@
 $(document).on "page:change", -> 
   
-  # Follow link click when crucendo progress 'circle' is clicked
-  # $('ul.progressbar > li').on 'click', (e) ->
-  #   console.log(e.target)
-  #   if !$(e.target).is('a')
-  #     link = $(this).find('a:first')
-  #     link.click()
-  #     console.log('triggered click')
-  #   href = $(this).find('a:first').attr('href')
-  #   if href.length
-  #     window.location.href = href
-      
-  # $('ul.progressbar > li > a').on 'click', (e) ->
-  #   e.preventDefault()
+  # Trigger event when user leaves current crucendo
+  $(document).on 'click', '.leave-crucendo-event', () ->
+    ga('send', 'event', 'Crucendo', 'Leave')
+    
+  $('#save-leave').click ->
+    ga('send', 'event', 'Crucendo', 'Save and Leave')
   
   #---------------- QUESTIONS ---------------#
   
@@ -35,6 +28,8 @@ $(document).on "page:change", ->
     $('#leave-crucendo').attr('data-target','#leave-crucendo-modal')
     $('#leave-crucendo').attr('data-toggle','modal')
     $("#leave-crucendo").removeAttr("href").css("cursor","pointer")
+    # Prevent it from trigger leave crucendo event
+    $("#leave-crucendo").removeClass("leave-crucendo-event")
     
     # Submit answer on any anchor  
     $('a:not(.home)').on 'click', (e) ->

@@ -92,3 +92,6 @@ $(document).on "page:change page:restore", ->
   $('#flash-container').click ->
     $(this).stop().fadeOut()
     
+  $('#start-crucendo-button').click ->
+    ga('send', 'event', 'Crucendo', $(this).data('type'))
+    

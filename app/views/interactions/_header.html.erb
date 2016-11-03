@@ -22,7 +22,7 @@ end
 <% 
 unless step == :begin || step == :crucendo
   content_for :navigation_heading do
-    link_to root_url, class: "home", id: "leave-crucendo" do
+    link_to root_url, class: "home leave-crucendo-event", id: "leave-crucendo" do
       image_tag("crucendo_logo_web.svg")
     end
   end

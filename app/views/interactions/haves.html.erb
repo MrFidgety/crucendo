@@ -10,6 +10,7 @@
       class: "custom-icon material-lg with-loader icon-pulse" %>
   </div>
 <% end %>
+<script>ga('send', 'event', 'Crucendo', 'Haves');</script>
 <%= render 'interactions/header' %>
 <p class="interaction-title">
   What have you improved recently?
@@ -25,19 +26,6 @@
     </button>
   </span>
 </div>
-<!--<p class="section-split-text">or</p>-->
-<!--<button id="select-goals-button" -->
-<!--  class="btn btn-block btn-default btn-lg text-button" -->
-<!--  data-toggle="modal" data-target="#select-goals-modal">-->
-<!--   <span class="button-title">-->
-<!--     Select from your active <strong>wants</strong>-->
-<!--    </span><br> -->
-<!--   <div class="button-helper">-->
-<!--     <span class="button-result"><%#= @goals.size %> found in total</span>-->
-<!--     <span class="button-search-terms"></span>-->
-<!--   </div>-->
-<!--</button>-->
-<!--<br>-->
 <section id="goals-section">
   <div id="improved-goals" class="panel-group"></div>
   <div id="all-goals" class="panel-group">

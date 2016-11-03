@@ -1,0 +1,54 @@
+<%= form_for [:admin, @post], html: { multipart: true } do |f| %>
+  <%= f.label :author_id, "Author" %>
+    <%= f.collection_select(:author_id, Author.all, :id, :name, 
+                            { include_blank: 'select an author' } , 
+                            { class: 'form-control',
+                              placeholder: 'select an author'}) %>
+  <%= f.label :image %>
+  <div class="input-group">
+    <label class="input-group-btn">
+      <span class="btn btn-default">
+        <%= fa_icon 'file-image-o' %> Browse ...<%= f.file_field :image, 
+                      accept: 'image/jpeg,image/gif,image/png',
+                      class: "hidden_file" %>
+      </span>
+    </label>
+    <input id="post-image-display" type="text" class="form-control" readonly>
+  </div><br>
+  <%= f.label :title %>
+  <%= f.text_field :title, class: 'form-control' %>
+  <%= f.label :summary %>
+  <%= f.text_area :summary, class: 'form-control' %>
+  <%= f.label :content %>
+  <%= f.text_area :content, rows: 8, class: 'form-control' %>
+  <%= f.label :active %>
+  <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+    <label class="btn btn-default">
+      <%= f.radio_button :active, false %>No
+		</label>
+		<label class="btn btn-default">
+			<%= f.radio_button :active, true %>Yes
+		</label>
+  </div>
+  <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group" role="group">
+      <%= link_to "Delete", admin_post_path(@post), 
+            method: :delete,
+            title: "Are you sure?", 
+            data: {confirm: 'This post will be deleted permanently.'},
+            class: "btn btn-danger" unless @post.id.blank? %>
+    </div>
+    <div class="btn-group" role="group">
+      <%= f.submit yield(:button_text), class: "btn btn-success" %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $('#post_image').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>

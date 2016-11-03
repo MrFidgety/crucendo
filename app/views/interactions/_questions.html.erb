@@ -22,13 +22,15 @@
           data-dismiss="modal" aria-hidden="true">
           <%= material_icon.clear %>
         </button>
-        <%= link_to material_icon.done, root_url, class: "btn modal-button-right custom-icon home" %>
+        <%= link_to material_icon.done, root_url, class: "btn modal-button-right custom-icon home leave-crucendo-event" %>
         <h4 class="modal-title">Are you sure?</h4>
       </div>
       <div class="modal-body text-center">
         <p>It looks like you've provided an answer to this question. 
         If you leave this Crucendo the answer won't be saved.</p><br>
-        <%= link_to fa_icon('floppy-o', text: 'Save and exit'), root_path, class: 'btn btn-default btn-lg' %>
+        <%= link_to fa_icon('floppy-o', text: 'Save and exit'), root_path, 
+        id: 'save-leave',
+        class: 'btn btn-default btn-lg' %>
       </div>
     </div>
   </div>
