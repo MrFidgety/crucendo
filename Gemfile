@@ -32,6 +32,8 @@ gem 'bootstrap-datepicker-rails', '1.6.4.1'
 gem 'material_icons'
 gem 'mail_form'
 gem 'simple_form'
+gem 'ckeditor'
+gem 'friendly_id',                '~> 5.1.0'
 
 group :development, :test do
   gem 'byebug',                   '3.4.0'

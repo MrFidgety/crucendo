@@ -1,5 +1,5 @@
 <%= link_to admin_topic_path(topic), class: "list-group-item" do %>
-  <span class="badge"><%= pluralize(topic.questions.active.size, "active question") %></span>
+  <span class="pull-right"><%= pluralize(topic.questions.active.size, "active question") %></span>
   <%= topic.active ? fa_icon("circle", class: "crucial-active") : fa_icon("circle", class: "crucial-inactive") %>
   <span class="title"><%= topic.name.camelize %></span>
   <% if topic.default_subscription? %>

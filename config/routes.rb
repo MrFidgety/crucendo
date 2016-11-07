@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  mount Ckeditor::Engine => '/ckeditor'
   root                        'users#show'
   post    '/'             =>  'users#create'
   post    'changemyemail' =>  'users#new_email'

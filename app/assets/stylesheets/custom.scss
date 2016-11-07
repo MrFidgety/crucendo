@@ -667,9 +667,15 @@ hr {
   margin: inherit;
   white-space: inherit;
 }
-.author-logo {
+.panel-thumb-image {
   display: inline-block;
-  max-height: 30px;
+  max-height: 2em;
+}
+.fa + .panel-thumb-image {
+  margin-left: 10px;
+}
+.pull-right.thumb-height {
+  line-height: 2em;
 }
 
 .improvements-large {
@@ -1378,7 +1384,7 @@ span.interaction-helper {
   color: white !important;
   background-color: $pastel-green;
   border-color: $pastel-green;
-  &:hover {
+  &:hover, &:focus, &:active {
     background-color: darken($pastel-green, 10%);
     border-color: darken($pastel-green, 10%);
   }

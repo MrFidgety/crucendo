@@ -113,7 +113,9 @@ button.btn-fixed {
   }
 }
 // Crucendo modal, Contact modal
-.modal-content.start-crucendo, .modal-content.contact-modal {
+.modal-content.start-crucendo, 
+.modal-content.contact-modal, 
+.modal-content.search-posts {
   .modal-header {
     color: white;
     background: $pastel-green;

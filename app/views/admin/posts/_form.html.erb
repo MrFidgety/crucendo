@@ -1,9 +1,31 @@
 <%= form_for [:admin, @post], html: { multipart: true } do |f| %>
   <%= f.label :author_id, "Author" %>
-    <%= f.collection_select(:author_id, Author.all, :id, :name, 
-                            { include_blank: 'select an author' } , 
-                            { class: 'form-control',
-                              placeholder: 'select an author'}) %>
+  <%= f.collection_select(:author_id, Author.all, :id, :name, 
+                          { include_blank: 'select an author' } , 
+                          { class: 'form-control',
+                            placeholder: 'select an author'}) %>
+  <%= f.label :published_date, 'Date Published' %>
+  <div class="input-group date">
+    <span class="input-group-btn">
+      <%= button_tag fa_icon('calendar'), type: 'button', 
+        class: "btn btn-default calendar-helper" %>
+    </span>
+    <%= f.date_field :published_date, class: 'form-control' %>
+  </div>
+  <%= hidden_field_tag 'post[published_date_utc]', @post.published_date %>
+  <%= f.label :topic_ids, 'Linked Tracks' %>
+  <%= f.select :topic_ids, Topic.all.collect {|x| [x.name, x.id]}, {}, :multiple => true, class: 'form-control' %>
+  <%= f.label :active %>
+  <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+    <label class="btn btn-default">
+      <%= f.radio_button :active, false %>No
+		</label>
+		<label class="btn btn-default">
+			<%= f.radio_button :active, true %>Yes
+		</label>
+  </div>
+  <%= image_tag @post.image.url, class: "img-responsive" if @post.image %>
+  <br>
   <%= f.label :image %>
   <div class="input-group">
     <label class="input-group-btn">
@@ -14,22 +36,16 @@
       </span>
     </label>
     <input id="post-image-display" type="text" class="form-control" readonly>
+    <%= f.hidden_field :image_cache %>
   </div><br>
   <%= f.label :title %>
   <%= f.text_field :title, class: 'form-control' %>
   <%= f.label :summary %>
   <%= f.text_area :summary, class: 'form-control' %>
   <%= f.label :content %>
-  <%= f.text_area :content, rows: 8, class: 'form-control' %>
-  <%= f.label :active %>
-  <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
-    <label class="btn btn-default">
-      <%= f.radio_button :active, false %>No
-		</label>
-		<label class="btn btn-default">
-			<%= f.radio_button :active, true %>Yes
-		</label>
-  </div>
+  <%= f.cktext_area :content, class: 'form-control', 
+      rows: 8, ckeditor: { toolbar: 'mini' } %>
+  <br>
   <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group" role="group">
       <%= link_to "Delete", admin_post_path(@post), 
@@ -51,4 +67,9 @@
       alert('Maximum file size is 5MB. Please choose a smaller file.');
     }
   });
+  
+  <% if @post.published_date.present? %>
+    var date = moment.utc('<%= @post.published_date %>');
+    $('#post_published_date').val(date.local().format('YYYY-MM-DD'));
+  <% end %>
 </script>

@@ -1,9 +1,20 @@
 # encoding: utf-8
 
 class PictureUploader < CarrierWave::Uploader::Base
-
   include CarrierWave::MiniMagick
-  process resize_to_limit: [400, 400]
+  
+  # Fit within dimensions while retaining aspect ratio
+  process resize_to_fit: [1920, 1080]
+  
+  # Create small version for all uploads
+  version :small do
+    process resize_to_fit: [1024,768]
+  end
+  
+  # Create thumb version for all uploads
+  version :thumb, from_version: :small do
+    process resize_to_fit: [320,180]
+  end
 
   # Choose what kind of storage to use for this uploader:
   if Rails.env.production? || Rails.env.staging?
@@ -17,26 +28,6 @@ class PictureUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
-
-  # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url
-  #   # For Rails 3.1+ asset pipeline compatibility:
-  #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-  #
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
-
-  # Process files as they are uploaded:
-  # process :scale => [200, 300]
-  #
-  # def scale(width, height)
-  #   # do something
-  # end
-
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :resize_to_fit => [50, 50]
-  # end
 
   # Add a white list of extensions which are allowed to be uploaded.
   def extension_white_list

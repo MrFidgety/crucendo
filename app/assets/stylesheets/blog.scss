@@ -1,0 +1,46 @@
+.post-panel {
+  border: 2px solid white;
+  .panel-heading {
+    background: #eee no-repeat center center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 10em;
+  }
+  h1.post-title {
+    line-height: 1.4;
+    font-weight: 300;
+    margin: 0 0 0.2em;
+    text-align: left;
+    span {
+      background-color: $pastel-blue-transparent;
+      color: #fff; 
+      display: inline;
+      padding: 0 1rem;
+      
+      /* Needs prefixing */
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+  }
+  .post-date {
+    background: rgba(0,0,0,0.5);
+    padding: 0.2em 0.5em;
+    color: white;
+    font-size: 1.2em;
+  }
+  .post-summary {
+    color: $dark-gray;
+    font-size: 1.2em;
+  }
+}
+.post-tracks {
+  line-height: 2em;
+  .blog-track-small {
+    margin-right: 2px;
+    padding: 0.2em 0.5em;
+    background: $pastel-orange;
+    color: white;
+  }
+}

@@ -17,13 +17,6 @@
                             class: "btn btn-default" %>
   </div>
 </div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Tracks List</h3>
-  </div>
-  <div class="panel-body">
-    <div class="list-group">
-      <%= render @topics %>
-    </div>
-  </div>
+<div id="tracks-container" class="list-group">
+  <%= render @topics %>
 </div>

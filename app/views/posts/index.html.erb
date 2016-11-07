@@ -1,0 +1,32 @@
+<% provide(:title, "Blog") %>
+<% provide(:navigation_heading, "Blog") %>
+<% content_for :navigation_right do %>
+  <div id="search-posts" 
+    class="custom-icon icon-group <%= 'icon-active' if params.has_key?(:search) %>" 
+    data-toggle="modal" data-target="#search-posts-modal">
+    <%= material_icon.search %>
+  </div>
+<% end %>
+<div class="row">
+  <div class="col-sm-8">
+    <div id="posts-container" class="panel-group">
+      <% if params.has_key?(:search) %>
+      <div class="search-params">
+        <p>
+          You are viewing filtered results.<br>
+         <%= link_to posts_path do %>
+           <%= material_icon.autorenew %>
+           Reset Search
+          <% end %>
+        </p>
+      </div>
+      <% end %>
+      <%= render @posts %>
+      <%= will_paginate @goals %>
+    </div>
+  </div>
+  <div class="col-sm-4">
+      <%= %>
+  </div>
+</div>
+<%= render 'search' %>

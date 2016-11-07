@@ -1,0 +1,8 @@
+<%= link_to admin_post_path(post), class: "list-group-item" do %>
+  <span class="pull-right thumb-height">
+    Published <%= local_relative_time(post.published_date, type: 'weekday-or-date') %>
+  </span>
+  <%= post.active ? fa_icon("circle", class: "crucial-active") : fa_icon("circle", class: "crucial-inactive") %>
+  <%= image_tag post.image.url, class: "panel-thumb-image" if post.image? %>
+  <span class="title"><%= post.title %></span>
+<% end %>

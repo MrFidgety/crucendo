@@ -1,0 +1,14 @@
+<div class="panel post-panel selectable">
+  <%= link_to post_path(post) do %>
+  <div class="panel-heading" style="background-image: url(<%= post.image.url %>)">
+    <span class="pull-right post-date">
+      <%= local_relative_time(post.published_date, type: 'weekday-or-date') %>
+    </span>
+  </div>
+  <div class="panel-body">
+    <h1 class="post-title"><span><%= post.title %></span></h1>
+    <p class="post-tracks"><%= render post.topics %></p>
+    <p class="post-summary"><%= post.summary %></p>
+  </div>
+  <% end %>
+</div>

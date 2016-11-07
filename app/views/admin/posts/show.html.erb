@@ -1,0 +1,38 @@
+<% provide(:title, "Admin Posts Show") %>
+<% provide(:navigation_heading, @post.title) %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Information</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+    <%= if @post.active
+      fa_icon("circle", class: "crucial-active", text: "Active")
+    else
+      fa_icon("circle", class: "crucial-inactive", text: "Inactive") 
+    end %>
+      Post with Published Date 
+      <%= local_relative_time(@post.published_date, type: 'weekday-or-date') %> 
+      from Author:
+    </p>
+    <%= render @post.author %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Actions</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-4 col-md-3">
+        <%= link_to fa_icon("pencil-square-o", text: "Edit Post"), 
+              edit_admin_post_path(@post), 
+              class: "btn btn-default btn-block" %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= image_tag @post.image.url, class: "img-responsive" %>
+<h1 class="post-title"><%= @post.title %></h1>
+<p class="post-summary"><%= @post.summary %></p>
+<div class="post-content"><%= @post.content.html_safe %></div>

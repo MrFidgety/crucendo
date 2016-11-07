@@ -1,6 +1,7 @@
 <%= link_to '#', class: "list-group-item" do %>
   <%= user.activated ? fa_icon("circle", class: "crucial-active") : fa_icon("circle", class: "crucial-inactive") %>
   <span class="pull-right">
-    Signup <%= local_relative_time(user.created_at, type: 'time-or-date') %></span>
+    Signup <%= local_relative_time(user.created_at, type: 'time-or-date') %>
+  </span>
   <span class="title"><%= user.email %> - <%= user.interactions.completed.size %> Crucendos</span>
 <% end %>
