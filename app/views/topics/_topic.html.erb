@@ -1,3 +1,6 @@
+<% search_link ||= false %>
 <span class="blog-track-small">
-  <%= topic.name %>
+  <%= link_to_if(search_link, posts_path(search: true, posts_with_track: topic.id)) do %>
+    <%= topic.name %>
+  <% end %>
 </span>

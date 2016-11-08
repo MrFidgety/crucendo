@@ -8,11 +8,13 @@
           class: 'icon-group c-hamburger c-hamburger--htx toggle-panel' do %>
         <span></span>
       <% end %>
+      <% if logged_in? %>
       <div class="custom-icon icon-group">
         <%= link_to root_url do %>
           <%= image_tag("crucendo_c_web.svg") %>
         <% end %>
       </div>
+      <% end %>
     </div>
     <% end %>
     <% if content_for? :navigation_right %>

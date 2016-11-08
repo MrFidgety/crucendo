@@ -30,6 +30,10 @@
     color: white;
     font-size: 1.2em;
   }
+  .post-author {
+    font-weight: 600;
+    font-size: 1.2em;
+  }
   .post-summary {
     color: $dark-gray;
     font-size: 1.2em;
@@ -42,5 +46,20 @@
     padding: 0.2em 0.5em;
     background: $pastel-orange;
     color: white;
+    a {
+      color: white;
+    }
+  }
+}
+#blog-side-container {
+  h2 {
+    text-align: left;
+    margin: 0 0 1em;
+  }
+  .post-authors{
+    .title {
+      line-height: 2em;
+      margin: 0;
+    }
   }
 }

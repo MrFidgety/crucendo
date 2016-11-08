@@ -8,6 +8,10 @@ class Author < ActiveRecord::Base
                     
   mount_uploader :logo, PictureUploader
   
+  # returns authors that have at least one blog post
+  #scope :has_posts, -> { joins(:posts).uniq }
+  scope :has_posts, -> { select("authors.*, MAX(posts.published_date) AS recent_post").joins(:posts).group("authors.id").order("recent_post DESC") }
+  
   private
     # Validates the size of an uploaded picture.
     def logo_size

@@ -4,6 +4,9 @@
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  label {
+    color: $dark-gray;
+  }
 }
 .modal-header {
   -webkit-border-top-left-radius: 3px;

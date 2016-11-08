@@ -21,6 +21,7 @@
         <%= form_tag("/blog", {id: "search-posts-form", class: "search-form", 
           enforce_utf8: false, method: "get"} ) do %>
           <%= hidden_field_tag 'search', 'true' %>
+          <%= label_tag :published_date, 'Published Date' %>
           <div class="row">
             <div class="col-sm-6">
               <div class="input-group date">
@@ -32,7 +33,8 @@
                     <span>From</span>
                   <% end %>
                 </span>
-                <%= date_field_tag :min_date, min_date, class: 'form-control input-lg' %>
+                <%= date_field_tag :min_date, 
+                  min_date, class: 'form-control input-lg' %>
               </div>
             </div>
             <div class="col-sm-6">
@@ -45,10 +47,23 @@
                     <span>To</span>
                   <% end %>
                 </span>
-                <%= date_field_tag :max_date, max_date, class: 'form-control input-lg' %>
+                <%= date_field_tag :max_date, 
+                  max_date, class: 'form-control input-lg' %>
               </div>
             </div>
           </div>
+          <%= label_tag :posts_with_track, 'Linked Tracks' %>
+          <%= select_tag :posts_with_track, 
+            options_from_collection_for_select(
+                Topic.active, "id", "name", params[:posts_with_track]), 
+            prompt: "Find blog posts about these tracks", 
+            class: 'form-control input-lg' %>
+          <%= label_tag :posts_with_track, 'By Author' %>
+          <%= select_tag :posts_from_author, 
+            options_from_collection_for_select(
+                Author.all, "id", "name", params[:posts_from_author]), 
+            prompt: "Find blog posts from this Author", 
+            class: 'form-control input-lg' %>
         <% end %>
       </div>
     </div>

@@ -3,12 +3,7 @@
 <% provide(:navigation_heading, "Support") %>
 <% else %>
 <% provide(:title, "Contact") %>
-<header class="row title-logo">
-  <%= link_to image_tag('crucendo_logo_web.svg', alt: 'Crucendo Logo'), root_url %>
-</header>
-<section class="tagline aqua">
-  <p>Contact us</p>
-</section>
+<% provide(:navigation_heading, "Contact") %>
 <% end %>
 <div class="row">
   <div class="col-sm-6">

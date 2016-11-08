@@ -10,6 +10,8 @@ class Post < ActiveRecord::Base
   scope :most_recent, -> { order(published_date: :desc) }
   scope :min_date,  -> (date) { where("published_date >= ?", date.beginning_of_day) }
   scope :max_date,  -> (date) { where("published_date <= ?", date.end_of_day) }
+  scope :posts_with_track, -> (track_id) { joins(:topics).where(topics: { id: track_id}) }
+  scope :posts_from_author, -> (author_id) { where(author_id: author_id) }
   
   friendly_id :url_builder, use: [:slugged, :finders, :history]
   

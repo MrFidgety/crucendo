@@ -1,13 +1,5 @@
 <% provide(:title, "Help") %>
 <% provide(:navigation_heading, "Help") %>
-<% if !logged_in? %>
-<header class="row title-logo">
-  <%= link_to image_tag('crucendo_logo_web.svg', alt: 'Crucendo Logo'), root_url %>
-</header>
-<section class="tagline aqua">
-  <p>Help</p>
-</section>
-<% end %>
 <ul id="help-contents">
   <li><a href="#why-am-i-here">Why am I here?</a></li>
   <li><a href="#why-use-crucendo">Why should I use Crucendo?</a></li>

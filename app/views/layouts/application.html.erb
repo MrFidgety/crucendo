@@ -26,11 +26,9 @@
     <%= render 'layouts/web_font_loader' %>
   </head>
 <body>
-  <% if logged_in? %>
-    <%= render 'layouts/header' %>
-  <% end %>
+  <%= render 'layouts/header' %>
   <div id="flash-container"><%= render_flash %></div>
-  <div id="site-content" class="<%= yield(:page_class) %> <%= 'padded-top' if logged_in? %>">
+  <div id="site-content" class="<%= yield(:page_class) %> padded-top">
     <div id="primary-container" class="container">
       <% if !@breadcrumbs.blank? %>
         <ol class="breadcrumb">
@@ -42,6 +40,8 @@
       <%= debug(params) if Rails.env.development? %>
     </div>
   </div>
-  <%= render 'layouts/navigation' if logged_in? %>
+  <div id="fixed-nav">
+    <%= render(logged_in? ? 'layouts/navigation' : 'layouts/navigation_plain') %>
+  </div>
 </body>
 </html>

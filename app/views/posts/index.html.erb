@@ -22,11 +22,19 @@
       </div>
       <% end %>
       <%= render @posts %>
-      <%= will_paginate @goals %>
+      <%= will_paginate @posts %>
     </div>
   </div>
-  <div class="col-sm-4">
-      <%= %>
+  <div id="blog-side-container" class="hidden-xs col-sm-4">
+    <h2>Crucendo Tracks</h2>
+    <p class="post-tracks">
+      <%= render(@tracks, search_link: true) %>
+    </p>
+    <hr>
+    <h2>Featured Authors</h2>
+    <div class="post-authors">
+      <%= render(@authors, search_link: true) %>
+    </div>
   </div>
 </div>
 <%= render 'search' %>

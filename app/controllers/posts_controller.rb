@@ -5,9 +5,15 @@ class PostsController < ApplicationController
   # Display blog home page
   def index
     @posts = Post.active(true).most_recent.filter(
-                        params.slice(:min_date, :max_date))
-                        .paginate(:per_page => 5, :page => params[:page])
-    @tracks = Topic.all
+                        params.slice(
+                          :min_date, 
+                          :max_date, 
+                          :posts_with_track,
+                          :posts_from_author))
+                        .includes(:author)
+                        .paginate(:per_page => 3, :page => params[:page])
+    @tracks = Topic.active.order(name: :asc)
+    @authors = Author.has_posts
   end
   
   # Display single blog post
