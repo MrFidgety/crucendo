@@ -253,6 +253,8 @@ GEM
       activemodel (>= 3.2, < 5)
     material_icons (2.2.0)
       railties (>= 3.2)
+    meta-tags (2.3.1)
+      actionpack (>= 3.2.0, <= 5.1.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -410,6 +412,7 @@ DEPENDENCIES
   local_time (~> 1.0, >= 1.0.3)
   mail_form
   material_icons
+  meta-tags
   mini_backtrace (= 0.1.3)
   mini_magick (= 3.8.0)
   minitest-reporters (= 1.0.5)

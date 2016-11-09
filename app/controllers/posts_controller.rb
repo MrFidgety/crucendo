@@ -14,10 +14,18 @@ class PostsController < ApplicationController
                         .paginate(:per_page => 3, :page => params[:page])
     @tracks = Topic.active.order(name: :asc)
     @authors = Author.has_posts
+    
+    # Meta tags
+    prepare_meta_tags(title: "Crucendo Blog",
+                      description: "Get closer to who you want to be, and what you want to achieve. Your toolkit for success is the Crucendo Blog.")
   end
   
   # Display single blog post
   def show
+    prepare_meta_tags(title: @post.title,
+                      description: @post.summary,
+                      image: @post.image.social.url,
+                      type: "article")
   end
   
   private

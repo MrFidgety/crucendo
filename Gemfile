@@ -34,6 +34,7 @@ gem 'mail_form'
 gem 'simple_form'
 gem 'ckeditor'
 gem 'friendly_id',                '~> 5.1.0'
+gem 'meta-tags'
 
 group :development, :test do
   gem 'byebug',                   '3.4.0'
