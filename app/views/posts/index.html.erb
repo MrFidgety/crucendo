@@ -35,6 +35,13 @@
     <div class="post-authors">
       <%= render(@authors, search_link: true) %>
     </div>
+    <hr>
+    <h2>Tell your friends</h2>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= social_share_button_tag("Crucendo Blog") %>
+      </div>
+    </div>
   </div>
 </div>
 <%= render 'search' %>

@@ -35,6 +35,7 @@ gem 'simple_form'
 gem 'ckeditor'
 gem 'friendly_id',                '~> 5.1.0'
 gem 'meta-tags'
+gem 'social-share-button'
 
 group :development, :test do
   gem 'byebug',                   '3.4.0'

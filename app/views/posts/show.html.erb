@@ -8,8 +8,9 @@
     <p class="post-tracks"><%= render @post.topics %></p>
     <p class="post-author">
       <%= image_tag @post.author.logo.url, class: "post-author-image" if @post.author.logo? %>
-      by <%= @post.author.name %> on 
+      by <%= @post.author.name %>,  
       <%= local_relative_time(@post.published_date, type: 'weekday-or-date') %>
+      <%= social_share_button_tag() %>
     </p>
     <div class="post-article"><%= @post.content.html_safe %></div>
   </div>

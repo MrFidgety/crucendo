@@ -289,3 +289,14 @@ p .material-icons {
 @keyframes spin {
   100% { transform: rotate(360deg); }
 }
+
+// SocialShareButton
+$size: 32px;
+.social-share-button {
+  line-height: 1em;
+  .ssb-icon {
+    background-size: $size $size;
+    height: $size;
+    width: $size;
+  }
+}
