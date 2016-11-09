@@ -17,7 +17,8 @@ class PostsController < ApplicationController
     
     # Meta tags
     prepare_meta_tags(title: "Crucendo Blog",
-                      description: "Get closer to who you want to be, and what you want to achieve. Your toolkit for success is the Crucendo Blog.")
+                      description: "Get closer to who you want to be, and what you want to achieve. Your toolkit for success is the Crucendo Blog.",
+                      image: view_context.image_url("crucendo-blog-social.png"))
   end
   
   # Display single blog post

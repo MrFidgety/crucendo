@@ -51,6 +51,9 @@ class ApplicationController < ActionController::Base
       image:        image,
       description:  description,
       keywords:     %w[self-esteem confidence motivational motivate improve awareness motivation health positivity mindset],
+      fb: {
+        app_id:    '805119552924012'
+      },
       twitter: {
         site_name: site_name,
         site: '@crucendoapp',

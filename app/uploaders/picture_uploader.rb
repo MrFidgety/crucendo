@@ -4,15 +4,10 @@ class PictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   
   # Fit within dimensions while retaining aspect ratio
-  process resize_to_fit: [1920, 1080]
-  
-  # Create small version for all uploads
-  version :small do
-    process resize_to_fit: [1024,768]
-  end
-  
+  process resize_to_fit: [1024,768]
+
   # Create thumb version for all uploads
-  version :thumb, from_version: :small do
+  version :thumb do
     process resize_to_fit: [320,180]
   end
 

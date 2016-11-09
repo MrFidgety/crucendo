@@ -17,7 +17,8 @@ class Post < ActiveRecord::Base
   
   validate  :image_size
   validates :title,     presence: true, length: { maximum: 100 }
-  validates :summary, :content, :image, :author_id,   presence: true
+  validates :content, :image, :author_id,   presence: true
+  #validates :summary,   presence: true, length: { maximum: 300 }
   validate  :check_image_dimensions
                     
   mount_uploader :image, BannerUploader
