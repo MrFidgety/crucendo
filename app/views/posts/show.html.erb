@@ -14,13 +14,15 @@
             by <%= @post.author.name %>,
           <% end %>
           <%= local_relative_time(@post.published_date, type: 'weekday-or-date') %>
-          <%= social_share_button_tag() %>
         </p>
+        <div class="post-social">
+          <%= social_share_button_tag() %>
+        </div>
         <div class="post-article"><%= @post.content.html_safe %></div>
       </div>
     </div>
   </div>
-  <div id="blog-side-container" class="hidden-xs col-sm-4">
+  <div id="blog-side-container" class="col-sm-4">
     <h2>Impress Yourself</h2>
     <div class="crucendo-circle">
       <%= link_to_if(!logged_in?, root_url) do %>
