@@ -1,0 +1,22 @@
+<% 
+if post_related_small.author_id == current_post.author_id
+  # Relation is through author
+  post_relation = "Also by #{post_related_small.author.name}"
+else
+  # Relation is through tracks
+  same_tracks = post_related_small.topics & current_post.topics
+  tracks_list = same_tracks.collect{|t| t.name}
+  post_relation = "Also about #{tracks_list.to_sentence}"
+end
+%>
+<%= link_to post_path(post_related_small), class: "list-group-item" do %>
+  <div class="row">
+    <div class="col-xs-3 blog-image">
+      <%= image_tag post_related_small.image.social.url, class: "panel-thumb-image" if post_related_small.image? %>
+    </div>
+    <div class="col-xs-9">
+      <h3><%= post_relation %></h3>
+      <%= post_related_small.title %>
+    </div>
+  </div>
+<% end %>

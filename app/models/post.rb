@@ -30,7 +30,8 @@ class Post < ActiveRecord::Base
       topics.each do |t|
         url += " #{t.name}"
       end
-      return url
+      # Remove apostrophes
+      return normalize_friendly_id(url)
     end
   end
   
@@ -46,6 +47,11 @@ class Post < ActiveRecord::Base
     end
   end
 
+  # Remove apostrophes from string
+  def normalize_friendly_id(string)
+    super(string.gsub("'", ""))
+  end
+  
   private
     # Validates the size of an uploaded picture.
     def image_size
@@ -53,4 +59,5 @@ class Post < ActiveRecord::Base
         errors.add(:image, "should be less than 5MB")
       end
     end
+    
 end

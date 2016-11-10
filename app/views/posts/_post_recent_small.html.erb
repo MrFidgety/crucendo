@@ -1,0 +1,11 @@
+<%= link_to post_path(post_recent_small), class: "list-group-item" do %>
+  <div class="row">
+    <div class="col-xs-3 blog-image">
+      <%= image_tag post_recent_small.image.social.url, class: "panel-thumb-image" if post_recent_small.image? %>
+    </div>
+    <div class="col-xs-9">
+      <h3><%= local_relative_time(post_recent_small.published_date, type: 'weekday-or-date') %></h3>
+      <%= post_recent_small.title %>
+    </div>
+  </div>
+<% end %>

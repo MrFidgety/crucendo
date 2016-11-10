@@ -61,7 +61,7 @@
           <%= label_tag :posts_with_track, 'By Author' %>
           <%= select_tag :posts_from_author, 
             options_from_collection_for_select(
-                Author.all, "id", "name", params[:posts_from_author]), 
+                Author.has_posts, "id", "name", params[:posts_from_author]), 
             prompt: "Find blog posts from this Author", 
             class: 'form-control input-lg' %>
         <% end %>

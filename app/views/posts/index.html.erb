@@ -26,6 +26,24 @@
     </div>
   </div>
   <div id="blog-side-container" class="hidden-xs col-sm-4">
+    <h2>Impress Yourself</h2>
+    <div class="crucendo-circle">
+      <%= link_to_if(!logged_in?, root_url) do %>
+      <div class="crucendo-circle-content" 
+        <% if logged_in? %>
+        data-toggle="modal" data-target="#start-crucendo-modal"
+        <% end %>
+        >
+        <%= image_tag("crucendo_c_web.svg") %>
+        <div class="text-container">
+          <div class="text-offset">
+            Begin
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <hr>
     <h2>Crucendo Tracks</h2>
     <p class="post-tracks">
       <%= render(@tracks, search_link: true) %>
@@ -45,3 +63,4 @@
   </div>
 </div>
 <%= render 'search' %>
+<%= render 'accomplishments/start_crucendo' if logged_in? %>

@@ -3,6 +3,7 @@ class Topic < ActiveRecord::Base
   has_many  :subscriptions, dependent:  :destroy
   has_many  :subscribers,   through:    :subscriptions, source: :user
   belongs_to :author
+  has_and_belongs_to_many   :posts
 
   before_save   :downcase_name
   validates :name,  presence: true, length: { maximum: 45 },

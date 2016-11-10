@@ -27,6 +27,12 @@ class PostsController < ApplicationController
                       description: @post.summary,
                       image: @post.image.social.url,
                       type: "article")
+                      
+    @recent_posts = Post.active(true).most_recent.includes(:author).where('posts.id != ?', @post.id).first(3)
+    @related_posts = Post.joins(:topics)
+      .where('(topics.id IN (?) OR posts.author_id = ?) AND posts.id != ?', 
+      @post.topics.pluck(:id), @post.author_id, @post.id)
+      .uniq.first(3)
   end
   
   private

@@ -1,8 +1,8 @@
 <% search_link ||= false %>
 <%= link_to_if(search_link, posts_path(search: true, posts_from_author: author.id), class: "list-group-item") do %>
   <div class="row">
-    <div class="col-xs-3">
-      <%= image_tag author.logo.url, class: "panel-thumb-image" if author.logo? %>
+    <div class="col-xs-3 blog-image">
+      <%= image_tag author.logo.thumb.url, class: "panel-thumb-image" if author.logo? %>
     </div>
     <div class="col-xs-9">
       <span class="title"><%= author.name %></span>

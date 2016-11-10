@@ -1,17 +1,57 @@
 <% content_for :navigation_right do %>
   <%= link_to fa_icon('comment-o'), posts_path, class: "custom-icon" %>
 <% end %>
-<div id="post-container">
-  <%= image_tag @post.image.url, class: "img-responsive" %>
-  <div class="post-content">
-    <h1 class="post-title"><span><%= @post.title %></span></h1>
-    <p class="post-tracks"><%= render @post.topics %></p>
-    <p class="post-author">
-      <%= image_tag @post.author.logo.url, class: "post-author-image" if @post.author.logo? %>
-      by <%= @post.author.name %>,  
-      <%= local_relative_time(@post.published_date, type: 'weekday-or-date') %>
-      <%= social_share_button_tag() %>
-    </p>
-    <div class="post-article"><%= @post.content.html_safe %></div>
+<div class="row">
+  <div class="col-sm-8">
+    <div id="post-container">
+      <%= image_tag @post.image.url, class: "img-responsive" %>
+      <div class="post-content">
+        <h1 class="post-title"><span><%= @post.title %></span></h1>
+        <p class="post-tracks"><%= render @post.topics %></p>
+        <p class="post-author">
+          <%= link_to(@post.author.link, target: '_blank') do %>
+            <%= image_tag @post.author.logo.thumb.url, class: "post-author-image" if @post.author.logo? %>
+            by <%= @post.author.name %>,
+          <% end %>
+          <%= local_relative_time(@post.published_date, type: 'weekday-or-date') %>
+          <%= social_share_button_tag() %>
+        </p>
+        <div class="post-article"><%= @post.content.html_safe %></div>
+      </div>
+    </div>
+  </div>
+  <div id="blog-side-container" class="hidden-xs col-sm-4">
+    <h2>Impress Yourself</h2>
+    <div class="crucendo-circle">
+      <%= link_to_if(!logged_in?, root_url) do %>
+      <div class="crucendo-circle-content" 
+        <% if logged_in? %>
+        data-toggle="modal" data-target="#start-crucendo-modal"
+        <% end %>
+        >
+        <%= image_tag("crucendo_c_web.svg") %>
+        <div class="text-container">
+          <div class="text-offset">
+            Begin
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <hr>
+    <h2>Hand picked for you</h2>
+    <div class="post-small-container">
+      <%= render(partial: "post_related_small", 
+        collection: @related_posts, locals: { current_post: @post }) || 
+        "<span class='helper'>Our robot, Baxter, was unable to find related articles! Take a peek at the fresh ones below.</span>".html_safe %>
+    </div>
+    <hr>
+    <h2>Mmm, fresh content</h2>
+    <div class="post-small-container">
+      <%= render(partial: "post_recent_small", 
+        collection: @recent_posts) || 
+        "<span class='helper'>There's no recent articles!</span>".html_safe %>
+    </div>
   </div>
 </div>
+<%= render 'accomplishments/start_crucendo' if logged_in? %>
