@@ -31,10 +31,10 @@
             title: "Are you sure?", 
             data: {confirm: 'You may only delete a topic if
             it has no questions assigned.'},
-            class: "btn btn-danger" unless @topic.id.blank? %>
+            class: "btn btn-danger btn-lg" unless @topic.id.blank? %>
     </div>
     <div class="btn-group" role="group">
-      <%= f.submit yield(:button_text), class: "btn btn-success" %>
+      <%= f.submit yield(:button_text), class: "btn btn-success btn-lg" %>
     </div>
   </div>
 <% end %>

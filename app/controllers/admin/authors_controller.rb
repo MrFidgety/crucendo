@@ -3,7 +3,7 @@ class Admin::AuthorsController < AdminController
   before_action :insert_breadcrumbs
   
   def index
-    @authors = Author.all
+    @authors = Author.all.order('name ASC')
   end
   
   def new

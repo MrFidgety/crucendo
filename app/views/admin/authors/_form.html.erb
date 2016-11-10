@@ -1,32 +1,33 @@
 <%= form_for [:admin, @author], html: { multipart: true } do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
-  <%= f.label :link %>
-  <%= f.text_field :link, class: 'form-control' %>
-  <%= f.label :logo %>
-  <div class="input-group">
-    <label class="input-group-btn">
-      <span class="btn btn-default">
-        <%= fa_icon 'file-image-o' %> Browse ...<%= f.file_field :logo, 
-                      accept: 'image/jpeg,image/gif,image/png',
-                      class: "hidden_file" %>
-      </span>
-    </label>
-    <input id="author-logo-display" type="text" class="form-control" readonly>
-  </div><br>
-  <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
-    <div class="btn-group" role="group">
-      <%= link_to "Delete", admin_author_path(@author), 
-            method: :delete,
-            title: "Are you sure?", 
-            data: {confirm: 'You may only delete an author if
-            it has no topics assigned.'},
-            class: "btn btn-danger" unless @author.id.blank? %>
-    </div>
-    <div class="btn-group" role="group">
-      <%= f.submit yield(:button_text), class: "btn btn-success" %>
-    </div>
+<%= f.label :name %>
+<%= f.text_field :name, class: 'form-control' %>
+<%= f.label :link %>
+<%= f.text_field :link, class: 'form-control' %>
+<%= f.label :logo %>
+<div class="input-group">
+  <label class="input-group-btn">
+    <span class="btn btn-default">
+      <%= fa_icon 'file-image-o' %> Browse ...<%= f.file_field :logo, 
+                    accept: 'image/jpeg,image/gif,image/png',
+                    class: "hidden_file" %>
+    </span>
+  </label>
+  <input id="author-logo-display" type="text" class="form-control" readonly>
+</div>
+<%= image_tag @author.logo.thumb.url, class: "img-responsive" if @author.logo %><br>
+<div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group" role="group">
+    <%= link_to "Delete", admin_author_path(@author), 
+          method: :delete,
+          title: "Are you sure?", 
+          data: {confirm: 'You may only delete an author if
+          it has no topics assigned.'},
+          class: "btn btn-danger btn-lg" unless @author.id.blank? %>
   </div>
+  <div class="btn-group" role="group">
+    <%= f.submit yield(:button_text), class: "btn btn-success btn-lg" %>
+  </div>
+</div>
 <% end %>
 
 <script type="text/javascript">

@@ -1,4 +1,4 @@
-<% provide(:title, "Admin Tracks Show") %>
+<% title "Admin Tracks Show" %>
 <% provide(:navigation_heading, @topic.name.camelize) %>
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -39,18 +39,18 @@
       <div class="col-sm-4 col-md-3">
         <%= link_to fa_icon("pencil-square-o", text: "Edit Track"), 
               edit_admin_topic_path(@topic), 
-              class: "btn btn-default btn-block" %>
+              class: "btn btn-success btn-lg btn-block" %>
       </div>
       <div class="col-sm-4 col-md-3">
         <%= link_to fa_icon("plus", text: "Add Question"), 
               new_admin_question_path(:topic_id => @topic.id), 
-              class: "btn btn-default btn-block" %>
+              class: "btn btn-success btn-lg btn-block" %>
       </div>
       <div class="col-sm-4 col-md-3">
-        <%= link_to fa_icon("circle", class: "crucial-active", 
+        <%= link_to fa_icon("circle", 
               text: "Activate All Questions"), 
               activate_questions_admin_topic_path(@topic), 
-              method: :post, class: "btn btn-default btn-block"%>
+              method: :post, class: "btn btn-success btn-lg btn-block"%>
       </div>
     </div>
   </div>

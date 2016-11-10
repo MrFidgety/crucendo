@@ -1,4 +1,4 @@
-<% provide(:title, "Admin Dashboard") %>
+<% title "Admin Dashboard" %>
 <% provide(:navigation_heading, "Admin Dashboard") %>
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -15,23 +15,23 @@
     <div class="row">
       <div class="col-sm-4 col-md-3">
         <%= link_to "Manage Users", admin_users_path, 
-                                      class: "btn btn-default btn-block" %>
+                                      class: "btn btn-success btn-lg btn-block" %>
       </div>
       <div class="col-sm-4 col-md-3">
         <%= link_to "Manage Authors", admin_authors_path, 
-                                      class: "btn btn-default btn-block" %>
+                                      class: "btn btn-success btn-lg btn-block" %>
       </div>
       <div class="col-sm-4 col-md-3">
         <%= link_to "Manage Tracks", admin_topics_path, 
-                                      class: "btn btn-default btn-block" %>
+                                      class: "btn btn-success btn-lg btn-block" %>
       </div>
       <div class="col-sm-4 col-md-3">
         <%= link_to "All Questions", admin_questions_path, 
-                                      class: "btn btn-default btn-block" %>
+                                      class: "btn btn-success btn-lg btn-block" %>
       </div>
       <div class="col-sm-4 col-md-3">
         <%= link_to "Manage Posts", admin_posts_path, 
-                                      class: "btn btn-default btn-block" %>
+                                      class: "btn btn-success btn-lg btn-block" %>
       </div>
     </div>
   </div>

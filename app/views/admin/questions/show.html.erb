@@ -1,4 +1,4 @@
-<% provide(:title, "Admin Questions Show") %>
+<% title "Admin Questions Show" %>
 <% provide(:navigation_heading, "Admin Questions Show") %>
 <h1 class="text-white"><%= @question.content.camelize %></h1>
 <div class="panel panel-default">
@@ -20,6 +20,6 @@
   </div>
   <div class="panel-body">
     <%= link_to fa_icon("pencil-square-o", text: "Edit Question"), 
-      edit_admin_question_path(@question), class: "btn btn-default" %>
+      edit_admin_question_path(@question), class: "btn btn-success btn-lg" %>
   </div>
 </div>

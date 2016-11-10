@@ -3,24 +3,7 @@
 <% end %>
 <div class="row">
   <div class="col-sm-8">
-    <div id="post-container">
-      <%= image_tag @post.image.url, class: "img-responsive" %>
-      <div class="post-content">
-        <h1 class="post-title"><span><%= @post.title %></span></h1>
-        <p class="post-tracks"><%= render @post.topics %></p>
-        <p class="post-author">
-          <%= link_to(@post.author.link, target: '_blank') do %>
-            <%= image_tag @post.author.logo.thumb.url, class: "post-author-image" if @post.author.logo? %>
-            by <%= @post.author.name %>,
-          <% end %>
-          <%= local_relative_time(@post.published_date, type: 'weekday-or-date') %>
-        </p>
-        <div class="post-social">
-          <%= social_share_button_tag() %>
-        </div>
-        <div class="post-article"><%= @post.content.html_safe %></div>
-      </div>
-    </div>
+    <%= render partial: 'post_full', object: @post, as: 'post' %>
   </div>
   <div id="blog-side-container" class="col-sm-4">
     <h2>Impress Yourself</h2>

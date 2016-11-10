@@ -1,0 +1,18 @@
+<div id="post-container">
+  <%= image_tag post.image.url, class: "img-responsive" %>
+  <div class="post-content">
+    <h1 class="post-title"><span><%= post.title %></span></h1>
+    <p class="post-tracks"><%= render partial: 'topics/topic', collection: post.topics %></p>
+    <p class="post-author">
+      <%= link_to(post.author.link, target: '_blank') do %>
+        <%= image_tag post.author.logo.thumb.url, class: "post-author-image" if post.author.logo? %>
+        by <%= post.author.name %>,
+      <% end %>
+      <%= local_relative_time(post.published_date, type: 'weekday-or-date') %>
+    </p>
+    <div class="post-social">
+      <%= social_share_button_tag() %>
+    </div>
+    <div class="post-article"><%= post.content.html_safe %></div>
+  </div>
+</div>

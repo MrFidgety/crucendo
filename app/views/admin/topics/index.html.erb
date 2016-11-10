@@ -1,4 +1,4 @@
-<% provide(:title, "Admin Tracks") %>
+<% title "Admin Tracks" %>
 <% provide(:navigation_heading, "Admin Tracks") %>
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -14,7 +14,7 @@
   </div>
   <div class="panel-body">
     <%= link_to fa_icon("plus", text: "New Track"), new_admin_topic_path,
-                            class: "btn btn-default" %>
+                            class: "btn btn-success btn-lg" %>
   </div>
 </div>
 <div id="tracks-container" class="list-group">

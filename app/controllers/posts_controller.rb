@@ -11,7 +11,7 @@ class PostsController < ApplicationController
                           :posts_with_track,
                           :posts_from_author))
                         .includes(:author)
-                        .paginate(:per_page => 3, :page => params[:page])
+                        .paginate(:per_page => 5, :page => params[:page])
     @tracks = Topic.active.order(name: :asc)
     @authors = Author.has_posts
     

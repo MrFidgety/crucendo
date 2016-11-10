@@ -1,4 +1,4 @@
-<% provide(:title, "Admin Posts") %>
+<% title "Admin Posts" %>
 <% provide(:navigation_heading, "Admin Posts") %>
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -14,7 +14,7 @@
   </div>
   <div class="panel-body">
     <%= link_to fa_icon("plus", text: "New Post"), new_admin_post_path,
-                            class: "btn btn-default" %>
+                            class: "btn btn-success btn-lg" %>
   </div>
 </div>
 <div id="posts-container" class="list-group">

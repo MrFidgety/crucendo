@@ -1,4 +1,4 @@
-<% provide(:title, "Admin Posts Show") %>
+<% title "Admin Posts Show" %>
 <% provide(:navigation_heading, @post.title) %>
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -27,12 +27,9 @@
       <div class="col-sm-4 col-md-3">
         <%= link_to fa_icon("pencil-square-o", text: "Edit Post"), 
               edit_admin_post_path(@post), 
-              class: "btn btn-default btn-block" %>
+              class: "btn btn-success btn-lg btn-block" %>
       </div>
     </div>
   </div>
 </div>
-<%= image_tag @post.image.url, class: "img-responsive" %>
-<h1 class="post-title"><%= @post.title %></h1>
-<p class="post-summary"><%= @post.summary %></p>
-<div class="post-content"><%= @post.content.html_safe %></div>
+<%= render partial: 'posts/post_full', object: @post, as: 'post' %>

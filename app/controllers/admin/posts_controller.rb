@@ -54,6 +54,7 @@ class Admin::PostsController < AdminController
           :summary, 
           :content, 
           :image, 
+          :image_cache,
           :active, 
           :author_id,
           :published_date,

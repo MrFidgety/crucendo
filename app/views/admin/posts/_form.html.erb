@@ -1,6 +1,6 @@
 <%= form_for [:admin, @post], html: { multipart: true } do |f| %>
   <%= f.label :author_id, "Author" %>
-  <%= f.collection_select(:author_id, Author.all, :id, :name, 
+  <%= f.collection_select(:author_id, Author.all.order('name ASC'), :id, :name, 
                           { include_blank: 'select an author' } , 
                           { class: 'form-control',
                             placeholder: 'select an author'}) %>
@@ -14,7 +14,7 @@
   </div>
   <%= hidden_field_tag 'post[published_date_utc]', @post.published_date %>
   <%= f.label :topic_ids, 'Linked Tracks' %>
-  <%= f.select :topic_ids, Topic.all.collect {|x| [x.name, x.id]}, {}, :multiple => true, class: 'form-control' %>
+  <%= f.select :topic_ids, Topic.all.order('name ASC').collect {|x| [x.name, x.id]}, {}, :multiple => true, class: 'form-control' %>
   <%= f.label :active %>
   <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
     <label class="btn btn-default">
@@ -24,7 +24,7 @@
 			<%= f.radio_button :active, true %>Yes
 		</label>
   </div>
-  <%= image_tag @post.image.url, class: "img-responsive" if @post.image %>
+  <%#= image_tag @post.image.url, class: "img-responsive" if @post.image %>
   <br>
   <%= f.label :image %>
   <div class="input-group">
@@ -33,10 +33,10 @@
         <%= fa_icon 'file-image-o' %> Browse ...<%= f.file_field :image, 
                       accept: 'image/jpeg,image/gif,image/png',
                       class: "hidden_file" %>
+        <%#= f.hidden_field :image_cache  %>
       </span>
     </label>
     <input id="post-image-display" type="text" class="form-control" readonly>
-    <%= f.hidden_field :image_cache %>
   </div><br>
   <%= f.label :title %>
   <%= f.text_field :title, class: 'form-control' %>
@@ -52,10 +52,10 @@
             method: :delete,
             title: "Are you sure?", 
             data: {confirm: 'This post will be deleted permanently.'},
-            class: "btn btn-danger" unless @post.id.blank? %>
+            class: "btn btn-danger btn-lg" unless @post.id.blank? %>
     </div>
     <div class="btn-group" role="group">
-      <%= f.submit yield(:button_text), class: "btn btn-success" %>
+      <%= f.submit yield(:button_text), class: "btn btn-success btn-lg" %>
     </div>
   </div>
 <% end %>
