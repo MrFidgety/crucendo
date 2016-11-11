@@ -194,7 +194,7 @@ class User < ActiveRecord::Base
   end
   
   def default_subscriptions
-    Topic.active.where(default_subscription: true).each do |topic|
+    Topic.active(true).where(default_subscription: true).each do |topic|
       subscribe(topic)
     end
   end

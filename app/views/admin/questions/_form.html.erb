@@ -1,17 +1,18 @@
 <%= form_for [:admin, @question] do |f| %>
   <%= f.label :content %>
-  <%= f.text_field :content, class: 'form-control' %>
+  <%= f.text_field :content, class: 'form-control input-lg', 
+        placeholder: "Write the question here" %>
   <%= f.label :topic_id, "Topic" %>
-  <%= f.collection_select(:topic_id, Topic.all, :id, :name, 
-                            { include_blank: 'select a topic' } , 
-                            { class: 'form-control',
+  <%= f.collection_select(:topic_id, Topic.all.order(name: :asc), :id, :name, 
+                            { include_blank: 'Select a Track' } , 
+                            { class: 'form-control input-lg',
                               placeholder: 'select a topic'}) %>
   <%= f.label :active %>
   <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
-    <label class="btn btn-default">
+    <label class="btn btn-default btn-default-danger btn-lg">
       <%= f.radio_button :active, false %>No
 		</label>
-		<label class="btn btn-default">
+		<label class="btn btn-default btn-lg">
 			<%= f.radio_button :active, true %>Yes
 		</label>
   </div>

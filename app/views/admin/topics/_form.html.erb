@@ -1,26 +1,25 @@
 <%= form_for [:admin, @topic], html: { multipart: true } do |f| %>
   <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
+  <%= f.text_field :name, class: 'form-control input-lg', placeholder: "Track name" %>
   <%= f.label :author_id, "Author" %>
   <%= f.collection_select(:author_id, Author.all, :id, :name, 
-                            { include_blank: 'select an author' } , 
-                            { class: 'form-control',
-                              placeholder: 'select an author'}) %>
+                            { include_blank: 'Select an Author' } , 
+                            { class: 'form-control input-lg' }) %>
   <%= f.label :active %>
   <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
-    <label class="btn btn-default">
+    <label class="btn btn-default btn-default-danger btn-lg">
       <%= f.radio_button :active, false %>No
 		</label>
-		<label class="btn btn-default">
+		<label class="btn btn-default btn-lg">
 			<%= f.radio_button :active, true %>Yes
 		</label>
   </div>
   <%= f.label :default_subscription %>
   <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
-    <label class="btn btn-default">
+    <label class="btn btn-default btn-default-danger btn-lg">
       <%= f.radio_button :default_subscription, false %>No
 		</label>
-		<label class="btn btn-default">
+		<label class="btn btn-default btn-lg">
 			<%= f.radio_button :default_subscription, true %>Yes
 		</label>
   </div>

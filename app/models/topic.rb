@@ -6,15 +6,16 @@ class Topic < ActiveRecord::Base
   has_and_belongs_to_many   :posts
 
   before_save   :downcase_name
-  validates :name,  presence: true, length: { maximum: 45 },
-                    uniqueness: { case_sensitive: false }
+  validates     :author_id,   presence: true
+  validates     :name,        presence: true, length: { maximum: 45 },
+                              uniqueness: { case_sensitive: false }
 
   scope :admin,   -> { order(active: :desc, name: :asc) }
-  scope :active,  -> { where active: true }
+  scope :active,  -> (value) { where(active: value) }
   
   # finds next answer from this topic for a user
   def find_next_question(user)
-    questions.active
+    questions.active(:true)
       .joins("LEFT JOIN answers ON answers.question_id = questions.id 
               AND answers.user_id = "+ User.sanitize(user.id))
       .group("questions.id")

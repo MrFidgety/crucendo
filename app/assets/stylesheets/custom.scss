@@ -300,6 +300,9 @@ input[type="month"] {
     width: 150px;
   }
 }
+.input-group.normal-input {
+  margin-bottom: 15px
+}
 
 .error {
   color: black;
@@ -660,9 +663,12 @@ hr {
 .no-padding {
   padding: 0;
 }
-.btn{
-  margin: 5px 0px;
+.btn {
+  //margin: 5px 0px;
   white-space: normal;
+}
+.btn-bottom-margin {
+  margin-bottom: 0.5em;
 }
 .input-group-btn>.btn {
   margin: inherit;
@@ -1093,6 +1099,21 @@ form {
       border-color: $pastel-green;
       box-shadow: none;
       -webkit-box-shadow: none;
+    }
+    &.btn-default-danger {
+      color: $dark-gray;
+      &:hover {
+        border-color: $pastel-red-light;
+        background-color: $pastel-red-light;
+        color: white;
+      }
+      &:active, &.active {
+        color: white;
+        background-color: $pastel-red;
+        border-color: $pastel-red;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+      }
     }
   }
   .improve-btn {

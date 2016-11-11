@@ -5,7 +5,19 @@
     <h3 class="panel-title">Information</h3>
   </div>
   <div class="panel-body">
-    <%= image_tag @author.logo.thumb.url, class: "img-responsive" if @author.logo %>
+    <div class="row">
+      <div class="col-sm-6">
+        <h4>Name</h4>
+        <%= @author.name %>
+        <h4>Link</h4>
+        <%= link_to @author.link, @author.link %>
+      </div>
+      <div class="col-sm-6">
+        <h4>Logo/Image</h4>
+        <%= image_tag @author.logo.thumb.url, 
+              class: "img-responsive" if @author.logo %>
+      </div>
+    </div>
   </div>
 </div>
 <div class="panel panel-default">
@@ -20,7 +32,7 @@
               class: "btn btn-success btn-lg btn-block" %>
       </div>
       <div class="col-sm-4 col-md-3">
-        <%= link_to fa_icon("plus", text: "Add Topic"), 
+        <%= link_to fa_icon("plus", text: "New Track"), 
               new_admin_topic_path(:author_id => @author.id), 
               class: "btn btn-success btn-lg btn-block" %>
       </div>
@@ -29,7 +41,7 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Author Topics</h3>
+    <h3 class="panel-title">Author Tracks</h3>
   </div>
   <div class="panel-body">
     <div class="list-group">
@@ -39,7 +51,7 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Author Blog Posts</h3>
+    <h3 class="panel-title">Author Posts</h3>
   </div>
   <div class="panel-body">
     <div class="list-group">

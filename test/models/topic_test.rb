@@ -3,7 +3,7 @@ require 'test_helper'
 class TopicTest < ActiveSupport::TestCase
   
   def setup
-    @topic = Topic.new(name: "Topic")
+    @topic = Topic.new(name: "Topic", author_id: 1)
   end
   
   test "should be valid" do

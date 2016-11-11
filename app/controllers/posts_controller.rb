@@ -12,7 +12,7 @@ class PostsController < ApplicationController
                           :posts_from_author))
                         .includes(:author)
                         .paginate(:per_page => 5, :page => params[:page])
-    @tracks = Topic.active.order(name: :asc)
+    @tracks = Topic.active(true).order(name: :asc)
     @authors = Author.has_posts
     
     # Meta tags

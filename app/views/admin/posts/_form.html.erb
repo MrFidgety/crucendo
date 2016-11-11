@@ -1,6 +1,6 @@
 <%= form_for [:admin, @post], html: { multipart: true } do |f| %>
   <%= f.label :author_id, "Author" %>
-  <%= f.collection_select(:author_id, Author.all.order('name ASC'), :id, :name, 
+  <%= f.collection_select(:author_id, Author.all.order(name: :asc), :id, :name, 
                           { include_blank: 'select an author' } , 
                           { class: 'form-control',
                             placeholder: 'select an author'}) %>
@@ -17,15 +17,13 @@
   <%= f.select :topic_ids, Topic.all.order('name ASC').collect {|x| [x.name, x.id]}, {}, :multiple => true, class: 'form-control' %>
   <%= f.label :active %>
   <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
-    <label class="btn btn-default">
+    <label class="btn btn-default btn-default-danger">
       <%= f.radio_button :active, false %>No
 		</label>
 		<label class="btn btn-default">
 			<%= f.radio_button :active, true %>Yes
 		</label>
   </div>
-  <%#= image_tag @post.image.url, class: "img-responsive" if @post.image %>
-  <br>
   <%= f.label :image %>
   <div class="input-group">
     <label class="input-group-btn">

@@ -7,19 +7,19 @@
 <% end %>
 <div class="row">
   <div class="col-sm-6">
-    <%= link_to new_contact_path, remote: true, class: "btn btn-block btn-lg scaled btn-green" do %>
+    <%= link_to new_contact_path, remote: true, class: "btn btn-block btn-lg scaled btn-green btn-bottom-margin" do %>
       <h3>General</h3>
       <p class="contact-text">Looking to provide feedback, ask for support, or have any other question?</p>
     <% end %>
   </div>
   <div class="col-sm-6">
-    <%= link_to new_contact_path(type: :business), remote: true, class: "btn btn-block btn-lg scaled btn-green modal-trigger" do %>
+    <%= link_to new_contact_path(type: :business), remote: true, class: "btn btn-block btn-lg scaled btn-green btn-bottom-margin" do %>
       <h3>Business</h3>
       <p class="contact-text">Would you like to use Crucendo in a business, school, or team environment?</p>
     <% end %>
   </div>
   <div class="col-xs-12">
-    <%= link_to help_path, class: "btn btn-block btn-transparent btn-lg scaled" do %>
+    <%= link_to help_path, class: "btn btn-block btn-transparent btn-lg scaled btn-bottom-margin" do %>
       <h3>View the Crucendo Help Guide</h3>
       <p class="contact-text">Want to learn more about Crucendo, how it works, and its features? Click Here</p>
     <% end %>

@@ -10,7 +10,7 @@ class Question < ActiveRecord::Base
   default_scope     -> { where(archived: false) }
   scope :admin,     -> { order(active: :desc, content: :asc) }
   scope :topic_id,  -> (topic_id) { where topic_id: topic_id }
-  scope :active,    -> { where active: true }
+  scope :active,    -> (value) { where(active: value) }
   
   def self.search(search)
     if !search.blank?

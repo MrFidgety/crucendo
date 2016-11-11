@@ -55,9 +55,10 @@
           <%= label_tag :posts_with_track, 'Linked Tracks' %>
           <%= select_tag :posts_with_track, 
             options_from_collection_for_select(
-                Topic.active, "id", "name", params[:posts_with_track]), 
-            prompt: "Find blog posts about these tracks", 
-            class: 'form-control input-lg' %>
+                Topic.active(true).order(name: :asc), "id", "name", 
+                params[:posts_with_track]), 
+                prompt: "Find blog posts about these tracks", 
+                class: 'form-control input-lg' %>
           <%= label_tag :posts_with_track, 'By Author' %>
           <%= select_tag :posts_from_author, 
             options_from_collection_for_select(

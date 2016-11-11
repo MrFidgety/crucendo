@@ -1,0 +1,36 @@
+<div class="modal fade" id="search-questions-modal" tabindex="-1" role="dialog" 
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content search-posts">
+      <div class="modal-header">
+        <button type="button" class="modal-button-left close-icon" 
+          data-dismiss="modal" aria-hidden="true">
+          <%= material_icon.clear %>
+        </button>
+        <%= button_tag(type: 'submit', class: "modal-button-right check-icon",
+            form: 'search-questions-form', 
+            data: {disable_with: "<div class='loader'></div>".html_safe},
+            name: nil) do %>
+          <%= material_icon.search %>
+        <% end %>
+        <h4 class="modal-title">Search Questions</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag(admin_questions_path, {id: "search-questions-form", class: "search-form", 
+          enforce_utf8: false, method: "get"} ) do %>
+          <%= hidden_field_tag 'search', 'true' %>
+          <%= label_tag :topic_id, 'Linked Tracks' %>
+          <%= select_tag :topic_id, 
+            options_from_collection_for_select(
+                Topic.all.order(name: :asc), "id", "name", params[:topic_id]), 
+            prompt: "All", 
+            class: 'form-control input-lg' %>
+          <%= label_tag :topic_id, 'Status' %>
+          <%= select_tag :active, 
+            options_for_select({ 'Active'=>true, 'Inactive'=>false }, params[:active]), 
+            { :include_blank => 'All', :class => 'form-control input-lg'  } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

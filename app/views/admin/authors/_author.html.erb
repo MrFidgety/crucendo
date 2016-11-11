@@ -1,5 +1,8 @@
 <%= link_to admin_author_path(author), class: "list-group-item" do %>
-  <span class="pull-right thumb-height"><%= pluralize(author.topics.size, "topic") %></span>
+  <span class="pull-right thumb-height">
+    <%= pluralize(author.topics.size, "Track") %>, 
+    <%= pluralize(author.posts.size, "Post") %>
+  </span>
   <%= image_tag author.logo.url, class: "panel-thumb-image" if author.logo? %>
   <span class="title"><%= author.name %></span>
 <% end %>

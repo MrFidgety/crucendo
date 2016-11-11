@@ -5,28 +5,16 @@
     <h3 class="panel-title">Information</h3>
   </div>
   <div class="panel-body">
-    <div class="row">
-      <div class="col-xs-8 col-sm-9 col-lg-10">
-        <p>
-          <%= if @topic.active
-            fa_icon("circle", class: "crucial-active", text: "Active")
-          else
-            fa_icon("circle", class: "crucial-inactive", text: "Inactive") 
-          end %> Track with
-          <%= @topic.questions.active.size %> Active Questions
-        </p>
-        <% unless @topic.author.blank? %>
-        <p>
-          <%= 'By ' + @topic.author.name unless @topic.author.name.blank? %><br>
-          <%= link_to @topic.author.link, @topic.author.link unless @topic.author.link.blank? %>
-        </p>
-        <% end %>
-      </div>
-      <div class="col-xs-4 col-sm-3 col-lg-2">
-        <% unless @topic.author.blank? %>
-          <%= image_tag @topic.author.logo.url, class: "img-responsive" if @topic.author.logo? %>
-        <% end %>
-      </div>
+    <p>
+      <%= if @topic.active
+        fa_icon("circle", class: "crucial-active", text: "Active")
+      else
+        fa_icon("circle", class: "crucial-inactive", text: "Inactive") 
+      end %> Track with
+      <%= @topic.questions.active(true).size %> Active Questions from Author:
+    </p>
+    <div class="list-group">
+      <%= render @topic.author %>
     </div>
   </div>
 </div>
