@@ -1,8 +1,12 @@
 class SessionsController < ApplicationController
-  before_action :logged_in_user,    only: [:edit]
+  before_action :already_logged_in,    only: [:edit]
   before_action :get_user,          only: [:edit]
   before_action :valid_user,        only: [:edit]
   before_action :check_expiration,  only: [:edit]
+  
+  # Prevent flash from appearing twice after AJAX call
+  # logged_in check required for successful password log in
+  after_filter :discard_flash, except: [:create]
 
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
@@ -15,8 +19,8 @@ class SessionsController < ApplicationController
                                           browser: browser.name,
                                           device: browser.device.name,
                                           platform: browser.platform.name)
-      set_flash :welcome, type: :success
-
+      # Welcome user on returning login
+      set_flash :login_from_password, type: :success, object: @user
       # Take user to dashboard
       respond_to do |format|
         format.html { redirect_to root_path }
@@ -45,7 +49,8 @@ class SessionsController < ApplicationController
                                           browser: browser.name,
                                           device: browser.device.name,
                                           platform: browser.platform.name)
-    set_flash :welcome, type: :success
+    # Welcome user on returning login
+    set_flash :login_from_email, type: :success, object: @user
     redirect_to root_url
   end
   
@@ -57,6 +62,8 @@ class SessionsController < ApplicationController
         if @user.activated?
           # Send regular log in email
           @user.send_login_email
+          # Set flash helper
+          set_flash :login_check_email, type: :success, object: @user
           # Respond with login sent notice
           respond_to do |format|
             format.html { redirect_to root_url }
@@ -65,6 +72,8 @@ class SessionsController < ApplicationController
         else
           # Send regular activation email
           @user.send_activation_email
+          # Set flash helper
+          set_flash :activate_check_email, type: :success, object: @user
           # Respond with activation sent notice
           respond_to do |format|
             format.html { redirect_to root_url }
@@ -78,6 +87,8 @@ class SessionsController < ApplicationController
   def remove
     @remember = Remember.find(params[:id])
     @remember.destroy if @remember.user == current_user
+    # Alert user session was removed
+    set_flash :remove_success, type: :success, object: @remember
   end
   
   def destroy
@@ -86,10 +97,16 @@ class SessionsController < ApplicationController
   end
   
   private
-  
-    # Confirms a logged-in user.
-    def logged_in_user
-      redirect_to root_url if logged_in?
+    def discard_flash
+      flash.discard if request.xhr? 
+    end
+    
+    # Checks if already logged-in.
+    def already_logged_in
+      if logged_in?
+        set_flash :already_logged_in, type: :warning
+        redirect_to root_url 
+      end
     end
     
     def get_user
@@ -100,7 +117,8 @@ class SessionsController < ApplicationController
     def valid_user
       unless (@user && @user.activated? && 
               @user.authenticated?(:login, params[:id]))
-        set_flash :link_error, type: :danger
+        # Set generic link invalid error
+        set_flash :link_invalid_error, type: :warning
         redirect_to root_url
       end
     end
@@ -108,7 +126,8 @@ class SessionsController < ApplicationController
     # Checks expiration of reset token.
     def check_expiration
       if @user && @user.login_link_expired?
-        set_flash :link_expired, type: :warning
+        # Set generic link expired error
+        set_flash :link_expired_error, type: :warning
         redirect_to root_url
       end
     end

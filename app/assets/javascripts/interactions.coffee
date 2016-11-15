@@ -11,8 +11,9 @@ $(document).on "page:change", ->
   
   # Function to auto grow text areas  
   auto_grow = (x) -> 
-    x.css('height', '5px')
-    x.css('height', (x.prop("scrollHeight"))+"px")
+    x.css('height', '10px')
+    new_height = Math.max((x.prop("scrollHeight") + 25), 25)
+    x.css('height', new_height+"px")
     
   # Ensure any prefilled text areas are the correct size
   $('textarea.autogrow').each () ->

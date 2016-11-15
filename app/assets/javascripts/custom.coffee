@@ -83,7 +83,9 @@ $(document).on "page:change page:restore", ->
   # Fix ios safari issue with clearing date value
   $('[type="date"]').focus (e) ->
     e.currentTarget.defaultValue = ''
-    
+  
+  flash_timeout = 0
+  
   if (!$('#flash-container').is(':empty'))
     $('#flash-container').delay(500).fadeIn ->
       $(this).delay(3000).fadeOut()

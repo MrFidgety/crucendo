@@ -22,7 +22,7 @@ class GoalsController < ApplicationController
   
   def update
     if @goal.update_attributes(goal_params)
-      set_flash :good_button, type: :success
+      set_flash :generic_save, type: :success
       respond_to do |format|
         format.html { redirect_to goal_path(@goal) }
         format.js { @type = params[:goal].try(:has_key?, :interaction_id) ? 'interaction' : 'standard'}
@@ -47,7 +47,7 @@ class GoalsController < ApplicationController
     respond_to do |format|
       if @goal.save
         # Set flash to notify user of success
-        set_flash :want_added, type: :success   
+        set_flash :want_added, type: :success, object: @goal   
         format.html { redirect_to @goal }
         # Include variable to determine if this came from an interaction
         format.js   { @type = @goal.interaction_id ? 'interaction' : 'improvement' }
@@ -73,7 +73,7 @@ class GoalsController < ApplicationController
         @improvement = @goal.improvements.create(unexpected: true, 
                         interaction_id: @goal.interaction_id)
         # Set flash to notify user of success
-        set_flash :have_added, type: :success           
+        set_flash :new_have_added, type: :success, object: @goal          
         format.html { redirect_to @improvement.goal }
         # Include variable to determine if this came from an interaction
         format.js   { @type = @goal.interaction_id ? 'interaction' : 'improvement' }
@@ -101,13 +101,13 @@ class GoalsController < ApplicationController
         # Set to unexpected if goal was created this interaction
         @improvement.unexpected = true if @goal.interaction_id == @interaction.id
         # Set flash to notify user of success
-        set_flash :have_added, type: :success   
+        set_flash :have_added, type: :success, object: @goal
       end
     else
       # Create new basic improvement (with no linked interaction)
       @improvement = @goal.improvements.build(improvement_params)
       # Set flash to notify user of success
-      set_flash :have_added, type: :success   
+      set_flash :have_added, type: :success, object: @goal  
     end
     # Response allows for ajax calls
     respond_to do |format|
@@ -129,6 +129,8 @@ class GoalsController < ApplicationController
   
   def destroy
     @goal.destroy
+    # Set flash to notify user of successful delete
+    set_flash :want_deleted, type: :success, object: @goal  
     respond_to do |format|
       format.html { redirect_to goals_path }
       format.js 

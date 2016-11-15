@@ -4,6 +4,9 @@ class ImprovementsController < ApplicationController
   before_action :correct_user,  except: :index
   before_action :validate_search, only: :index
   
+  # Prevent flash from appearing twice after AJAX call
+  after_filter { flash.discard if request.xhr? }
+  
   def index
     @goal = Goal.new
     @goal.active = false
@@ -16,6 +19,8 @@ class ImprovementsController < ApplicationController
   
   def destroy
     @improvement.destroy
+    # Set flash to notify user of successful delete
+    set_flash :have_deleted, type: :success, object: @improvement  
     respond_to do |format|
       format.html { redirect_to improvements_path }
       format.js 

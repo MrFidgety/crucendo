@@ -2,6 +2,7 @@ class InteractionsController < ApplicationController
   include Wicked::Wizard
   include InteractionsHelper
   
+  before_action :logged_in_user
   before_action :find_interaction
   
   steps :q1, :q2, :q3, :haves, :wants, :finish, :crucendo
@@ -60,16 +61,16 @@ class InteractionsController < ApplicationController
       else
         # Otherwise reset the answer value to plain text for display
         @answer.plain_encrypted_answer = params[:answer][:encrypted_answer]
-        # Alert user that criteria must be met
-        set_flash :something_missing, type: :warning
+        # Alert user that their answer needs attention
+        set_flash :check_your_answer, type: :warning, object: @answer
       end
     elsif step.equal? :finish
       # Set crucendo feelings
       @interaction.update_attributes(interaction_params)
       # Check if all questions have been answered
       if @answer = @interaction.missing_answers
-        # Alert user that criteria must be met
-        set_flash :answer_required, type: :warning
+        # Alert user that all questions require answers
+        set_flash :answer_required, type: :warning, object: @answer
         # Take user to specific step
         if @answer == @interaction.answers.order(:id).first
           jump_to(:q1)

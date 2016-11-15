@@ -44,12 +44,18 @@
 }
 .modal-body {
   h3 {
-    margin-top: 0;
+    margin-top: 0.3em;
     line-height: inherit;
     font-weight: 300;
   }
   p {
     margin: 0;
+  }
+  .modal-helper {
+    padding: 1em;
+    background: $lightest-gray;
+    color: $darkest-gray;
+    border-radius: 4px;
   }
 }
 // Fix multiple footer button alignment issue

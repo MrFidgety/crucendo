@@ -25,14 +25,14 @@ class UsersController < ApplicationController
     if params[:email] =~ User::VALID_EMAIL_REGEX
       if User.exists?(:email => params[:email])
         # Alert user if email exists
-        set_flash :email_taken, type: :danger
+        # set_flash :email_taken, type: :danger
       else
         # Set parameters for new email
         @user.send_change_email_approval(params[:email])
-        set_flash :new_email_approval, type: :success, object: @user
+        # set_flash :new_email_approval, type: :success, object: @user
       end
     else
-      set_flash :invalid_email_format, type: :danger
+      # set_flash :invalid_email_format, type: :danger
     end
     redirect_to profile_path
   end
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
           # Resend activation automatically
           @user.send_activation_email
           # Set flash to notify user of email
-          set_flash :email_sent, type: :success
+          set_flash :activate_check_email, type: :success, object: @user
           # Respond with activation sent notice
           respond_to do |format|
             format.html { redirect_to root_url }
@@ -74,7 +74,7 @@ class UsersController < ApplicationController
         # Send activation email
         @user.send_activation_email
         # Set flash to notify user of email
-        set_flash :email_sent, type: :success
+        set_flash :activate_check_email, type: :success, object: @user
         # Respond with activation sent notice
         respond_to do |format|
           format.html { redirect_to root_url }
@@ -93,7 +93,13 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       # Set flash to notify user of success
-      set_flash :good_button, type: :success
+      if params.fetch(:user, {}).fetch(:password, false)
+        # Security tab update success
+        set_flash :password_save_success, type: :success, object: @user
+      else
+        # Me tab update success
+        set_flash :default_save_success, type: :success, object: @user
+      end
       respond_to do |format|
         format.html { redirect_to profile_path }
         format.js
@@ -122,7 +128,7 @@ class UsersController < ApplicationController
     
     # Allowed signup parameters
     def signup_params
-      params.require(:user).permit( :email )
+      params.require(:user).permit(:email)
     end
     
     # Take user to signup if not logged in

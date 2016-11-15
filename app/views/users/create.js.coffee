@@ -11,8 +11,8 @@ $('#new_user').fadeOut 600, ->
   # Fade response in
   response.fadeIn 600, ->
     # Automatically focus on password input
-    if "<%= j @response_form %>" == "password_login"
-      $('#session_password').focus()
+    # if "<%= j @response_form %>" == "password_login"
+    #   $('#session_password').focus()
   
 # Report new user signup to google conversion
 if "<%= j @response_form %>" == "activation_sent"

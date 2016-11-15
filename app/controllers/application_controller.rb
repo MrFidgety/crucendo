@@ -86,7 +86,7 @@ class ApplicationController < ActionController::Base
     # Confirms a logged-in user
     def logged_in_user
       unless logged_in?
-        set_flash :link_error, type: :warning
+        set_flash :login_required_error, type: :warning
         redirect_to root_url
       end
     end

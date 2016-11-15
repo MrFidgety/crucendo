@@ -33,3 +33,7 @@
   </div>
 </div>
 <%= render partial: 'posts/post_full', object: @post, as: 'post' %>
+<script>
+  // Disable social sharing buttons as this is just a preview
+  $('.ssb-icon').prop('onclick',null).off('click');
+</script>
