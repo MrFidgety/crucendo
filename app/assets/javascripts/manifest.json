@@ -2,7 +2,7 @@
   "name": "Crucendo",
   "short_name": "Crucendo",
   "start_url": "/",
-  "theme_color": "#fff",
+  "theme_color": "#FFFFFF",
   "background_color": "#0498d9",
   "display": "standalone",
   "orientation": "portrait"
