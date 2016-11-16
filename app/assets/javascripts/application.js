@@ -22,4 +22,5 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.js
 //= require ckeditor/init
 //= require social-share-button
+//= require serviceworker-companion
 //= require_tree .

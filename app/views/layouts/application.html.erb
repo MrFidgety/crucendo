@@ -3,14 +3,15 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
 <%= display_meta_tags %>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 <meta name="theme-color" content="#0498d9" />
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Crucendo">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="apple-touch-icon" href="<%= image_path("logo_icon.png") %>">
-<link rel="apple-touch-startup-image" href="<%= image_path("logo_icon.png") %>">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Crucendo" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="apple-touch-icon" href="<%= image_path("logo_icon.png") %>" />
+<link rel="apple-touch-startup-image" href="<%= image_path("logo_icon.png") %>" />
 <%= favicon_link_tag 'logo_icon.png', sizes: 'any', type: 'image/png' %>
 <%= stylesheet_link_tag     'application', media: 'all', 
                             'data-turbolinks-track' => true %>
