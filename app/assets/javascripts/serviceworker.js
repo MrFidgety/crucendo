@@ -27,7 +27,7 @@ self.addEventListener('activate', function onActivate(event) {
 self.addEventListener('fetch', function onFetch(event) {
   var request = event.request;
 
-  if (!request.url.match(/^https?:\/\/example.com/) ) { return; }
+  if (!request.url.match(/^https?:\/\/crucendo.thecrucialteam.com/) ) { return; }
   if (request.method !== 'GET') { return; }
 
   event.respondWith(
