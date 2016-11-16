@@ -11,7 +11,7 @@ function onInstall(event) {
   );
 }
 
-function onActivate() {
+function onActivate(event) {
   console.log('[Serviceworker]', "Activating!");
   event.waitUntil(
     caches.keys().then(function deleteOldCache(cacheNames) {
