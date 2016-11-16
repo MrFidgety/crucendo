@@ -4,8 +4,6 @@ self.addEventListener('install', function onInstall(event) {
   event.waitUntil(
     caches.open(version + 'offline').then(function prefill(cache) {
       return cache.addAll([
-        '<%= asset_path "application.js" %>',
-        '<%= asset_path "application.css" %>',
         '/offline.html'
       ]);
     })
