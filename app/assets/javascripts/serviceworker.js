@@ -31,10 +31,10 @@ self.addEventListener('fetch', function onFetch(event) {
   if (request.method !== 'GET') { return; }
 
   event.respondWith(
-    fetch(request)                                     // first, the network
+    fetch(request)                                     
       .catch(function fallback() {
-        caches.match(request).then(function(response) {  // then, the cache
-          response || caches.match("/offline.html");     // then, /offline cache
+        caches.match(request).then(function(response) {
+          response || caches.match("/offline.html");
         })
       })
   );
