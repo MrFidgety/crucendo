@@ -1,18 +1,17 @@
 var version = 'v1::';
 
-function onInstall(event) {
-  console.log('[Serviceworker]', "Installing!");
+self.addEventListener('install', function onInstall(event) {
   event.waitUntil(
     caches.open(version + 'offline').then(function prefill(cache) {
       return cache.addAll([
-        '/offline.html'
+        '/offline.html',
+        // etc
       ]);
     })
   );
-}
+});
 
-function onActivate(event) {
-  console.log('[Serviceworker]', "Activating!");
+self.addEventListener('activate', function onActivate(event) {
   event.waitUntil(
     caches.keys().then(function deleteOldCache(cacheNames) {
       return Promise.all(
@@ -24,24 +23,20 @@ function onActivate(event) {
       );
     })
   );
-}
+});
 
-function onFetch(event) {
+self.addEventListener('fetch', function onFetch(event) {
   var request = event.request;
 
   if (!request.url.match(/^https?:\/\/example.com/) ) { return; }
   if (request.method !== 'GET') { return; }
 
   event.respondWith(
-    fetch(request)                                      // first, the network
+    fetch(request)                                     // first, the network
       .catch(function fallback() {
         caches.match(request).then(function(response) {  // then, the cache
           response || caches.match("/offline.html");     // then, /offline cache
         })
       })
   );
-}
-
-self.addEventListener('install', onInstall);
-self.addEventListener('activate', onActivate);
-self.addEventListener('fetch', onFetch);
+});
