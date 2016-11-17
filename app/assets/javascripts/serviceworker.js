@@ -16,14 +16,26 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
   var request = event.request;
   if (request.method === 'GET') {
+    // event.respondWith(
+    //   fetch(request)
+    //     .catch(function(error) {
+    //       console.log('[Serviceworker]', '[Fetch] Failed. Serving cached offline fallback.');
+    //       return caches.open(CACHE_NAME).then(function(cache) {
+    //         return cache.match('offline.html');
+    //       });
+    //     })
+    // );
     event.respondWith(
-      fetch(request)
-        .catch(function(error) {
-          console.log('[Serviceworker]', '[Fetch] Failed. Serving cached offline fallback.');
-          return caches.open(CACHE_NAME).then(function(cache) {
-            return cache.match('offline.html');
+      caches.match(event.request).then(function(resp) {
+        return resp || fetch(event.request).then(function(response) {
+          caches.open(CACHE_NAME).then(function(cache) {
+            cache.put(event.request, response.clone());
           });
-        })
+          return response;
+        });
+      }).catch(function() {
+        return caches.match('offline.html');
+      })
     );
   }
 });
