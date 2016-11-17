@@ -27,6 +27,8 @@ self.addEventListener('fetch', function(event) {
             return response
           })
           .catch(function () {
+            console.log('Attempt to display offline page.')
+            console.log('Request: ', event.request)
             return caches.match("/offline.html")
           })
       })
