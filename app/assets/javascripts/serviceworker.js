@@ -1,39 +1,43 @@
 var version = 'v1::';
+var CACHE_NAME = 'crucendo-cache-v1::';
+var urlsToCache = [
+  '/offline.html'
+];
 
 function onInstall(event) {
-  console.log('[Serviceworker]', "Installing!");
+  console.log('[Serviceworker]', "Installing.");
   event.waitUntil(
-    caches.open(version + 'offline').then(function prefill(cache) {
-      return cache.addAll([
-        '/offline.html'
-      ]);
+    caches.open(CACHE_NAME)
+      .then(function (cache) {
+        console.log('[Serviceworker]',"Opened Cache.");
+        return cache.addAll(urlsToCache);
     })
   );
 }
 
-function onActivate(event) {
-  console.log('[Serviceworker]', "Activating!");
-  event.waitUntil(
-    caches.keys().then(function deleteOldCache(cacheNames) {
-      return Promise.all(
-        cacheNames.filter(function(cacheName) {
-          return cacheName.indexOf(version) !== 0;
-        }).map(function(cacheName) {
-          return caches.delete(cacheName);
-        })
-      );
-    })
-  );
-}
+// function onActivate(event) {
+//   console.log('[Serviceworker]', "Activating!");
+//   event.waitUntil(
+//     caches.keys().then(function (cacheNames) {
+//       return Promise.all(
+//         cacheNames.filter(function(cacheName) {
+//           return cacheName.indexOf(version) !== 0;
+//         }).map(function(cacheName) {
+//           return caches.delete(cacheName);
+//         })
+//       );
+//     })
+//   );
+// }
 
 function onFetch(event) {
   var request = event.request;
 
   //if (!request.url.match(/^https?:\/\/example.com/) ) { return; }
-  if (request.method !== 'GET') { return; }
+  //if (request.method !== 'GET') { return; }
 
   event.respondWith(
-    fetch(request).catch(function fallback() {
+    fetch(request).catch(function () {
        caches.match(request).then(function(response) {
          response || caches.match("/offline.html");
        })
@@ -42,5 +46,5 @@ function onFetch(event) {
 }
 
 self.addEventListener('install', onInstall);
-self.addEventListener('activate', onActivate);
+//self.addEventListener('activate', onActivate);
 self.addEventListener('fetch', onFetch);
