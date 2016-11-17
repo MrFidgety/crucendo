@@ -97,3 +97,13 @@ $(document).on "page:change page:restore", ->
   $('#start-crucendo-button').click ->
     ga('send', 'event', 'Crucendo', $(this).data('type'))
     
+  # Android Chrome app install banner
+  window.addEventListener('beforeinstallprompt', (e) ->
+    e.userChoice.then((choiceResult) ->
+      console.log(choiceResult.outcome)
+      if(choiceResult.outcome == 'dismissed')
+        ga('send', 'event', 'Home Screen Prompt', 'Dismissed')
+      else
+        ga('send', 'event', 'Home Screen Prompt', 'Added')
+    )
+  )
