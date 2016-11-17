@@ -25,6 +25,7 @@ self.addEventListener('fetch', function(event) {
         console.log('Unable to fetch page');
         caches.match(event.request)
           .then(function (response) {
+            console.log('Returning some cache response');
             return response;
           })
           .catch(function () {
