@@ -4,47 +4,39 @@ var URLS_TO_CACHE = [
 ];
 
 self.addEventListener('install', function(event) {
-  // Perform install step:  loading each required file into cache
+  // Put `offline.html` page into cache
+  var offlineRequest = new Request('offline.html');
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        // Add all offline dependencies to the cache
-        return cache.addAll(URLS_TO_CACHE);
-      })
-      .then(function() {
-      	// At this point everything has been cached
-        return self.skipWaiting();
-      })
+    fetch(offlineRequest).then(function(response) {
+      return caches.open(CACHE_NAME).then(function(cache) {
+        console.log('[oninstall] Cached offline page', response.url);
+        return cache.put(offlineRequest, response);
+      });
+    })
   );
 });
 
 self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    fetch(event.request)
-      .catch(function () {
-        console.log('Unable to fetch page');
-        caches.match(event.request)
-          .then(function (response) {
-            console.log('Returning some cache response');
-            return response;
-          })
-          .catch(function () {
-            console.log('Attempt to display offline page.');
-            console.log('Request: ', event.request);
-            return caches.match("/offline.html");
-          })
+  // Only fall back for HTML documents.
+  var request = event.request;
+  // && request.headers.get('accept').includes('text/html')
+  if (request.method === 'GET') {
+    // `fetch()` will use the cache when possible, to this examples
+    // depends on cache-busting URL parameter to avoid the cache.
+    event.respondWith(
+      fetch(request).catch(function(error) {
+        // `fetch()` throws an exception when the server is unreachable but not
+        // for valid HTTP responses, even `4xx` or `5xx` range.
+        console.error(
+          '[onfetch] Failed. Serving cached offline fallback ' +
+          error
+        );
+        return caches.open(CACHE_NAME).then(function(cache) {
+          return cache.match('offline.html');
+        });
       })
-    // caches.match(event.request)
-    //   .then(function(response) {
-    //     // Cache hit - return the response from the cached version
-    //     if (response) {
-    //       return response;
-    //     }
-
-    //     // Not in cache - return the result from the live server
-    //     // `fetch` is essentially a "fallback"
-    //     return fetch(event.request);
-    //   }
-    // )
-  );
+    );
+  }
+  // Any other handlers come here. Without calls to `event.respondWith()` the
+  // request will be handled without the ServiceWorker.
 });
