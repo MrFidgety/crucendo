@@ -31,18 +31,31 @@ function onInstall(event) {
 // }
 
 function onFetch(event) {
-  var request = event.request;
+  
+  event.respondWith(
+    caches.match(event.request).then(function(resp) {
+      return resp || fetch(event.request).then(function(response) {
+        caches.open(CACHE_NAME).then(function(cache) {
+          cache.put(event.request, response.clone());
+        });
+        return response;
+      });
+    }).catch(function() {
+      return caches.match('/offline.html');
+    })
+  );
+  //var request = event.request;
 
   //if (!request.url.match(/^https?:\/\/example.com/) ) { return; }
   //if (request.method !== 'GET') { return; }
 
-  event.respondWith(
-    fetch(request).catch(function () {
-       caches.match(request).then(function(response) {
-         response || caches.match("/offline.html");
-       })
-     })
-  );
+  // event.respondWith(
+  //   fetch(request).catch(function () {
+  //     caches.match(request).then(function(response) {
+  //       response || caches.match("/offline.html");
+  //     })
+  //   })
+  //);
 }
 
 self.addEventListener('install', onInstall);

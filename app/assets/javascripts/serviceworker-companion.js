@@ -1,8 +1,10 @@
-if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('/serviceworker.js', { scope: './' })
-    .then(function(reg) {
-      console.log('[Companion]', 'Service worker registered.');
-    }).catch(function(err) {
-      console.log('[Companion]', 'Service worker registration failed.');
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('/serviceworker.js')
+    .then(function() {
+      console.log('[Companion]', 'Serviceworker registered.');
+    })
+    .catch(function() {
+      console.log('[Companion]', 'Serviceworker registration failed.');
     });
 }
