@@ -1,6 +1,13 @@
 {
   "name": "Crucendo",
   "short_name": "Crucendo",
+  "icons": [
+    {
+      "src": "icon_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
   "start_url": "/",
   "theme_color": "#FFFFFF",
   "background_color": "#0498d9",

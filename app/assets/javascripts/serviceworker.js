@@ -1,14 +1,13 @@
 var CACHE_NAME = 'crucendo-cache-v1::';
 var URLS_TO_CACHE = [
-  '/offline.html',
-  '/help'
+  '/offline.html'
 ];
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(function(cache) {
-        console.log('[Serviceworker]', '[Install] Cached URLs required offline.');
+        //console.log('[Serviceworker]', '[Install] Cached URLs required offline.');
         return cache.addAll(URLS_TO_CACHE);
       })
   );
