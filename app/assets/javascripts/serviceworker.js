@@ -24,8 +24,10 @@ self.addEventListener('fetch', function(event) {
       .catch(function () {
         caches.match(event.request)
           .then(function (response) {
-            console.log('Request ', event.request)
-            response || caches.match("/offline")
+            return response
+          })
+          .catch(function () {
+            return caches.match("/offline.html")
           })
       })
     // caches.match(event.request)
