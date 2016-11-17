@@ -1,6 +1,7 @@
 var CACHE_NAME = 'crucendo-cache-v1::';
 var URLS_TO_CACHE = [
-  '/offline.html'
+  '/offline.html',
+  '/help'
 ];
 
 self.addEventListener('install', function(event) {
