@@ -1,59 +1,36 @@
-var version = 'v1::';
 var CACHE_NAME = 'crucendo-cache-v1::';
-var urlsToCache = [
+var URLS_TO_CACHE = [
   '/offline.html'
 ];
 
-function onInstall(event) {
-  console.log('[Serviceworker]', "Installing.");
+self.addEventListener('install', function(event) {
+  // Perform install step:  loading each required file into cache
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(function (cache) {
-        console.log('[Serviceworker]',"Opened Cache.");
-        return cache.addAll(urlsToCache);
-    })
-  );
-}
-
-// function onActivate(event) {
-//   console.log('[Serviceworker]', "Activating!");
-//   event.waitUntil(
-//     caches.keys().then(function (cacheNames) {
-//       return Promise.all(
-//         cacheNames.filter(function(cacheName) {
-//           return cacheName.indexOf(version) !== 0;
-//         }).map(function(cacheName) {
-//           return caches.delete(cacheName);
-//         })
-//       );
-//     })
-//   );
-// }
-
-function onFetch(event) {
-
-  var request = event.request;
-
-  //if (!request.url.match(/^https?:\/\/example.com/) ) { return; }
-  
-  if (request.method === 'GET') {
-    event.respondWith(
-      fetch(request).catch(function (error) {
-        console.error(
-          '[Serviceworker] onFetch Failed. Serving cached offline fallback ' +
-          error
-        );
-        return caches.open('offline').then(function(cache) {
-          return cache.match('offline.html');
-        });
-        // caches.match(request).then(function(response) {
-        //   response || caches.match("/offline.html");
-        // })
+      .then(function(cache) {
+        // Add all offline dependencies to the cache
+        return cache.addAll(URLS_TO_CACHE);
       })
-    );
-  }
-}
+      .then(function() {
+      	// At this point everything has been cached
+        return self.skipWaiting();
+      })
+  );
+});
 
-self.addEventListener('install', onInstall);
-//self.addEventListener('activate', onActivate);
-self.addEventListener('fetch', onFetch);
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(response) {
+        // Cache hit - return the response from the cached version
+        if (response) {
+          return response;
+        }
+
+        // Not in cache - return the result from the live server
+        // `fetch` is essentially a "fallback"
+        return fetch(event.request);
+      }
+    )
+  );
+});
