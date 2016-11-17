@@ -5,14 +5,20 @@ var URLS_TO_CACHE = [
 
 self.addEventListener('install', function(event) {
   // Put `offline.html` page into cache
-  var offlineRequest = new Request('offline.html');
+  // var offlineRequest = new Request('offline.html');
+  // event.waitUntil(
+  //   fetch(offlineRequest).then(function(response) {
+  //     return caches.open(CACHE_NAME).then(function(cache) {
+  //       console.log('[oninstall] Cached offline page', response.url);
+  //       return cache.put(offlineRequest, response);
+  //     });
+  //   })
+  // );
   event.waitUntil(
-    fetch(offlineRequest).then(function(response) {
-      return caches.open(CACHE_NAME).then(function(cache) {
-        console.log('[oninstall] Cached offline page', response.url);
-        return cache.put(offlineRequest, response);
-      });
-    })
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        return cache.addAll(urlsToCache);
+      })
   );
 });
 
