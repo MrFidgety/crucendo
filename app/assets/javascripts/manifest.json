@@ -3,7 +3,7 @@
   "short_name": "Crucendo",
   "icons": [
     {
-      "src": "icon_192x192.png",
+      "src": "icon_blue_192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     }
