@@ -22,14 +22,15 @@ self.addEventListener('fetch', function(event) {
   event.respondWith(
     fetch(event.request)
       .catch(function () {
+        console.log('Unable to fetch page');
         caches.match(event.request)
           .then(function (response) {
-            return response
+            return response;
           })
           .catch(function () {
-            console.log('Attempt to display offline page.')
-            console.log('Request: ', event.request)
-            return caches.match("/offline.html")
+            console.log('Attempt to display offline page.');
+            console.log('Request: ', event.request);
+            return caches.match("/offline.html");
           })
       })
     // caches.match(event.request)
