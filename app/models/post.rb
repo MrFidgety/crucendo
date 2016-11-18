@@ -42,7 +42,7 @@ class Post < ActiveRecord::Base
   
   # Check dimensions provided from Banner Uploader
   def check_image_dimensions
-    if !image_cache.nil? && !image.nil? && (image.width < 960 || image.height < 405)
+    if !image_cache.nil? && !image.nil? && (image.width < 1280 || image.height < 360)
       errors.add :image, "Dimension too small, needs to be at least 960x405."
     end
   end
