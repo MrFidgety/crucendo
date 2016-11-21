@@ -26,7 +26,7 @@ class Admin::PostsController < AdminController
   # Save existing blog post edit
   def update
     if @post.update_attributes(post_params)
-      set_flash :generic_successful_update, type: :success
+      set_flash :successful_update, type: :success, object: @post
       redirect_to admin_post_path(@post)
     else
       render 'edit'
